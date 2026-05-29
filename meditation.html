@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Mind — Guided Meditation for Traders | Vishal Mehta CMT</title>
+<meta name="description" content="Guided meditations crafted for traders. Calm before market open. Reset after close. Built with Gayatri Singh.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050913;--bg2:#0a1020;--bg3:#10182c;
+  --blue:#2563eb;--blue-l:#60a5fa;--blue-d:#1d4ed8;
+  --blue-dim:rgba(37,99,235,0.13);
+  --gold:#e8b84b;--gold-l:#f5d176;--gold-dim:rgba(232,184,75,0.1);
+  --rose:#fb7185;--peach:#fbbf77;--lavender:#a78bfa;--mint:#5eead4;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0f4fa;--text2:#8a98b3;--text3:#4a5468;--white:#ffffff;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3.5rem;border-bottom:1px solid var(--border);background:rgba(5,9,19,0.92);backdrop-filter:blur(24px)}
+.nav-brand{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--white);text-decoration:none}
+.nav-cmt{font-family:'Inter',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-l);margin-left:3px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--text3);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-pill{font-size:.72rem;font-weight:700;padding:.55rem 1.4rem;background:var(--blue);color:#fff;border-radius:100px;text-decoration:none;transition:all .2s}
+.nav-pill:hover{background:var(--blue-l)}
+
+/* HERO — meditation vibe */
+.hero{position:relative;padding:3.5rem 3.5rem 3rem;border-bottom:1px solid var(--border);overflow:hidden}
+.hero::before{content:'';position:absolute;top:50%;right:-100px;transform:translateY(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(167,139,250,.1) 0%,rgba(232,184,75,.06) 30%,transparent 65%);pointer-events:none;animation:breathe-bg 8s ease-in-out infinite}
+@keyframes breathe-bg{0%,100%{opacity:.4;transform:translateY(-50%) scale(1)}50%{opacity:.8;transform:translateY(-50%) scale(1.08)}}
+.hero-inner{position:relative;z-index:1;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.hero-left{text-align:left}
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;min-height:540px}
+
+/* Breathing stage (right column) — large with photo inside */
+.breath-stage{position:relative;width:min(520px,100%);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.breath-stage .ring{position:absolute;border-radius:50%;border:1px solid rgba(232,184,75,.28);animation:breathe 6s ease-in-out infinite}
+.breath-stage .ring.r1{inset:0;border-color:rgba(232,184,75,.42)}
+.breath-stage .ring.r2{inset:42px;border-color:rgba(167,139,250,.36);animation-delay:.4s}
+.breath-stage .ring.r3{inset:84px;border-color:rgba(96,165,250,.32);animation-delay:.8s}
+.breath-stage .ring.r4{inset:130px;border-color:rgba(232,184,75,.22);animation-delay:1.2s}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.06);opacity:1}}
+
+.breath-aura{position:absolute;inset:170px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(232,184,75,.35),rgba(167,139,250,.22) 50%,rgba(37,99,235,.18) 85%);box-shadow:0 0 100px rgba(232,184,75,.22),inset 0 0 50px rgba(0,0,0,.35);animation:breathe-soft 6s ease-in-out infinite}
+@keyframes breathe-soft{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+.meditator-photo{position:relative;z-index:2;width:62%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid rgba(232,184,75,.4);box-shadow:0 0 60px rgba(232,184,75,.28),0 30px 70px rgba(0,0,0,.5)}
+.meditator-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.78) contrast(1.08) saturate(.85);transition:filter .6s}
+.meditator-photo::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 25%,transparent 35%,rgba(8,8,18,.55) 100%);pointer-events:none}
+.meditator-photo::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,rgba(232,184,75,.5),transparent 25%,rgba(167,139,250,.4) 50%,transparent 75%,rgba(232,184,75,.5));z-index:-1;animation:halo-spin 18s linear infinite;filter:blur(2px)}
+@keyframes halo-spin{to{transform:rotate(360deg)}}
+
+.breath-label{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);font-family:'EB Garamond',serif;font-style:italic;color:rgba(255,255,255,.92);font-size:1.05rem;letter-spacing:.18em;text-transform:lowercase;padding:.5rem 1.3rem;background:rgba(8,12,28,.78);border:1px solid rgba(232,184,75,.3);border-radius:100px;backdrop-filter:blur(8px);animation:breathe-text 6s ease-in-out infinite;white-space:nowrap}
+@keyframes breathe-text{0%,100%{opacity:.7}50%{opacity:1}}
+
+/* Mind-state mini chips floating around the photo */
+.mind-chip{position:absolute;z-index:3;font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;padding:.4rem .8rem;background:rgba(8,12,28,.88);border:1px solid rgba(232,184,75,.25);color:var(--gold);border-radius:100px;backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(0,0,0,.4);animation:chip-float 4.5s ease-in-out infinite}
+.mind-chip.c1{top:18%;left:-2%;animation-delay:0s}
+.mind-chip.c2{top:8%;right:8%;animation-delay:1.2s;color:var(--lavender);border-color:rgba(167,139,250,.32)}
+.mind-chip.c3{bottom:22%;right:-4%;animation-delay:2.2s}
+.mind-chip.c4{bottom:8%;left:6%;animation-delay:3.2s;color:#60a5fa;border-color:rgba(96,165,250,.3)}
+@keyframes chip-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.kicker{display:inline-flex;align-items:center;gap:10px;padding:.55rem 1.3rem;background:rgba(167,139,250,.13);border:1px solid rgba(167,139,250,.35);border-radius:100px;font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;color:var(--lavender);text-transform:uppercase;margin-bottom:1.5rem}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--lavender);animation:pulse-d 2s infinite}
+@keyframes pulse-d{0%,100%{opacity:1;box-shadow:0 0 8px var(--lavender)}50%{opacity:.4;box-shadow:0 0 0 var(--lavender)}}
+
+.hero h1{font-family:'EB Garamond',serif;font-size:clamp(3.2rem,6.4vw,5.8rem);font-weight:500;line-height:1;color:var(--white);margin-bottom:1.3rem;font-style:italic;letter-spacing:-.01em}
+.hero h1 .gold{color:var(--gold)}
+.hero-tag{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--text2);font-style:italic;margin-bottom:1.2rem;line-height:1.45;max-width:520px}
+.hero-desc{font-size:1rem;color:var(--text2);max-width:540px;margin:0 0 1.6rem;line-height:1.8;font-weight:300}
+.hero-credit{font-family:var(--mono);font-size:.65rem;color:var(--text3);letter-spacing:.16em;text-transform:uppercase;margin-top:1rem}
+.hero-credit a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,184,75,.3);transition:border-color .2s}
+.hero-credit a:hover{border-bottom-color:var(--gold)}
+
+/* HERO SIDE DECORATIONS — meditation themed */
+.hero-side{position:absolute;top:50%;z-index:1;width:240px;pointer-events:none;opacity:0;transition:opacity 1.2s ease,transform 1.2s ease}
+.hero-side.in{opacity:.94}
+.hero-side.left{left:2.5rem;transform:translateY(-50%) translateX(-26px)}
+.hero-side.right{right:2.5rem;transform:translateY(-50%) translateX(26px)}
+.hero-side.left.in,.hero-side.right.in{transform:translateY(-50%) translateX(0)}
+.hero-side:hover{opacity:1!important}
+
+.hs-glow{position:absolute;inset:-30px;border-radius:32px;background:radial-gradient(circle,rgba(232,184,75,.12),transparent 65%);pointer-events:none;animation:hs-soft 6s ease-in-out infinite}
+@keyframes hs-soft{0%,100%{opacity:.6}50%{opacity:1}}
+
+.hs-card{position:relative;background:linear-gradient(170deg,rgba(20,28,50,.92),rgba(8,12,24,.95));border:1px solid rgba(232,184,75,.18);border-radius:22px;overflow:hidden;backdrop-filter:blur(20px);padding:1.3rem 1.2rem;box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px rgba(232,184,75,.05),inset 0 1px 0 rgba(255,255,255,.06)}
+
+/* LEFT — ambient sound player */
+.hs-eye{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:6px}
+.hs-eye::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:hs-pulsed 1.8s ease-in-out infinite}
+@keyframes hs-pulsed{0%,100%{opacity:.4}50%{opacity:1}}
+
+.hs-track-title{font-family:'EB Garamond',serif;font-size:1.1rem;font-style:italic;color:#fff;line-height:1.25;margin-bottom:.4rem}
+.hs-track-sub{font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:var(--text2);margin-bottom:1rem}
+
+.hs-eq{display:flex;align-items:flex-end;justify-content:space-between;height:42px;padding:0 4px;margin-bottom:1rem}
+.hs-eq span{width:5px;background:linear-gradient(180deg,var(--gold),rgba(232,184,75,.3));border-radius:6px;animation:hs-eq 1.4s ease-in-out infinite}
+.hs-eq span:nth-child(1){animation-delay:0s;height:30%}
+.hs-eq span:nth-child(2){animation-delay:.1s;height:60%}
+.hs-eq span:nth-child(3){animation-delay:.25s;height:90%}
+.hs-eq span:nth-child(4){animation-delay:.4s;height:50%}
+.hs-eq span:nth-child(5){animation-delay:.55s;height:70%}
+.hs-eq span:nth-child(6){animation-delay:.15s;height:45%}
+.hs-eq span:nth-child(7){animation-delay:.35s;height:85%}
+.hs-eq span:nth-child(8){animation-delay:.5s;height:55%}
+.hs-eq span:nth-child(9){animation-delay:.2s;height:75%}
+.hs-eq span:nth-child(10){animation-delay:.45s;height:40%}
+.hs-eq span:nth-child(11){animation-delay:.3s;height:65%}
+.hs-eq span:nth-child(12){animation-delay:.05s;height:50%}
+@keyframes hs-eq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.15)}}
+
+.hs-progbar{height:3px;background:rgba(255,255,255,.06);border-radius:100px;position:relative;overflow:hidden;margin-bottom:.4rem}
+.hs-progfill{position:absolute;left:0;top:0;bottom:0;width:42%;background:linear-gradient(90deg,var(--gold),rgba(232,184,75,.5));border-radius:100px;animation:hs-fill 12s linear infinite}
+@keyframes hs-fill{from{width:0%}to{width:100%}}
+.hs-time{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.08em}
+
+/* RIGHT — mindful streak / journal */
+.hs-streak-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px dashed rgba(232,184,75,.16)}
+.hs-streak-n{font-family:'EB Garamond',serif;font-size:2.2rem;font-style:italic;font-weight:700;color:var(--gold);line-height:1}
+.hs-streak-l{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;text-align:right;line-height:1.4}
+
+.hs-days{display:flex;justify-content:space-between;margin-bottom:1rem;gap:4px}
+.hs-day{flex:1;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.hs-day-dot{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;transition:transform .25s}
+.hs-day.done .hs-day-dot{background:rgba(232,184,75,.2);border:1.5px solid var(--gold);color:var(--gold)}
+.hs-day.done .hs-day-dot::before{content:'✓'}
+.hs-day.today .hs-day-dot{background:var(--gold);color:#000;box-shadow:0 0 0 4px rgba(232,184,75,.18);animation:hs-today-pulse 2s ease-in-out infinite}
+.hs-day.today .hs-day-dot::before{content:'●'}
+.hs-day.miss .hs-day-dot{border:1.5px solid rgba(255,255,255,.1)}
+.hs-day-l{font-family:'JetBrains Mono',monospace;font-size:.5rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
+@keyframes hs-today-pulse{0%,100%{box-shadow:0 0 0 4px rgba(232,184,75,.18)}50%{box-shadow:0 0 0 8px rgba(232,184,75,.06)}}
+
+.hs-intent{padding:.8rem .9rem;background:rgba(232,184,75,.05);border:1px solid rgba(232,184,75,.15);border-radius:12px;text-align:center}
+.hs-intent-eye{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+.hs-intent-q{font-family:'Cormorant Garamond',serif;font-size:.92rem;font-style:italic;color:#fff;line-height:1.45}
+
+@media(max-width:1180px){.hero-side{display:none}}
+
+/* SESSIONS SECTION */
+.sessions-section{padding:3.5rem 3.5rem;position:relative;border-bottom:1px solid var(--border)}
+.sessions-section::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(167,139,250,.04) 0%,transparent 50%);pointer-events:none}
+.section-head{text-align:center;max-width:760px;margin:0 auto 2rem;position:relative;z-index:1}
+.sec-eye{display:inline-block;font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--lavender);margin-bottom:1rem}
+.sec-title{font-family:'EB Garamond',serif;font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:500;color:var(--white);letter-spacing:.01em;line-height:1.1;margin-bottom:1.2rem;font-style:italic}
+.sec-title em{color:var(--gold);font-style:italic}
+.sec-sub{font-size:1rem;color:var(--text2);font-weight:300;line-height:1.8;max-width:560px;margin:0 auto;font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.2rem}
+
+.sessions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1180px;margin:0 auto;position:relative;z-index:1}
+
+.session{position:relative;text-align:center;padding:2rem 1.5rem;transition:transform .4s ease}
+.session:hover{transform:translateY(-8px)}
+
+.session-orb{position:relative;width:200px;height:200px;margin:0 auto 1.8rem;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .4s ease}
+.session-orb::before{content:'';position:absolute;inset:-30px;border-radius:50%;border:1px solid rgba(255,255,255,.05);transition:border-color .4s,inset .4s}
+.session:hover .session-orb::before{inset:-40px;border-color:rgba(255,255,255,.1)}
+.session-orb::after{content:'';position:absolute;inset:-15px;border-radius:50%;border:1px solid rgba(255,255,255,.07)}
+
+/* Morning - sunrise */
+.session.morning .session-orb{background:radial-gradient(circle at 30% 70%,#fbbf77 0%,#fb7185 35%,#a78bfa 65%,#1d4ed8 100%);box-shadow:0 0 80px rgba(251,113,133,.2),inset 0 0 40px rgba(255,255,255,.08)}
+/* Afternoon - mid sun */
+.session.midday .session-orb{background:radial-gradient(circle at 50% 35%,#f5d176 0%,#e8b84b 30%,#60a5fa 70%,#1d4ed8 100%);box-shadow:0 0 80px rgba(232,184,75,.22),inset 0 0 40px rgba(255,255,255,.1)}
+/* Post-market - sunset/evening */
+.session.evening .session-orb{background:radial-gradient(circle at 70% 70%,#fb7185 0%,#a78bfa 35%,#5eead4 70%,#10182c 100%);box-shadow:0 0 80px rgba(167,139,250,.2),inset 0 0 40px rgba(255,255,255,.08)}
+
+.session-play{position:relative;z-index:1;width:62px;height:62px;border-radius:50%;background:rgba(5,9,19,.5);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;color:#fff;transition:all .3s}
+.session:hover .session-play{background:rgba(5,9,19,.7);transform:scale(1.1);box-shadow:0 0 30px rgba(255,255,255,.2)}
+.session-play::after{content:'';width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;margin-left:3px}
+
+.session-time{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;color:var(--text3);text-transform:uppercase;margin-bottom:.6rem}
+.session-name{font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--white);margin-bottom:.6rem;font-style:italic;letter-spacing:.01em}
+.session-desc{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text2);font-style:italic;line-height:1.6;margin-bottom:1rem;font-weight:500}
+.session-duration{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.14em;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(232,184,75,.25);padding:.35rem .85rem;border-radius:100px}
+.session-duration::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold)}
+
+/* Audio status banner */
+.audio-status{margin-top:4rem;text-align:center;padding:1.3rem 2rem;max-width:560px;margin-left:auto;margin-right:auto;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.2);border-radius:100px;font-family:var(--mono);font-size:.72rem;color:var(--lavender);letter-spacing:.1em;display:flex;align-items:center;justify-content:center;gap:12px}
+.audio-status .pulse{width:8px;height:8px;border-radius:50%;background:var(--lavender);animation:pulse-d 2s infinite}
+
+/* PHILOSOPHY / PULL QUOTE */
+.philosophy-section{padding:3.5rem 3.5rem;text-align:center;background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.philosophy-section::before{content:'"';position:absolute;top:-60px;left:50%;transform:translateX(-50%);font-family:'EB Garamond',serif;font-size:30rem;font-weight:700;color:rgba(232,184,75,.04);line-height:1;pointer-events:none;font-style:italic}
+.philosophy-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.philo-eye{font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:inline-block}
+.philo-quote{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;font-style:italic;color:var(--white);line-height:1.4;letter-spacing:-.005em;margin-bottom:2rem}
+.philo-quote .gold{color:var(--gold)}
+.philo-author{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3)}
+.philo-author .name{color:var(--text);font-weight:600}
+
+/* WHY MEDITATION */
+.why-section{padding:3rem 3.5rem;border-bottom:1px solid var(--border)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px;margin:0 auto}
+.why-card{padding:2rem 1.6rem;text-align:center;position:relative}
+.why-icon{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(232,184,75,.3),rgba(167,139,250,.15));border:1px solid rgba(167,139,250,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-size:1.5rem}
+.why-t{font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--white);margin-bottom:.7rem;font-style:italic}
+.why-d{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text2);line-height:1.7;font-weight:500;font-style:italic}
+
+/* CREATOR / CREDIT */
+.creator-section{padding:3.5rem 3.5rem;text-align:center;background:var(--bg2);border-bottom:1px solid var(--border)}
+.creator-inner{max-width:680px;margin:0 auto}
+.creator-eye{font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lavender);margin-bottom:1.5rem;display:inline-block}
+.creator-h{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;color:var(--white);line-height:1.15;margin-bottom:1.2rem;font-style:italic}
+.creator-h .name{color:var(--gold)}
+.creator-bio{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text2);line-height:1.8;font-style:italic;font-weight:500;margin-bottom:2rem}
+.creator-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-family:var(--mono);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(232,184,75,.35);padding-bottom:4px;transition:all .2s}
+.creator-link:hover{color:var(--gold-l);border-bottom-color:var(--gold-l)}
+
+/* CTA */
+.cta-section{padding:6rem 3.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(167,139,250,.1) 0%,rgba(232,184,75,.06) 40%,transparent 70%);pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-eye{font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:inline-block}
+.cta-h{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:500;color:var(--white);line-height:1.15;margin-bottom:1.5rem;font-style:italic}
+.cta-h em{color:var(--gold);font-style:italic}
+.cta-sub{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text2);margin-bottom:2.2rem;line-height:1.7;font-style:italic;font-weight:500}
+.cta-form{display:flex;gap:10px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:240px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:.95rem 1.3rem;border-radius:100px;font-family:inherit;font-size:.92rem;transition:border-color .2s,box-shadow .2s}
+.cta-form input:focus{outline:0;border-color:var(--lavender);box-shadow:0 0 0 3px rgba(167,139,250,.15)}
+.cta-form input::placeholder{color:var(--text3);font-style:italic}
+.btn-main{font-size:.85rem;font-weight:600;padding:.95rem 2rem;background:var(--gold);color:#000;border:none;border-radius:100px;cursor:pointer;font-family:inherit;transition:all .2s;text-decoration:none;display:inline-block;box-shadow:0 8px 24px rgba(232,184,75,.3)}
+.btn-main:hover{background:var(--gold-l);transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{padding:3rem 3.5rem 2rem;border-top:1px solid var(--border);background:var(--bg2)}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--text3)}
+.socials{display:flex;gap:10px}
+.socials a{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;transition:all .2s}
+.socials a:hover{color:var(--gold);border-color:var(--gold)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 1s ease,transform 1s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.15s}.rv.d2{transition-delay:.32s}.rv.d3{transition-delay:.5s}
+
+@media(max-width:1100px){.sessions-grid,.why-grid{grid-template-columns:1fr;gap:3rem}}
+@media(max-width:980px){
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem}
+  .hero-right{min-height:420px;order:-1}
+  .breath-stage{width:min(380px,86%)}
+  .breath-stage .ring.r4{inset:100px}
+  .breath-stage .ring.r3{inset:65px}
+  .breath-stage .ring.r2{inset:32px}
+}
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .hero{padding:2rem 1.3rem 2.5rem}
+  .sessions-section,.philosophy-section,.why-section,.creator-section,.cta-section{padding:2.5rem 1.3rem}
+  .breath-stage{width:min(320px,86%)}
+  .breath-stage .ring.r4{inset:80px}
+  .breath-stage .ring.r3{inset:52px}
+  .breath-stage .ring.r2{inset:26px}
+  .mind-chip{font-size:.5rem;padding:.32rem .6rem}
+  .hero h1{font-size:clamp(2.4rem,9vw,3.4rem)}
+}
+</style>
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html" class="active">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="#login" class="nav-pill">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="kicker rv"><span class="dot"></span>Trading Mind · Guided Audio</div>
+      <h1 class="rv d1"><em>Breathe.</em><br>Then <span class="gold">trade.</span></h1>
+      <p class="hero-tag rv d2">Calm your mind before the bell. Stay focused through it. Reset after.</p>
+      <p class="hero-desc rv d2">Three short, guided meditations built specifically for traders. The mental edge that separates the disciplined from the rest — in under five minutes.</p>
+      <div class="hero-credit rv d3">Crafted with <a href="https://gayatrisingh.com/" target="_blank" rel="noopener">Gayatri Singh</a></div>
+    </div>
+
+    <div class="hero-right rv d1">
+      <div class="breath-stage">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+        <span class="ring r4"></span>
+        <div class="breath-aura"></div>
+        <div class="meditator-photo">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=700&h=700&fit=crop&auto=format&q=80" alt="A trader listening, mind at peace" loading="eager">
+        </div>
+        <div class="mind-chip c1">◆ Focused</div>
+        <div class="mind-chip c2">○ Present</div>
+        <div class="mind-chip c3">◆ Steady</div>
+        <div class="mind-chip c4">○ Clear</div>
+        <div class="breath-label">inhale · exhale</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE SESSIONS -->
+<section class="sessions-section">
+  <div class="section-head">
+    <div class="sec-eye rv">Three sessions</div>
+    <h2 class="sec-title rv d1">A meditation for <em>every market hour.</em></h2>
+    <p class="sec-sub rv d2">Open the platform. Open your phone. Close your eyes. Begin.</p>
+  </div>
+
+  <div class="sessions-grid">
+
+    <div class="session morning rv d1">
+      <div class="session-orb">
+        <div class="session-play"></div>
+      </div>
+      <div class="session-time">Morning · Pre-Market</div>
+      <div class="session-name">Pre-Market Mindfulness</div>
+      <div class="session-desc">"Calm your mind before trading, stay focused."</div>
+      <div class="session-duration">04:08</div>
+    </div>
+
+    <div class="session midday rv d2">
+      <div class="session-orb">
+        <div class="session-play"></div>
+      </div>
+      <div class="session-time">Afternoon · Intraday</div>
+      <div class="session-name">Calm Return Moment</div>
+      <div class="session-desc">"Return to present, calm and clear."</div>
+      <div class="session-duration">03:57</div>
+    </div>
+
+    <div class="session evening rv d3">
+      <div class="session-orb">
+        <div class="session-play"></div>
+      </div>
+      <div class="session-time">Evening · Post-Market</div>
+      <div class="session-name">Post-Market Reset</div>
+      <div class="session-desc">"Release stress, unwind after market."</div>
+      <div class="session-duration">04:20</div>
+    </div>
+
+  </div>
+
+  <div class="audio-status rv">
+    <span class="pulse"></span>
+    Audio episodes will be live soon · Drop your email to be notified
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="philosophy-inner">
+    <div class="philo-eye rv">The Philosophy</div>
+    <div class="philo-quote rv d1">"The market rewards <span class="gold">presence</span>. Not panic, not prediction. Trade calm. Trade clean. Repeat."</div>
+    <div class="philo-author rv d2"><span class="name">Vishal Mehta</span>, CMT</div>
+  </div>
+</section>
+
+<!-- WHY MEDITATION FOR TRADERS -->
+<section class="why-section">
+  <div class="section-head">
+    <div class="sec-eye rv">Why this matters</div>
+    <h2 class="sec-title rv d1">Your edge starts <em>between the ears.</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card rv d1">
+      <div class="why-icon">🫁</div>
+      <div class="why-t">Process beats panic</div>
+      <div class="why-d">Discipline is downstream of nervous system regulation. Calm minds follow rules. Anxious minds break them.</div>
+    </div>
+    <div class="why-card rv d2">
+      <div class="why-icon">⏱</div>
+      <div class="why-t">Under 5 minutes</div>
+      <div class="why-d">Short, intentional resets. No incense, no chanting. Just enough to reset your state before, during and after market hours.</div>
+    </div>
+    <div class="why-card rv d3">
+      <div class="why-icon">📈</div>
+      <div class="why-t">Built for traders</div>
+      <div class="why-d">Not generic mindfulness. Every session is grounded in the specific pressures of decision-making with real money on the line.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CREATOR / CREDIT -->
+<section class="creator-section">
+  <div class="creator-inner">
+    <div class="creator-eye rv">In collaboration with</div>
+    <h2 class="creator-h rv d1">Crafted with <span class="name">Gayatri Singh.</span></h2>
+    <p class="creator-bio rv d2">A mindfulness coach whose work bridges contemplative tradition with the high-pressure demands of modern decision-making. Every session here is voiced and shaped by her.</p>
+    <a href="https://gayatrisingh.com/" target="_blank" rel="noopener" class="creator-link rv d3">Visit gayatrisingh.com →</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-eye rv">Be first to listen</div>
+    <h2 class="cta-h rv d1">When the audio drops,<br><em>you'll know first.</em></h2>
+    <p class="cta-sub rv d2">No spam. No marketing. Just one quiet email when each session goes live.</p>
+    <form class="cta-form rv d3" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓'; this.reset();">
+      <input type="email" placeholder="your.email@example.com" required>
+      <button type="submit" class="btn-main">Notify me</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*120));
+},100);
+</script>
+</body>
+</html>

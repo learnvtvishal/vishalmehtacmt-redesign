@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — Vishal Mehta CMT</title>
+<meta name="description" content="Live masterclasses, workshops and trader meetups with Vishal Mehta, CMT — across Mumbai, Bangalore, Delhi and online.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050913;--bg2:#0a1020;--bg3:#10182c;
+  --blue:#2563eb;--blue-l:#60a5fa;--blue-d:#1d4ed8;
+  --blue-dim:rgba(37,99,235,0.13);
+  --gold:#e8b84b;--gold-l:#f5d176;--gold-dim:rgba(232,184,75,0.1);
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0f4fa;--text2:#8a98b3;--text3:#4a5468;--white:#ffffff;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3.5rem;border-bottom:1px solid var(--border);background:rgba(5,9,19,0.92);backdrop-filter:blur(24px)}
+.nav-brand{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--white);text-decoration:none}
+.nav-cmt{font-family:'Inter',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-l);margin-left:3px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--text3);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-pill{font-size:.72rem;font-weight:700;padding:.55rem 1.4rem;background:var(--blue);color:#fff;border-radius:100px;text-decoration:none;transition:all .2s}
+.nav-pill:hover{background:var(--blue-l)}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:7rem 3.5rem 4rem;text-align:center;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(circle,rgba(37,99,235,.14) 0%,transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(232,184,75,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(232,184,75,.035) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(ellipse at center,#000 0%,transparent 75%);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:920px;margin:0 auto}
+.kicker{display:inline-flex;align-items:center;gap:10px;padding:.55rem 1.3rem;background:var(--gold-dim);border:1px solid rgba(232,184,75,.35);border-radius:100px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'EB Garamond',serif;font-size:clamp(3rem,6.5vw,5.5rem);font-weight:700;line-height:1.02;color:var(--white);margin-bottom:1.2rem;letter-spacing:.005em}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-tag{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--text2);font-style:italic;margin-bottom:1.4rem}
+.hero-desc{font-size:1rem;color:var(--text2);max-width:600px;margin:0 auto 2.5rem;font-weight:300;line-height:1.8}
+
+.hero-strip{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding-top:2.5rem;border-top:1px solid var(--border)}
+.hs-item{text-align:center}
+.hs-n{font-family:'EB Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold);font-style:italic;letter-spacing:-.01em;line-height:1}
+.hs-l{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-top:.5rem}
+
+/* FEATURED EVENT */
+.featured-section{padding:5rem 3.5rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.featured-card{display:grid;grid-template-columns:.62fr 1.4fr;gap:3rem;align-items:stretch;max-width:1180px;margin:0 auto;background:linear-gradient(140deg,var(--bg3) 0%,rgba(37,99,235,.06) 100%);border:1px solid rgba(232,184,75,.22);border-radius:24px;padding:0;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.featured-card::before{content:'';position:absolute;top:-120px;right:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(232,184,75,.14) 0%,transparent 65%);pointer-events:none}
+
+/* date "tear-off" card */
+.fa-date{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;background:linear-gradient(160deg,var(--blue) 0%,var(--blue-d) 100%);color:#fff;border-right:1px solid rgba(255,255,255,.06)}
+.fa-date::before,.fa-date::after{content:'';position:absolute;width:18px;height:18px;background:var(--bg2);border-radius:50%}
+.fa-date::before{top:24px;right:-9px}
+.fa-date::after{bottom:24px;right:-9px}
+.fa-month{font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);background:rgba(0,0,0,.25);padding:.45rem 1rem;border-radius:6px;margin-bottom:1.4rem}
+.fa-day{font-family:'EB Garamond',serif;font-size:7rem;font-weight:700;line-height:.95;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.3)}
+.fa-weekday{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:rgba(255,255,255,.85);margin-top:.5rem}
+.fa-year{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;color:rgba(255,255,255,.5);margin-top:.4rem}
+.fa-divider{width:60px;height:1px;background:rgba(255,255,255,.18);margin:1.5rem 0}
+.fa-time{font-family:var(--mono);font-size:.78rem;color:#fff;letter-spacing:.08em}
+.fa-tz{font-family:var(--mono);font-size:.62rem;color:rgba(255,255,255,.55);letter-spacing:.18em;margin-top:.3rem}
+
+.featured-body{position:relative;z-index:1;padding:3rem 3rem 3rem 0}
+.featured-eye{font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:inline-flex;align-items:center;gap:8px}
+.featured-eye::before{content:'';width:18px;height:1px;background:var(--gold)}
+.featured-title{font-family:'EB Garamond',serif;font-size:clamp(1.9rem,3.2vw,2.6rem);font-weight:700;color:var(--white);line-height:1.15;margin-bottom:1rem;letter-spacing:.005em}
+.featured-title em{font-style:italic;color:var(--gold)}
+.featured-desc{font-size:.95rem;color:var(--text2);line-height:1.8;margin-bottom:1.5rem;font-weight:300;max-width:560px}
+.featured-meta{display:flex;flex-wrap:wrap;gap:1.5rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1.8rem}
+.fm-row{display:inline-flex;align-items:center;gap:8px}
+.fm-row .ico{color:var(--gold);font-size:.9rem}
+.featured-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn-main{font-size:.82rem;font-weight:600;padding:.95rem 2rem;background:var(--gold);color:#000;border-radius:100px;text-decoration:none;transition:all .2s;box-shadow:0 8px 24px rgba(232,184,75,.3)}
+.btn-main:hover{background:var(--gold-l);transform:translateY(-2px)}
+.btn-ghost{font-size:.82rem;font-weight:600;padding:.95rem 2rem;color:var(--text2);border:1px solid var(--border2);border-radius:100px;text-decoration:none;transition:all .2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.seats-left{font-family:var(--mono);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:#f87171;margin-left:auto;display:inline-flex;align-items:center;gap:8px}
+.seats-left::before{content:'';width:6px;height:6px;border-radius:50%;background:#f87171;box-shadow:0 0 10px #f87171;animation:pulse 1.4s infinite}
+
+/* AGENDA STRIP inside featured */
+.agenda-strip{margin:.5rem 0 1.6rem;padding:1.4rem 1.5rem;background:rgba(232,184,75,.04);border:1px dashed rgba(232,184,75,.25);border-radius:14px;max-width:560px}
+.ag-eye{font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.ag-row{display:flex;align-items:flex-start;gap:.9rem;padding:.45rem 0;font-size:.88rem;color:var(--text2);line-height:1.55;font-weight:300}
+.ag-row strong{font-family:'EB Garamond',serif;font-size:1.02rem;font-weight:600;font-style:italic;color:#fff;letter-spacing:.005em}
+.ag-n{font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--blue-l);letter-spacing:.1em;padding-top:.2rem;min-width:22px}
+.featured-quote{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--gold);line-height:1.5;padding:.8rem 0 1.4rem;border-top:1px solid rgba(232,184,75,.15);max-width:560px}
+
+/* SECTION HEAD */
+.sec-wrap{padding:5rem 3.5rem;border-bottom:1px solid var(--border)}
+.section-head{text-align:center;max-width:760px;margin:0 auto 3.5rem}
+.sec-eye{display:inline-block;font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-l);margin-bottom:1rem}
+.sec-title{font-family:'EB Garamond',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;color:var(--white);letter-spacing:.005em;line-height:1.06;margin-bottom:1rem}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-sub{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text2);font-style:italic;font-weight:400}
+
+/* UPCOMING GRID */
+.upcoming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:1200px;margin:0 auto}
+.ev-card{display:flex;flex-direction:column;background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative}
+.ev-card:hover{transform:translateY(-6px);border-color:rgba(232,184,75,.45);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.ev-card-top{padding:1.8rem 1.6rem 1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.ev-date-mini{display:flex;flex-direction:column;align-items:center;background:linear-gradient(140deg,#0a1530,#050913);border:1px solid var(--border2);border-radius:12px;padding:.5rem .9rem;flex-shrink:0;min-width:64px}
+.evd-mo{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--gold);font-weight:700;text-transform:uppercase}
+.evd-day{font-family:'EB Garamond',serif;font-size:1.8rem;font-weight:700;color:#fff;line-height:1;font-style:italic;margin-top:.15rem}
+.ev-tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:.35rem .7rem;border-radius:100px;font-weight:700;align-self:flex-start;white-space:nowrap}
+.tag-master{background:rgba(232,184,75,.13);color:var(--gold);border:1px solid rgba(232,184,75,.3)}
+.tag-meetup{background:rgba(37,99,235,.13);color:var(--blue-l);border:1px solid rgba(37,99,235,.3)}
+.tag-online{background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.28)}
+.tag-workshop{background:rgba(244,114,182,.1);color:#f472b6;border:1px solid rgba(244,114,182,.28)}
+.ev-body{padding:.6rem 1.6rem 1.5rem;flex:1;display:flex;flex-direction:column}
+.ev-title{font-family:'EB Garamond',serif;font-size:1.25rem;font-weight:600;color:#fff;line-height:1.25;margin-bottom:.7rem;letter-spacing:.005em}
+.ev-blurb{font-size:.85rem;color:var(--text2);line-height:1.65;font-weight:300;margin-bottom:1.1rem;flex:1}
+.ev-meta{display:flex;flex-direction:column;gap:.4rem;padding-top:1rem;border-top:1px dashed var(--border)}
+.ev-mrow{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.ev-mrow .ico{color:var(--gold);font-size:.85rem;width:14px;text-align:center}
+.ev-cta{padding:1rem 1.6rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold);background:rgba(232,184,75,.03)}
+.ev-cta .arrow{transition:transform .25s}
+.ev-card:hover .ev-cta .arrow{transform:translateX(5px)}
+
+/* TIMELINE — past events */
+.past-section{padding:5rem 3.5rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.timeline{max-width:980px;margin:0 auto;position:relative;padding-left:60px}
+.timeline::before{content:'';position:absolute;left:24px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,transparent,var(--gold) 12%,var(--gold) 88%,transparent)}
+.tl-item{position:relative;padding:0 0 2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-43px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--bg2);border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(232,184,75,.08)}
+.tl-body{}
+.tl-date{font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.tl-title{font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:600;color:#fff;line-height:1.25;margin-bottom:.4rem;letter-spacing:.005em}
+.tl-where{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--text2);margin-bottom:.6rem}
+.tl-blurb{font-size:.88rem;color:var(--text2);line-height:1.7;font-weight:300;max-width:560px}
+.tl-stat{display:flex;flex-direction:column;align-items:flex-end;text-align:right;min-width:120px}
+.tl-stat-n{font-family:'EB Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold);font-style:italic;line-height:1}
+.tl-stat-l{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-top:.3rem}
+
+/* SPEAKER CTA */
+.speaker-section{padding:5rem 3.5rem;text-align:center;background:linear-gradient(160deg,var(--bg2) 0%,var(--bg) 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.speaker-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 30% 50%,rgba(232,184,75,.06) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(37,99,235,.07) 0%,transparent 50%);pointer-events:none}
+.speaker-inner{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.speaker-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-style:italic;font-weight:500;color:var(--text);line-height:1.4;margin-bottom:1.8rem;letter-spacing:.005em}
+.speaker-quote::before{content:'"';font-family:'EB Garamond',serif;font-size:5rem;color:var(--gold);position:absolute;left:-3rem;top:-2rem;line-height:1;opacity:.5}
+.speaker-quote-wrap{position:relative;display:inline-block;padding:0 1.5rem}
+.speaker-cta{display:inline-flex;gap:12px;margin-top:1.5rem}
+
+/* FOOTER */
+.footer{padding:3rem 3.5rem 2rem;border-top:1px solid var(--border);background:var(--bg2)}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--text3)}
+.socials{display:flex;gap:10px}
+.socials a{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;transition:all .2s}
+.socials a:hover{color:var(--gold);border-color:var(--gold)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.22s}.rv.d3{transition-delay:.36s}
+
+@media(max-width:980px){
+  .featured-card{grid-template-columns:1fr}
+  .fa-date{padding:2.2rem 1.5rem;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .fa-date::before,.fa-date::after{display:none}
+  .featured-body{padding:2rem}
+  .upcoming-grid{grid-template-columns:repeat(2,1fr)}
+  .tl-item{grid-template-columns:1fr}
+  .tl-stat{align-items:flex-start;text-align:left}
+}
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .hero{padding:5.5rem 1.5rem 3rem}
+  .featured-section,.sec-wrap,.past-section,.speaker-section{padding:3rem 1.5rem}
+  .upcoming-grid{grid-template-columns:1fr}
+  .timeline{padding-left:32px}
+  .timeline::before{left:8px}
+  .tl-item::before{left:-29px}
+  .hero-strip{gap:1.8rem}
+}
+</style>
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="#login" class="nav-pill">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker rv"><span class="dot"></span>3 upcoming · across 4 cities</div>
+    <h1 class="rv d1">Where edges meet<br><em>in person.</em></h1>
+    <div class="hero-tag rv d2">Masterclasses, meetups and intimate workshops — no fluff, no slide-deck theatre.</div>
+    <p class="hero-desc rv d2">Show up for one weekend and walk out with a system, a network, and a different relationship with your charts. Recorded for the world. Felt only by the room.</p>
+    <div class="hero-strip rv d3">
+      <div class="hs-item"><div class="hs-n">42+</div><div class="hs-l">Events hosted</div></div>
+      <div class="hs-item"><div class="hs-n">11</div><div class="hs-l">Cities visited</div></div>
+      <div class="hs-item"><div class="hs-n">2,400</div><div class="hs-l">Traders in the room</div></div>
+      <div class="hs-item"><div class="hs-n">24+</div><div class="hs-l">Years sharing</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED EVENT -->
+<section class="featured-section">
+  <div class="featured-card rv">
+    <div class="fa-date">
+      <div class="fa-month">May</div>
+      <div class="fa-day">16</div>
+      <div class="fa-weekday">Saturday</div>
+      <div class="fa-year">2026</div>
+      <div class="fa-divider"></div>
+      <div class="fa-time">5:30 PM</div>
+      <div class="fa-tz">IST · Tomorrow</div>
+    </div>
+    <div class="featured-body">
+      <div class="featured-eye">Next up · Live</div>
+      <h2 class="featured-title">Traders Coffee Meetup — <em>Pune</em></h2>
+      <p class="featured-desc">An exclusive in-person gathering for serious traders — focused conversation on markets, trading edges, and psychology. Not a seminar. Not a sales pitch. Just a room of traders who actually trade.</p>
+      <div class="featured-meta">
+        <span class="fm-row"><span class="ico">◉</span>Pune, Maharashtra · venue shared on WhatsApp after RSVP</span>
+        <span class="fm-row"><span class="ico">◆</span>Strictly limited seats</span>
+        <span class="fm-row"><span class="ico">▸</span>Hosted by Vishal Mehta, CMT</span>
+      </div>
+      <div class="agenda-strip">
+        <div class="ag-eye">What we'll talk about</div>
+        <div class="ag-row"><span class="ag-n">01</span><div><strong>Market Structure</strong> — reading price action without indicator noise</div></div>
+        <div class="ag-row"><span class="ag-n">02</span><div><strong>Strategy</strong> — systematic approaches with a quantifiable edge</div></div>
+        <div class="ag-row"><span class="ag-n">03</span><div><strong>Trading Psychology</strong> — why most traders underperform, and the boring fix</div></div>
+      </div>
+      <div class="featured-quote">"This is not a seminar. This is a conversation among serious traders."</div>
+      <div class="featured-cta">
+        <a href="https://www.vishalmehtacmt.com/events/2d8dff61-4581-4645-aa51-01efc8ed4e66" target="_blank" rel="noopener" class="btn-main">Register for this event →</a>
+        <a href="contact.html" class="btn-ghost">Ask a question first</a>
+        <span class="seats-left">Closing tonight</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING -->
+<section class="sec-wrap">
+  <div class="section-head">
+    <div class="sec-eye rv">What's coming up</div>
+    <h2 class="sec-title rv d1">The next <em>three</em> rooms.</h2>
+    <div class="sec-sub rv d2">Pick the one you can't miss.</div>
+  </div>
+
+  <div class="upcoming-grid">
+    <a href="#" class="ev-card rv d1">
+      <div class="ev-card-top">
+        <div class="ev-date-mini"><div class="evd-mo">Jul</div><div class="evd-day">5</div></div>
+        <div class="ev-tag tag-meetup">Meetup</div>
+      </div>
+      <div class="ev-body">
+        <div class="ev-title">Disciplined Traders Meetup — Bangalore</div>
+        <p class="ev-blurb">An evening of unfiltered conversations with traders from the Academy. Three speakers, one fireside chat, zero PowerPoint.</p>
+        <div class="ev-meta">
+          <div class="ev-mrow"><span class="ico">◉</span>WeWork, Galaxy · Bangalore</div>
+          <div class="ev-mrow"><span class="ico">◷</span>6:00 PM – 9:30 PM</div>
+          <div class="ev-mrow"><span class="ico">⌬</span>120 attendees · ₹free</div>
+        </div>
+      </div>
+      <div class="ev-cta"><span>RSVP now</span><span class="arrow">→</span></div>
+    </a>
+
+    <a href="#" class="ev-card rv d2">
+      <div class="ev-card-top">
+        <div class="ev-date-mini"><div class="evd-mo">Jul</div><div class="evd-day">19</div></div>
+        <div class="ev-tag tag-online">Online</div>
+      </div>
+      <div class="ev-body">
+        <div class="ev-title">CMT Level I Prep — Live Cohort Kickoff</div>
+        <p class="ev-blurb">A live, 8-week cohort that walks you through the entire CMT Level I body of knowledge with weekly live Q&amp;A and mock papers.</p>
+        <div class="ev-meta">
+          <div class="ev-mrow"><span class="ico">⌬</span>Online · Zoom + private channel</div>
+          <div class="ev-mrow"><span class="ico">◷</span>Sat &amp; Sun · 8 weekends</div>
+          <div class="ev-mrow"><span class="ico">◆</span>Capped at 80 candidates</div>
+        </div>
+      </div>
+      <div class="ev-cta"><span>Apply for cohort</span><span class="arrow">→</span></div>
+    </a>
+
+    <a href="#" class="ev-card rv d3">
+      <div class="ev-card-top">
+        <div class="ev-date-mini"><div class="evd-mo">Aug</div><div class="evd-day">9</div></div>
+        <div class="ev-tag tag-workshop">Workshop</div>
+      </div>
+      <div class="ev-body">
+        <div class="ev-title">Charting the Mind — Delhi Workshop</div>
+        <p class="ev-blurb">A one-day workshop that pairs technical setups with the trading-psychology framework. Co-led with Gayatri Singh of Trading Mind.</p>
+        <div class="ev-meta">
+          <div class="ev-mrow"><span class="ico">◉</span>The Lalit · New Delhi</div>
+          <div class="ev-mrow"><span class="ico">◷</span>10:00 AM – 5:00 PM</div>
+          <div class="ev-mrow"><span class="ico">◆</span>40 seats · early-bird ₹6,500</div>
+        </div>
+      </div>
+      <div class="ev-cta"><span>Save my seat</span><span class="arrow">→</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- PAST EVENTS TIMELINE -->
+<section class="past-section">
+  <div class="section-head">
+    <div class="sec-eye rv">The archive</div>
+    <h2 class="sec-title rv d1">Rooms we've <em>built</em>.</h2>
+    <div class="sec-sub rv d2">A short walk through the highlights.</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item rv d1">
+      <div class="tl-body">
+        <div class="tl-date">March 2026</div>
+        <div class="tl-title">Quant Day — IIM Bangalore</div>
+        <div class="tl-where">In conversation with the IIM-B Finance Club</div>
+        <p class="tl-blurb">A 3-hour deep-dive on how systematic trading desks actually work — from idea to deployment — to a hall of 300 students and faculty.</p>
+      </div>
+      <div class="tl-stat"><div class="tl-stat-n">312</div><div class="tl-stat-l">In the room</div></div>
+    </div>
+
+    <div class="tl-item rv d1">
+      <div class="tl-body">
+        <div class="tl-date">January 2026</div>
+        <div class="tl-title">Disciplined Traders Summit — Mumbai</div>
+        <div class="tl-where">Two days · The Westin · Powai</div>
+        <p class="tl-blurb">Our annual flagship — 14 sessions, 6 speakers, and a closing fireside chat that ran past midnight. Easily the year's favourite.</p>
+      </div>
+      <div class="tl-stat"><div class="tl-stat-n">420</div><div class="tl-stat-l">Attendees</div></div>
+    </div>
+
+    <div class="tl-item rv d1">
+      <div class="tl-body">
+        <div class="tl-date">November 2025</div>
+        <div class="tl-title">CMT Association · Mumbai Chapter</div>
+        <div class="tl-where">Keynote · Hotel Sahara Star</div>
+        <p class="tl-blurb">"What technicians get wrong about Indian markets" — a keynote for the local CMT Association chapter and visiting members from Singapore and Dubai.</p>
+      </div>
+      <div class="tl-stat"><div class="tl-stat-n">180</div><div class="tl-stat-l">Technicians</div></div>
+    </div>
+
+    <div class="tl-item rv d1">
+      <div class="tl-body">
+        <div class="tl-date">September 2025</div>
+        <div class="tl-title">Algo Bootcamp — Pune</div>
+        <div class="tl-where">Hands-on weekend · The O Hotel</div>
+        <p class="tl-blurb">36 traders, two days, one rule — leave with a deployed algorithm. 31 did. We're still in touch with most of them.</p>
+      </div>
+      <div class="tl-stat"><div class="tl-stat-n">36</div><div class="tl-stat-l">Built · 31 deployed</div></div>
+    </div>
+
+    <div class="tl-item rv d1">
+      <div class="tl-body">
+        <div class="tl-date">July 2025</div>
+        <div class="tl-title">Charting India — Hyderabad Meetup</div>
+        <div class="tl-where">Evening session · T-Hub</div>
+        <p class="tl-blurb">An informal evening at T-Hub with traders, devs and one extremely opinionated discretionary trader. Recorded; still our most-watched meetup.</p>
+      </div>
+      <div class="tl-stat"><div class="tl-stat-n">95</div><div class="tl-stat-l">Traders</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKER CTA -->
+<section class="speaker-section">
+  <div class="speaker-inner">
+    <div class="sec-eye rv">Invite Vishal</div>
+    <div class="speaker-quote-wrap rv d1">
+      <p class="speaker-quote">Hosting a market summit, an investor day, or a campus session? Vishal is available for keynotes, fireside chats and intimate workshops — in India and abroad.</p>
+    </div>
+    <div class="speaker-cta rv d2">
+      <a href="contact.html?inquiry=speaker" class="btn-main">Invite as a speaker →</a>
+      <a href="contact.html" class="btn-ghost">Other enquiries</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
+},100);
+</script>
+</body>
+</html>

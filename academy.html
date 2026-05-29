@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disciplined Traders Academy — Technical Analysis · Evolved. Now With AI</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050913;--bg2:#0a1020;--bg3:#10182c;
+  --blue:#2563eb;--blue-l:#60a5fa;--blue-d:#1d4ed8;
+  --blue-dim:rgba(37,99,235,0.13);
+  --gold:#e8b84b;--gold-l:#f5d176;--gold-dim:rgba(232,184,75,0.1);
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0f4fa;--text2:#8a98b3;--text3:#4a5468;--white:#ffffff;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3.5rem;border-bottom:1px solid var(--border);background:rgba(5,9,19,0.92);backdrop-filter:blur(24px)}
+.nav-brand{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:600;letter-spacing:.04em;color:var(--white);white-space:nowrap}
+.nav-cmt{font-family:'Inter',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-l);vertical-align:middle;margin-left:3px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--text3);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-pill{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;padding:.55rem 1.4rem;background:var(--blue);color:#fff;border:none;border-radius:100px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.nav-pill:hover{background:var(--blue-l);transform:scale(1.04)}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;background:var(--bg);padding:8rem 3.5rem 5rem;text-align:center}
+.hero::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(37,99,235,.12) 0%,transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:100%;background-image:linear-gradient(rgba(232,184,75,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,184,75,.04) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse at center,#000 0%,transparent 70%);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:.55rem 1.3rem;background:var(--blue-dim);border:1px solid rgba(37,99,235,.35);border-radius:100px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--blue-l);text-transform:uppercase;margin-bottom:2rem}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blue-l);box-shadow:0 0 8px var(--blue-l);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:'EB Garamond',serif;font-size:clamp(2.6rem,5.6vw,4.8rem);font-weight:700;line-height:1.04;letter-spacing:.01em;color:var(--white);margin-bottom:1.4rem}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero h1 .strike{position:relative;display:inline-block;color:rgba(255,255,255,.55)}
+.hero h1 .strike::after{content:'';position:absolute;left:-4%;right:-4%;top:55%;height:5px;background:#fb7185;transform:rotate(-3deg);opacity:.85;border-radius:2px}
+.hero h1 .blue-ai{color:var(--blue-l);font-style:normal}
+.hero-tag{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:var(--text2);font-style:italic;margin-bottom:2.5rem}
+.hero-desc{font-size:1.05rem;color:var(--text2);max-width:640px;margin:0 auto 3rem;line-height:1.8;font-weight:300}
+.hero-desc strong{color:var(--text);font-weight:600}
+.hero-meta{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:2.5rem;font-family:var(--mono);font-size:.78rem;color:var(--text3);text-transform:uppercase;letter-spacing:.12em}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta .icon{color:var(--blue-l);font-size:1rem}
+.hero-cta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+
+/* HERO SIDE DECORATIONS */
+.hero-side{position:absolute;top:50%;z-index:1;width:260px;font-family:var(--mono);pointer-events:none;opacity:0;transition:opacity .9s ease,transform .9s ease;animation:none}
+.hero-side.in{opacity:.92}
+.hero-side.left{left:2rem;transform:translateY(-50%) rotate(-3.5deg) translateX(-30px)}
+.hero-side.right{right:2rem;transform:translateY(-50%) rotate(3.5deg) translateX(30px)}
+.hero-side.left.in{transform:translateY(-50%) rotate(-3.5deg) translateX(0)}
+.hero-side.right.in{transform:translateY(-50%) rotate(3.5deg) translateX(0)}
+.hero-side:hover{opacity:1!important}
+
+.hs-card{background:linear-gradient(160deg,#0a1020,#050913);border:1px solid var(--border2);border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 1px rgba(232,184,75,.06)}
+.hs-bar{display:flex;align-items:center;gap:6px;padding:.55rem .8rem;background:rgba(0,0,0,.45);border-bottom:1px solid var(--border)}
+.hs-bar .d{width:8px;height:8px;border-radius:50%}
+.hs-bar .r{background:#ff5f56}.hs-bar .y{background:#ffbd2e}.hs-bar .g{background:#27c93f}
+.hs-title{margin-left:auto;font-size:.58rem;color:var(--text3);letter-spacing:.14em;text-transform:uppercase}
+
+.hs-code{padding:.9rem 1rem;font-size:.66rem;line-height:1.85;color:var(--text2)}
+.hs-code .ln{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs-code .kw{color:#c084fc}
+.hs-code .fn{color:#60a5fa}
+.hs-code .st{color:#34d399}
+.hs-code .nm{color:#fbbf24}
+.hs-code .cm{color:#4a5468;font-style:italic}
+.hs-code .cur{display:inline-block;width:7px;height:11px;background:var(--gold);vertical-align:-1px;margin-left:2px;animation:hs-blink 1s steps(2,end) infinite}
+@keyframes hs-blink{50%{opacity:0}}
+.hs-ai{margin-top:.6rem;padding:.55rem .7rem;background:rgba(232,184,75,.08);border:1px dashed rgba(232,184,75,.3);border-radius:8px;font-size:.6rem;line-height:1.5;color:var(--gold)}
+.hs-ai::before{content:'◆ CLAUDE  ';color:var(--gold-l);font-weight:700}
+
+/* RIGHT — progress card */
+.hs-prog{padding:.9rem 1rem}
+.hs-prog-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem}
+.hs-prog-t{font-size:.62rem;color:var(--text);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.hs-prog-pct{font-family:'EB Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--gold);line-height:1}
+.hs-prog-bar{height:5px;background:rgba(255,255,255,.06);border-radius:100px;overflow:hidden;margin-bottom:.85rem}
+.hs-prog-fill{width:75%;height:100%;background:linear-gradient(90deg,#2563eb,#e8b84b);border-radius:100px;box-shadow:0 0 12px rgba(232,184,75,.4)}
+.hs-step{display:flex;align-items:center;gap:.6rem;padding:.36rem 0;font-size:.66rem;color:var(--text2);letter-spacing:.04em}
+.hs-step .tick{width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;flex-shrink:0}
+.hs-step.done .tick{background:rgba(52,211,153,.18);color:#34d399;border:1px solid rgba(52,211,153,.4)}
+.hs-step.done .tick::before{content:'✓'}
+.hs-step.now .tick{background:rgba(232,184,75,.15);color:var(--gold);border:1px solid rgba(232,184,75,.5);animation:hs-pulse 1.6s ease-in-out infinite}
+.hs-step.now .tick::before{content:'●'}
+.hs-step.todo .tick{background:transparent;border:1px solid var(--border2);color:var(--text3)}
+.hs-step.now{color:var(--text)}
+.hs-step.todo{color:var(--text3)}
+@keyframes hs-pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,184,75,.4)}50%{box-shadow:0 0 0 6px rgba(232,184,75,0)}}
+
+@media(max-width:1180px){.hero-side{display:none}}
+.btn-main{font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.04em;padding:1rem 2.2rem;background:var(--blue);color:#fff;border:none;border-radius:100px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;box-shadow:0 8px 30px rgba(37,99,235,.4)}
+.btn-main:hover{background:var(--blue-l);transform:translateY(-2px);box-shadow:0 12px 40px rgba(37,99,235,.55)}
+.btn-ghost{font-size:.88rem;font-weight:600;padding:1rem 2.2rem;background:transparent;color:var(--text2);border:1px solid var(--border2);border-radius:100px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-ghost:hover{border-color:var(--blue);color:var(--text)}
+
+/* SECTION SHARED */
+section{padding:5rem 3.5rem}
+.section-head{text-align:center;max-width:760px;margin:0 auto 4rem}
+.sec-eye{display:inline-block;font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-l);margin-bottom:1rem}
+.sec-title{font-family:'EB Garamond',serif;font-size:clamp(2.4rem,4.5vw,4rem);font-weight:700;color:var(--white);letter-spacing:.01em;line-height:1.06;margin-bottom:1.2rem}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-title .blue{color:var(--blue-l)}
+.sec-sub{font-size:1rem;color:var(--text2);font-weight:300;line-height:1.8;max-width:580px;margin:0 auto}
+
+/* AI HERO SECTION (the centerpiece) */
+.ai-section{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);border-bottom:1px solid var(--border)}
+.ai-section::before{content:'';position:absolute;top:50%;left:-200px;transform:translateY(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(232,184,75,.08) 0%,transparent 60%);pointer-events:none}
+.ai-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center;max-width:1280px;margin:0 auto}
+
+.ai-left .sec-eye{color:var(--gold)}
+.ai-section .sec-title em{color:var(--gold)}
+.ai-feature-list{margin-top:2rem;display:grid;gap:1rem}
+.ai-feat{display:flex;align-items:flex-start;gap:14px;padding:1.1rem 1.3rem;border:1px solid var(--border);border-radius:14px;background:var(--bg3);transition:border-color .2s,background .2s}
+.ai-feat:hover{border-color:rgba(232,184,75,.35);background:var(--gold-dim)}
+.ai-feat-icon{width:36px;height:36px;border-radius:10px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ai-feat-t{font-family:'EB Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.ai-feat-d{font-size:.82rem;color:var(--text3);line-height:1.5}
+
+/* AI THUMBNAIL — fake code editor */
+.ai-thumb{position:relative}
+.ai-glow{position:absolute;inset:-40px;background:radial-gradient(circle,rgba(232,184,75,.12) 0%,transparent 60%);pointer-events:none;z-index:0}
+.code-editor{position:relative;z-index:1;background:#0b0f1c;border:1px solid var(--border2);border-radius:16px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(37,99,235,.1);font-family:var(--mono);font-size:.78rem}
+.ce-bar{display:flex;align-items:center;gap:8px;padding:.8rem 1.1rem;background:#070b15;border-bottom:1px solid var(--border)}
+.ce-dot{width:11px;height:11px;border-radius:50%}
+.ce-dot.r{background:#ff5f56}.ce-dot.y{background:#ffbd2e}.ce-dot.g{background:#27c93f}
+.ce-title{margin-left:auto;font-size:.7rem;color:var(--text3);letter-spacing:.05em}
+.ce-body{padding:1.2rem 1.4rem;line-height:1.9}
+.ce-prompt{color:var(--blue-l);font-weight:500}
+.ce-prompt::before{content:'❯ ';color:var(--gold);font-weight:700}
+.ce-reply{color:var(--text2);margin:.4rem 0 1rem;padding-left:1.2rem;border-left:2px solid var(--gold-dim)}
+.ce-code{color:#a8b3cf;background:rgba(255,255,255,.02);padding:.7rem .9rem;border-radius:6px;margin:.6rem 0;border:1px solid var(--border);font-size:.72rem;display:block;white-space:pre-wrap}
+.ce-comment{color:var(--text3);font-style:italic}
+.ce-kw{color:#c084fc}
+.ce-str{color:#86efac}
+.ce-fn{color:#fcd34d}
+.ce-cursor{display:inline-block;width:7px;height:13px;background:var(--gold);animation:blink 1s infinite;vertical-align:middle;margin-left:2px}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+/* 12-WEEK CURRICULUM */
+.weeks-section{padding:6rem 3.5rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.weeks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1280px;margin:0 auto}
+.wk{position:relative;background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .3s,border-color .3s;cursor:pointer}
+.wk:hover{transform:translateY(-6px);border-color:rgba(37,99,235,.4)}
+
+.wk-thumb{position:relative;aspect-ratio:16/8;background:linear-gradient(135deg,var(--bg2),var(--bg3));display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border)}
+.wk-thumb::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:18px 18px}
+.wk-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,9,19,.65) 0%,rgba(37,99,235,.22) 60%,rgba(232,184,75,.16) 100%);z-index:1;pointer-events:none}
+.wk-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .6s ease,filter .3s ease;filter:saturate(.7) brightness(.65) contrast(1.05)}
+.wk:hover .wk-photo{transform:scale(1.06);filter:saturate(.9) brightness(.75) contrast(1.05)}
+.wk-art{display:none}
+.wk-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;font-family:'EB Garamond',serif;font-size:5.5rem;font-weight:700;line-height:1;color:rgba(255,255,255,.95);font-style:italic;letter-spacing:-.04em;pointer-events:none;text-shadow:0 6px 30px rgba(0,0,0,.85),0 0 60px rgba(0,0,0,.5)}
+.wk-emoji{display:none}
+.wk-tag{position:absolute;top:14px;left:16px;z-index:3;font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:rgba(37,99,235,.55);border:1px solid rgba(96,165,250,.5);padding:.25rem .65rem;border-radius:100px;backdrop-filter:blur(8px)}
+.wk-corner{position:absolute;top:14px;right:16px;z-index:3;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;opacity:.85}
+
+.wk-body{padding:1.3rem 1.4rem 1.5rem}
+.wk-title{font-family:'EB Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--white);line-height:1.3;letter-spacing:.005em;margin-bottom:.7rem}
+.wk-desc{font-size:.82rem;color:var(--text2);line-height:1.6;font-weight:300}
+.wk-divider{height:1px;background:var(--border);margin:.9rem 0}
+.wk-story{font-size:.72rem;color:var(--text3);font-style:italic;line-height:1.5}
+.wk-story::before{content:'⚠ ';color:var(--gold);font-style:normal;font-weight:700}
+
+/* WHAT YOU BUILD */
+.build-section{padding:6rem 3.5rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.build-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:1100px;margin:0 auto}
+.bcard{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:2rem;transition:border-color .3s,transform .3s}
+.bcard:hover{transform:translateY(-4px);border-color:var(--blue)}
+.bcard-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue-d));display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.2rem;box-shadow:0 8px 24px rgba(37,99,235,.25)}
+.bcard-t{font-family:'EB Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--white);margin-bottom:.6rem;letter-spacing:.01em}
+.bcard-d{font-size:.88rem;color:var(--text2);line-height:1.7;font-weight:300}
+
+/* WHO IT'S FOR */
+.who-section{padding:6rem 3.5rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:1100px;margin:0 auto}
+.who-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:2.2rem;transition:border-color .3s,transform .3s}
+.who-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.who-emoji{font-size:2.2rem;margin-bottom:.9rem}
+.who-t{font-family:'EB Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--white);margin-bottom:.6rem;font-style:italic}
+.who-d{font-size:.9rem;color:var(--text2);line-height:1.7;font-weight:300}
+
+/* CTA */
+.cta-section{padding:6rem 3.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;height:200%;background:radial-gradient(ellipse,rgba(37,99,235,.08) 0%,transparent 50%);pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:740px;margin:0 auto}
+.cta-h{font-family:'EB Garamond',serif;font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:700;color:var(--white);line-height:1.06;margin-bottom:1.3rem}
+.cta-h em{font-style:italic;color:var(--gold)}
+.cta-sub{font-size:1rem;color:var(--text2);margin-bottom:2.2rem;font-weight:300;line-height:1.7}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.22s}.rv.d3{transition-delay:.36s}
+
+/* STATS BAND */
+.stats-section{padding:0 3.5rem 4rem;background:var(--bg)}
+.stats-band{max-width:1180px;margin:-2rem auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative;z-index:2}
+.stat-card{background:linear-gradient(180deg,var(--bg3),var(--bg2));border:1px solid var(--border);border-radius:16px;padding:1.6rem 1.2rem;text-align:center;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+.stat-card:hover{border-color:rgba(232,184,75,.5);transform:translateY(-4px)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue));opacity:0;transition:opacity .3s}
+.stat-card:hover::before{opacity:1}
+.stat-num{font-family:'EB Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1;letter-spacing:-.01em}
+.stat-num em{font-style:italic;color:var(--gold-l)}
+.stat-lbl{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-top:.7rem}
+
+/* BEFORE/AFTER STRIP */
+.ba-section{padding:3rem 3.5rem 5rem;background:var(--bg)}
+.ba-strip{max-width:1100px;margin:0 auto;background:linear-gradient(135deg,var(--bg3),rgba(15,28,55,.95));border:1px solid var(--border);border-radius:20px;padding:2.4rem 2rem;display:grid;grid-template-columns:1fr auto 1fr;gap:1.8rem;align-items:center}
+.ba-col .ba-eye{font-family:var(--mono);font-size:.62rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem}
+.ba-col p{font-size:1rem;color:var(--text);font-weight:500;line-height:1.55}
+.ba-old .ba-eye{color:#fb7185}
+.ba-old p{color:#fff;opacity:1;text-decoration:line-through;text-decoration-color:#fb7185;text-decoration-thickness:1.5px;text-underline-offset:0;font-weight:500}
+.ba-new .ba-eye{color:var(--blue-l)}
+.ba-arrow{font-size:2rem;color:var(--gold);font-weight:700;text-align:center}
+
+/* PHASES & MODULE CARDS */
+.phases-section{padding:5rem 3.5rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.phases-wrap{max-width:1180px;margin:0 auto}
+.phase{margin-bottom:3rem}
+.phase:last-child{margin-bottom:0}
+.phase-label{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;font-family:var(--mono);font-size:.7rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+.phase-label span{background:linear-gradient(135deg,var(--gold),var(--blue-l));-webkit-background-clip:text;background-clip:text;color:transparent}
+.phase-label::before,.phase-label::after{content:'';height:1px;background:var(--border);flex:1}
+.phase-label::before{flex:0 0 30px}
+.phase-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem}
+.mod-card{border-radius:16px;padding:1.6rem 1.7rem;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden}
+.mod-card:hover{transform:translateY(-3px)}
+.mod-core{background:linear-gradient(180deg,var(--bg3),var(--bg2));border:1px solid var(--border)}
+.mod-core::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--gold),transparent)}
+.mod-core:hover{border-color:rgba(232,184,75,.4);box-shadow:0 12px 36px rgba(232,184,75,.08)}
+.mod-ai{background:linear-gradient(135deg,rgba(14,30,60,.7),rgba(8,15,32,.95));border:1px solid rgba(37,99,235,.35);position:relative}
+.mod-ai::before{content:'';position:absolute;top:0;right:0;width:280px;height:280px;background:radial-gradient(circle,rgba(96,165,250,.15) 0%,transparent 60%);pointer-events:none}
+.mod-ai::after{content:'✨';position:absolute;top:18px;right:22px;font-size:1.2rem;opacity:.85}
+.mod-ai:hover{border-color:var(--blue);box-shadow:0 12px 40px rgba(37,99,235,.18)}
+.mod-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;gap:.6rem}
+.mod-tag{font-family:var(--mono);font-size:.62rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.mod-ai .mod-tag{color:var(--blue-l)}
+.mod-badge{font-family:var(--mono);font-size:.56rem;font-weight:800;letter-spacing:.14em;padding:.25rem .5rem;border-radius:4px;background:var(--gold);color:#000;text-transform:uppercase}
+.mod-ai .mod-badge{background:var(--blue-l);color:#000}
+.mod-h{font-family:'EB Garamond',serif;font-size:1.35rem;font-weight:600;color:#fff;margin:.4rem 0 .4rem;line-height:1.2;letter-spacing:.005em;position:relative;z-index:1}
+.mod-sub{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--text2);margin-bottom:1rem;line-height:1.5;position:relative;z-index:1}
+.mod-ai .mod-sub{color:rgba(184,222,255,.9)}
+.topics{display:flex;flex-wrap:wrap;gap:.4rem;position:relative;z-index:1}
+.topic{font-family:var(--mono);font-size:.6rem;background:var(--bg2);border:1px solid var(--border);padding:.35rem .65rem;border-radius:6px;color:var(--text2);letter-spacing:.04em;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.topic:hover{background:var(--gold);color:#000;border-color:var(--gold);transform:translateY(-1px)}
+.ai-bullets{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.5rem;margin-top:.4rem;position:relative;z-index:1}
+.ai-bullets li{display:flex;align-items:flex-start;gap:.5rem;font-size:.84rem;color:var(--text);line-height:1.45}
+.ai-bullets li::before{content:'▸';color:var(--blue-l);font-weight:700;flex-shrink:0}
+
+/* QUOTE BAND */
+.quote-section{padding:0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.quote-band{padding:4rem 3.5rem;text-align:center;background:linear-gradient(135deg,rgba(15,28,55,.6),rgba(14,30,60,.4))}
+.quote-band p{font-family:'EB Garamond',serif;font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;font-style:italic;max-width:880px;margin:0 auto;background:linear-gradient(135deg,var(--gold) 0%,var(--blue-l) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.4}
+.quote-band cite{display:block;margin-top:1.2rem;color:var(--text3);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-style:normal;font-weight:600;font-family:var(--mono)}
+
+/* OUTCOMES */
+.outcomes-section{padding:5rem 3.5rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1180px;margin:0 auto}
+.outcome-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .3s,border-color .3s;padding:0}
+.outcome-card:hover{transform:translateY(-4px);border-color:rgba(232,184,75,.4)}
+.out-image{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg2)}
+.out-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease,filter .35s ease;filter:saturate(.78) brightness(.82) contrast(1.02)}
+.outcome-card:hover .out-image img{transform:scale(1.05);filter:saturate(.95) brightness(.92) contrast(1.04)}
+.out-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,9,19,.15) 0%,transparent 35%,rgba(5,9,19,.55) 100%);pointer-events:none}
+.out-image .out-emoji{position:absolute;top:14px;left:16px;width:40px;height:40px;border-radius:11px;background:rgba(8,12,28,.78);backdrop-filter:blur(10px);border:1px solid rgba(232,184,75,.35);display:flex;align-items:center;justify-content:center;font-size:1.15rem;z-index:1}
+.out-body{padding:1.5rem 1.6rem 1.7rem}
+.out-t{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:.55rem;letter-spacing:.005em;line-height:1.3}
+.out-d{font-size:.86rem;color:var(--text2);line-height:1.7;font-weight:300}
+.cta-meta{font-family:var(--mono);font-size:.65rem;color:var(--text3);letter-spacing:.16em;text-transform:uppercase;margin-top:1.4rem;font-weight:600}
+
+@media(max-width:1100px){
+  .weeks-grid,.build-grid,.who-grid,.outcomes-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .ai-inner{grid-template-columns:1fr;gap:3rem}
+}
+@media(max-width:980px){
+  .phase-row{grid-template-columns:1fr}
+  .ba-strip{grid-template-columns:1fr;text-align:center;gap:1rem}
+  .ba-arrow{transform:rotate(90deg)}
+  .ai-bullets{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .hero,section{padding:4rem 1.5rem}
+  .hero{padding-top:6rem}
+  .weeks-grid,.build-grid,.who-grid,.outcomes-grid,.stats-band{grid-template-columns:1fr}
+  .hero-meta{gap:1.2rem}
+  .stat-num{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="academy.html" style="color:var(--blue-l);font-weight:600">Disciplined Traders Academy</a></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="#login" class="nav-pill">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-side left rv">
+    <div class="hs-card">
+      <div class="hs-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="hs-title">chart.read</span></div>
+      <div class="hs-code">
+        <span class="ln"><span class="cm"># AI market structure read</span></span>
+        <span class="ln"><span class="kw">def</span> <span class="fn">read_structure</span>(bars):</span>
+        <span class="ln">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> bars.<span class="fn">hh_hl</span>():</span>
+        <span class="ln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="st">'uptrend'</span></span>
+        <span class="ln">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="st">'corrective'</span><span class="cur"></span></span>
+        <div class="hs-ai">Add ATR-based stop &amp; 1% position sizing to this setup?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow rv"><span class="dot"></span>2026 batch · Enrollment open</div>
+    <h1 class="rv d1">Technical Analysis<br>Just <span class="strike">Changed.</span> <em>Evolved.</em><br>Now It Has <span class="blue-ai">AI.</span></h1>
+    <div class="hero-tag rv d2">Technical Analysis · evolved. Now with AI.</div>
+    <p class="hero-desc rv d2">The DTA program that trained <strong>10,000+ traders</strong> just got its biggest upgrade — <strong>4 dedicated AI Labs</strong> woven between the 8 core modules. Same discipline. New superpower.</p>
+    <div class="hero-meta rv d3">
+      <span><span class="icon">⏱</span>12 sessions · ~60 hours</span>
+      <span><span class="icon">🧩</span>8 modules + 4 AI Labs</span>
+      <span><span class="icon">🤖</span>AI-powered with Claude</span>
+      <span><span class="icon">🛡</span>10,000+ trained</span>
+    </div>
+    <div class="hero-cta rv d3">
+      <a href="contact.html" class="btn-main">Reserve your seat →</a>
+      <a href="#curriculum" class="btn-ghost">See full syllabus</a>
+    </div>
+  </div>
+
+  <div class="hero-side right rv">
+    <div class="hs-card">
+      <div class="hs-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="hs-title">cohort progress</span></div>
+      <div class="hs-prog">
+        <div class="hs-prog-h"><div class="hs-prog-t">Session 9 / 12</div><div class="hs-prog-pct">75%</div></div>
+        <div class="hs-prog-bar"><div class="hs-prog-fill"></div></div>
+        <div class="hs-step done"><span class="tick"></span>Foundations &amp; tools</div>
+        <div class="hs-step done"><span class="tick"></span>Patterns &amp; indicators</div>
+        <div class="hs-step done"><span class="tick"></span>Risk &amp; money mgmt</div>
+        <div class="hs-step now"><span class="tick"></span>AI Lab · Quant Brain</div>
+        <div class="hs-step todo"><span class="tick"></span>Psychology</div>
+        <div class="hs-step todo"><span class="tick"></span>Capstone strategy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-section">
+  <div class="stats-band">
+    <div class="stat-card rv"><div class="stat-num">12</div><div class="stat-lbl">Sessions</div></div>
+    <div class="stat-card rv d1"><div class="stat-num">8<em>+</em>4</div><div class="stat-lbl">Modules + AI Labs</div></div>
+    <div class="stat-card rv d2"><div class="stat-num">80<em>+</em></div><div class="stat-lbl">Topics covered</div></div>
+    <div class="stat-card rv d3"><div class="stat-num">10K<em>+</em></div><div class="stat-lbl">Traders trained</div></div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER STRIP -->
+<section class="ba-section">
+  <div class="ba-strip rv">
+    <div class="ba-col ba-old">
+      <div class="ba-eye">The old way</div>
+      <p>Stare at charts for hours. Miss patterns. Doubt every entry. Trade alone.</p>
+    </div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-col ba-new">
+      <div class="ba-eye">The DTA · TA 2.0 way</div>
+      <p>Discipline you learn. AI that watches with you. Setups you trust. A system for life.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION (THE CENTERPIECE) -->
+<section class="ai-section">
+  <div class="ai-inner">
+    <div class="ai-left">
+      <div class="sec-eye rv">India's first AI-integrated TA program</div>
+      <h2 class="sec-title rv d1">Meet your<br><em>charting partner</em><br>who never sleeps.</h2>
+      <p class="sec-sub rv d2" style="margin:0 0 0;text-align:left;">Across <strong style="color:var(--text)">4 dedicated AI Labs</strong>, you pair with <strong style="color:var(--text)">Claude</strong> — Anthropic's frontier AI. You describe what you see on the chart. Claude reads with you, scans confluences, drafts your prompt library, labels Elliott waves, and helps turn your strategy into code. Your judgment. AI's speed.</p>
+      <div class="ai-feature-list">
+        <div class="ai-feat rv d2">
+          <div class="ai-feat-icon">👁</div>
+          <div><div class="ai-feat-t">AI chart vision</div><div class="ai-feat-d">Auto-draft trendlines, market structure read-outs (HH/HL/LH/LL), S/R zones with AI vision.</div></div>
+        </div>
+        <div class="ai-feat rv d2">
+          <div class="ai-feat-icon">🔍</div>
+          <div><div class="ai-feat-t">Confluence scoring</div><div class="ai-feat-d">Multi-indicator confluence in one paragraph. A Confluence Score Card built with Claude.</div></div>
+        </div>
+        <div class="ai-feat rv d3">
+          <div class="ai-feat-icon">⚙️</div>
+          <div><div class="ai-feat-t">The quant brain</div><div class="ai-feat-d">AI-assisted Elliott Wave labelling, Wyckoff phases, ATR-based position sizing — done in seconds.</div></div>
+        </div>
+        <div class="ai-feat rv d3">
+          <div class="ai-feat-icon">🚀</div>
+          <div><div class="ai-feat-t">Strategy → bot pipeline</div><div class="ai-feat-d">Describe rules in plain English. Claude writes the backtest, alerts, and the bot framework.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-thumb rv d2">
+      <div class="ai-glow"></div>
+      <div class="code-editor">
+        <div class="ce-bar">
+          <div class="ce-dot r"></div><div class="ce-dot y"></div><div class="ce-dot g"></div>
+          <div class="ce-title">claude · live trading bot</div>
+        </div>
+        <div class="ce-body">
+          <div class="ce-prompt">Build me a NIFTY breakout strategy with a 1% stop-loss</div>
+          <div class="ce-reply">Got it. Here's a clean implementation using your broker API — with the safety stop wired in <em>before</em> any order goes through.</div>
+<pre class="ce-code"><span class="ce-comment"># NIFTY breakout — long when price &gt; prev day high</span>
+<span class="ce-kw">def</span> <span class="ce-fn">check_entry</span>(price, prev_high):
+    <span class="ce-kw">if</span> price &gt; prev_high:
+        place_order(<span class="ce-str">"NIFTY"</span>, qty=<span class="ce-str">25</span>, sl=<span class="ce-str">0.01</span>)
+        notify(<span class="ce-str">"📈 entry @ "</span> + str(price))<span class="ce-cursor"></span></pre>
+          <div class="ce-reply" style="margin-top:.4rem">Want me to wire up the Telegram alert too?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SVG ILLUSTRATIONS for weeks -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- W01: Gear (Automate) -->
+    <symbol id="w01" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <circle cx="50" cy="30" r="12"/>
+        <circle cx="50" cy="30" r="4" stroke="#e8b84b"/>
+        <line x1="50" y1="13" x2="50" y2="18"/><line x1="50" y1="42" x2="50" y2="47"/>
+        <line x1="33" y1="30" x2="38" y2="30"/><line x1="62" y1="30" x2="67" y2="30"/>
+        <line x1="37" y1="17" x2="40" y2="20"/><line x1="60" y1="40" x2="63" y2="43"/>
+        <line x1="63" y1="17" x2="60" y2="20"/><line x1="40" y1="40" x2="37" y2="43"/>
+      </g>
+    </symbol>
+    <!-- W02: Chat bubble + AI sparkle (Claude) -->
+    <symbol id="w02" viewBox="0 0 100 60">
+      <path d="M 22 14 L 60 14 Q 65 14 65 19 L 65 33 Q 65 38 60 38 L 38 38 L 30 45 L 30 38 L 27 38 Q 22 38 22 33 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
+      <g fill="#e8b84b" stroke="none">
+        <circle cx="33" cy="26" r="1.8"/><circle cx="43" cy="26" r="1.8"/><circle cx="53" cy="26" r="1.8"/>
+        <path d="M 80 16 L 82 23 L 89 25 L 82 27 L 80 34 L 78 27 L 71 25 L 78 23 Z"/>
+        <circle cx="90" cy="44" r="2"/>
+      </g>
+    </symbol>
+    <!-- W03: Candlesticks (Markets) -->
+    <symbol id="w03" viewBox="0 0 100 60">
+      <g stroke-width="2">
+        <line x1="22" y1="12" x2="22" y2="50" stroke="currentColor"/>
+        <rect x="17" y="22" width="10" height="22" fill="currentColor" opacity=".45" stroke="currentColor"/>
+        <line x1="42" y1="18" x2="42" y2="48" stroke="#34d399"/>
+        <rect x="37" y="24" width="10" height="20" fill="#34d399" opacity=".55"/>
+        <line x1="62" y1="22" x2="62" y2="52" stroke="#f87171"/>
+        <rect x="57" y="30" width="10" height="18" fill="#f87171" opacity=".55"/>
+        <line x1="82" y1="14" x2="82" y2="46" stroke="#e8b84b"/>
+        <rect x="77" y="20" width="10" height="22" fill="#e8b84b" opacity=".7"/>
+      </g>
+    </symbol>
+    <!-- W04: Toolbox (Toolkit) -->
+    <symbol id="w04" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round">
+        <rect x="22" y="22" width="56" height="28" rx="3"/>
+        <line x1="22" y1="32" x2="78" y2="32"/>
+        <path d="M 38 22 L 38 16 L 62 16 L 62 22"/>
+      </g>
+      <g stroke="#e8b84b" stroke-width="2" fill="none">
+        <circle cx="33" cy="41" r="3"/>
+        <line x1="45" y1="38" x2="55" y2="44"/><line x1="45" y1="44" x2="55" y2="38"/>
+        <rect x="64" y="38" width="6" height="6"/>
+      </g>
+    </symbol>
+    <!-- W05: Broker connection (Broker API) -->
+    <symbol id="w05" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round">
+        <rect x="10" y="22" width="22" height="14" rx="1"/>
+        <line x1="8" y1="38" x2="34" y2="38"/>
+        <rect x="68" y="18" width="22" height="22" rx="1"/>
+        <line x1="72" y1="24" x2="86" y2="24"/>
+        <line x1="72" y1="30" x2="86" y2="30"/>
+        <line x1="72" y1="36" x2="86" y2="36"/>
+      </g>
+      <g stroke="#e8b84b" stroke-width="2" fill="none">
+        <path d="M 36 30 Q 50 16 64 30"/>
+        <path d="M 60 28 L 64 30 L 60 32"/>
+      </g>
+      <text x="44" y="18" font-family="monospace" font-size="6" fill="#e8b84b" font-weight="bold">API</text>
+    </symbol>
+    <!-- W06: Target (First strategy) -->
+    <symbol id="w06" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2" fill="none">
+        <circle cx="58" cy="30" r="18"/>
+        <circle cx="58" cy="30" r="12"/>
+        <circle cx="58" cy="30" r="6" stroke="#e8b84b"/>
+      </g>
+      <circle cx="58" cy="30" r="2.5" fill="#e8b84b"/>
+      <line x1="14" y1="54" x2="55" y2="32" stroke="#e8b84b" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 14 54 L 20 52 L 16 48 Z" fill="#e8b84b"/>
+    </symbol>
+    <!-- W07: Paper plane (Telegram) -->
+    <symbol id="w07" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round">
+        <path d="M 12 18 L 85 6 L 65 50 L 52 38 L 12 18 Z"/>
+        <path d="M 52 38 L 65 30 L 85 6" stroke="#e8b84b" opacity=".9"/>
+      </g>
+      <circle cx="86" cy="48" r="5" fill="#e8b84b"/>
+      <text x="84" y="51" font-family="Arial" font-size="7" fill="#000" font-weight="700">!</text>
+    </symbol>
+    <!-- W08: Shield (Safety nets) -->
+    <symbol id="w08" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round">
+        <path d="M 50 6 L 72 14 L 72 30 Q 72 46 50 54 Q 28 46 28 30 L 28 14 Z"/>
+      </g>
+      <path d="M 39 30 L 47 38 L 61 22" stroke="#e8b84b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- W09: Rocket (Going live) -->
+    <symbol id="w09" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round">
+        <path d="M 50 6 Q 60 18 60 36 L 60 46 L 50 50 L 40 46 L 40 36 Q 40 18 50 6 Z"/>
+        <circle cx="50" cy="26" r="4" stroke="#e8b84b"/>
+        <path d="M 40 40 L 30 50 L 40 48 Z"/>
+        <path d="M 60 40 L 70 50 L 60 48 Z"/>
+      </g>
+      <path d="M 44 50 Q 50 62 56 50 Q 53 58 50 60 Q 47 58 44 50 Z" fill="#e8b84b"/>
+    </symbol>
+    <!-- W10: Cycle arrows (Script to system) -->
+    <symbol id="w10" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M 35 18 Q 35 10 50 10 Q 66 10 66 26"/>
+        <path d="M 65 42 Q 65 50 50 50 Q 34 50 34 34"/>
+      </g>
+      <path d="M 60 22 L 66 26 L 71 22" stroke="#e8b84b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 40 38 L 34 34 L 29 38" stroke="#e8b84b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <!-- W11: Clock + chart (Backtesting) -->
+    <symbol id="w11" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2" fill="none">
+        <circle cx="25" cy="30" r="14"/>
+      </g>
+      <g stroke="#e8b84b" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <line x1="25" y1="22" x2="25" y2="30"/>
+        <line x1="25" y1="30" x2="32" y2="34"/>
+      </g>
+      <polyline points="45,42 55,32 65,38 75,22 85,28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="85" cy="28" r="3" fill="#e8b84b"/>
+    </symbol>
+    <!-- W12: Bar chart with trend (Reading results) -->
+    <symbol id="w12" viewBox="0 0 100 60">
+      <g stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="10" x2="18" y2="50"/>
+        <line x1="18" y1="50" x2="86" y2="50"/>
+      </g>
+      <rect x="26" y="38" width="9" height="12" fill="currentColor" opacity=".4"/>
+      <rect x="40" y="30" width="9" height="20" fill="currentColor" opacity=".55"/>
+      <rect x="54" y="22" width="9" height="28" fill="#e8b84b" opacity=".9"/>
+      <rect x="68" y="34" width="9" height="16" fill="currentColor" opacity=".4"/>
+      <polyline points="31,40 45,30 59,22 73,32" stroke="#e8b84b" stroke-width="1.5" fill="none" opacity=".85"/>
+      <circle cx="59" cy="22" r="2.5" fill="#e8b84b"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- 12-SESSION CURRICULUM -->
+<section class="phases-section" id="curriculum">
+  <div class="section-head">
+    <div class="sec-eye rv">Curriculum · 12-session roadmap</div>
+    <h2 class="sec-title rv d1">Your <em>complete</em> roadmap.<br>One trader at the <span class="blue">finish line.</span></h2>
+    <p class="sec-sub rv d2">8 progressive TA modules — every single one preserved from the proven DTA syllabus. 4 dedicated AI Labs woven between them. No theory dump. No fluff. A system you can run on Monday morning.</p>
+  </div>
+
+  <div class="phases-wrap">
+
+    <!-- PHASE 01 -->
+    <div class="phase rv">
+      <div class="phase-label"><span>Phase 01 · The Foundation</span></div>
+      <div class="phase-row">
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 01</div></div>
+          <div class="mod-h">Foundations of Technical Analysis</div>
+          <div class="mod-sub">Dow Theory · Chart Types · Timeframes · Volume · Market Structure</div>
+          <div class="topics">
+            <span class="topic">Dow Theory</span>
+            <span class="topic">Candlestick Anatomy</span>
+            <span class="topic">Chart Types</span>
+            <span class="topic">Volume Analysis</span>
+            <span class="topic">TradingView Setup</span>
+          </div>
+        </div>
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 02</div></div>
+          <div class="mod-h">Technical Tools &amp; Framework</div>
+          <div class="mod-sub">Trend Lines · S/R · Fibonacci · Pivot Points · Confluence</div>
+          <div class="topics">
+            <span class="topic">Trend Channels</span>
+            <span class="topic">Support &amp; Resistance</span>
+            <span class="topic">Fib Retracement</span>
+            <span class="topic">Fib Extension</span>
+            <span class="topic">Pivot Points</span>
+          </div>
+        </div>
+      </div>
+      <div class="mod-card mod-ai">
+        <div class="mod-top"><div class="mod-tag">⚡ AI Lab 01 · AI Bridge</div></div>
+        <div class="mod-h">The AI Co-Pilot Awakens</div>
+        <div class="mod-sub">"From manual charting to AI-assisted vision — your second pair of eyes is here."</div>
+        <ul class="ai-bullets">
+          <li>Meet Claude — your charting partner who never sleeps</li>
+          <li>The 4-Part Chart Prompt framework for traders</li>
+          <li>AI market structure read-outs (HH / HL / LH / LL detection)</li>
+          <li>Auto-drafting S/R &amp; trendlines using AI vision</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PHASE 02 -->
+    <div class="phase rv">
+      <div class="phase-label"><span>Phase 02 · Pattern Recognition</span></div>
+      <div class="phase-row">
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 03</div></div>
+          <div class="mod-h">Chart Patterns</div>
+          <div class="mod-sub">Reversal · Continuation · Candlestick · Pattern Psychology</div>
+          <div class="topics">
+            <span class="topic">H&amp;S / Inv H&amp;S</span>
+            <span class="topic">Double Top/Bottom</span>
+            <span class="topic">Flags &amp; Pennants</span>
+            <span class="topic">Triangles</span>
+            <span class="topic">Candlestick Patterns</span>
+            <span class="topic">Divergence Trading</span>
+          </div>
+        </div>
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 04</div></div>
+          <div class="mod-h">Technical Indicators</div>
+          <div class="mod-sub">Leading · Lagging · Volume-Based · Confluence Framework</div>
+          <div class="topics">
+            <span class="topic">RSI Mastery</span>
+            <span class="topic">MACD</span>
+            <span class="topic">Bollinger Bands</span>
+            <span class="topic">VWAP</span>
+            <span class="topic">ADX</span>
+            <span class="topic">OBV</span>
+          </div>
+        </div>
+      </div>
+      <div class="mod-card mod-ai">
+        <div class="mod-top"><div class="mod-tag">🔍 AI Lab 02 · AI Bridge</div></div>
+        <div class="mod-h">Pattern Intelligence</div>
+        <div class="mod-sub">"Letting AI see what your eyes took years to learn — and missing none of it."</div>
+        <ul class="ai-bullets">
+          <li>Your AI pattern-scanner prompt library</li>
+          <li>Multi-indicator confluence reports in one paragraph</li>
+          <li>Divergence detection at scale across your watchlist</li>
+          <li>The Confluence Score Card — your custom AI rubric</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PHASE 03 -->
+    <div class="phase rv">
+      <div class="phase-label"><span>Phase 03 · Advanced Edge + Risk</span></div>
+      <div class="phase-row">
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 05</div><span class="mod-badge">Advanced</span></div>
+          <div class="mod-h">Unconventional Charting Methods</div>
+          <div class="mod-sub">Elliott Wave · Wyckoff · Market Profile · Renko · P&amp;F</div>
+          <div class="topics">
+            <span class="topic">Elliott Wave System</span>
+            <span class="topic">Impulse &amp; Corrective</span>
+            <span class="topic">Wyckoff Schematic</span>
+            <span class="topic">Market Profile (TPO)</span>
+          </div>
+        </div>
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 06</div><span class="mod-badge">Critical</span></div>
+          <div class="mod-h">Money Management</div>
+          <div class="mod-sub">Risk Rules · Position Sizing · Stop Loss · Drawdown Control</div>
+          <div class="topics">
+            <span class="topic">1% Rule</span>
+            <span class="topic">R:R Ratios</span>
+            <span class="topic">Expectancy Formula</span>
+            <span class="topic">ATR Sizing</span>
+            <span class="topic">Drawdown Limits</span>
+          </div>
+        </div>
+      </div>
+      <div class="mod-card mod-ai">
+        <div class="mod-top"><div class="mod-tag">⚙️ AI Lab 03 · AI Bridge</div></div>
+        <div class="mod-h">The Quant Brain</div>
+        <div class="mod-sub">"Hard math. Done in seconds. The two toughest modules become one-prompt tasks."</div>
+        <ul class="ai-bullets">
+          <li>AI-assisted Elliott Wave labelling that actually works</li>
+          <li>Wyckoff phase identification using AI vision</li>
+          <li>Build your personal Risk Calculator with Claude</li>
+          <li>Position-sizing agents: ATR + capital + conviction</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PHASE 04 -->
+    <div class="phase rv">
+      <div class="phase-label"><span>Phase 04 · Trader → System</span></div>
+      <div class="phase-row">
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 07</div></div>
+          <div class="mod-h">Trading Psychology</div>
+          <div class="mod-sub">Mindset · Cognitive Biases · Discipline Habits · Performance Review</div>
+          <div class="topics">
+            <span class="topic">Fear &amp; Greed</span>
+            <span class="topic">Cognitive Biases</span>
+            <span class="topic">Loss Aversion</span>
+            <span class="topic">Process Mindset</span>
+            <span class="topic">Trading Journal</span>
+          </div>
+        </div>
+        <div class="mod-card mod-core">
+          <div class="mod-top"><div class="mod-tag">Module 08</div><span class="mod-badge">Capstone</span></div>
+          <div class="mod-h">Practicals &amp; Strategy Development</div>
+          <div class="mod-sub">Trading Plan · Backtesting · Live Strategy Build · From Student to Trader</div>
+          <div class="topics">
+            <span class="topic">Build Your Trading Plan</span>
+            <span class="topic">Manual Backtesting</span>
+            <span class="topic">Confluence Entry Model</span>
+            <span class="topic">Live Execution</span>
+          </div>
+        </div>
+      </div>
+      <div class="mod-card mod-ai">
+        <div class="mod-top"><div class="mod-tag">🚀 AI Lab 04 · AI Bridge</div><span class="mod-badge">Grand Capstone</span></div>
+        <div class="mod-h">From Trader to System</div>
+        <div class="mod-sub">"Your strategy. Your rules. AI builds the bot. You graduate with a system you can run for life."</div>
+        <ul class="ai-bullets">
+          <li>The AI Trading Journal — auto-tags biases from notes &amp; screenshots</li>
+          <li>Backtesting at warp speed — AI writes the script as you describe rules</li>
+          <li>Strategy → Code → Bot pipeline using Claude Code</li>
+          <li>Safety guardrails: hard limits, kill-switches, single-lot principle</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<section class="quote-section">
+  <div class="quote-band rv">
+    <p>"Discipline is human. Speed is AI.<br>The Codebook gives you both."</p>
+    <cite>— Vishal Mehta, CMT</cite>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes-section">
+  <div class="section-head">
+    <div class="sec-eye rv">What you walk away with</div>
+    <h2 class="sec-title rv d1">By <span class="blue">Session 12</span>,<br>you'll be able to…</h2>
+    <p class="sec-sub rv d2">This isn't a video library you forget about. These are the working skills you carry into every trade for the rest of your career.</p>
+  </div>
+  <div class="outcomes-grid">
+    <div class="outcome-card rv d1">
+      <div class="out-image"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=700&h=400&fit=crop&auto=format&q=80" alt=""><div class="out-emoji">📈</div></div>
+      <div class="out-body">
+        <div class="out-t">Read any chart, in any market</div>
+        <div class="out-d">Equity, options, commodities, futures — the same framework, the same confidence. No more guessing, no more "what does this mean?"</div>
+      </div>
+    </div>
+    <div class="outcome-card rv d1">
+      <div class="out-image"><img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=700&h=400&fit=crop&auto=format&q=80" alt=""><div class="out-emoji">🤖</div></div>
+      <div class="out-body">
+        <div class="out-t">Run your own AI charting workflow</div>
+        <div class="out-d">A personal prompt library, an AI co-pilot for confluence checks, a sanity-check second opinion before every entry. Built with you, owned by you.</div>
+      </div>
+    </div>
+    <div class="outcome-card rv d2">
+      <div class="out-image"><img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=700&h=400&fit=crop&auto=format&q=80" alt=""><div class="out-emoji">🧠</div></div>
+      <div class="out-body">
+        <div class="out-t">Decode Elliott Wave &amp; Wyckoff</div>
+        <div class="out-d">The two methods most traders quit on — taught with the depth they deserve, then made instantly usable through AI-assisted labelling.</div>
+      </div>
+    </div>
+    <div class="outcome-card rv d2">
+      <div class="out-image"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&h=400&fit=crop&auto=format&q=80" alt=""><div class="out-emoji">🛡️</div></div>
+      <div class="out-body">
+        <div class="out-t">Risk-manage like an institution</div>
+        <div class="out-d">1% rule, ATR sizing, expectancy math — internalised. Your AI-built Risk Calculator runs the numbers so you stay in the game forever.</div>
+      </div>
+    </div>
+    <div class="outcome-card rv d3">
+      <div class="out-image"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&h=400&fit=crop&auto=format&q=80" alt=""><div class="out-emoji">⚙️</div></div>
+      <div class="out-body">
+        <div class="out-t">Convert strategy into code</div>
+        <div class="out-d">You describe the rules in plain English. Claude writes the backtest, the alerts, the framework for a bot. You stay in command, AI does the typing.</div>
+      </div>
+    </div>
+    <div class="outcome-card rv d3">
+      <div class="out-image"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&h=400&fit=crop&auto=format&q=80" alt=""><div class="out-emoji">🎯</div></div>
+      <div class="out-body">
+        <div class="out-t">Trade with real discipline</div>
+        <div class="out-d">A written trading plan. A confluence entry model. A journal that grades itself. The mindset, the routine, the edge that lasts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="sec-eye rv">🔥 2026 batch · Limited seats · AI Edition</div>
+    <h2 class="cta-h rv d1">One decision.<br>A lifetime <em>AI edge.</em></h2>
+    <p class="cta-sub rv d2">Most traders lose more than the program fee in their first 5 bad trades. Here, you get the system — and the AI workflow — that prevents that, permanently.</p>
+    <div class="cta-btns rv d3">
+      <a href="contact.html" class="btn-main">Reserve your seat →</a>
+      <a href="tutorials.html" class="btn-ghost">Watch free tutorials first</a>
+    </div>
+    <div class="cta-meta rv d3">12 sessions · ~60 hours · Alumni community · Claude AI toolkit</div>
+  </div>
+</section>
+
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
+},100);
+</script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead CRM — Vishal Mehta CMT (Admin)</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050913;--bg2:#0a1020;--bg3:#10182c;--bg4:#161f38;
+  --blue:#2563eb;--blue-l:#60a5fa;--blue-d:#1d4ed8;--blue-dim:rgba(37,99,235,0.12);
+  --gold:#e8b84b;--gold-l:#f5d176;--gold-dim:rgba(232,184,75,0.1);
+  --green:#34d399;--amber:#fbbf24;--red:#f87171;--violet:#a78bfa;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
+  --text:#f0f4fa;--text2:#8a98b3;--text3:#566076;--white:#fff;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit}
+
+/* LOGIN GATE */
+.gate{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 30%,#0a1230,#050913 70%);padding:1.5rem}
+.gate.hidden{display:none}
+.gate-card{width:100%;max-width:380px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.6)}
+.gate-logo{width:56px;height:56px;border-radius:50%;margin:0 auto 1.2rem;background:#050913;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.6rem;font-weight:700;font-style:italic;color:var(--gold)}
+.gate h1{font-family:'EB Garamond',serif;font-size:1.5rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+.gate p{font-size:.82rem;color:var(--text2);margin-bottom:1.6rem}
+.gate input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:10px;padding:.8rem 1rem;color:#fff;font-size:.9rem;outline:none;text-align:center;letter-spacing:.1em;transition:border-color .2s}
+.gate input:focus{border-color:var(--gold)}
+.gate button{width:100%;margin-top:1rem;padding:.85rem;background:var(--gold);color:#000;border:none;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s}
+.gate button:hover{background:var(--gold-l)}
+.gate-err{color:var(--red);font-size:.75rem;margin-top:.8rem;min-height:1rem;font-family:var(--mono)}
+.gate-hint{font-family:var(--mono);font-size:.62rem;color:var(--text3);margin-top:1.4rem;letter-spacing:.05em}
+
+/* APP SHELL */
+.app{display:none}
+.app.show{display:block}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:1rem;padding:1rem 1.8rem;background:rgba(5,9,19,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.tb-logo{display:flex;align-items:center;gap:10px}
+.tb-av{width:36px;height:36px;border-radius:50%;background:#050913;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-weight:700;font-style:italic;color:var(--gold)}
+.tb-title{font-family:'EB Garamond',serif;font-size:1.1rem;font-weight:600;color:#fff;line-height:1.1}
+.tb-sub{font-family:var(--mono);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:.7rem}
+.tb-btn{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.55rem .9rem;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.tb-btn:hover{border-color:var(--gold);color:var(--gold)}
+.tb-btn.gold{background:var(--gold);color:#000;border-color:var(--gold)}
+.tb-btn.gold:hover{background:var(--gold-l)}
+
+.wrap{max-width:1280px;margin:0 auto;padding:1.8rem}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-bottom:1.8rem}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.4rem;position:relative;overflow:hidden;transition:border-color .25s}
+.stat:hover{border-color:var(--border2)}
+.stat::after{content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;border-radius:50%;background:var(--accent,rgba(37,99,235,.14));filter:blur(20px)}
+.stat-label{font-family:var(--mono);font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;position:relative}
+.stat-num{font-family:'EB Garamond',serif;font-size:2.4rem;font-weight:700;color:#fff;line-height:1;position:relative}
+.stat-num em{font-style:italic;color:var(--gold)}
+.stat-foot{font-size:.68rem;color:var(--text2);margin-top:.4rem;position:relative}
+
+/* TOOLBAR */
+.toolbar{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.search{flex:1;min-width:220px;position:relative}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.7rem 1rem .7rem 2.4rem;color:#fff;font-size:.85rem;outline:none;transition:border-color .2s}
+.search input:focus{border-color:var(--blue)}
+.search::before{content:'⌕';position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--text3);font-size:1.1rem}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.fchip{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.5rem .85rem;border-radius:100px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.fchip:hover{border-color:var(--border2);color:var(--text)}
+.fchip.active{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* TABLE */
+.table-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.lead-table{width:100%;border-collapse:collapse}
+.lead-table th{font-family:var(--mono);font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);text-align:left;padding:.9rem 1.1rem;border-bottom:1px solid var(--border);background:var(--bg3);white-space:nowrap}
+.lead-table td{padding:1rem 1.1rem;border-bottom:1px solid var(--border);font-size:.85rem;vertical-align:middle}
+.lead-table tr:last-child td{border-bottom:none}
+.lead-table tbody tr{cursor:pointer;transition:background .15s}
+.lead-table tbody tr:hover{background:rgba(255,255,255,.025)}
+.l-name{font-weight:600;color:#fff}
+.l-contact{font-size:.76rem;color:var(--text2);font-family:var(--mono)}
+.l-msg{color:var(--text2);font-size:.8rem;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l-date{font-family:var(--mono);font-size:.72rem;color:var(--text3);white-space:nowrap}
+.type-tag{display:inline-block;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .6rem;border-radius:5px;white-space:nowrap;background:rgba(255,255,255,.05);border:1px solid var(--border2);color:var(--text2)}
+.src-tag{font-family:var(--mono);font-size:.6rem;color:var(--text3)}
+
+/* status select */
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.32rem .7rem;border-radius:100px;border:1px solid;cursor:pointer;background:transparent}
+.status-pill .dot{width:6px;height:6px;border-radius:50%}
+.st-New{color:var(--blue-l);border-color:rgba(96,165,250,.4)}.st-New .dot{background:var(--blue-l)}
+.st-Contacted{color:var(--amber);border-color:rgba(251,191,36,.4)}.st-Contacted .dot{background:var(--amber)}
+.st-Converted{color:var(--green);border-color:rgba(52,211,153,.4)}.st-Converted .dot{background:var(--green)}
+.st-Closed{color:var(--text3);border-color:var(--border2)}.st-Closed .dot{background:var(--text3)}
+
+.empty{padding:4rem 2rem;text-align:center;color:var(--text3)}
+.empty-ico{font-size:2.5rem;opacity:.4;margin-bottom:1rem}
+.empty h3{font-family:'EB Garamond',serif;font-size:1.3rem;color:var(--text2);font-weight:500;margin-bottom:.4rem}
+.empty p{font-size:.85rem}
+
+/* DRAWER */
+.drawer-bg{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s}
+.drawer-bg.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:201;width:440px;max-width:92vw;background:var(--bg2);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+.drawer.open{transform:translateX(0)}
+.dr-head{padding:1.6rem 1.6rem 1.2rem;border-bottom:1px solid var(--border);position:relative}
+.dr-close{position:absolute;top:1.3rem;right:1.3rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.dr-close:hover{color:#fff;border-color:var(--gold)}
+.dr-name{font-family:'EB Garamond',serif;font-size:1.6rem;font-weight:600;color:#fff;margin-bottom:.3rem;padding-right:2rem}
+.dr-type{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.dr-body{padding:1.4rem 1.6rem;flex:1}
+.dr-field{margin-bottom:1.3rem}
+.dr-flabel{font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem}
+.dr-fval{font-size:.9rem;color:var(--text)}
+.dr-fval a{color:var(--blue-l);text-decoration:none}
+.dr-fval a:hover{text-decoration:underline}
+.dr-msg{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1rem;font-size:.86rem;color:var(--text);line-height:1.7;white-space:pre-wrap}
+.dr-status-row{display:flex;gap:6px;flex-wrap:wrap}
+.dr-st-opt{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.45rem .8rem;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.dr-st-opt.sel{background:var(--blue);border-color:var(--blue);color:#fff}
+.dr-notes{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:.9rem;color:#fff;font-family:'Inter',sans-serif;font-size:.85rem;resize:vertical;min-height:90px;outline:none}
+.dr-notes:focus{border-color:var(--blue)}
+.dr-foot{padding:1.2rem 1.6rem;border-top:1px solid var(--border);display:flex;gap:.7rem}
+.dr-del{margin-left:auto;background:transparent;border:1px solid rgba(248,113,113,.4);color:var(--red);padding:.6rem 1rem;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.dr-del:hover{background:rgba(248,113,113,.12)}
+.dr-save{background:var(--gold);color:#000;border:none;padding:.6rem 1.4rem;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer}
+.dr-save:hover{background:var(--gold-l)}
+
+.note-banner{background:var(--gold-dim);border:1px solid rgba(232,184,75,.3);border-radius:12px;padding:.9rem 1.1rem;font-size:.78rem;color:var(--gold-l);margin-bottom:1.6rem;line-height:1.6}
+.note-banner strong{color:var(--gold)}
+
+@media(max-width:900px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .l-msg,.lead-table .col-src{display:none}
+}
+@media(max-width:560px){
+  .wrap{padding:1rem}
+  .stats{grid-template-columns:1fr 1fr}
+  .lead-table .col-contact{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN GATE -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="gate-logo">V</div>
+    <h1>Lead CRM</h1>
+    <p>Vishal Mehta CMT · Admin access</p>
+    <input type="email" id="email" placeholder="Admin email" autocomplete="username" style="display:none;margin-bottom:.7rem">
+    <input type="password" id="pw" placeholder="Enter passcode" autocomplete="current-password">
+    <button id="loginBtn">Unlock dashboard →</button>
+    <div class="gate-err" id="gateErr"></div>
+    <div class="gate-hint" id="gateHint">Demo passcode: <b>vishal2026</b></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <div class="topbar">
+    <div class="tb-logo">
+      <div class="tb-av">V</div>
+      <div>
+        <div class="tb-title">Lead CRM</div>
+        <div class="tb-sub">Vishal Mehta · Admin</div>
+      </div>
+    </div>
+    <div class="tb-right">
+      <button class="tb-btn" id="seedBtn">+ Demo data</button>
+      <button class="tb-btn" id="exportBtn">⤓ Export CSV</button>
+      <a class="tb-btn" href="index.html">↗ Site</a>
+      <button class="tb-btn gold" id="logoutBtn">Lock</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="note-banner">
+      <strong>Heads up:</strong> This CRM stores leads in <strong>this browser only</strong> (localStorage). To collect leads from every visitor across all devices, connect a backend (Formspree, Google Sheets, Airtable, or a database) — ask me and I'll wire it up.
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="toolbar">
+      <div class="search"><input type="text" id="searchInput" placeholder="Search name, email, message…"></div>
+      <div class="filters" id="statusFilters">
+        <button class="fchip active" data-status="all">All</button>
+        <button class="fchip" data-status="New">New</button>
+        <button class="fchip" data-status="Contacted">Contacted</button>
+        <button class="fchip" data-status="Converted">Converted</button>
+        <button class="fchip" data-status="Closed">Closed</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <table class="lead-table">
+        <thead>
+          <tr>
+            <th>Lead</th>
+            <th class="col-contact">Contact</th>
+            <th>Enquiry</th>
+            <th class="col-src">Source</th>
+            <th class="col-msg">Message</th>
+            <th>Received</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="leadRows"></tbody>
+      </table>
+      <div class="empty" id="emptyState" style="display:none">
+        <div class="empty-ico">📭</div>
+        <h3>No leads yet</h3>
+        <p>Submissions from the contact form &amp; Ask Vishal chat will appear here. Click "+ Demo data" to preview.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-bg" id="drawerBg"></div>
+<div class="drawer" id="drawer">
+  <div class="dr-head">
+    <button class="dr-close" id="drClose">×</button>
+    <div class="dr-name" id="drName">—</div>
+    <div class="dr-type" id="drType">—</div>
+  </div>
+  <div class="dr-body">
+    <div class="dr-field"><div class="dr-flabel">Email</div><div class="dr-fval" id="drEmail">—</div></div>
+    <div class="dr-field"><div class="dr-flabel">Phone</div><div class="dr-fval" id="drPhone">—</div></div>
+    <div class="dr-field"><div class="dr-flabel">Source · Received</div><div class="dr-fval" id="drMeta">—</div></div>
+    <div class="dr-field"><div class="dr-flabel">Message</div><div class="dr-msg" id="drMsg">—</div></div>
+    <div class="dr-field"><div class="dr-flabel">Status</div>
+      <div class="dr-status-row" id="drStatusRow">
+        <button class="dr-st-opt" data-st="New">New</button>
+        <button class="dr-st-opt" data-st="Contacted">Contacted</button>
+        <button class="dr-st-opt" data-st="Converted">Converted</button>
+        <button class="dr-st-opt" data-st="Closed">Closed</button>
+      </div>
+    </div>
+    <div class="dr-field"><div class="dr-flabel">Private notes</div>
+      <textarea class="dr-notes" id="drNotes" placeholder="Add a note about this lead…"></textarea>
+    </div>
+  </div>
+  <div class="dr-foot">
+    <button class="dr-save" id="drSave">Save changes</button>
+    <button class="dr-del" id="drDel">Delete lead</button>
+  </div>
+</div>
+
+<!-- CRM backend: Firebase Firestore if configured (firebase-config.js), else local demo -->
+<script src="firebase-config.js"></script>
+<script src="crm-data.js"></script>
+<script>
+(function(){
+  var gate=document.getElementById('gate'),app=document.getElementById('app');
+  var typeColors={
+    'Algo Trading':'#60a5fa','CMT Guidance':'#e8b84b','Join Disciplined Traders Academy':'#34d399',
+    'Invite Vishal as a Speaker':'#a78bfa','Trading Queries':'#fbbf24','Trading Consultation':'#fb7185','Something else':'#8a98b3'
+  };
+  var state={filter:'all',search:'',current:null};
+  var leadsCache=[], unsub=null;
+
+  /* ---- auth ---- */
+  function unlock(){gate.classList.add('hidden');app.classList.add('show');startData();}
+  document.getElementById('loginBtn').onclick=tryLogin;
+
+  /* ---- once backend is ready: mode-aware UI + watch auth state ---- */
+  CRM.ready.then(function(){
+    if(CRM.mode==='firebase'){
+      document.getElementById('email').style.display='block';
+      document.getElementById('pw').placeholder='Password';
+      var gh=document.getElementById('gateHint'); if(gh) gh.innerHTML='Connected to Firebase · sign in with your admin email';
+      if(window.ADMIN_EMAIL) document.getElementById('email').value=window.ADMIN_EMAIL;
+      var sb=document.getElementById('seedBtn'); if(sb) sb.style.display='none';
+    }
+    CRM.onAuth(function(ok){ if(ok) unlock(); });
+  });
+  document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
+  document.getElementById('email').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
+  function tryLogin(){
+    var email=document.getElementById('email').value.trim();
+    var pass=document.getElementById('pw').value;
+    document.getElementById('gateErr').textContent='';
+    CRM.login(email,pass).then(function(){ if(CRM.mode!=='firebase') unlock(); })
+      .catch(function(err){ document.getElementById('gateErr').textContent=(CRM.mode==='firebase'?('Login failed: '+(err.message||'try again')):'Incorrect passcode. Try again.'); });
+  }
+  document.getElementById('logoutBtn').onclick=function(){ if(unsub){try{unsub();}catch(e){}} CRM.logout().then(function(){location.reload();}); };
+
+  /* ---- data ---- */
+  function startData(){ if(unsub){try{unsub();}catch(e){}} unsub=CRM.subscribe(function(leads){ leadsCache=leads||[]; render(); }); }
+  function fmtDate(iso){var d=new Date(iso);if(isNaN(d))return iso;return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})+' · '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
+  function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  /* ---- stats ---- */
+  function renderStats(leads){
+    var now=Date.now(),wk=7*24*3600*1000;
+    var nNew=leads.filter(l=>l.status==='New').length;
+    var nWeek=leads.filter(l=>now-new Date(l.date).getTime()<wk).length;
+    var nConv=leads.filter(l=>l.status==='Converted').length;
+    var nChat=leads.filter(l=>l.source && l.source.indexOf('Ask Vishal')>-1).length;
+    var cards=[
+      {l:'Total leads',n:leads.length,f:'all time',a:'rgba(37,99,235,.16)'},
+      {l:'New / unactioned',n:nNew,f:'need follow-up',a:'rgba(96,165,250,.16)'},
+      {l:'This week',n:nWeek,f:'last 7 days',a:'rgba(232,184,75,.16)'},
+      {l:'Converted',n:nConv,f:'closed-won',a:'rgba(52,211,153,.16)'},
+      {l:'From chat',n:nChat,f:'Ask Vishal',a:'rgba(167,139,250,.16)'}
+    ];
+    document.getElementById('stats').innerHTML=cards.map(function(c){
+      return '<div class="stat" style="--accent:'+c.a+'"><div class="stat-label">'+c.l+'</div><div class="stat-num">'+c.n+'</div><div class="stat-foot">'+c.f+'</div></div>';
+    }).join('');
+  }
+
+  /* ---- table ---- */
+  function render(){
+    var leads=leadsCache;
+    renderStats(leads);
+    var f=leads.filter(function(l){
+      if(state.filter!=='all' && l.status!==state.filter) return false;
+      if(state.search){var q=state.search.toLowerCase();return (l.name+' '+l.email+' '+l.message+' '+l.type).toLowerCase().indexOf(q)>-1;}
+      return true;
+    });
+    var tb=document.getElementById('leadRows'),empty=document.getElementById('emptyState');
+    if(!f.length){tb.innerHTML='';empty.style.display='block';return;}
+    empty.style.display='none';
+    tb.innerHTML=f.map(function(l){
+      var col=typeColors[l.type]||'#8a98b3';
+      return '<tr data-id="'+l.id+'">'+
+        '<td><div class="l-name">'+esc(l.name||'—')+'</div></td>'+
+        '<td class="col-contact"><div class="l-contact">'+esc(l.email||'')+'</div>'+(l.phone?'<div class="l-contact">'+esc(l.phone)+'</div>':'')+'</td>'+
+        '<td><span class="type-tag" style="color:'+col+';border-color:'+col+'55">'+esc(l.type||'—')+'</span></td>'+
+        '<td class="col-src"><span class="src-tag">'+esc(l.source||'—')+'</span></td>'+
+        '<td class="col-msg"><div class="l-msg">'+esc(l.message||'')+'</div></td>'+
+        '<td><span class="l-date">'+fmtDate(l.date)+'</span></td>'+
+        '<td><span class="status-pill st-'+(l.status||'New')+'"><span class="dot"></span>'+(l.status||'New')+'</span></td>'+
+      '</tr>';
+    }).join('');
+    Array.prototype.forEach.call(tb.querySelectorAll('tr'),function(tr){
+      tr.onclick=function(){openDrawer(tr.getAttribute('data-id'));};
+    });
+  }
+
+  /* ---- search + filters ---- */
+  document.getElementById('searchInput').addEventListener('input',function(){state.search=this.value;render();});
+  Array.prototype.forEach.call(document.querySelectorAll('#statusFilters .fchip'),function(b){
+    b.onclick=function(){
+      document.querySelectorAll('#statusFilters .fchip').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');state.filter=b.getAttribute('data-status');render();
+    };
+  });
+
+  /* ---- drawer ---- */
+  var drawer=document.getElementById('drawer'),drawerBg=document.getElementById('drawerBg');
+  function openDrawer(id){
+    var l=leadsCache.find(x=>x.id===id);if(!l)return;
+    state.current=id;
+    document.getElementById('drName').textContent=l.name||'—';
+    document.getElementById('drType').textContent=l.type||'—';
+    document.getElementById('drEmail').innerHTML=l.email?'<a href="mailto:'+esc(l.email)+'">'+esc(l.email)+'</a>':'—';
+    document.getElementById('drPhone').innerHTML=l.phone?'<a href="tel:'+esc(l.phone)+'">'+esc(l.phone)+'</a>':'—';
+    document.getElementById('drMeta').textContent=(l.source||'—')+'  ·  '+fmtDate(l.date);
+    document.getElementById('drMsg').textContent=l.message||'—';
+    document.getElementById('drNotes').value=l.notes||'';
+    document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(function(b){
+      b.classList.toggle('sel',b.getAttribute('data-st')===(l.status||'New'));
+    });
+    drawer.classList.add('open');drawerBg.classList.add('open');
+  }
+  function closeDrawer(){drawer.classList.remove('open');drawerBg.classList.remove('open');state.current=null;}
+  document.getElementById('drClose').onclick=closeDrawer;
+  drawerBg.onclick=closeDrawer;
+  document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(function(b){
+    b.onclick=function(){document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');};
+  });
+  document.getElementById('drSave').onclick=function(){
+    if(!state.current)return;
+    var sel=document.querySelector('#drStatusRow .dr-st-opt.sel');
+    var fields={status:sel?sel.getAttribute('data-st'):'New',notes:document.getElementById('drNotes').value};
+    CRM.update(state.current,fields);
+    var l=leadsCache.find(x=>x.id===state.current); if(l)Object.assign(l,fields);
+    closeDrawer();render();
+  };
+  document.getElementById('drDel').onclick=function(){
+    if(!state.current)return;
+    if(!confirm('Delete this lead permanently?'))return;
+    var id=state.current;
+    CRM.remove(id);
+    leadsCache=leadsCache.filter(x=>x.id!==id);
+    closeDrawer();render();
+  };
+
+  /* ---- export ---- */
+  document.getElementById('exportBtn').onclick=function(){
+    var leads=leadsCache;if(!leads.length){alert('No leads to export.');return;}
+    var cols=['name','email','phone','type','source','status','date','message','notes'];
+    var csv=[cols.join(',')].concat(leads.map(function(l){
+      return cols.map(function(c){var v=(l[c]||'').toString().replace(/"/g,'""');return '"'+v+'"';}).join(',');
+    })).join('\n');
+    var blob=new Blob([csv],{type:'text/csv'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='vishal-leads-'+new Date().toISOString().slice(0,10)+'.csv';a.click();URL.revokeObjectURL(url);
+  };
+
+  /* ---- seed demo data (local mode only) ---- */
+  document.getElementById('seedBtn').onclick=function(){
+    if(CRM.mode==='firebase'){ alert('You are connected to Firebase (live). Demo data is for local mode only — submit the contact form to create real leads.'); return; }
+    CRM.seedDemo(); startData();
+  };
+})();
+</script>
+</body>
+</html>
