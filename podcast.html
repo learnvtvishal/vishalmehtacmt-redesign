@@ -67,6 +67,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .btn-ghost{font-size:.82rem;font-weight:600;padding:.95rem 2rem;color:var(--text2);border:1px solid var(--border2);border-radius:100px;text-decoration:none;transition:all .2s}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 
+/* YOUTUBE PLAYLIST EMBED */
+.playlist-section{padding:5rem 3.5rem;border-bottom:1px solid var(--border);background:var(--bg2)}
+.playlist-embed{position:relative;max-width:1100px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;border:1px solid var(--border2);box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 60px rgba(232,184,75,.06)}
+.playlist-embed iframe{width:100%;height:100%;display:block;border:none}
+.playlist-cta{text-align:center;margin-top:2.5rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@media(max-width:700px){.playlist-section{padding:3rem 1.5rem}}
+
 /* EPISODES LIST */
 .episodes-section{padding:5rem 3.5rem;border-bottom:1px solid var(--border)}
 .section-head{text-align:center;max-width:760px;margin:0 auto 3.5rem}
@@ -149,118 +156,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
     <div class="hero-tag rv d2">Weekly conversations on the boring stuff that actually moves the needle.</div>
     <p class="hero-desc rv d2">Systematic trading, markets, mindset, and the unglamorous habits behind every consistent edge. No tips. No drama. Just signal.</p>
     <div class="platforms rv d3">
-      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener" class="plat"><span class="icon">▶</span> YouTube</a>
+      <a href="https://www.youtube.com/playlist?list=PL3g1G6LD4i1AqomRYZlUcT9HFuoG1VVJF" target="_blank" rel="noopener" class="plat"><span class="icon">▶</span> Ask Me Anything · YouTube</a>
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener" class="plat"><span class="icon">📺</span> Full channel</a>
     </div>
   </div>
 </section>
 
-<!-- FEATURED EPISODE -->
-<section class="featured-section">
-  <div class="featured-card rv">
-    <div class="featured-art">
-      <div class="fa-ep">Episode</div>
-      <div class="fa-num">101</div>
-    </div>
-    <div class="featured-body">
-      <div class="featured-eye">★ Latest episode</div>
-      <h2 class="featured-title">Forget your losses — learn systematic rules for Nifty &amp; BankNifty</h2>
-      <p class="featured-desc">Why the average trader keeps repeating the same mistake — and the simple rule-set that fixes it. With a special focus on India's two most-traded indices and the specific traps each one sets.</p>
-      <div class="featured-meta">
-        <span>42 min</span><span class="sep">◆</span>
-        <span>This week</span><span class="sep">◆</span>
-        <span>Solo</span>
-      </div>
-      <div class="featured-cta">
-        <a href="#" class="btn-main">▶ Play episode</a>
-        <a href="#" class="btn-ghost">Show notes</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EPISODES LIST -->
-<section class="episodes-section">
+<!-- YOUTUBE PLAYLIST EMBED -->
+<section class="playlist-section">
   <div class="section-head">
-    <div class="sec-eye rv">The archive</div>
-    <h2 class="sec-title rv d1">Every episode.<br><em>Every edge.</em></h2>
+    <div class="sec-eye rv">Watch on YouTube</div>
+    <h2 class="sec-title rv d1">Ask Me <em>Anything.</em></h2>
+    <p class="sec-sub rv d2">Real questions from real traders. Honest, unfiltered answers — directly from Vishal. New episodes every week. Tap any video below to play.</p>
   </div>
-
-  <div class="episodes-list">
-    <a href="#" class="ep-row rv d1">
-      <div class="ep-num">101</div>
-      <div class="ep-content">
-        <div class="ep-title">Forget your losses — systematic rules for Nifty &amp; BankNifty</div>
-        <div class="ep-meta">42 min<span class="sep">◆</span>Released this week<span class="sep">◆</span>Solo</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
-
-    <a href="#" class="ep-row rv d1">
-      <div class="ep-num">100</div>
-      <div class="ep-content">
-        <div class="ep-title">100 episodes in — what I've learned about traders</div>
-        <div class="ep-meta">56 min<span class="sep">◆</span>Milestone special<span class="sep">◆</span>Reflections</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
-
-    <a href="#" class="ep-row rv d1">
-      <div class="ep-num">099</div>
-      <div class="ep-content">
-        <div class="ep-title">Why options sellers blow up — and how to not be one</div>
-        <div class="ep-meta">38 min<span class="sep">◆</span>Options<span class="sep">◆</span>Risk</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
-
-    <a href="#" class="ep-row rv d2">
-      <div class="ep-num">098</div>
-      <div class="ep-content">
-        <div class="ep-title">Position sizing rules I wish I knew at 25</div>
-        <div class="ep-meta">31 min<span class="sep">◆</span>Risk<span class="sep">◆</span>Solo</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
-
-    <a href="#" class="ep-row rv d2">
-      <div class="ep-num">097</div>
-      <div class="ep-content">
-        <div class="ep-title">Guest: a quant fund manager on back-testing honestly</div>
-        <div class="ep-meta">64 min<span class="sep">◆</span>Interview<span class="sep">◆</span>Quant</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
-
-    <a href="#" class="ep-row rv d2">
-      <div class="ep-num">096</div>
-      <div class="ep-content">
-        <div class="ep-title">The journaling habit that saved my trading career</div>
-        <div class="ep-meta">29 min<span class="sep">◆</span>Mindset<span class="sep">◆</span>Solo</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
-
-    <a href="#" class="ep-row rv d3">
-      <div class="ep-num">095</div>
-      <div class="ep-content">
-        <div class="ep-title">AI is changing algo trading. Here's what I'm actually using.</div>
-        <div class="ep-meta">47 min<span class="sep">◆</span>AI<span class="sep">◆</span>Algo</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
-
-    <a href="#" class="ep-row rv d3">
-      <div class="ep-num">094</div>
-      <div class="ep-content">
-        <div class="ep-title">Why most "edges" disappear — and how to find ones that don't</div>
-        <div class="ep-meta">35 min<span class="sep">◆</span>Strategy<span class="sep">◆</span>Solo</div>
-      </div>
-      <div class="ep-action"><span>Play</span><div class="icon">▶</div></div>
-    </a>
+  <div class="playlist-embed rv">
+    <iframe src="https://www.youtube.com/embed/videoseries?list=PL3g1G6LD4i1AqomRYZlUcT9HFuoG1VVJF&modestbranding=1&rel=0" title="Ask Me Anything · Vishal Mehta CMT" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
-
-  <div class="load-more rv">
-    <a href="#">Load all 101 episodes →</a>
+  <div class="playlist-cta rv">
+    <a href="https://www.youtube.com/playlist?list=PL3g1G6LD4i1AqomRYZlUcT9HFuoG1VVJF" target="_blank" rel="noopener" class="btn-main">▶ Open full playlist on YouTube</a>
+    <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener" class="btn-ghost">Visit the channel</a>
   </div>
 </section>
 
