@@ -73,6 +73,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .form input::placeholder,.form textarea::placeholder{color:var(--text3)}
 .form textarea{min-height:140px;resize:vertical;font-family:'Inter',sans-serif;line-height:1.6}
 .form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2360a5fa'%3E%3Cpath d='M3 6l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;background-size:14px;padding-right:2.4rem;cursor:pointer}
+.phone-row{display:grid;grid-template-columns:120px 1fr;gap:.6rem}
+.phone-row .cc-select{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--text);padding:.95rem .7rem .95rem 1rem;border-radius:10px;font-family:inherit;font-size:.92rem;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2360a5fa'%3E%3Cpath d='M3 6l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .65rem center;background-size:12px}
+.phone-row .cc-select:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+@media(max-width:520px){.phone-row{grid-template-columns:100px 1fr}}
 .form-submit{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.6rem;flex-wrap:wrap}
 .form-note{font-size:.78rem;color:var(--text3);font-style:italic}
 .btn-main{font-size:.85rem;font-weight:600;padding:1rem 2.2rem;background:var(--blue);color:#fff;border:none;border-radius:100px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 8px 24px rgba(37,99,235,.35);font-family:inherit}
@@ -175,7 +179,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
         <div class="row">
           <div>
             <label>First name</label>
-            <input required type="text" id="cf-first" placeholder="Rohan">
+            <input required type="text" id="cf-first" placeholder="Vishal">
           </div>
           <div>
             <label>Last name</label>
@@ -183,12 +187,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
           </div>
         </div>
         <div>
-          <label>Email</label>
-          <input required type="email" id="cf-email" placeholder="you@email.com">
+          <label>Phone</label>
+          <div class="phone-row">
+            <select id="cf-cc" class="cc-select" aria-label="Country code">
+              <option value="+91" data-flag="🇮🇳">🇮🇳 +91</option>
+              <option value="+1" data-flag="🇺🇸">🇺🇸 +1</option>
+              <option value="+44" data-flag="🇬🇧">🇬🇧 +44</option>
+              <option value="+971" data-flag="🇦🇪">🇦🇪 +971</option>
+              <option value="+966" data-flag="🇸🇦">🇸🇦 +966</option>
+              <option value="+65" data-flag="🇸🇬">🇸🇬 +65</option>
+              <option value="+61" data-flag="🇦🇺">🇦🇺 +61</option>
+              <option value="+27" data-flag="🇿🇦">🇿🇦 +27</option>
+              <option value="+1-CA" data-flag="🇨🇦">🇨🇦 +1</option>
+              <option value="+49" data-flag="🇩🇪">🇩🇪 +49</option>
+              <option value="+86" data-flag="🇨🇳">🇨🇳 +86</option>
+              <option value="+81" data-flag="🇯🇵">🇯🇵 +81</option>
+              <option value="+62" data-flag="🇮🇩">🇮🇩 +62</option>
+              <option value="+60" data-flag="🇲🇾">🇲🇾 +60</option>
+              <option value="+966" data-flag="🇸🇦">🇸🇦 +966</option>
+              <option value="+880" data-flag="🇧🇩">🇧🇩 +880</option>
+              <option value="+92" data-flag="🇵🇰">🇵🇰 +92</option>
+              <option value="+94" data-flag="🇱🇰">🇱🇰 +94</option>
+            </select>
+            <input required type="tel" id="cf-phone" placeholder="98765 43210">
+          </div>
         </div>
         <div>
-          <label>Phone (optional)</label>
-          <input type="tel" id="cf-phone" placeholder="+91 ...">
+          <label>Email (optional)</label>
+          <input type="email" id="cf-email" placeholder="you@email.com">
         </div>
         <div>
           <label>I'm reaching out about</label>
@@ -218,10 +244,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
       document.getElementById('contactForm').addEventListener('submit',function(e){
         e.preventDefault();
         var form=this, btn=form.querySelector('button[type=submit]');
+        var ccRaw=document.getElementById('cf-cc').value;
+        var cc=ccRaw.split('-')[0]; // strip "+1-CA" → "+1"
+        var phoneNum=document.getElementById('cf-phone').value.trim();
         var lead={
           name:(document.getElementById('cf-first').value+' '+document.getElementById('cf-last').value).trim(),
           email:document.getElementById('cf-email').value.trim(),
-          phone:document.getElementById('cf-phone').value.trim(),
+          phone:(phoneNum?cc+' '+phoneNum:''),
           type:document.getElementById('cf-type').value,
           message:document.getElementById('cf-msg').value.trim(),
           source:'Contact form'
