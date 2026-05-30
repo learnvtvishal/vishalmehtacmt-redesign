@@ -81,6 +81,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .btn-ghost{font-size:.82rem;font-weight:600;padding:.95rem 2rem;color:var(--text2);border:1px solid var(--border2);border-radius:100px;text-decoration:none;transition:all .2s}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
 .seats-left{font-family:var(--mono);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:#f87171;margin-left:auto;display:inline-flex;align-items:center;gap:8px}
+
+/* PAST EVENT STATE — auto-applied by JS when event date < today */
+.featured-card.past .btn-main{background:transparent;color:var(--text2);border:1px solid var(--border2);box-shadow:none;cursor:default;pointer-events:none;opacity:.75}
+.featured-card.past .btn-main:hover{transform:none}
+.featured-card.past .seats-left{color:#34d399}
+.featured-card.past .seats-left::before{background:#34d399;box-shadow:0 0 10px #34d399;animation:none}
+.featured-card.past .featured-eye{color:var(--text3)}
+.featured-card.past .featured-eye::before{background:var(--text3)}
 .seats-left::before{content:'';width:6px;height:6px;border-radius:50%;background:#f87171;box-shadow:0 0 10px #f87171;animation:pulse 1.4s infinite}
 
 /* AGENDA STRIP inside featured */
@@ -223,7 +231,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 
 <!-- FEATURED EVENT -->
 <section class="featured-section">
-  <div class="featured-card rv">
+  <div class="featured-card rv" data-event-date="2026-05-16">
     <div class="fa-date">
       <div class="fa-month">May</div>
       <div class="fa-day">16</div>
@@ -409,6 +417,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 </footer>
 
 <script>
+/* Auto-mark past events: greys out the Register button + updates badge/eye text */
+document.querySelectorAll('[data-event-date]').forEach(function(el){
+  var ed=new Date(el.getAttribute('data-event-date'));
+  ed.setHours(23,59,59,999);
+  if(Date.now()>ed.getTime()){
+    el.classList.add('past');
+    var btn=el.querySelector('.btn-main'); if(btn) btn.textContent='Event completed ✓';
+    var seats=el.querySelector('.seats-left'); if(seats) seats.textContent='Successfully completed';
+    var eye=el.querySelector('.featured-eye'); if(eye) eye.textContent='Past event';
+    var tz=el.querySelector('.fa-tz'); if(tz) tz.textContent='IST';
+    var ghost=el.querySelector('.btn-ghost'); if(ghost) ghost.style.display='none';
+  }
+});
+
 const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
 },{threshold:0.1});
