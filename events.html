@@ -109,6 +109,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 
 /* UPCOMING GRID */
 .upcoming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:1200px;margin:0 auto}
+.upcoming-empty{max-width:620px;margin:0 auto;text-align:center;padding:3.5rem 2.2rem;background:linear-gradient(160deg,var(--bg3),rgba(8,12,28,.7));border:1px dashed rgba(232,184,75,.32);border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.empty-icon{font-size:2.6rem;margin-bottom:1.1rem;opacity:.85}
+.empty-title{font-family:'EB Garamond',serif;font-size:1.55rem;font-weight:600;color:#fff;margin-bottom:.7rem;font-style:italic;letter-spacing:.005em}
+.empty-desc{font-size:.95rem;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:1.6rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem}
 .ev-card{display:flex;flex-direction:column;background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative}
 .ev-card:hover{transform:translateY(-6px);border-color:rgba(232,184,75,.45);box-shadow:0 20px 50px rgba(0,0,0,.4)}
 .ev-card-top{padding:1.8rem 1.6rem 1rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
@@ -216,7 +220,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="kicker rv"><span class="dot"></span>3 upcoming · across 4 cities</div>
+    <div class="kicker rv"><span class="dot"></span>Stay tuned · next event coming soon</div>
     <h1 class="rv d1">Where edges meet<br><em>in person.</em></h1>
     <div class="hero-tag rv d2">Masterclasses, meetups and intimate workshops — no fluff, no slide-deck theatre.</div>
     <p class="hero-desc rv d2">Show up for one weekend and walk out with a system, a network, and a different relationship with your charts. Recorded for the world. Felt only by the room.</p>
@@ -270,61 +274,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 <section class="sec-wrap">
   <div class="section-head">
     <div class="sec-eye rv">What's coming up</div>
-    <h2 class="sec-title rv d1">The next <em>three</em> rooms.</h2>
-    <div class="sec-sub rv d2">Pick the one you can't miss.</div>
+    <h2 class="sec-title rv d1">More <em>rooms</em><br>coming soon.</h2>
+    <div class="sec-sub rv d2">We're between batches right now — the next public meetup, workshop or cohort will be announced here first.</div>
   </div>
 
-  <div class="upcoming-grid">
-    <a href="#" class="ev-card rv d1">
-      <div class="ev-card-top">
-        <div class="ev-date-mini"><div class="evd-mo">Jul</div><div class="evd-day">5</div></div>
-        <div class="ev-tag tag-meetup">Meetup</div>
-      </div>
-      <div class="ev-body">
-        <div class="ev-title">Disciplined Traders Meetup — Bangalore</div>
-        <p class="ev-blurb">An evening of unfiltered conversations with traders from the Academy. Three speakers, one fireside chat, zero PowerPoint.</p>
-        <div class="ev-meta">
-          <div class="ev-mrow"><span class="ico">◉</span>WeWork, Galaxy · Bangalore</div>
-          <div class="ev-mrow"><span class="ico">◷</span>6:00 PM – 9:30 PM</div>
-          <div class="ev-mrow"><span class="ico">⌬</span>120 attendees · Free</div>
-        </div>
-      </div>
-      <div class="ev-cta"><span>RSVP now</span><span class="arrow">→</span></div>
-    </a>
-
-    <a href="#" class="ev-card rv d2">
-      <div class="ev-card-top">
-        <div class="ev-date-mini"><div class="evd-mo">Jul</div><div class="evd-day">19</div></div>
-        <div class="ev-tag tag-online">Online</div>
-      </div>
-      <div class="ev-body">
-        <div class="ev-title">CMT Level I Prep — Live Cohort Kickoff</div>
-        <p class="ev-blurb">A live, 8-week cohort that walks you through the entire CMT Level I body of knowledge with weekly live Q&amp;A and mock papers.</p>
-        <div class="ev-meta">
-          <div class="ev-mrow"><span class="ico">⌬</span>Online · Zoom + private channel</div>
-          <div class="ev-mrow"><span class="ico">◷</span>Sat &amp; Sun · 8 weekends</div>
-          <div class="ev-mrow"><span class="ico">◆</span>Capped at 80 candidates</div>
-        </div>
-      </div>
-      <div class="ev-cta"><span>Apply for cohort</span><span class="arrow">→</span></div>
-    </a>
-
-    <a href="#" class="ev-card rv d3">
-      <div class="ev-card-top">
-        <div class="ev-date-mini"><div class="evd-mo">Aug</div><div class="evd-day">9</div></div>
-        <div class="ev-tag tag-workshop">Workshop</div>
-      </div>
-      <div class="ev-body">
-        <div class="ev-title">Charting the Mind — Delhi Workshop</div>
-        <p class="ev-blurb">A one-day workshop that pairs technical setups with the trading-psychology framework. Co-led with Gayatri Singh of Trading Mind.</p>
-        <div class="ev-meta">
-          <div class="ev-mrow"><span class="ico">◉</span>The Lalit · New Delhi</div>
-          <div class="ev-mrow"><span class="ico">◷</span>10:00 AM – 5:00 PM</div>
-          <div class="ev-mrow"><span class="ico">◆</span>40 seats · early-bird ₹6,500</div>
-        </div>
-      </div>
-      <div class="ev-cta"><span>Save my seat</span><span class="arrow">→</span></div>
-    </a>
+  <div class="upcoming-empty rv">
+    <div class="empty-icon">📅</div>
+    <div class="empty-title">Nothing on the calendar yet</div>
+    <p class="empty-desc">Want to hear first when the next event drops? Leave us a note and we'll add you to the early-access list — no spam, no newsletters, just one message when the date is set.</p>
+    <a href="contact.html" class="btn-ghost">Notify me when scheduled →</a>
   </div>
 </section>
 
