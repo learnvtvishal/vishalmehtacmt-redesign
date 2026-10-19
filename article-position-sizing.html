@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Position Sizing: The One Rule That Keeps You in the Game | Vishal Mehta CMT</title>
+<meta name="description" content="How to calculate position size from your capital, risk per trade and stop-loss, with a worked example, the drawdown recovery maths and common mistakes. By Vishal Mehta, CMT.">
+<meta name="author" content="Vishal Mehta">
+<link rel="canonical" href="https://learnvtvishal.github.io/vishalmehtacmt-redesign/article-position-sizing.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Position Sizing: The One Rule That Keeps You in the Game">
+<meta property="og:description" content="Let your stop-loss, not your conviction, decide how much you buy. A worked example and a free calculator.">
+<meta property="og:url" content="https://learnvtvishal.github.io/vishalmehtacmt-redesign/article-position-sizing.html">
+<meta property="og:site_name" content="Vishal Mehta CMT">
+<meta property="og:image" content="https://learnvtvishal.github.io/vishalmehtacmt-redesign/images/live-teaching.jpg">
+<meta property="article:published_time" content="2026-10-19">
+<meta property="article:author" content="Vishal Mehta">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Position Sizing: The One Rule That Keeps You in the Game">
+<meta name="twitter:description" content="Let your stop-loss, not your conviction, decide how much you buy.">
+<meta name="twitter:image" content="https://learnvtvishal.github.io/vishalmehtacmt-redesign/images/live-teaching.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Position Sizing: The One Rule That Keeps You in the Game",
+  "description": "How to calculate position size from your capital, risk per trade and stop-loss, with a worked example, the drawdown recovery maths and common mistakes.",
+  "image": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/images/live-teaching.jpg",
+  "datePublished": "2026-10-19",
+  "dateModified": "2026-10-19",
+  "author": {"@type": "Person", "name": "Vishal Mehta", "jobTitle": "Technical Analyst & Algo Trading Educator", "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/about.html"},
+  "publisher": {"@type": "Organization", "name": "Vishal Mehta CMT", "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/"},
+  "mainEntityOfPage": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/article-position-sizing.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/"},
+    {"@type": "ListItem", "position": 2, "name": "Insights", "item": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/insights.html"},
+    {"@type": "ListItem", "position": 3, "name": "Position Sizing", "item": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/article-position-sizing.html"}
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.art-hero{padding:7.5rem 1.5rem 2.5rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.art-hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:800px;height:520px;background:radial-gradient(circle,rgba(232,184,75,.09) 0%,transparent 60%);pointer-events:none}
+.col{max-width:740px;margin:0 auto;position:relative}
+.crumbs{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:1.4rem}
+.crumbs a{color:var(--text2);text-decoration:none}.crumbs a:hover{color:var(--gold)}
+.crumbs span{margin:0 .5rem;color:var(--gold)}
+.art-hero h1{font-family:var(--serif);font-size:clamp(2.3rem,5.2vw,3.8rem);font-weight:700;line-height:1.08;color:#fff;margin:1rem 0}
+.art-hero h1 em{font-style:italic;color:var(--gold)}
+.dek{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;color:var(--text2);line-height:1.5;margin-bottom:1.5rem}
+.byline{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-size:.82rem;color:var(--text2)}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8862a);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:1rem}
+.byline b{color:#fff;font-weight:600}
+.byline .sep{color:var(--gold)}
+
+/* PROSE */
+.prose{padding:3rem 1.5rem 1rem}
+.prose h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.2rem);color:#fff;line-height:1.2;margin:2.6rem 0 .9rem}
+.prose h3{font-family:var(--serif);font-size:1.35rem;color:#fff;margin:1.8rem 0 .6rem}
+.prose p,.prose li{font-size:1.04rem;color:#c4cede;line-height:1.85;font-weight:300}
+.prose p{margin-bottom:1.15rem}
+.prose ul,.prose ol{margin:0 0 1.3rem 1.3rem}
+.prose li{margin-bottom:.45rem}
+.prose strong{color:#fff;font-weight:600}
+.prose a{color:var(--gold)}
+.formula-box{margin:1.6rem 0;padding:1.4rem 1.5rem;border-radius:16px;background:var(--bg3);border:1px solid rgba(232,184,75,.35);text-align:center}
+.formula-box .f{font-family:var(--mono);font-size:clamp(.85rem,2.4vw,1.1rem);color:var(--gold);line-height:1.6}
+.formula-box .s{font-size:.78rem;color:var(--text2);margin-top:.4rem}
+.ex{width:100%;border-collapse:collapse;margin:1.2rem 0 1.6rem;font-size:.92rem}
+.ex td{padding:.65rem .8rem;border-bottom:1px solid var(--border);color:var(--text2)}
+.ex td:last-child{text-align:right;color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
+.ex tr.total td{color:var(--gold);border-bottom:none}
+.ex tr.total td:last-child{color:var(--gold)}
+.callout{margin:1.6rem 0;padding:1.1rem 1.3rem;border-left:3px solid var(--blue-l);background:var(--blue-dim);border-radius:0 12px 12px 0;font-size:.95rem;color:var(--text);line-height:1.7}
+
+/* MINI CALC */
+.mini{margin:2rem 0;padding:1.6rem}
+.mini h3{margin-top:0}
+.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin:1rem 0}
+.mini-grid .field input{padding:.7rem .8rem}
+.mini-out{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:baseline;padding-top:1rem;border-top:1px solid var(--border)}
+.mini-out .big{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1}
+.mini-out span{font-size:.86rem;color:var(--text2)}
+.mini-out b{color:#fff;font-weight:600}
+.mini-warn{font-size:.8rem;color:var(--amber);margin-top:.6rem;min-height:1em}
+
+.takeaways{margin:2.4rem 0;border-color:rgba(232,184,75,.35);background:linear-gradient(135deg,var(--bg3),rgba(232,184,75,.05))}
+.takeaways ol{margin:.6rem 0 0 1.2rem}
+.takeaways li{font-size:.98rem}
+
+.author{display:grid;grid-template-columns:72px 1fr;gap:1.2rem;align-items:start;margin:2.4rem 0}
+.author .avatar{width:72px;height:72px;font-size:1.6rem}
+.author h3{margin:0 0 .3rem}
+.author p{font-size:.92rem;margin-bottom:.8rem}
+
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0 2rem}
+.related a{display:block;text-decoration:none;padding:1.2rem;border-radius:14px;background:var(--bg3);border:1px solid var(--border);transition:border-color .2s,transform .2s}
+.related a:hover{border-color:rgba(232,184,75,.45);transform:translateY(-2px)}
+.related .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-l)}
+.related .t{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:#fff;margin-top:.3rem;line-height:1.25}
+.disclaimer{font-size:.78rem;color:var(--text3);border-top:1px solid var(--border);padding:1.2rem 0 3rem;line-height:1.7}
+
+@media(max-width:700px){
+  .art-hero{padding:6.5rem 1.25rem 2rem}
+  .prose{padding:2.2rem 1.25rem 1rem}
+  .mini-grid{grid-template-columns:1fr 1fr}
+  .related{grid-template-columns:1fr}
+  .author{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="has-strip">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="learn.html" class="nav-pill">Login</a>
+</nav>
+
+<main>
+<article>
+  <header class="art-hero">
+    <div class="col">
+      <div class="crumbs" role="navigation" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="insights.html">Insights</a><span>/</span>Position sizing</div>
+      <span class="tag gold">Risk management</span>
+      <h1>Position sizing: the one rule that keeps you <em>in the game.</em></h1>
+      <p class="dek">Your stop-loss, not your conviction, should decide how much you buy.</p>
+      <div class="byline">
+        <div class="avatar" aria-hidden="true">VM</div>
+        <span>By <b>Vishal Mehta, CMT</b></span><span class="sep">·</span>
+        <time datetime="2026-10-19">19 October 2026</time><span class="sep">·</span><span>5 min read</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="prose">
+    <div class="col">
+      <p>Ask a room of traders what they spend most of their time on and the answer is almost always the same: finding entries. Which setup, which indicator, which breakout. Ask them how they decide <em>how much</em> to buy, and the room goes quiet. "Whatever feels right." "Depends on how confident I am." "Usually 100 shares."</p>
+      <p>In more than two decades of trading and teaching, I have seen far more accounts damaged by poor sizing than by poor entries. A decent idea traded too large can still knock you out. An average idea traded at the right size lets you survive long enough to get better. That is why position sizing is the first rule I teach, before any chart pattern.</p>
+
+      <h2>Start with risk per trade</h2>
+      <p>Before you look at a chart, decide one number: the most you are willing to lose on a single trade if you are wrong. Many professional traders keep this to around <strong>1% of trading capital</strong>, and rarely more than 2%.</p>
+      <p>It sounds small. It is meant to. Every trader runs into losing streaks; five or six losses in a row is ordinary, not rare. At 1% risk, six straight losses leave you down roughly 6% and fully able to carry on. At 10% risk, the same streak removes nearly half the account.</p>
+      <div class="callout">Risk per trade is not the amount you invest. It is the amount you lose if your stop-loss is hit. The two are very different numbers.</div>
+
+      <h2>The position sizing formula</h2>
+      <p>Once you know your risk budget and where your stop-loss belongs on the chart, quantity is pure arithmetic:</p>
+      <div class="formula-box">
+        <div class="f">Quantity = (Capital × Risk %) ÷ (Entry − Stop-loss)</div>
+        <div class="s">Round down to a whole number. Never round up.</div>
+      </div>
+      <p>The first part of the formula is your rupee risk budget. The second part is how much you lose per share if the stop is hit. Divide one by the other and you get the number of shares that keeps your loss inside the budget.</p>
+
+      <h3>A worked example</h3>
+      <p>Say your trading capital is ₹5,00,000 and you risk 1% per trade. You plan to buy at ₹500 with a stop-loss at ₹490, a level chosen because the chart says the idea is wrong below it.</p>
+      <table class="ex">
+        <tr><td>Risk budget (₹5,00,000 × 1%)</td><td>₹5,000</td></tr>
+        <tr><td>Risk per share (₹500 − ₹490)</td><td>₹10</td></tr>
+        <tr><td>Quantity (₹5,000 ÷ ₹10)</td><td>500 shares</td></tr>
+        <tr><td>Position value (500 × ₹500)</td><td>₹2,50,000</td></tr>
+        <tr class="total"><td>Loss if stop-loss is hit</td><td>₹5,000</td></tr>
+      </table>
+      <p>Notice what happened. You deploy half your capital, yet you only risk 1% of it. If the stop were twice as far away, at ₹480, the same formula would give you 250 shares. A wider stop means a smaller position; a tighter stop allows a larger one. The risk stays constant. That is the whole point.</p>
+
+      <div class="card mini" id="calc">
+        <h3>Try it with your own numbers</h3>
+        <div class="mini-grid">
+          <div class="field"><label for="m-cap">Capital ₹</label><input id="m-cap" type="number" inputmode="decimal" min="0" value="500000"></div>
+          <div class="field"><label for="m-risk">Risk %</label><input id="m-risk" type="number" inputmode="decimal" min="0" step="0.1" value="1"></div>
+          <div class="field"><label for="m-entry">Entry ₹</label><input id="m-entry" type="number" inputmode="decimal" min="0" step="any" value="500"></div>
+          <div class="field"><label for="m-stop">Stop ₹</label><input id="m-stop" type="number" inputmode="decimal" min="0" step="any" value="490"></div>
+        </div>
+        <div class="mini-out" aria-live="polite">
+          <div class="big" id="m-qty">500</div>
+          <span>shares · at risk <b id="m-risk-out">₹5,000</b> · position <b id="m-pos">₹2,50,000</b></span>
+        </div>
+        <div class="mini-warn" id="m-warn"></div>
+        <p style="font-size:.84rem;margin:.6rem 0 0">More options in the <a href="tools.html#position">full position size calculator</a>.</p>
+      </div>
+
+      <h2>Why it matters: the maths of recovery</h2>
+      <p>Losses and gains are not symmetric. If your account falls 10%, you need about 11% to get back. Lose 20% and you need 25%. Lose 50% and you need 100%, a doubling, just to return to where you started.</p>
+      <p>Position sizing is what stops a normal losing streak from turning into one of those deep holes. It does not make you right more often. It makes being wrong affordable, which is what gives your edge, if you have one, enough trades to show up. You can see the full table in the <a href="tools.html#drawdown">drawdown recovery calculator</a>.</p>
+
+      <h2>Common position sizing mistakes</h2>
+      <ul>
+        <li><strong>Sizing by conviction.</strong> Taking a bigger position because you "really like" a trade. The market does not know how you feel.</li>
+        <li><strong>Moving the stop to fit the size.</strong> Deciding the quantity first, then squeezing the stop-loss closer so the risk looks acceptable. The stop belongs where the idea is invalidated, not where it is convenient.</li>
+        <li><strong>Fixed quantity on every trade.</strong> Always buying 100 shares means a ₹50 stock and a ₹2,000 stock carry wildly different risk.</li>
+        <li><strong>Ignoring gaps and costs.</strong> A stop-loss is a plan, not a guarantee. Prices can gap past it, and brokerage and taxes add up, so leave some margin in your budget.</li>
+        <li><strong>Increasing size after losses.</strong> Trying to "win it back" by doubling up is the fastest route to the deep end of the recovery table.</li>
+      </ul>
+
+      <h2>Make it a habit</h2>
+      <p>The traders who last are not the ones with the cleverest entries. They are the ones who do this small calculation before every single trade, especially the ones they feel sure about. Write your risk percentage at the top of your trading plan, calculate quantity from your stop every time, and log it in your journal next to the result.</p>
+
+      <div class="card takeaways">
+        <h3>Key takeaways</h3>
+        <ol>
+          <li>Decide your risk per trade first; around 1% of capital is a common professional benchmark.</li>
+          <li>Quantity = (capital × risk %) ÷ (entry − stop-loss), rounded down.</li>
+          <li>Place the stop where your idea is wrong, then let it set the size, never the other way round.</li>
+          <li>Small, consistent risk keeps drawdowns shallow, and shallow drawdowns are far easier to recover from.</li>
+        </ol>
+      </div>
+
+      <div class="author">
+        <div class="avatar" aria-hidden="true">VM</div>
+        <div>
+          <h3>About Vishal Mehta, CMT</h3>
+          <p>Vishal is a Chartered Market Technician with 24+ years in the markets. He has trained more than 10,000 traders, including programmes for the Reserve Bank of India and central banks across South Asia, and founded the Disciplined Traders Academy to teach rule-based, systematic trading.</p>
+          <a class="btn-ghost btn-sm" href="about.html">More about Vishal</a>
+        </div>
+      </div>
+
+      <h2 style="margin-top:1rem">Keep learning</h2>
+      <div class="related">
+        <a href="tools.html"><div class="k">Free tools</div><div class="t">Position size, risk-reward and drawdown calculators</div></a>
+        <a href="masterclass.html"><div class="k">Free live session</div><div class="t">Masterclass: Trade With Rules, Not Emotions</div></a>
+        <a href="courses.html"><div class="k">Courses</div><div class="t">Workshops and the Disciplined Traders Academy</div></a>
+      </div>
+
+      <p class="disclaimer">This article is for education only, not investment advice. Examples use illustrative numbers, not recommendations to buy or sell any security. Trading involves risk of loss; consult a SEBI-registered adviser for advice specific to you.</p>
+    </div>
+  </div>
+</article>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Free tools</a>
+      <a href="insights.html">Insights</a>
+      <a href="masterclass.html">Masterclass</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-strip">Demo build for review · <a href="meeting.html">Back to the meeting demo hub</a></div>
+
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
+},100);
+</script>
+<script>
+(function () {
+  function v(id) { var x = parseFloat(document.getElementById(id).value); return isFinite(x) ? x : 0; }
+  function inr(x) { return '₹' + x.toLocaleString('en-IN', { maximumFractionDigits: 0 }); }
+  function calc() {
+    var cap = v('m-cap'), risk = v('m-risk'), e = v('m-entry'), s = v('m-stop');
+    var rps = +Math.abs(e - s).toFixed(8), warn = '';
+    var qty = (cap > 0 && risk > 0 && e > 0 && s > 0 && rps > 0) ? Math.floor(cap * risk / 100 / rps) : 0;
+    if (!(cap > 0 && risk > 0 && e > 0 && s > 0)) warn = 'Enter positive numbers in all four boxes.';
+    else if (rps === 0) warn = 'Entry and stop-loss cannot be the same.';
+    else if (qty * e > cap) warn = 'Position value exceeds your capital; that would need leverage.';
+    document.getElementById('m-qty').textContent = qty.toLocaleString('en-IN');
+    document.getElementById('m-risk-out').textContent = inr(qty * rps);
+    document.getElementById('m-pos').textContent = inr(qty * e);
+    document.getElementById('m-warn').textContent = warn;
+  }
+  ['m-cap', 'm-risk', 'm-entry', 'm-stop'].forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+  calc();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Trading Calculators — Position Size, Risk-Reward | Vishal Mehta CMT</title>
+<meta name="description" content="Free position size calculator, risk-reward and breakeven win-rate calculator, and drawdown recovery calculator for Indian traders. Plan risk before you trade.">
+<link rel="canonical" href="https://learnvtvishal.github.io/vishalmehtacmt-redesign/tools.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Trading Calculators: Position Size, Risk-Reward, Drawdown">
+<meta property="og:description" content="Work out quantity from your stop-loss, the win rate your risk-reward needs, and how much gain a drawdown demands. Free, in your browser.">
+<meta property="og:url" content="https://learnvtvishal.github.io/vishalmehtacmt-redesign/tools.html">
+<meta property="og:site_name" content="Vishal Mehta CMT">
+<meta property="og:image" content="https://learnvtvishal.github.io/vishalmehtacmt-redesign/images/live-teaching.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Trading Calculators: Position Size, Risk-Reward, Drawdown">
+<meta name="twitter:description" content="Plan your risk before you trade. Free calculators by Vishal Mehta, CMT.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Free trading risk calculators",
+  "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/tools.html",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "item": {"@type": "WebApplication", "name": "Position Size Calculator", "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/tools.html#position", "applicationCategory": "FinanceApplication", "operatingSystem": "Any (web browser)", "description": "Calculates trade quantity from capital, risk per trade, entry and stop-loss.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}}},
+    {"@type": "ListItem", "position": 2, "item": {"@type": "WebApplication", "name": "Risk-Reward and Breakeven Win-Rate Calculator", "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/tools.html#rr", "applicationCategory": "FinanceApplication", "operatingSystem": "Any (web browser)", "description": "Calculates the R multiple of a trade plan and the win rate needed to break even.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}}},
+    {"@type": "ListItem", "position": 3, "item": {"@type": "WebApplication", "name": "Drawdown Recovery Calculator", "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/tools.html#drawdown", "applicationCategory": "FinanceApplication", "operatingSystem": "Any (web browser)", "description": "Shows the percentage gain needed to recover from a given drawdown.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}}}
+  ]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* TABS */
+.tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:1.8rem}
+.tab{font:inherit;font-size:.8rem;font-weight:600;padding:.7rem 1.3rem;border-radius:100px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .2s}
+.tab:hover{color:var(--text);border-color:var(--gold)}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#000}
+.panel{display:none}
+.panel.on{display:block}
+
+.calc{display:grid;grid-template-columns:1fr 1.1fr;gap:1.6rem;max-width:1040px;margin:0 auto;padding:2rem}
+.calc h2{font-family:var(--serif);font-size:1.8rem;color:#fff;line-height:1.15;margin-bottom:.4rem}
+.calc .intro{font-size:.86rem;color:var(--text2);margin-bottom:1.3rem;line-height:1.7}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fields .full{grid-column:1/-1}
+.unit{position:relative}
+.unit input{padding-right:2.4rem}
+.unit .u{position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:.75rem;color:var(--text3);pointer-events:none}
+.unit.pre input{padding-left:2rem;padding-right:1rem}
+.unit.pre .u{left:1rem;right:auto}
+
+.out{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.4rem;display:flex;flex-direction:column;gap:1rem}
+.hero-stat{padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.hero-stat .lbl,.stat .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text2)}
+.hero-stat .val{font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--gold);line-height:1.05;font-variant-numeric:tabular-nums;word-break:break-word}
+.hero-stat .val small{font-size:1.1rem;color:var(--text2);font-weight:500;margin-left:.3rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.stat .val{font-size:1.15rem;font-weight:600;color:var(--white);font-variant-numeric:tabular-nums;word-break:break-word}
+.note{font-size:.8rem;line-height:1.6;padding:.7rem .9rem;border-radius:10px;display:none}
+.note.show{display:block}
+.note.warn{color:var(--amber);background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3)}
+.note.err{color:var(--red);background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3)}
+.note.info{color:var(--text2);background:var(--blue-dim);border:1px solid rgba(96,165,250,.25)}
+.formula{font-family:var(--mono);font-size:.72rem;color:var(--text3);line-height:1.7}
+.formula b{color:var(--text2);font-weight:500}
+
+/* bar for deployed % / breakeven */
+.bar{height:8px;border-radius:8px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--gold));transition:width .3s}
+
+/* drawdown table */
+.dd-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.dd-table th,.dd-table td{text-align:left;padding:.55rem .4rem;border-bottom:1px solid var(--border)}
+.dd-table th{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);font-weight:600}
+.dd-table td:last-child{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
+.dd-table .meter{width:42%}
+.dd-table .meter span{display:block;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--amber),var(--red))}
+.dd-table tr.hl td{background:rgba(232,184,75,.06)}
+
+/* EXPLAINER + LEAD MAGNET */
+.explain{max-width:820px;margin:0 auto}
+.explain h2{font-family:var(--serif);font-size:clamp(1.8rem,3.4vw,2.5rem);color:#fff;line-height:1.15;margin-bottom:1rem}
+.explain h2 em{font-style:italic;color:var(--gold)}
+.explain p{color:var(--text2);font-size:.96rem;line-height:1.85;margin-bottom:1rem}
+.explain a{color:var(--gold)}
+.magnet{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;max-width:1040px;margin:0 auto;border-color:rgba(232,184,75,.3);background:linear-gradient(135deg,var(--bg3),rgba(37,99,235,.06))}
+.magnet h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.3rem);color:#fff;line-height:1.15;margin-bottom:.8rem}
+.magnet ul{list-style:none;display:grid;gap:.45rem;margin-top:1rem}
+.magnet li{font-size:.86rem;color:var(--text2)}
+.magnet li::before{content:'✓ ';color:var(--green);font-weight:700}
+.phone-in{display:flex}
+.phone-in .cc{display:flex;align-items:center;padding:0 .9rem;font-size:.92rem;color:var(--text2);background:rgba(255,255,255,.06);border:1px solid var(--border2);border-right:none;border-radius:12px 0 0 12px}
+.phone-in input{border-radius:0 12px 12px 0}
+.ok-box{display:none;text-align:center;padding:1rem 0}
+.ok-box.show{display:block}
+.ok-box b{display:block;font-family:var(--serif);font-size:1.6rem;color:#fff;margin-bottom:.4rem}
+
+@media(max-width:860px){
+  .calc,.magnet{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .calc{padding:1.3rem}
+  .fields{grid-template-columns:1fr 1fr;gap:.7rem}
+  .hero-stat .val{font-size:2.4rem}
+  .tab{padding:.6rem 1rem;font-size:.74rem}
+}
+@media(max-width:400px){.fields{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body class="has-strip">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="learn.html" class="nav-pill">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker rv"><span class="dot"></span>Free tools · no sign-up</div>
+    <h1 class="rv d1">Free trading <em>calculators.</em></h1>
+    <p class="hero-desc rv d2">Size every position from your stop-loss, check the win rate your risk-reward really needs, and see why protecting capital comes first. Enter your own numbers; nothing leaves your browser.</p>
+    <div class="btn-row rv d3">
+      <a href="#calculators" class="btn-main">Open the calculators</a>
+      <a href="article-position-sizing.html" class="btn-ghost">Read: position sizing guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATORS -->
+<section class="section alt" id="calculators">
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="position" data-tab="position">Position size</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="rr" data-tab="rr">Risk-reward &amp; breakeven</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="drawdown" data-tab="drawdown">Drawdown recovery</button>
+    </div>
+
+    <!-- 1. POSITION SIZE -->
+    <div class="panel on" id="position" role="tabpanel">
+      <div class="card calc">
+        <div>
+          <span class="tag gold" style="margin-bottom:.8rem">Calculator 1</span>
+          <h2>Position size calculator</h2>
+          <p class="intro">How many shares or units can you buy so that, if your stop-loss is hit, you lose only the amount you planned?</p>
+          <div class="fields">
+            <div class="field full"><label for="ps-cap">Trading capital</label><div class="unit pre"><span class="u">₹</span><input id="ps-cap" type="number" inputmode="decimal" min="0" step="any" value="500000"></div></div>
+            <div class="field full"><label for="ps-risk">Risk per trade</label><div class="unit"><input id="ps-risk" type="number" inputmode="decimal" min="0" step="0.1" value="1"><span class="u">%</span></div></div>
+            <div class="field"><label for="ps-entry">Entry price</label><div class="unit pre"><span class="u">₹</span><input id="ps-entry" type="number" inputmode="decimal" min="0" step="any" value="500"></div></div>
+            <div class="field"><label for="ps-stop">Stop-loss</label><div class="unit pre"><span class="u">₹</span><input id="ps-stop" type="number" inputmode="decimal" min="0" step="any" value="490"></div></div>
+          </div>
+        </div>
+        <div class="out" aria-live="polite">
+          <div class="hero-stat"><div class="lbl">Quantity</div><div class="val" id="ps-qty">0<small>shares</small></div></div>
+          <div class="stats">
+            <div class="stat"><div class="lbl">Money at risk</div><div class="val" id="ps-atrisk">–</div></div>
+            <div class="stat"><div class="lbl">Risk per share</div><div class="val" id="ps-rps">–</div></div>
+            <div class="stat"><div class="lbl">Position value</div><div class="val" id="ps-pos">–</div></div>
+            <div class="stat"><div class="lbl">Capital deployed</div><div class="val" id="ps-dep">–</div></div>
+          </div>
+          <div class="bar"><i id="ps-bar"></i></div>
+          <div class="note" id="ps-note"></div>
+          <div class="formula"><b>Quantity</b> = (capital × risk %) ÷ (entry − stop), rounded down.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. RISK REWARD -->
+    <div class="panel" id="rr" role="tabpanel">
+      <div class="card calc">
+        <div>
+          <span class="tag blue" style="margin-bottom:.8rem">Calculator 2</span>
+          <h2>Risk-reward &amp; breakeven win rate</h2>
+          <p class="intro">Your reward-to-risk ratio decides how often you need to be right just to break even (before costs).</p>
+          <div class="fields">
+            <div class="field full"><label for="rr-entry">Entry price</label><div class="unit pre"><span class="u">₹</span><input id="rr-entry" type="number" inputmode="decimal" min="0" step="any" value="500"></div></div>
+            <div class="field"><label for="rr-stop">Stop-loss</label><div class="unit pre"><span class="u">₹</span><input id="rr-stop" type="number" inputmode="decimal" min="0" step="any" value="490"></div></div>
+            <div class="field"><label for="rr-target">Target</label><div class="unit pre"><span class="u">₹</span><input id="rr-target" type="number" inputmode="decimal" min="0" step="any" value="520"></div></div>
+          </div>
+        </div>
+        <div class="out" aria-live="polite">
+          <div class="hero-stat"><div class="lbl">Reward : risk</div><div class="val" id="rr-r">–</div></div>
+          <div class="stats">
+            <div class="stat"><div class="lbl">Risk per unit</div><div class="val" id="rr-risk">–</div></div>
+            <div class="stat"><div class="lbl">Reward per unit</div><div class="val" id="rr-rew">–</div></div>
+            <div class="stat"><div class="lbl">Direction</div><div class="val" id="rr-dir">–</div></div>
+            <div class="stat"><div class="lbl">Breakeven win rate</div><div class="val" id="rr-be">–</div></div>
+          </div>
+          <div class="bar"><i id="rr-bar"></i></div>
+          <div class="note" id="rr-note"></div>
+          <div class="formula"><b>R</b> = reward ÷ risk &nbsp;·&nbsp; <b>Breakeven win rate</b> = 1 ÷ (1 + R)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. DRAWDOWN -->
+    <div class="panel" id="drawdown" role="tabpanel">
+      <div class="card calc">
+        <div>
+          <span class="tag red" style="margin-bottom:.8rem">Calculator 3</span>
+          <h2>Drawdown recovery</h2>
+          <p class="intro">Losses and gains are not symmetric. The deeper the fall, the bigger the climb back.</p>
+          <div class="fields">
+            <div class="field full"><label for="dd-pct">Drawdown</label><div class="unit"><input id="dd-pct" type="number" inputmode="decimal" min="0" max="99.9" step="any" value="25"><span class="u">%</span></div></div>
+          </div>
+          <div class="out" style="margin-top:1rem" aria-live="polite">
+            <div class="hero-stat" style="border:none;padding:0"><div class="lbl">Gain needed to recover</div><div class="val" id="dd-need">–</div></div>
+            <div class="note" id="dd-note"></div>
+            <div class="formula"><b>Gain needed</b> = d ÷ (1 − d)</div>
+          </div>
+        </div>
+        <div class="out">
+          <table class="dd-table">
+            <thead><tr><th>Drawdown</th><th class="meter">Climb back</th><th>Gain needed</th></tr></thead>
+            <tbody id="dd-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLAINER -->
+<section class="section">
+  <div class="explain rv">
+    <div class="sec-eye">Why these three numbers</div>
+    <h2>Risk first, <em>entries second.</em></h2>
+    <p>Most traders spend their time on entries. Professionals spend it on risk. If you decide in advance that one losing trade will cost, say, 1% of your capital, the position size is no longer a feeling; it falls straight out of the distance between your entry and your stop-loss.</p>
+    <p>The risk-reward calculator shows the other side of the same coin: a plan that risks ₹10 to make ₹20 only needs to be right about one time in three to break even before costs. And the drawdown table explains why both matter. A 50% loss needs a 100% gain just to get back to where you started, so keeping losses small is what keeps you in the game.</p>
+    <p>For a full walk-through with a worked example, read <a href="article-position-sizing.html">Position Sizing: The One Rule That Keeps You in the Game</a>.</p>
+    <p class="form-note">These calculators are for education and planning only. They do not consider brokerage, taxes, slippage or gaps, and are not investment advice.</p>
+  </div>
+</section>
+
+<!-- LEAD MAGNET -->
+<section class="section alt" id="worksheet">
+  <div class="card magnet rv">
+    <div>
+      <span class="tag gold" style="margin-bottom:1rem">Free download</span>
+      <h2>Get the printable Risk Plan worksheet on WhatsApp</h2>
+      <p style="font-size:.92rem;color:var(--text2);line-height:1.7">A one-page sheet to fill in before every trade, so the numbers above become a habit.</p>
+      <ul><li>Capital, risk % and max loss per day</li><li>Position-size box for every trade</li><li>Weekly drawdown check</li></ul>
+    </div>
+    <div>
+      <form class="form" id="lm-form" novalidate>
+        <div class="field"><label for="lm-name">Name</label><input id="lm-name" type="text" autocomplete="name" placeholder="Your name"></div>
+        <div class="field"><label for="lm-phone">WhatsApp number</label><div class="phone-in"><span class="cc">+91</span><input id="lm-phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="98765 43210" maxlength="12"></div></div>
+        <button class="btn-wa" type="submit" id="lm-btn">Send me the worksheet</button>
+        <div class="form-msg" id="lm-msg" role="status"></div>
+        <p class="form-note">We'll send the worksheet and occasional educational updates on WhatsApp. No tips, no spam.</p>
+      </form>
+      <div class="ok-box" id="lm-ok"><b>On its way ✓</b><p class="sec-sub">The Risk Plan worksheet will reach your WhatsApp shortly. Meanwhile, try the <a href="masterclass.html" style="color:var(--gold)">free live masterclass</a>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Free tools</a>
+      <a href="insights.html">Insights</a>
+      <a href="masterclass.html">Masterclass</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-strip">Demo build for review · <a href="meeting.html">Back to the meeting demo hub</a></div>
+
+<script src="firebase-config.js"></script>
+<script src="crm-data.js"></script>
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
+},100);
+</script>
+<script>
+(function () {
+  function $(id) { return document.getElementById(id); }
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) ? v : NaN; }
+  function inr(v, d) { return '₹' + v.toLocaleString('en-IN', { minimumFractionDigits: d || 0, maximumFractionDigits: d === undefined ? 2 : d }); }
+  function n(v, d) { return v.toLocaleString('en-IN', { maximumFractionDigits: d === undefined ? 2 : d }); }
+  function note(id, cls, text) { var el = $(id); el.className = 'note' + (text ? ' show ' + cls : ''); el.textContent = text || ''; }
+
+  // ---- tabs (also opened by #position / #rr / #drawdown in the URL) ----
+  var tabs = document.querySelectorAll('.tab');
+  function show(name) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.tab === name;
+      t.setAttribute('aria-selected', on);
+      $(t.dataset.tab).classList.toggle('on', on);
+    });
+  }
+  tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.dataset.tab); }); });
+  function fromHash() {
+    var h = location.hash.slice(1);
+    if (['position', 'rr', 'drawdown'].indexOf(h) > -1) {
+      show(h);
+      setTimeout(function () { $('calculators').scrollIntoView(); }, 50);
+    }
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+
+  // ---- 1. position size ----
+  function calcPosition() {
+    var cap = num('ps-cap'), risk = num('ps-risk'), entry = num('ps-entry'), stop = num('ps-stop');
+    var reset = function () { $('ps-qty').innerHTML = '0<small>shares</small>'; ['ps-atrisk', 'ps-rps', 'ps-pos', 'ps-dep'].forEach(function (i) { $(i).textContent = '–'; }); $('ps-bar').style.width = '0'; };
+    if (!(cap > 0) || !(risk > 0) || !(entry > 0) || !(stop > 0)) { reset(); return note('ps-note', 'info', 'Enter positive values for capital, risk %, entry and stop-loss.'); }
+    var rps = +Math.abs(entry - stop).toFixed(8); // trim float noise (499.9 - 500)
+    if (rps === 0) { reset(); return note('ps-note', 'err', 'Entry and stop-loss cannot be the same price.'); }
+    var budget = cap * risk / 100;
+    var qty = Math.floor(budget / rps);
+    var pos = qty * entry, atRisk = qty * rps, dep = pos / cap * 100;
+    $('ps-qty').innerHTML = n(qty, 0) + '<small>' + (qty === 1 ? 'share' : 'shares') + '</small>';
+    $('ps-atrisk').textContent = inr(atRisk, 0) + ' (' + n(atRisk / cap * 100) + '%)';
+    $('ps-rps').textContent = inr(rps);
+    $('ps-pos').textContent = inr(pos, 0);
+    $('ps-dep').textContent = n(dep, 1) + '%';
+    $('ps-bar').style.width = Math.min(dep, 100) + '%';
+    if (qty === 0) note('ps-note', 'warn', 'Your stop is wider than your risk budget of ' + inr(budget, 0) + ' allows for even one share. Tighten the stop, or skip the trade.');
+    else if (pos > cap) note('ps-note', 'warn', 'Position value (' + inr(pos, 0) + ') is more than your capital. That needs leverage. Without it, your capital buys at most ' + n(Math.floor(cap / entry), 0) + ' shares.');
+    else if (risk > 2) note('ps-note', 'warn', 'Risking more than 2% per trade makes a losing streak much harder to recover from.');
+    else note('ps-note', 'info', (stop > entry ? 'Short trade: stop above entry. ' : '') + 'If the stop is hit you lose about ' + inr(atRisk, 0) + ', within your ' + inr(budget, 0) + ' budget.');
+  }
+
+  // ---- 2. risk-reward ----
+  function calcRR() {
+    var e = num('rr-entry'), s = num('rr-stop'), t = num('rr-target');
+    var clear = function () { ['rr-r', 'rr-risk', 'rr-rew', 'rr-dir', 'rr-be'].forEach(function (i) { $(i).textContent = '–'; }); $('rr-bar').style.width = '0'; };
+    if (!(e > 0) || !(s > 0) || !(t > 0)) { clear(); return note('rr-note', 'info', 'Enter positive values for entry, stop and target.'); }
+    var long = s < e;
+    if (s === e || (long && t <= e) || (!long && t >= e)) {
+      clear(); return note('rr-note', 'err', 'For a long trade the stop must be below entry and the target above it (the reverse for a short).');
+    }
+    var risk = +Math.abs(e - s).toFixed(8), reward = +Math.abs(t - e).toFixed(8), R = reward / risk, be = 1 / (1 + R) * 100;
+    $('rr-r').textContent = n(R) + ' R';
+    $('rr-risk').textContent = inr(risk);
+    $('rr-rew').textContent = inr(reward);
+    $('rr-dir').textContent = long ? 'Long' : 'Short';
+    $('rr-be').textContent = n(be, 1) + '%';
+    $('rr-bar').style.width = be + '%';
+    note('rr-note', R < 1 ? 'warn' : 'info', R < 1
+      ? 'Reward is smaller than risk, so you need to win more than half your trades just to break even.'
+      : 'At ' + n(R) + 'R you break even if about ' + n(be, 0) + ' out of 100 trades hit target (before costs).');
+  }
+
+  // ---- 3. drawdown ----
+  function need(d) { return d / (1 - d) * 100; }
+  function calcDD() {
+    var d = num('dd-pct');
+    if (!(d > 0) || d >= 100) { $('dd-need').textContent = '–'; note('dd-note', 'info', 'Enter a drawdown between 0 and 100%.'); }
+    else {
+      var g = need(d / 100);
+      $('dd-need').textContent = n(g, 1) + '%';
+      note('dd-note', d >= 30 ? 'warn' : 'info', 'After a ' + n(d, 1) + '% fall, ₹1,00,000 becomes ' + inr(100000 * (1 - d / 100), 0) + ' and needs a ' + n(g, 1) + '% gain to get back.');
+    }
+    var rows = [10, 20, 30, 40, 50].map(function (p) {
+      var g = need(p / 100);
+      return '<tr' + (Math.round(d) === p ? ' class="hl"' : '') + '><td>' + p + '%</td><td class="meter"><span style="width:' + (g / 100 * 100) + '%"></span></td><td>' + n(g, 1) + '%</td></tr>';
+    });
+    $('dd-body').innerHTML = rows.join('');
+  }
+
+  [['ps-cap', 'ps-risk', 'ps-entry', 'ps-stop', calcPosition], ['rr-entry', 'rr-stop', 'rr-target', calcRR], ['dd-pct', calcDD]].forEach(function (g) {
+    var fn = g.pop();
+    g.forEach(function (id) { $(id).addEventListener('input', fn); });
+    fn();
+  });
+
+  // ---- lead magnet -> CRM ----
+  var ph = $('lm-phone');
+  ph.addEventListener('input', function () { var d = ph.value.replace(/\D/g, '').slice(0, 10); ph.value = d.length > 5 ? d.slice(0, 5) + ' ' + d.slice(5) : d; });
+  $('lm-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var msg = $('lm-msg'), name = $('lm-name').value.trim(), digits = ph.value.replace(/\D/g, '');
+    if (name.length < 2) { msg.className = 'form-msg err'; msg.textContent = 'Please enter your name.'; return $('lm-name').focus(); }
+    if (!/^[6-9]\d{9}$/.test(digits)) { msg.className = 'form-msg err'; msg.textContent = 'Please enter a valid 10-digit WhatsApp number.'; return ph.focus(); }
+    $('lm-btn').disabled = true; msg.className = 'form-msg'; msg.textContent = 'Sending…';
+    var done = function () { $('lm-form').style.display = 'none'; $('lm-ok').classList.add('show'); };
+    var lead = { name: name, phone: '+91 ' + digits.slice(0, 5) + ' ' + digits.slice(5), type: 'Lead magnet: Risk Plan', message: 'Requested the printable Risk Plan worksheet on WhatsApp.', source: 'Free tools page' };
+    var save = window.CRM ? CRM.ready.then(function () { return CRM.add(lead); }) : Promise.resolve();
+    Promise.race([save, new Promise(function (r) { setTimeout(r, 6000); })]).catch(function (e) { console.warn('Lead not saved:', e); }).then(done);
+  });
+})();
+</script>
+</body>
+</html>

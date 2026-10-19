@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /vishalmehtacmt-redesign/admin.html
+Disallow: /vishalmehtacmt-redesign/learn.html
+Disallow: /vishalmehtacmt-redesign/health.html
+Disallow: /vishalmehtacmt-redesign/meeting.html
+Disallow: /vishalmehtacmt-redesign/thank-you.html
+Disallow: /admin.html
+Disallow: /learn.html
+Disallow: /health.html
+Disallow: /meeting.html
+Disallow: /thank-you.html
+
+Sitemap: https://learnvtvishal.github.io/vishalmehtacmt-redesign/sitemap.xml

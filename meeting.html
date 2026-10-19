@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Demo for WebTechneeq — Vishal Mehta CMT</title>
+<meta name="description" content="Everything we want from the new website, working live: CRM, funnels, courses, SEO, ads tracking and site health.">
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.who{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.who span{font-size:.82rem;padding:.4rem .9rem;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--border2);color:var(--text2)}
+.who b{color:var(--gold);font-weight:600}
+.try{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;max-width:980px;margin:0 auto;background:linear-gradient(135deg,rgba(232,184,75,.08),rgba(37,99,235,.08));border:1px solid rgba(232,184,75,.3);border-radius:22px;padding:1.8rem 2rem}
+.qr{width:180px;height:180px;border-radius:14px;background:#fff;padding:10px;display:flex;align-items:center;justify-content:center}
+.qr img{width:100%;height:100%;display:block}
+.try h3{font-family:var(--serif);font-size:1.7rem;color:#fff;margin-bottom:.5rem}
+.try ol{margin:.6rem 0 1.1rem 1.2rem;color:var(--text2);font-size:.9rem}
+.try ol li{margin:.3rem 0}
+.try ol b{color:#fff}
+.topics{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.topic{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:1.6rem 1.7rem;display:flex;flex-direction:column}
+.topic:hover{border-color:rgba(232,184,75,.35)}
+.t-head{display:flex;gap:.9rem;align-items:flex-start;margin-bottom:.9rem}
+.t-ico{flex:none;width:46px;height:46px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold);display:grid;place-items:center;font-size:1.25rem}
+.t-num{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;color:var(--text3);text-transform:uppercase}
+.t-title{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:#fff;line-height:1.15}
+.t-what{font-size:.75rem;color:var(--text3)}
+.t-prio{margin-left:auto;flex:none}
+.t-body{font-size:.86rem;color:var(--text2);line-height:1.7}
+.t-steps{margin:.7rem 0 1.1rem 1.1rem;font-size:.84rem;color:var(--text2)}
+.t-steps li{margin:.28rem 0}
+.t-steps b{color:#fff;font-weight:600}
+.t-btns{margin-top:auto;display:flex;gap:.5rem;flex-wrap:wrap}
+.order{display:flex;gap:.5rem;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+.order span{font-size:.82rem;padding:.45rem .9rem;border-radius:10px;background:var(--bg3);border:1px solid var(--border2)}
+.order i{color:var(--gold);font-style:normal;font-weight:700}
+@media(max-width:900px){.topics{grid-template-columns:1fr}}
+@media(max-width:640px){.try{grid-template-columns:1fr;text-align:center;padding:1.4rem}.qr{margin:0 auto}.try ol{text-align:left}.t-head{flex-wrap:wrap}.t-prio{margin-left:0}}
+</style>
+</head>
+<body class="has-strip">
+
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="academy.html">Disciplined Traders Academy</a></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="learn.html" class="nav-pill">Login</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker rv"><span class="dot"></span>Live demo · WebTechneeq meeting</div>
+    <h1 class="rv d1">Not slides. <em>Working.</em></h1>
+    <div class="who rv d2"><span><b>Hansel Gonsalves</b> · WebTechneeq</span><span>🤝</span><span><b>Vishal Mehta</b> + <b>Gayatri</b></span></div>
+    <p class="hero-desc rv d2">Everything on our checklist, built as a working trial on this site, so we can agree exactly what the real one should do. Click through each topic below.</p>
+    <div class="btn-row rv d3">
+      <a class="btn-main" href="admin.html" target="_blank" rel="noopener">Open the live CRM ↗</a>
+      <a class="btn-ghost" href="https://hansel-meeting-roadmap.vercel.app" target="_blank" rel="noopener">Our meeting notes ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="try rv">
+    <div class="qr"><img id="qrImg" alt="QR code to the masterclass page"></div>
+    <div>
+      <h3>Try it on your phone, Hansel 📱</h3>
+      <ol>
+        <li><b>Scan the code</b> — it opens our free masterclass page, tagged as if from an ad.</li>
+        <li><b>Register</b> with your name and number.</li>
+        <li>Watch it <b>land in our CRM</b> on this screen within seconds, with the source, a call timer and its WhatsApp follow-ups.</li>
+      </ol>
+      <div class="btn-row"><a class="btn-blue btn-sm" id="qrLink" target="_blank" rel="noopener">Open the same link here</a><a class="btn-ghost btn-sm" href="admin.html" target="_blank" rel="noopener">CRM ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sec-eye">Seven stops</div>
+      <h2 class="sec-title">What we want, <em>live.</em></h2>
+      <p class="sec-sub">Same order and priorities as our meeting roadmap.</p>
+    </div>
+
+    <div class="topics">
+
+      <article class="topic rv">
+        <div class="t-head"><div class="t-ico">🏠</div><div><div class="t-num">Stop 1</div><div class="t-title">Our home on the internet</div><div class="t-what">Domain, hosting &amp; security</div></div><span class="t-prio tag red">Must sort first</span></div>
+        <p class="t-body">A live health check: padlock, every page up and fast, Google basics, sitemap, and the CRM backend answering.</p>
+        <ol class="t-steps"><li>Open <b>Site health</b> and run the check</li><li>Ask: who monitors this <b>24×7</b> and alerts us on WhatsApp?</li></ol>
+        <div class="t-btns"><a class="btn-main btn-sm" href="health.html">Site health →</a></div>
+      </article>
+
+      <article class="topic rv d1">
+        <div class="t-head"><div class="t-ico">🧲</div><div><div class="t-num">Stop 2</div><div class="t-title">Never lose a lead</div><div class="t-what">Lead capture &amp; CRM</div></div><span class="t-prio tag red">Must sort first</span></div>
+        <p class="t-body">Every form on the site feeds <b>one cloud CRM</b>, tagged by source and channel. Same phone or email = one person, with every enquiry kept as a touchpoint.</p>
+        <ol class="t-steps"><li>Submit the <b>contact form</b>, then the <b>masterclass</b> with the same number</li><li>In the CRM: one lead, <b>×2 touchpoints</b>, a 15-min call timer, owner + follow-up date</li><li>Tap <b>WhatsApp</b> on a lead: message pre-written</li><li><b>+ Add lead</b> for WhatsApp / phone / event enquiries</li></ol>
+        <div class="t-btns"><a class="btn-main btn-sm" href="admin.html" target="_blank" rel="noopener">CRM ↗</a><a class="btn-ghost btn-sm" href="contact.html">Contact form</a></div>
+      </article>
+
+      <article class="topic rv">
+        <div class="t-head"><div class="t-ico">🎓</div><div><div class="t-num">Stop 3</div><div class="t-title">Our online classroom</div><div class="t-what">LMS with WhatsApp &amp; email</div></div><span class="t-prio tag gold">Next in line</span></div>
+        <p class="t-body">Students sign in on their phone, watch lessons, see progress, take quizzes and earn a certificate. The inbox shows every WhatsApp and email they get automatically.</p>
+        <ol class="t-steps"><li>Create a free account (it also lands in the CRM)</li><li>Finish lessons → <b>"halfway"</b> and <b>completion</b> messages arrive</li><li>Pass the quiz → <b>certificate</b></li></ol>
+        <div class="t-btns"><a class="btn-main btn-sm" href="learn.html">Student portal →</a></div>
+      </article>
+
+      <article class="topic rv d1">
+        <div class="t-head"><div class="t-ico">🔍</div><div><div class="t-num">Stop 4</div><div class="t-title">Getting found on Google</div><div class="t-what">SEO &amp; fresh content</div></div><span class="t-prio tag gold">Next in line</span></div>
+        <p class="t-body">Articles with proper Google tags, free calculators that pull visitors in (no market prices, ever), a content calendar, sitemap and share cards.</p>
+        <ol class="t-steps"><li>Open the <b>article</b> and the <b>free tools</b></li><li>Check the <b>content calendar</b> on Insights</li><li>Who writes, approves and publishes, and how often?</li></ol>
+        <div class="t-btns"><a class="btn-main btn-sm" href="article-position-sizing.html">Article →</a><a class="btn-ghost btn-sm" href="tools.html">Free tools</a><a class="btn-ghost btn-sm" href="insights.html">Insights</a></div>
+      </article>
+
+      <article class="topic rv">
+        <div class="t-head"><div class="t-ico">🪜</div><div><div class="t-num">Stop 5</div><div class="t-title">From stranger to student</div><div class="t-what">Sales funnels</div></div><span class="t-prio tag red">Must sort first</span></div>
+        <p class="t-body">Free masterclass page → registration → thank-you page with WhatsApp + calendar → reminders → ₹999 workshop offer.</p>
+        <ol class="t-steps"><li>Register on the <b>masterclass</b> page</li><li>See the <b>thank-you</b> steps + follow-up timeline</li><li>The lead's <b>automatic sequence</b> shows in the CRM</li></ol>
+        <div class="t-btns"><a class="btn-main btn-sm" href="masterclass.html">Masterclass funnel →</a></div>
+      </article>
+
+      <article class="topic rv d1">
+        <div class="t-head"><div class="t-ico">🎟️</div><div><div class="t-num">Stop 6</div><div class="t-title">Free taste, paid meal</div><div class="t-what">Course hosting &amp; free / paid access</div></div><span class="t-prio tag gold">Next in line</span></div>
+        <p class="t-body">Free course, paid courses with a free preview lesson, a bundle, access periods, a demo checkout with a GST receipt, and lessons watermarked with the student's name.</p>
+        <ol class="t-steps"><li>Preview lesson 1 free, the rest are <b>locked</b></li><li><b>Demo checkout</b> (no money charged) → instant access + receipt</li><li>Ask: refunds, expiry, video protection</li></ol>
+        <div class="t-btns"><a class="btn-main btn-sm" href="courses.html">Courses →</a><a class="btn-ghost btn-sm" href="learn.html?course=workshop&amp;buy=1">Buy flow</a></div>
+      </article>
+
+      <article class="topic rv">
+        <div class="t-head"><div class="t-ico">📣</div><div><div class="t-num">Stop 7</div><div class="t-title">Turning on the loudspeaker</div><div class="t-what">Meta, Instagram &amp; LinkedIn ads</div></div><span class="t-prio tag green">Once the rest works</span></div>
+        <p class="t-body">Every ad gets its own tracked link. Sign-ups show up in the CRM with the channel and campaign, and the "Leads by channel" chart tells us what's working.</p>
+        <ol class="t-steps"><li>CRM → <b>📣 Campaign links</b> → make an Instagram link</li><li>Open it, register → lead tagged <b>Instagram #campaign</b></li><li>Agree the test budget and the stop / scale rules</li></ol>
+        <div class="t-btns"><a class="btn-main btn-sm" href="admin.html" target="_blank" rel="noopener">Campaign links ↗</a><a class="btn-ghost btn-sm" href="masterclass.html?utm_source=instagram&amp;utm_medium=paid&amp;utm_campaign=nov-masterclass">Sample Instagram ad link</a></div>
+      </article>
+
+      <article class="topic rv d1" style="background:linear-gradient(135deg,rgba(232,184,75,.07),transparent);border-color:rgba(232,184,75,.3)">
+        <div class="t-head"><div class="t-ico">🏁</div><div><div class="t-num">Finish line</div><div class="t-title">Before we shake hands</div></div></div>
+        <p class="t-body">Phase 1 in writing: what's included, cost, what's not, and support after. Golden rule: every account, domain and tool in <b>our name</b>, with all logins.</p>
+        <div class="order"><span>🏠 Website &amp; safety</span><i>→</i><span>🧲 Leads &amp; 🪜 funnel</span><i>→</i><span>🎓 Classroom &amp; 🔍 content</span><i>→</i><span>📣 Ads</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="footer-links"><a href="courses.html">Courses</a><a href="tools.html">Free tools</a><a href="insights.html">Insights</a><a href="masterclass.html">Masterclass</a></div>
+  </div>
+</footer>
+<div class="demo-strip">Trial build for review · <a href="index.html">Go to the home page</a></div>
+
+<script>
+(function(){
+  // QR → live masterclass page, tagged so the scan shows up as "QR code" in the CRM
+  var base=location.href.replace(/[^\/]*([?#].*)?$/,'');
+  var url=base+'masterclass.html?utm_source=qr&utm_medium=offline&utm_campaign=hansel-live-demo';
+  document.getElementById('qrLink').href=url;
+  document.getElementById('qrImg').src='https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=0&data='+encodeURIComponent(url);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  setTimeout(function(){document.querySelectorAll('.hero .rv').forEach(function(el,i){setTimeout(function(){el.classList.add('in');},80+i*100);});},100);
+})();
+</script>
+</body>
+</html>

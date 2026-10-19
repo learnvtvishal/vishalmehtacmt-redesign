@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Health & Security — Vishal Mehta CMT</title>
+<meta name="description" content="Live health check of the website: HTTPS, page uptime and speed, SEO basics and the CRM backend.">
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.score-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.score{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.3rem}
+.score .lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
+.score .val{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:#fff;line-height:1}
+.score .sub{font-size:.72rem;color:var(--text2);margin-top:.35rem}
+.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
+.checks{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.checks table{width:100%;border-collapse:collapse;font-size:.84rem}
+.checks th{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);text-align:left;padding:.8rem 1rem;background:var(--bg4);border-bottom:1px solid var(--border)}
+.checks td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.checks tr:last-child td{border-bottom:none}
+.checks td b{color:#fff;font-weight:600}
+.pill{display:inline-block;font-family:var(--mono);font-size:.6rem;font-weight:700;padding:.2rem .5rem;border-radius:5px;white-space:nowrap}
+.pill.ok{background:rgba(52,211,153,.12)}.pill.warn{background:rgba(251,191,36,.12)}.pill.bad{background:rgba(248,113,113,.12)}
+.seo-dots{display:flex;gap:4px;flex-wrap:wrap}
+.seo-dots span{font-family:var(--mono);font-size:.55rem;padding:.12rem .35rem;border-radius:3px;border:1px solid var(--border2)}
+.seo-dots span.y{color:var(--green);border-color:rgba(52,211,153,.4)}
+.seo-dots span.n{color:var(--red);border-color:rgba(248,113,113,.4)}
+.history{display:flex;gap:3px;align-items:flex-end;height:42px;margin-top:.6rem}
+.history i{flex:1;max-width:14px;border-radius:2px;background:var(--green);opacity:.85}
+.history i.bad{background:var(--red)}
+.head-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.head-row h2{font-family:var(--serif);font-size:1.6rem;color:#fff}
+.ask li{margin:.45rem 0 .45rem 1.1rem;font-size:.86rem;color:var(--text2)}
+.ask li b{color:#fff}
+.mono{font-family:var(--mono);font-size:.72rem}
+@media(max-width:900px){.score-row{grid-template-columns:1fr 1fr}.checks{overflow-x:auto}.checks table{min-width:640px}}
+</style>
+</head>
+<body class="has-strip">
+
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="academy.html">Disciplined Traders Academy</a></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="learn.html" class="nav-pill">Login</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker rv"><span class="dot"></span>Live check · runs in your browser</div>
+    <h1 class="rv d1">Is the site <em>healthy?</em></h1>
+    <p class="hero-desc rv d2">Padlock, every page up and fast, Google basics in place, and the lead CRM answering. This is the kind of monitor we want running all the time, with an alert when anything breaks.</p>
+    <div class="btn-row rv d3"><button class="btn-main" id="runBtn">↻ Run the check again</button></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="score-row" id="scores"></div>
+
+    <div class="head-row"><h2>Every page</h2><span class="mono" id="lastRun" style="color:var(--text3)"></span></div>
+    <div class="checks">
+      <table>
+        <thead><tr><th>Page</th><th>Status</th><th>Speed</th><th>Google basics (SEO)</th></tr></thead>
+        <tbody id="pageRows"></tbody>
+      </table>
+    </div>
+
+    <div class="grid g2" style="margin-top:1.4rem">
+      <div class="card">
+        <h3>Uptime while this page is open</h3>
+        <p>Re-checks every 60 seconds. Green = all pages up. A real monitor would do this 24×7 from outside and message us on WhatsApp the moment something goes down.</p>
+        <div class="history" id="history"></div>
+      </div>
+      <div class="card">
+        <h3>Behind the scenes</h3>
+        <div class="checks" style="margin-top:.8rem"><table><tbody id="infraRows"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sec-eye">Ask Hansel</div>
+      <h2 class="sec-title">What we need <em>in place.</em></h2>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3>🏠 Domain &amp; access</h3><ul class="ask">
+        <li><b>One register</b> of every domain, renewal date and login</li>
+        <li>All accounts in <b>our name</b>, not the agency's</li>
+        <li>Two-step login on hosting, domain and email</li></ul></div>
+      <div class="card"><h3>🛡 Safety</h3><ul class="ask">
+        <li>Padlock (HTTPS) that <b>renews itself</b></li>
+        <li><b>Daily backups</b> we can restore in one click</li>
+        <li>Email protected from spoofing (SPF / DKIM / DMARC)</li></ul></div>
+      <div class="card"><h3>📈 Moving day</h3><ul class="ask">
+        <li>Old links <b>redirect</b> so Google ranking isn't lost</li>
+        <li>A tested <b>switch-back plan</b> if launch goes wrong</li>
+        <li>24×7 uptime alerts on WhatsApp after launch</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+<div class="demo-strip">Demo build for review · <a href="meeting.html">Back to the meeting demo hub</a></div>
+
+<script>
+(function(){
+  var PAGES=[['index.html','Home'],['about.html','About'],['academy.html','Academy'],['courses.html','Courses'],['learn.html','Student portal'],['masterclass.html','Masterclass funnel'],['tools.html','Free tools'],['insights.html','Insights'],['article-position-sizing.html','Article'],['tutorials.html','Tutorials'],['podcast.html','Podcast'],['events.html','Events'],['meditation.html','Trading Mind'],['contact.html','Contact'],['admin.html','CRM admin']];
+  var API='https://vm-trial-api.vercel.app/api/leads';
+  var HIST_KEY='vm_health_hist';
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function speed(ms){return ms<400?['ok','Fast']:ms<1200?['warn','OK']:['bad','Slow'];}
+
+  function checkPage(p){
+    var t=performance.now();
+    return fetch(p[0],{cache:'no-store'}).then(function(r){
+      var ms=Math.round(performance.now()-t);
+      return r.text().then(function(html){
+        var d=new DOMParser().parseFromString(html,'text/html');
+        var seo={
+          'Title':!!(d.title&&d.title.trim()),
+          'Description':!!d.querySelector('meta[name="description"]'),
+          'One H1':d.querySelectorAll('h1').length===1,
+          'Mobile':!!d.querySelector('meta[name="viewport"]'),
+          'Share card':!!d.querySelector('meta[property="og:title"]'),
+          'Google data':!!d.querySelector('script[type="application/ld+json"]')
+        };
+        var noindex=!!d.querySelector('meta[name="robots"][content*="noindex"]');
+        return {p:p,ok:r.ok,status:r.status,ms:ms,seo:seo,noindex:noindex};
+      });
+    }).catch(function(){return {p:p,ok:false,status:'—',ms:0,seo:{},noindex:false};});
+  }
+  function checkFile(f){return fetch(f,{cache:'no-store'}).then(function(r){return r.ok;}).catch(function(){return false;});}
+  function checkApi(){
+    var t=performance.now();
+    return fetch(API,{method:'OPTIONS',cache:'no-store'}).then(function(r){return {up:r.status===204||r.ok,ms:Math.round(performance.now()-t)};}).catch(function(){return {up:false,ms:0};});
+  }
+
+  function run(){
+    $('runBtn').disabled=true;$('runBtn').textContent='Checking…';
+    Promise.all([Promise.all(PAGES.map(checkPage)),checkFile('sitemap.xml'),checkFile('robots.txt'),checkApi()]).then(function(r){
+      var pages=r[0],sitemap=r[1],robots=r[2],api=r[3];
+      var up=pages.filter(function(x){return x.ok;}).length;
+      var avg=Math.round(pages.reduce(function(a,x){return a+x.ms;},0)/Math.max(1,pages.length));
+      var pub=pages.filter(function(x){return x.ok&&!x.noindex;});
+      var seoTotal=0,seoHit=0;pub.forEach(function(x){Object.keys(x.seo).forEach(function(k){seoTotal++;if(x.seo[k])seoHit++;});});
+      var seoPct=seoTotal?Math.round(seoHit*100/seoTotal):0;
+      var https=location.protocol==='https:';
+      $('scores').innerHTML=[
+        ['Padlock (HTTPS)',https?'<span class="ok">On</span>':'<span class="warn">Local</span>',https?'secure connection':'local preview (live site is HTTPS)'],
+        ['Pages up',up+'<span style="font-size:1.2rem;color:var(--text3)">/'+pages.length+'</span>',up===pages.length?'<span class="ok">all responding</span>':'<span class="bad">'+(pages.length-up)+' not responding</span>'],
+        ['Average speed',avg+'<span style="font-size:1.1rem;color:var(--text3)"> ms</span>','page load from this device'],
+        ['Google basics',seoPct+'<span style="font-size:1.2rem;color:var(--text3)">%</span>','on '+pub.length+' public pages']
+      ].map(function(c){return '<div class="score"><div class="lbl">'+c[0]+'</div><div class="val">'+c[1]+'</div><div class="sub">'+c[2]+'</div></div>';}).join('');
+      $('pageRows').innerHTML=pages.map(function(x){
+        var sp=speed(x.ms);
+        var dots=x.noindex?'<span class="mono" style="color:var(--text3)">private page · hidden from Google on purpose</span>':
+          '<div class="seo-dots">'+Object.keys(x.seo).map(function(k){return '<span class="'+(x.seo[k]?'y':'n')+'">'+(x.seo[k]?'✓ ':'✗ ')+k+'</span>';}).join('')+'</div>';
+        return '<tr><td><b>'+esc(x.p[1])+'</b><br><a class="mono" style="color:var(--text3)" href="'+x.p[0]+'">'+x.p[0]+'</a></td>'+
+          '<td><span class="pill '+(x.ok?'ok':'bad')+'">'+(x.ok?'✓ UP · '+x.status:'✗ DOWN')+'</span></td>'+
+          '<td>'+(x.ok?'<span class="pill '+sp[0]+'">'+x.ms+' ms · '+sp[1]+'</span>':'—')+'</td><td>'+dots+'</td></tr>';
+      }).join('');
+      $('infraRows').innerHTML=[
+        ['Lead CRM (cloud)',api.up?'<span class="pill ok">✓ Answering · '+api.ms+' ms</span>':'<span class="pill bad">✗ Not reachable</span>'],
+        ['Sitemap for Google',sitemap?'<span class="pill ok">✓ sitemap.xml</span>':'<span class="pill bad">✗ Missing</span>'],
+        ['Robots rules',robots?'<span class="pill ok">✓ robots.txt</span>':'<span class="pill bad">✗ Missing</span>'],
+        ['Hosting','<span class="pill ok">'+(https?'GitHub Pages (trial)':'Local preview')+'</span>']
+      ].map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td></tr>';}).join('');
+      var hist=[];try{hist=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');}catch(e){}
+      hist.push({t:Date.now(),ok:up===pages.length&&api.up});hist=hist.slice(-40);
+      try{localStorage.setItem(HIST_KEY,JSON.stringify(hist));}catch(e){}
+      $('history').innerHTML=hist.map(function(h){return '<i class="'+(h.ok?'':'bad')+'" style="height:'+(h.ok?100:45)+'%" title="'+new Date(h.t).toLocaleTimeString('en-IN')+'"></i>';}).join('');
+      $('lastRun').textContent='Last checked '+new Date().toLocaleTimeString('en-IN');
+      $('runBtn').disabled=false;$('runBtn').textContent='↻ Run the check again';
+    });
+  }
+  $('runBtn').onclick=run;
+  run();setInterval(run,60000);
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  setTimeout(function(){document.querySelectorAll('.hero .rv').forEach(function(el,i){setTimeout(function(){el.classList.add('in');},80+i*100);});},100);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Live Masterclass: Trade With Rules, Not Emotions — Vishal Mehta CMT</title>
+<meta name="description" content="A free 60-minute live Zoom masterclass with Vishal Mehta, CMT: trading rules, risk per trade, journaling and building a simple system.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Live Masterclass: Trade With Rules, Not Emotions">
+<meta property="og:description" content="60 minutes, live on Zoom, with Vishal Mehta, CMT. Rules, risk per trade, journaling and systems.">
+<meta property="og:site_name" content="Vishal Mehta CMT">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* HERO extras */
+.date-chip{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.4rem .9rem;padding:.75rem 1.4rem;background:var(--bg3);border:1px solid var(--border2);border-radius:14px;font-size:.9rem;color:var(--text);margin-bottom:.5rem}
+.date-chip b{color:var(--gold);font-weight:600}
+.date-chip .sep{color:var(--text3)}
+.demo-note{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:2rem}
+.countdown{display:flex;justify-content:center;gap:.8rem;margin:0 auto 2.2rem}
+.cd-box{min-width:84px;padding:1rem .6rem .8rem;background:linear-gradient(180deg,var(--bg3),var(--bg2));border:1px solid rgba(232,184,75,.25);border-radius:16px}
+.cd-num{font-family:var(--serif);font-size:2.6rem;font-weight:700;line-height:1;color:var(--white);font-variant-numeric:tabular-nums}
+.cd-lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text2);margin-top:.4rem}
+.cd-live{font-family:var(--serif);font-size:1.6rem;color:var(--gold)}
+.free-line{margin-top:1.1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text2)}
+.free-line span{color:var(--green)}
+
+/* LEARN */
+.learn-card .num{font-family:var(--serif);font-style:italic;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.8rem}
+
+/* WHO */
+.who-list{list-style:none;display:grid;gap:.8rem}
+.who-list li{display:flex;gap:.8rem;align-items:flex-start;font-size:.92rem;color:var(--text2);line-height:1.6}
+.who-list li::before{content:'✓';flex:0 0 22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--green);background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);margin-top:.1rem}
+.who-list.no li::before{content:'✕';color:var(--red);background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.35)}
+
+/* CREDIBILITY */
+.cred{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.cred div{background:var(--bg3);padding:1.6rem 1.2rem;text-align:center}
+.cred b{display:block;font-family:var(--serif);font-size:2.1rem;font-weight:700;color:var(--gold);line-height:1.1}
+.cred span{font-size:.8rem;color:var(--text2)}
+
+/* REGISTER */
+.reg{display:grid;grid-template-columns:1fr 1.05fr;gap:2.5rem;align-items:center}
+.reg-copy h2{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);color:#fff;line-height:1.1;margin-bottom:1rem}
+.reg-copy h2 em{font-style:italic;color:var(--gold)}
+.reg-copy p{color:var(--text2);font-size:.95rem;line-height:1.8;margin-bottom:1rem}
+.reg-facts{list-style:none;display:grid;gap:.55rem;margin-top:1.4rem}
+.reg-facts li{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--text)}
+.reg-facts li span{color:var(--gold);margin-right:.5rem}
+.reg-card{border-color:rgba(232,184,75,.3);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.phone-in{display:flex;align-items:stretch}
+.phone-in .cc{display:flex;align-items:center;padding:0 .9rem;font-size:.92rem;color:var(--text2);background:rgba(255,255,255,.06);border:1px solid var(--border2);border-right:none;border-radius:12px 0 0 12px}
+.phone-in input{border-radius:0 12px 12px 0}
+.reg-card .btn-main{width:100%}
+
+/* STICKY MOBILE CTA */
+.sticky-cta{display:none}
+@media(max-width:700px){
+  .sticky-cta{display:block;position:fixed;left:12px;right:12px;bottom:2.7rem;z-index:160;transform:translateY(160%);transition:transform .3s ease}
+  .sticky-cta.show{transform:none}
+  .sticky-cta a{width:100%}
+}
+
+@media(max-width:900px){.reg{grid-template-columns:1fr}.cred{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){
+  .countdown{gap:.45rem}
+  .cd-box{min-width:0;flex:1;max-width:80px;padding:.8rem .3rem .6rem}
+  .cd-num{font-size:1.9rem}
+  .cd-lbl{font-size:.5rem;letter-spacing:.12em}
+  .cred b{font-size:1.7rem}
+}
+</style>
+</head>
+<body class="has-strip">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="learn.html" class="nav-pill">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="kicker rv"><span class="dot"></span>Free live masterclass · on Zoom</div>
+    <h1 class="rv d1">Trade with <em>rules,</em><br>not emotions.</h1>
+    <p class="hero-desc rv d2">A 60-minute live session with Vishal Mehta, CMT on the boring habits behind consistent trading: written rules, a fixed risk per trade, an honest journal and a simple system you can actually follow.</p>
+    <div class="rv d2">
+      <div class="date-chip"><b>Sunday, 9 November 2026</b><span class="sep">·</span>11:00 AM IST<span class="sep">·</span>60 min · Live on Zoom</div>
+      <span class="demo-note">Demo date for this preview</span>
+    </div>
+    <div class="countdown rv d3" id="countdown" aria-live="polite">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">Days</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hrs</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Min</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Sec</div></div>
+    </div>
+    <div class="btn-row rv d3" id="hero-cta">
+      <a href="#register" class="btn-main">Reserve my free seat →</a>
+      <a href="#learn" class="btn-ghost">What you'll learn</a>
+    </div>
+    <div class="free-line rv d3"><span>●</span> Free · Limited seats on Zoom</div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="section alt" id="learn">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sec-eye rv">In 60 minutes</div>
+      <h2 class="sec-title rv d1">What you'll <em>learn.</em></h2>
+      <p class="sec-sub rv d2">Purely educational. No tips, no calls, no "secret indicator". Just the framework disciplined traders use to stay in the game.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card learn-card rv"><div class="num">01</div><h3>Write your rules down</h3><p>Why a trade without written entry, exit and invalidation rules is a guess, and how to turn your own idea into a one-page rulebook.</p></div>
+      <div class="card learn-card rv d1"><div class="num">02</div><h3>Fix your risk per trade</h3><p>The 1% idea, how position size follows from your stop-loss, and why sizing matters more than any single entry.</p></div>
+      <div class="card learn-card rv d2"><div class="num">03</div><h3>Journal like a professional</h3><p>A simple trade log that shows you which mistakes cost the most, so you review behaviour, not just profit and loss.</p></div>
+      <div class="card learn-card rv d3"><div class="num">04</div><h3>Think in systems</h3><p>How rules, risk and review connect into a repeatable process, and how to test it honestly before real money touches it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sec-eye rv">Is this for you?</div>
+      <h2 class="sec-title rv d1">Who this is <em>for.</em></h2>
+    </div>
+    <div class="grid g2">
+      <div class="card rv">
+        <span class="tag green" style="margin-bottom:1rem">A good fit if you</span>
+        <ul class="who-list">
+          <li>Trade part-time and keep breaking your own plan</li>
+          <li>Have had a few good months wiped out by one bad week</li>
+          <li>Want a process you can follow calmly, alongside a job or business</li>
+          <li>Are curious about systematic or algo trading but want the basics first</li>
+        </ul>
+      </div>
+      <div class="card rv d1">
+        <span class="tag red" style="margin-bottom:1rem">Not a fit if you want</span>
+        <ul class="who-list no">
+          <li>Stock tips, calls or "sure-shot" trades</li>
+          <li>Promises of fixed or guaranteed returns</li>
+          <li>A shortcut that skips risk management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:2rem">
+      <div class="sec-eye rv">Your host</div>
+      <h2 class="sec-title rv d1">Vishal Mehta, <em>CMT.</em></h2>
+      <p class="sec-sub rv d2">Founder of the Disciplined Traders Academy. Has trained traders at the Reserve Bank of India and central banks across South Asia.</p>
+    </div>
+    <div class="cred rv">
+      <div><b>24+</b><span>years in markets</span></div>
+      <div><b>10,000+</b><span>traders trained</span></div>
+      <div><b>CMT</b><span>Chartered Market Technician</span></div>
+      <div><b>RBI</b><span>&amp; central banks trainer</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="section" id="register">
+  <div class="wrap reg">
+    <div class="reg-copy rv">
+      <div class="sec-eye">Free registration</div>
+      <h2>Save your seat for <em>9 November.</em></h2>
+      <p>Register once. You'll get the Zoom link and reminders on WhatsApp and email, plus the replay if you can't attend live.</p>
+      <ul class="reg-facts">
+        <li><span>◷</span>Sunday, 9 Nov 2026 · 11:00 AM IST</li>
+        <li><span>▣</span>60 minutes · live Q&amp;A at the end</li>
+        <li><span>₹</span>Free · limited seats on Zoom</li>
+      </ul>
+    </div>
+    <div class="card reg-card rv d1">
+      <form class="form" id="reg-form" novalidate>
+        <div class="field"><label for="f-name">Full name</label><input id="f-name" type="text" autocomplete="name" placeholder="Your name" required></div>
+        <div class="field"><label for="f-phone">WhatsApp number</label>
+          <div class="phone-in"><span class="cc">+91</span><input id="f-phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="98765 43210" maxlength="12" required></div>
+        </div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+        <div class="field"><label for="f-exp">Your trading experience</label>
+          <select id="f-exp" required>
+            <option value="">Select one</option>
+            <option>New to trading</option>
+            <option>Less than 1 year</option>
+            <option>1 to 3 years</option>
+            <option>3+ years</option>
+            <option>I trade full-time</option>
+          </select>
+        </div>
+        <button class="btn-main" type="submit" id="reg-btn">Reserve my free seat →</button>
+        <div class="form-msg" id="reg-msg" role="status"></div>
+        <p class="form-note">We'll only use your details to send the masterclass link, reminders and related updates. Educational session only, not investment advice.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Free tools</a>
+      <a href="insights.html">Insights</a>
+      <a href="masterclass.html">Masterclass</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta"><a href="#register" class="btn-main">Reserve my free seat →</a></div>
+
+<div class="demo-strip">Demo build for review · <a href="meeting.html">Back to the meeting demo hub</a></div>
+
+<script src="firebase-config.js"></script>
+<script src="crm-data.js"></script>
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
+},100);
+</script>
+<script>
+(function () {
+  // ---- Countdown to Sun 9 Nov 2026, 11:00 IST (= 05:30 UTC) ----
+  var EVENT = Date.UTC(2026, 10, 9, 5, 30, 0);
+  var cd = document.getElementById('countdown');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() {
+    var ms = EVENT - Date.now();
+    if (ms <= 0) {
+      cd.innerHTML = '<div class="cd-live">' + (ms > -3600000 ? 'We are live now.' : 'This session has ended. Register for the replay.') + '</div>';
+      clearInterval(timer);
+      return;
+    }
+    var s = Math.floor(ms / 1000);
+    document.getElementById('cd-d').textContent = pad(Math.floor(s / 86400));
+    document.getElementById('cd-h').textContent = pad(Math.floor(s % 86400 / 3600));
+    document.getElementById('cd-m').textContent = pad(Math.floor(s % 3600 / 60));
+    document.getElementById('cd-s').textContent = pad(s % 60);
+  }
+  var timer = setInterval(tick, 1000);
+  tick();
+
+  // ---- Sticky mobile CTA: show once hero CTA is off-screen and form is not in view ----
+  var sticky = document.getElementById('sticky-cta');
+  var heroGone = false, formSeen = false;
+  function upd() { sticky.classList.toggle('show', heroGone && !formSeen); }
+  new IntersectionObserver(function (e) { heroGone = !e[0].isIntersecting; upd(); }).observe(document.getElementById('hero-cta'));
+  new IntersectionObserver(function (e) { formSeen = e[0].isIntersecting; upd(); }, { threshold: 0.15 }).observe(document.getElementById('register'));
+
+  // ---- Registration -> CRM -> thank-you page ----
+  var form = document.getElementById('reg-form');
+  var msg = document.getElementById('reg-msg');
+  var btn = document.getElementById('reg-btn');
+  var phoneEl = document.getElementById('f-phone');
+  phoneEl.addEventListener('input', function () {
+    var d = phoneEl.value.replace(/\D/g, '').slice(0, 10);
+    phoneEl.value = d.length > 5 ? d.slice(0, 5) + ' ' + d.slice(5) : d;
+  });
+
+  function fail(t, el) { msg.className = 'form-msg err'; msg.textContent = t; if (el) el.focus(); }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var name = document.getElementById('f-name').value.trim();
+    var digits = phoneEl.value.replace(/\D/g, '');
+    var email = document.getElementById('f-email').value.trim();
+    var exp = document.getElementById('f-exp').value;
+    if (name.length < 2) return fail('Please enter your name.', document.getElementById('f-name'));
+    if (!/^[6-9]\d{9}$/.test(digits)) return fail('Please enter a valid 10-digit WhatsApp number.', phoneEl);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('Please enter a valid email address.', document.getElementById('f-email'));
+    if (!exp) return fail('Please select your trading experience.', document.getElementById('f-exp'));
+
+    msg.className = 'form-msg'; msg.textContent = 'Reserving your seat…';
+    btn.disabled = true;
+
+    var first = name.split(/\s+/)[0];
+    var lead = {
+      name: name,
+      phone: '+91 ' + digits.slice(0, 5) + ' ' + digits.slice(5),
+      email: email,
+      type: 'Free Masterclass',
+      message: 'Registered for the free masterclass "Trade With Rules, Not Emotions" (9 Nov 2026). Trading experience: ' + exp + '.',
+      source: 'Masterclass funnel'
+    };
+    // Never block the visitor: give the CRM 6 seconds, then continue regardless.
+    var timeout = new Promise(function (res) { setTimeout(function () { res({}); }, 6000); });
+    var save = (window.CRM ? CRM.ready.then(function () { return CRM.add(lead); }) : Promise.resolve({}))
+      .catch(function (e) { console.warn('Lead not saved:', e); return {}; });
+    Promise.race([save, timeout]).then(function (r) {
+      var url = 'thank-you.html?name=' + encodeURIComponent(first);
+      if (r && r.duplicate) url += '&again=1';
+      location.href = url;
+    });
+  });
+})();
+</script>
+</body>
+</html>

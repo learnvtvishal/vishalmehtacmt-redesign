@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're registered — Free Masterclass · Vishal Mehta CMT</title>
+<meta name="description" content="Your seat for the free live masterclass is reserved. Join WhatsApp updates and add the session to your calendar.">
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.again{display:none;margin:-.6rem auto 1.4rem;max-width:520px;font-size:.85rem;color:var(--text2);background:var(--blue-dim);border:1px solid rgba(96,165,250,.3);border-radius:12px;padding:.7rem 1rem}
+.again.show{display:block}
+
+/* STEP TRACKER */
+.steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:0;max-width:1000px;margin:0 auto;counter-reset:s}
+.steps li{position:relative;text-align:center;padding:0 .4rem}
+.steps li::before{content:'';position:absolute;top:22px;left:-50%;width:100%;height:2px;background:var(--border2);z-index:0}
+.steps li:first-child::before{display:none}
+.steps li.done::before,.steps li.now::before{background:linear-gradient(90deg,var(--green),var(--gold))}
+.st-dot{position:relative;z-index:1;width:46px;height:46px;margin:0 auto .8rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:.85rem;background:var(--bg3);border:2px solid var(--border2);color:var(--text2)}
+.steps li.done .st-dot{background:var(--green);border-color:var(--green);color:#03230f}
+.steps li.now .st-dot{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 6px rgba(232,184,75,.12)}
+.st-t{font-size:.86rem;font-weight:600;color:var(--white);line-height:1.3}
+.st-s{font-size:.72rem;color:var(--text3);margin-top:.2rem}
+
+/* ACTION CARDS */
+.act .ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem;background:var(--gold-dim);border:1px solid rgba(232,184,75,.3)}
+.act p{margin-bottom:1.3rem}
+.act .btn-row{gap:10px}
+
+/* FOLLOW-UP TIMELINE */
+.tl{list-style:none;max-width:760px;margin:0 auto;position:relative;padding-left:2rem}
+.tl::before{content:'';position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold),var(--blue),var(--border2))}
+.tl li{position:relative;padding:0 0 1.6rem 1rem}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:'';position:absolute;left:-2rem;top:.35rem;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--gold)}
+.tl .when{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.tl h4{font-family:var(--serif);font-size:1.25rem;color:#fff;margin:.15rem 0 .25rem}
+.tl p{font-size:.86rem;color:var(--text2);line-height:1.7}
+.tl .ch{display:inline-flex;gap:6px;margin-top:.5rem;flex-wrap:wrap}
+
+/* UPSELL */
+.upsell{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center;border-color:rgba(232,184,75,.35);background:linear-gradient(135deg,var(--bg3),rgba(232,184,75,.06))}
+.upsell h3{font-size:2rem}
+.price{font-family:var(--serif);font-size:3.2rem;font-weight:700;color:var(--gold);line-height:1}
+.price small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text2);margin-top:.4rem}
+.upsell ul{list-style:none;margin:1rem 0 0;display:grid;gap:.4rem}
+.upsell li{font-size:.86rem;color:var(--text2)}
+.upsell li::before{content:'→ ';color:var(--gold)}
+
+@media(max-width:800px){
+  .steps{grid-template-columns:1fr;gap:.9rem;max-width:380px}
+  .steps li{display:grid;grid-template-columns:46px 1fr;gap:.9rem;align-items:center;text-align:left;padding:0}
+  .steps li::before{display:none}
+  .st-dot{margin:0}
+  .upsell{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="has-strip">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="learn.html" class="nav-pill">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker rv"><span class="dot"></span>Registration confirmed</div>
+    <h1 class="rv d1">You're in, <em id="who">trader</em>! 🎉</h1>
+    <div class="again rv d2" id="again">Looks like you'd already registered. No problem, your seat is still saved.</div>
+    <p class="hero-desc rv d2">Your seat for <b style="color:var(--text)">Trade With Rules, Not Emotions</b> on Sunday, 9 November 2026 at 11:00 AM IST is reserved. Two quick steps below make sure you don't miss it.</p>
+  </div>
+</section>
+
+<!-- STEP TRACKER -->
+<section class="section alt">
+  <div class="wrap">
+    <ol class="steps rv">
+      <li class="done"><div class="st-dot">✓</div><div><div class="st-t">Registered</div><div class="st-s">Done</div></div></li>
+      <li class="now"><div class="st-dot">2</div><div><div class="st-t">Join WhatsApp</div><div class="st-s">Get the Zoom link</div></div></li>
+      <li class="now"><div class="st-dot">3</div><div><div class="st-t">Add to calendar</div><div class="st-s">Block the hour</div></div></li>
+      <li><div class="st-dot">4</div><div><div class="st-t">Attend live</div><div class="st-s">Sun 9 Nov, 11 AM</div></div></li>
+      <li><div class="st-dot">5</div><div><div class="st-t">Next step</div><div class="st-s">₹999 workshop</div></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<section class="section">
+  <div class="wrap grid g2">
+    <div class="card act rv">
+      <div class="ico">💬</div>
+      <span class="tag green" style="margin-bottom:.8rem">Step 2</span>
+      <h3>Join the WhatsApp updates</h3>
+      <p>The Zoom link, reminders and the replay are shared on WhatsApp. Send us one message so we can reach you.</p>
+      <div class="btn-row"><a class="btn-wa" id="wa-btn" target="_blank" rel="noopener" href="#">Join the WhatsApp updates</a></div>
+    </div>
+    <div class="card act rv d1">
+      <div class="ico">📅</div>
+      <span class="tag gold" style="margin-bottom:.8rem">Step 3</span>
+      <h3>Add it to your calendar</h3>
+      <p>Sunday, 9 November 2026 · 11:00 AM to 12:00 PM IST. Pick your calendar app.</p>
+      <div class="btn-row">
+        <a class="btn-main" id="gcal-btn" target="_blank" rel="noopener" href="#">Add to Google Calendar</a>
+        <button class="btn-ghost" id="ics-btn" type="button">Download .ics</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOLLOW-UP SEQUENCE -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sec-eye rv">The follow-up sequence</div>
+      <h2 class="sec-title rv d1">What happens <em>next.</em></h2>
+      <p class="sec-sub rv d2">These reminders go out automatically on WhatsApp and email, so nobody has to remember to send them.</p>
+    </div>
+    <ol class="tl rv">
+      <li><div class="when">Instantly</div><h4>Confirmation</h4><p>Your registration details, the date and time, and how to join.</p><div class="ch"><span class="tag green">WhatsApp</span><span class="tag blue">Email</span></div></li>
+      <li><div class="when">1 day before · Sat 8 Nov</div><h4>Reminder with the Zoom link</h4><p>A short note on what we'll cover, so you can come with your questions.</p><div class="ch"><span class="tag green">WhatsApp</span><span class="tag blue">Email</span></div></li>
+      <li><div class="when">1 hour before · 10:00 AM</div><h4>"We start in an hour"</h4><p>One-tap join link.</p><div class="ch"><span class="tag green">WhatsApp</span><span class="tag blue">Email</span></div></li>
+      <li><div class="when">After the session</div><h4>Replay link</h4><p>The recording and the session notes, for anyone who missed parts of it.</p><div class="ch"><span class="tag green">WhatsApp</span><span class="tag blue">Email</span></div></li>
+      <li><div class="when">2 to 3 days after</div><h4>Workshop invitation</h4><p>An invitation to the hands-on Saturday workshop for those who want to go deeper.</p><div class="ch"><span class="tag green">WhatsApp</span><span class="tag blue">Email</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- UPSELL -->
+<section class="section">
+  <div class="wrap">
+    <div class="card upsell rv">
+      <div>
+        <span class="tag gold" style="margin-bottom:1rem">Step 5 · Optional next step</span>
+        <h3>Saturday Workshop: Trade With Rules</h3>
+        <p>A hands-on, small-group session where you build your own written rulebook, risk plan and trade journal with Vishal, step by step.</p>
+        <ul><li>Your one-page rulebook, finished in the session</li><li>Position-sizing and risk plan worksheet</li><li>Journal template you can use from Monday</li></ul>
+      </div>
+      <div>
+        <div class="price">₹999<small>One Saturday · live</small></div>
+        <div class="btn-row" style="margin-top:1.4rem">
+          <a href="learn.html?course=workshop" class="btn-main">Reserve the workshop</a>
+          <a href="courses.html" class="btn-ghost">See all courses</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Free tools</a>
+      <a href="insights.html">Insights</a>
+      <a href="masterclass.html">Masterclass</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<div class="demo-strip">Demo build for review · <a href="meeting.html">Back to the meeting demo hub</a></div>
+
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
+},100);
+</script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var name = (q.get('name') || '').trim().slice(0, 40);
+  if (name) document.getElementById('who').textContent = name;
+  if (q.get('again') === '1') document.getElementById('again').classList.add('show');
+
+  var TITLE = 'Free Masterclass: Trade With Rules, Not Emotions (Vishal Mehta CMT)';
+  var DETAILS = '60-minute live session on Zoom with Vishal Mehta, CMT. The Zoom link is sent on WhatsApp and email before the session. Educational only, not investment advice.';
+  var START = '20261109T053000Z', END = '20261109T063000Z'; // 11:00 to 12:00 IST
+
+  // WhatsApp (business number)
+  document.getElementById('wa-btn').href = 'https://wa.me/919326131546?text=' +
+    encodeURIComponent('Hi! I just registered for the free masterclass on 9 Nov.');
+
+  // Google Calendar template link
+  document.getElementById('gcal-btn').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(TITLE) +
+    '&dates=' + START + '/' + END +
+    '&details=' + encodeURIComponent(DETAILS) +
+    '&location=' + encodeURIComponent('Zoom (link sent on WhatsApp and email)') +
+    '&ctz=Asia/Kolkata';
+
+  // .ics download (RFC 5545: CRLF line endings, escaped text)
+  function esc(s) { return s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n'); }
+  // fold lines longer than 75 chars (continuation lines start with a space)
+  function fold(l) { var out = []; while (l.length > 75) { out.push(l.slice(0, 75)); l = ' ' + l.slice(75); } out.push(l); return out.join('\r\n'); }
+  document.getElementById('ics-btn').addEventListener('click', function () {
+    var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    var ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Vishal Mehta CMT//Masterclass//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:masterclass-20261109@vishalmehtacmt.com',
+      'DTSTAMP:' + stamp,
+      'DTSTART:' + START,
+      'DTEND:' + END,
+      'SUMMARY:' + esc(TITLE),
+      'DESCRIPTION:' + esc(DETAILS),
+      'LOCATION:' + esc('Zoom (link sent on WhatsApp and email)'),
+      'BEGIN:VALARM',
+      'TRIGGER:-PT60M',
+      'ACTION:DISPLAY',
+      'DESCRIPTION:' + esc('Masterclass starts in 1 hour'),
+      'END:VALARM',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].map(fold).join('\r\n') + '\r\n';
+    var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'masterclass-9-nov-2026.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    var t = document.getElementById('toast');
+    t.textContent = 'Calendar file downloaded. Open it to add the session.';
+    t.classList.add('show'); setTimeout(function () { t.classList.remove('show'); }, 2800);
+  });
+})();
+</script>
+</body>
+</html>

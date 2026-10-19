@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal — Vishal Mehta CMT</title>
+<meta name="description" content="Student portal for courses by Vishal Mehta CMT.">
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.portal{padding:5.6rem 3.5rem 4rem;min-height:80vh}
+.portal .wrap{max-width:1240px}
+button{font:inherit}
+.linkish{background:none;border:none;color:var(--text2);cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:.78rem}
+.linkish:hover{color:var(--gold)}
+
+/* header bar */
+.pbar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:.9rem 1.2rem;margin-bottom:1.8rem}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8862b);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:1.3rem;flex-shrink:0}
+.pb-who{flex:1;min-width:150px}
+.pb-who b{display:block;font-family:var(--serif);font-size:1.2rem;color:#fff;line-height:1.2}
+.pb-who span{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.pb-prog{display:flex;align-items:center;gap:.6rem;min-width:170px}
+.pb-prog small{font-family:var(--mono);font-size:.66rem;color:var(--text2);white-space:nowrap}
+.pb-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.badge{display:inline-flex;min-width:19px;height:19px;padding:0 5px;border-radius:100px;background:var(--red);color:#fff;font-size:.66rem;font-weight:700;align-items:center;justify-content:center;margin-left:2px}
+.bar{flex:1;height:7px;border-radius:100px;background:rgba(255,255,255,.07);overflow:hidden;min-width:80px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));border-radius:100px;transition:width .5s}
+
+/* sign-in */
+.signin{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center;max-width:1000px;margin:1.5rem auto 0}
+.signin h1{font-family:var(--serif);font-size:clamp(2.3rem,5vw,3.8rem);line-height:1.05;color:#fff;margin-bottom:1rem}
+.signin h1 em{color:var(--gold)}
+.perks{list-style:none;display:grid;gap:.7rem;margin-top:1.4rem}
+.perks li{display:flex;gap:.8rem;font-size:.9rem;color:var(--text2)}
+.perks li span{font-size:1.1rem}
+.phone-in{display:flex}
+.phone-in em{font-style:normal;display:flex;align-items:center;padding:0 .9rem;border:1px solid var(--border2);border-right:none;border-radius:12px 0 0 12px;color:var(--text2);background:rgba(255,255,255,.02)}
+.phone-in input{border-radius:0 12px 12px 0!important}
+.pending{font-size:.8rem;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(232,184,75,.3);border-radius:10px;padding:.6rem .8rem}
+
+/* dashboard */
+.dhead{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.2rem 0 1.1rem}
+.dhead:first-child{margin-top:0}
+.dhead h2{font-family:var(--serif);font-size:1.9rem;color:#fff;line-height:1.1}
+.dhead p{font-size:.82rem;color:var(--text3)}
+.mc{display:flex;flex-direction:column;gap:.8rem}
+.mc .meta{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text3)}
+.mc .btn-row{margin-top:auto}
+.mc .bar{flex:none}
+.nav-pill{white-space:nowrap}
+.price-l{font-family:var(--serif);font-size:1.6rem;color:#fff}
+.tip{font-size:.8rem;color:var(--text2);background:var(--blue-dim);border:1px solid rgba(96,165,250,.25);border-radius:12px;padding:.8rem 1rem;margin-top:1rem}
+.orders{display:grid;gap:8px}
+.orow{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:.8rem 1.1rem;font-size:.84rem}
+.orow code{font-family:var(--mono);font-size:.72rem;color:var(--gold)}
+.orow span{flex:1;min-width:140px;color:var(--text2)}
+
+/* player */
+.crumb{font-size:.8rem;color:var(--text3);margin-bottom:1rem}
+.crumb button{background:none;border:none;color:var(--gold);cursor:pointer;font-size:.8rem}
+.player{display:grid;grid-template-columns:340px 1fr;gap:1.4rem;align-items:start}
+.side{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:1.2rem;position:sticky;top:5.5rem}
+.side h2{font-family:var(--serif);font-size:1.35rem;color:#fff;line-height:1.2;margin-bottom:.6rem}
+.side .sub{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin:.5rem 0 1rem}
+.lsn{list-style:none;display:grid;gap:4px}
+.li{width:100%;display:flex;align-items:center;gap:.7rem;text-align:left;background:transparent;border:1px solid transparent;border-radius:10px;padding:.65rem .7rem;color:var(--text2);cursor:pointer;font-size:.84rem;line-height:1.35}
+.li:hover{background:rgba(255,255,255,.03);border-color:var(--border)}
+.li.cur{background:var(--gold-dim);border-color:rgba(232,184,75,.35);color:#fff}
+.li .st{width:24px;height:24px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;border:1px solid var(--border2)}
+.li.done .st{background:var(--green);border-color:var(--green);color:#03230f;font-weight:700}
+.li.cur .st{border-color:var(--gold);color:var(--gold)}
+.li.locked{opacity:.65}
+.li .tx{flex:1;min-width:0}
+.li .tx small{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:var(--text3);margin-top:2px}
+.li .tag{font-size:.52rem;padding:.2rem .45rem}
+.side .btn-main,.side .btn-ghost{width:100%;margin-top:.9rem}
+.stage{min-width:0}
+.screen{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--border2);background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.screen.video{aspect-ratio:16/9}
+.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.wm{position:absolute;z-index:2;pointer-events:none;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:rgba(255,255,255,.55);background:rgba(0,0,0,.35);padding:.25rem .55rem;border-radius:6px;transition:all .8s;top:12px;right:12px}
+.wm.p1{top:auto;bottom:52px;right:12px}.wm.p2{top:auto;right:auto;bottom:52px;left:12px}.wm.p3{right:auto;left:12px}
+.panel{background:radial-gradient(ellipse at top,rgba(232,184,75,.1),transparent 60%),var(--bg3);padding:2.4rem 2rem;text-align:center;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem}
+.panel .big{font-size:2.6rem}
+.panel h3{font-family:var(--serif);font-size:1.8rem;color:#fff;line-height:1.15}
+.panel p{color:var(--text2);font-size:.9rem;max-width:460px}
+.panel .btn-row{justify-content:center}
+.sinfo{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.1rem}
+.sinfo h1{font-family:var(--serif);font-size:1.7rem;color:#fff;line-height:1.2}
+.sinfo small{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
+.prot{margin-top:1rem;font-size:.75rem;color:var(--text3)}
+.quiz{text-align:left;align-items:stretch}
+.quiz h3{text-align:center}
+.qq{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:1rem;margin-top:.4rem}
+.qq b{display:block;color:#fff;font-size:.92rem;margin-bottom:.5rem}
+.qq label{display:flex;gap:.6rem;align-items:flex-start;font-size:.86rem;color:var(--text2);padding:.35rem .4rem;border-radius:8px;cursor:pointer}
+.qq label.ok{background:rgba(52,211,153,.12);color:var(--green)}
+.qq label.bad{background:rgba(248,113,113,.12);color:var(--red)}
+.qres{text-align:center;font-weight:600}
+
+/* checkout */
+.ck .lines{display:grid;gap:.45rem;margin:1rem 0;padding:1rem;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02);font-size:.86rem;color:var(--text2)}
+.ck .lines div{display:flex;justify-content:space-between;gap:1rem}
+.ck .lines .tot{border-top:1px solid var(--border2);padding-top:.5rem;color:#fff;font-weight:700;font-size:1rem}
+.pm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:.4rem 0 1rem}
+.pm label{display:flex;flex-direction:column;align-items:center;gap:2px;border:1px solid var(--border2);border-radius:12px;padding:.7rem .4rem;cursor:pointer;font-size:.78rem;color:var(--text2);text-align:center}
+.pm label span{font-size:1.2rem}
+.pm input{position:absolute;opacity:0;pointer-events:none}
+.pm label:has(input:checked){border-color:var(--gold);color:#fff;background:var(--gold-dim)}
+.demo-note{font-size:.74rem;color:var(--amber);background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:.55rem .8rem;margin-bottom:1rem}
+#payBtn{width:100%}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(0,0,0,.25);border-top-color:#000;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.okmark{width:72px;height:72px;margin:.6rem auto 1rem;border-radius:50%;background:rgba(52,211,153,.12);border:2px solid var(--green);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:2.2rem}
+.center{text-align:center}
+
+/* receipt (paper look, prints cleanly) */
+#rcBg .modal{max-width:560px}
+.inv{background:#fff;color:#111;border-radius:12px;padding:1.6rem;font-size:.82rem}
+.inv h4{font-family:var(--serif);font-size:1.5rem;color:#0a1020}
+.inv .muted{color:#667}
+.inv .row{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+.inv table{width:100%;border-collapse:collapse;margin-top:1rem}
+.inv td{padding:.45rem 0;border-bottom:1px solid #e5e7eb}
+.inv td:last-child{text-align:right;white-space:nowrap}
+.inv tr.tot td{font-weight:700;font-size:.95rem;border-bottom:2px solid #0a1020}
+.inv .lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#889}
+
+/* inbox drawer */
+.shade{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.25s}
+.shade.open{opacity:1;pointer-events:auto}
+.inbox{position:fixed;top:0;right:0;bottom:0;z-index:260;width:min(430px,100%);background:var(--bg2);border-left:1px solid var(--border2);transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column}
+.inbox.open{transform:none}
+.ib-head{padding:1.2rem 1.3rem;border-bottom:1px solid var(--border)}
+.ib-head h3{font-family:var(--serif);font-size:1.5rem;color:#fff}
+.ib-head p{font-size:.78rem;color:var(--text2)}
+.ib-head .x{float:right;background:none;border:none;color:var(--text2);font-size:1.5rem;cursor:pointer}
+.ib-list{flex:1;overflow:auto;padding:1rem 1.1rem 3rem;display:grid;gap:.8rem;align-content:start}
+.msg{border-radius:14px;padding:.85rem 1rem;font-size:.84rem;line-height:1.55;border:1px solid var(--border)}
+.msg.wa{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.25)}
+.msg.em{background:var(--bg3)}
+.msg.sched{border-style:dashed;opacity:.85}
+.msg.new{box-shadow:0 0 0 1px var(--gold)}
+.m-top{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.35rem}
+.m-top b{color:#fff;font-size:.82rem}
+.m-top time{font-family:var(--mono);font-size:.6rem;color:var(--text3);white-space:nowrap}
+.msg .subj{color:#fff;font-weight:600;margin-bottom:.2rem}
+.msg p{color:var(--text2);white-space:pre-line}
+.m-foot{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.55rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;color:var(--text3);text-transform:uppercase}
+.tag.wa{color:var(--wa);border-color:rgba(37,211,102,.4);background:rgba(37,211,102,.08)}
+
+@media(max-width:900px){
+  .player{grid-template-columns:1fr}
+  .stage{order:-1}
+  .side{position:static}
+  .signin{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .portal{padding:5rem 1rem 3rem}
+  .pbar{padding:.8rem}
+  .pb-prog{order:3;flex-basis:100%}
+  .pb-btns{flex-basis:100%}
+  .pb-btns .btn-sm{flex:1 1 auto;padding:.55rem .7rem}
+  .panel{padding:1.8rem 1.1rem;min-height:260px}
+  .sinfo h1{font-size:1.35rem}
+  .inv{padding:1.1rem}
+  .modal{padding:1.3rem}
+}
+@media print{
+  body.printing{padding:0;background:#fff}
+  body.printing > *:not(#rcBg){display:none!important}
+  body.printing #rcBg{position:static;display:block;background:none;backdrop-filter:none;padding:0}
+  body.printing #rcBg .modal{max-width:none;max-height:none;overflow:visible;border:none;box-shadow:none;background:#fff;padding:0}
+  .noprint{display:none!important}
+}
+</style>
+</head>
+<body class="has-strip">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="courses.html" class="nav-pill">All courses</a>
+</nav>
+
+<main class="portal">
+  <div class="wrap">
+    <div id="pbar"></div>
+    <div id="view"></div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<!-- checkout + receipt modals -->
+<div class="modal-bg" id="ckBg"><div class="modal ck" id="ck"></div></div>
+<div class="modal-bg" id="rcBg"><div class="modal" id="rc"></div></div>
+
+<!-- inbox drawer -->
+<div class="shade" id="shade" data-act="inbox-close"></div>
+<aside class="inbox" id="inbox" aria-label="Inbox">
+  <div class="ib-head">
+    <button class="x" data-act="inbox-close" aria-label="Close">×</button>
+    <h3>Inbox</h3>
+    <p>What the student receives automatically on WhatsApp and email.</p>
+  </div>
+  <div class="ib-list" id="ibList"></div>
+</aside>
+
+<div class="toast" id="toast"></div>
+<div class="demo-strip">Demo build for review · <a href="meeting.html">Back to the meeting demo hub</a></div>
+
+<script src="firebase-config.js"></script>
+<script src="crm-data.js"></script>
+<script src="courses-data.js"></script>
+<script>
+(function () {
+  var KEY = 'vm_student', SENDER = 'Vishal Mehta CMT';
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var esc = VM.esc, inr = VM.inr, course = VM.course;
+  var $ = function (id) { return document.getElementById(id); };
+  var S = load(), cur = null;   // cur = {id, lesson, panel}
+
+  // ---------- state ----------
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+  if (S) { S.owned = S.owned || {}; S.done = S.done || {}; S.quiz = S.quiz || {}; S.inbox = S.inbox || []; S.orders = S.orders || []; S.sent = S.sent || {}; S.certs = S.certs || {}; }
+
+  function fmt(d) { d = new Date(d); return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
+  function time(d) { d = new Date(d); return fmt(d) + ', ' + d.toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit' }); }
+  function addMonths(d, n) { d = new Date(d); d.setMonth(d.getMonth() + n); return d; }
+  function first() { return (S.name || '').split(' ')[0]; }
+  function hasAccess(id) { var o = S && S.owned[id]; return !!o && (!o.until || new Date(o.until) > new Date()); }
+  function canPlay(c, l) { return l.free || hasAccess(c.id); }
+  function doneCount(c) { return c.lessons.filter(function (l) { return S.done[l.id]; }).length; }
+  function pct(c) { return c.lessons.length ? Math.round(doneCount(c) / c.lessons.length * 100) : 0; }
+  function passed(c) { return (S.quiz[c.id] || 0) >= 2; }
+  function complete(c) { return pct(c) === 100 && passed(c); }
+  function accessText(id) { var o = S.owned[id]; return !o ? '' : o.until ? 'Access till ' + fmt(o.until) : 'Lifetime access'; }
+  function gst(price) {
+    var base = Math.round(price / 1.18 * 100) / 100, tax = Math.round((price - base) * 100) / 100;
+    var cgst = Math.round(tax / 2 * 100) / 100;
+    return { base: base, cgst: cgst, sgst: Math.round((tax - cgst) * 100) / 100 };
+  }
+  function money(n) { return '₹' + Number(n).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+  // toasts queue up so a lesson tick and the WhatsApp it triggers are both seen
+  var toastQ = [], toastBusy = false;
+  function toast(msg) { toastQ.push(msg); if (!toastBusy) nextToast(); }
+  function nextToast() {
+    var t = $('toast'), msg = toastQ.shift();
+    if (!msg) { toastBusy = false; return; }
+    toastBusy = true; t.textContent = msg; t.classList.add('show');
+    setTimeout(function () { t.classList.remove('show'); setTimeout(nextToast, 250); }, toastQ.length ? 1800 : 2800);
+  }
+
+  function lead(data) {
+    try {
+      CRM.ready.then(function () { return CRM.add(data); }).catch(function (e) { console.warn('CRM add failed', e); });
+    } catch (e) { console.warn('CRM unavailable', e); }
+  }
+
+  // ---------- inbox (automated WhatsApp + email) ----------
+  function push(msgs) {
+    msgs.slice().reverse().forEach(function (m) { m.id = 'm' + Date.now() + Math.random().toString(36).slice(2, 6); m.at = new Date().toISOString(); m.read = false; S.inbox.unshift(m); });
+    save(); renderBar();
+    var m = msgs[0];
+    toast(m.ch === 'wa' ? '🟢 New WhatsApp from ' + SENDER : '✉️ New email: ' + m.subj);
+    if ($('inbox').classList.contains('open')) renderInbox();
+  }
+  function renderInbox() {
+    $('ibList').innerHTML = S.inbox.length ? S.inbox.map(function (m) {
+      var wa = m.ch === 'wa';
+      return '<div class="msg ' + (wa ? 'wa' : 'em') + (m.sched ? ' sched' : '') + (m.read ? '' : ' new') + '">' +
+        '<div class="m-top"><b>' + (wa ? '🟢 ' : '✉️ ') + SENDER + '</b><time>' + (m.sched ? 'Scheduled' : time(m.at)) + '</time></div>' +
+        (m.subj ? '<div class="subj">' + esc(m.subj) + '</div>' : '') + '<p>' + esc(m.text) + '</p>' +
+        '<div class="m-foot"><span>' + (m.sched ? 'Scheduled automatically' : 'Sent automatically') + ' · ' + esc(m.trigger) + '</span>' +
+        '<span class="tag ' + (wa ? 'wa' : 'blue') + '">' + (wa ? 'WhatsApp' : 'Email') + '</span></div></div>';
+    }).join('') : '<p style="color:var(--text3);font-size:.85rem">No messages yet.</p>';
+  }
+  function openInbox() {
+    renderInbox(); $('inbox').classList.add('open'); $('shade').classList.add('open');
+    S.inbox.forEach(function (m) { m.read = true; }); save(); renderBar();
+  }
+  function closeInbox() { $('inbox').classList.remove('open'); $('shade').classList.remove('open'); }
+
+  // milestone messages (halfway / complete) are sent once per course
+  function milestones(c) {
+    if (!hasAccess(c.id)) return;
+    var p = pct(c);
+    if (p >= 50 && p < 100 && !S.sent['half-' + c.id]) {
+      S.sent['half-' + c.id] = true;
+      var next = c.lessons.find(function (l) { return !S.done[l.id]; });
+      push([{ ch: 'wa', trigger: '50% course progress', text: "You're halfway there 💪\n" + first() + ', you have finished ' + p + '% of "' + c.title + '".' + (next ? ' Next up: ' + next.title + '.' : '') }]);
+    }
+    if (complete(c) && !S.sent['done-' + c.id]) {
+      S.sent['done-' + c.id] = true;
+      S.certs[c.id] = { id: 'VM-' + c.id.replace(/[^a-z0-9]/gi, '').slice(0, 5).toUpperCase() + '-' + (S.phone.replace(/\D/g, '').slice(-4)) + '-' + String(Date.now()).slice(-4), date: fmt(new Date()) };
+      save();
+      push([
+        { ch: 'wa', trigger: 'Course completed', text: '🎓 Congratulations ' + first() + '! You completed "' + c.title + '". Your certificate is ready in the student portal.' },
+        { ch: 'email', trigger: 'Course completed', subj: 'Your certificate: ' + c.title, text: 'Well done on finishing every lesson and passing the quiz.\nCertificate ID: ' + S.certs[c.id].id + '\nDownload or share it from the portal any time.' }
+      ]);
+      toast('🎓 Course complete. Certificate unlocked!');
+    } else if (pct(c) === 100 && !passed(c) && !S.sent['quizhint-' + c.id]) {
+      S.sent['quizhint-' + c.id] = true; save();
+      toast('All lessons done. Pass the quiz to unlock your certificate');
+    }
+  }
+  function certUrl(c) {
+    var ce = S.certs[c.id];
+    return 'certificate.html?name=' + encodeURIComponent(S.name) + '&date=' + encodeURIComponent(ce.date) + '&id=' + encodeURIComponent(ce.id);
+  }
+
+  // ---------- header bar ----------
+  function renderBar() {
+    if (!S) { $('pbar').innerHTML = ''; return; }
+    var tot = 0, dn = 0;
+    VM_COURSES.forEach(function (c) { if (hasAccess(c.id)) { tot += c.lessons.length; dn += doneCount(c); } });
+    var p = tot ? Math.round(dn / tot * 100) : 0;
+    var unread = S.inbox.filter(function (m) { return !m.read; }).length;
+    $('pbar').innerHTML = '<div class="pbar"><div class="avatar">' + esc(S.name.charAt(0).toUpperCase()) + '</div>' +
+      '<div class="pb-who"><b>Hi, ' + esc(first()) + '</b><span>' + esc(S.phone) + '</span></div>' +
+      '<div class="pb-prog"><small>Overall</small><div class="bar"><i style="width:' + p + '%"></i></div><small>' + p + '%</small></div>' +
+      '<div class="pb-btns"><button class="btn-ghost btn-sm" data-act="dash">My courses</button>' +
+      '<button class="btn-blue btn-sm" data-act="inbox">Inbox' + (unread ? '<span class="badge">' + unread + '</span>' : ' (0)') + '</button>' +
+      '<button class="linkish" data-act="reset">Reset demo</button></div></div>';
+  }
+
+  // ---------- views ----------
+  function setUrl(id) { try { history.replaceState(null, '', id ? '?course=' + id : location.pathname); } catch (e) {} }
+
+  function renderSignin(pendingId, pendingBuy) {
+    var pc = pendingId && course(pendingId);
+    $('pbar').innerHTML = '';
+    $('view').innerHTML = '<div class="signin"><div>' +
+      '<div class="kicker"><span class="dot"></span>Student portal</div>' +
+      '<h1>Your trading classroom, <em>always open.</em></h1>' +
+      '<p style="color:var(--text2);font-weight:300;line-height:1.8">One account for your free course, purchases, progress, quizzes and certificates.</p>' +
+      '<ul class="perks"><li><span>🎁</span>Algo Trading Basics unlocks free, for life</li><li><span>📈</span>Progress saved lesson by lesson</li>' +
+      '<li><span>🟢</span>Updates and class reminders on WhatsApp and email</li><li><span>🎓</span>Certificate when you finish a course</li></ul></div>' +
+      '<div class="card"><h3>Create free account</h3><p style="margin-bottom:1.2rem">Takes 20 seconds. No card needed.</p>' +
+      '<form class="form" id="suForm" novalidate>' +
+      (pc ? '<div class="pending">After sign-up we will open <b>' + esc(pc.title) + '</b>.</div>' : '') +
+      '<div class="field"><label for="suName">Full name</label><input id="suName" autocomplete="name" placeholder="e.g. Priya Sharma" required></div>' +
+      '<div class="field"><label for="suPhone">Mobile (WhatsApp)</label><div class="phone-in"><em>+91</em><input id="suPhone" inputmode="numeric" autocomplete="tel-national" placeholder="98XXX XXXXX" maxlength="14" required></div></div>' +
+      '<div class="field"><label for="suEmail">Email (optional)</label><input id="suEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>' +
+      '<div class="form-msg err" id="suMsg"></div>' +
+      '<button class="btn-main" type="submit">Create free account</button>' +
+      '<p class="form-note">By continuing you agree to receive course updates on WhatsApp and email. Opt out any time.</p></form></div></div>';
+    $('suForm').addEventListener('submit', function (e) { e.preventDefault(); signup(pendingId, pendingBuy); });
+  }
+
+  function signup(pendingId, pendingBuy) {
+    var name = $('suName').value.trim().replace(/\s+/g, ' ');
+    var digits = $('suPhone').value.replace(/\D/g, '');
+    if (digits.length === 12 && digits.indexOf('91') === 0) digits = digits.slice(2);
+    var email = $('suEmail').value.trim();
+    var err = name.length < 2 ? 'Please enter your name.' : !/^[6-9]\d{9}$/.test(digits) ? 'Please enter a valid 10-digit Indian mobile number.'
+      : email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'That email does not look right.' : '';
+    if (err) { $('suMsg').textContent = err; return; }
+    var now = new Date().toISOString();
+    S = { name: name, phone: '+91 ' + digits.slice(0, 5) + ' ' + digits.slice(5), email: email, joinedAt: now,
+      owned: { 'algo-basics': { since: now, until: null } }, done: {}, quiz: {}, inbox: [], orders: [], sent: {}, certs: {} };
+    save();
+    lead({ name: name, phone: S.phone, email: email, type: 'Course signup', source: 'Student portal', message: 'Signed up on the student portal (free course: Algo Trading Basics)' });
+    push([
+      { ch: 'wa', trigger: 'Sign-up', text: 'Hi ' + first() + ' 👋 Welcome to the ' + SENDER + ' student portal.\nYour free course "Algo Trading Basics" is unlocked. Start lesson 1 whenever you are ready.' },
+      { ch: 'email', trigger: 'Sign-up', subj: 'Welcome aboard, ' + first() + ' - your free course is ready', text: 'Thanks for joining the student portal.\nYou have lifetime access to Algo Trading Basics, with progress tracking, a quiz and a certificate when you finish.' },
+      { ch: 'wa', trigger: 'Live class schedule', sched: true, text: '⏰ Class reminder: tomorrow 7:00 PM\nLive Q&A with Vishal on trading with rules. The joining link is sent 15 minutes before we start.' }
+    ]);
+    var pc = pendingId && course(pendingId);
+    if (pc && pc.id !== 'bundle') openPlayer(pc.id); else renderDash();
+    if (pc && pendingBuy) openCheckout(pc.id);
+    window.scrollTo(0, 0);
+  }
+
+  function renderDash() {
+    cur = null; setUrl(null); renderBar();
+    var mine = VM_COURSES.filter(function (c) { return S.owned[c.id] && c.type !== 'bundle'; });
+    var bundleOwned = hasAccess('workshop') && hasAccess('ta2');
+    var more = VM_COURSES.filter(function (c) { return c.type === 'bundle' ? !bundleOwned && !hasAccess('workshop') && !hasAccess('ta2') : !S.owned[c.id]; });
+    var h = '<div class="dhead"><div><h2>My courses</h2><p>Pick up where you left off.</p></div></div><div class="grid g3">';
+    h += mine.map(function (c) {
+      var p = pct(c), live = hasAccess(c.id);
+      var btn = !live ? '<button class="btn-main btn-sm" data-act="buy" data-id="' + c.id + '">Renew access</button>'
+        : '<button class="btn-main btn-sm" data-act="open" data-id="' + c.id + '">' + (p === 0 ? '▶ Start' : p === 100 ? 'Review' : '▶ Continue') + '</button>';
+      if (live && complete(c) && S.certs[c.id]) btn += '<a class="btn-ghost btn-sm" href="' + certUrl(c) + '" target="_blank" rel="noopener">🎓 Certificate</a>';
+      return '<div class="card mc"><div style="display:flex;gap:6px;flex-wrap:wrap">' + (c.type === 'free' ? '<span class="tag green">Free</span>' : '<span class="tag gold">Paid</span>') +
+        (live ? '' : '<span class="tag red">Expired</span>') + (complete(c) ? '<span class="tag blue">Completed</span>' : '') + '</div>' +
+        '<h3>' + c.title + '</h3><div class="bar"><i style="width:' + p + '%"></i></div>' +
+        '<div class="meta"><span>' + p + '% · ' + doneCount(c) + ' of ' + c.lessons.length + ' lessons</span><span>' + (live ? accessText(c.id) : 'Access ended') + '</span></div>' +
+        '<div class="meta"><span>Quiz: ' + (S.quiz[c.id] != null ? S.quiz[c.id] + '/3' + (passed(c) ? ' ✓' : '') : 'not taken') + '</span></div>' +
+        '<div class="btn-row">' + btn + '</div></div>';
+    }).join('') + '</div>';
+    if (more.length) {
+      h += '<div class="dhead"><div><h2>Explore more</h2><p>Every paid course has a free preview lesson.</p></div><a class="linkish" href="courses.html">Full catalogue →</a></div><div class="grid g3">';
+      h += more.map(function (c) {
+        var s = VM.stats(c), prev = c.includes ? c.includes[0] : c.id;
+        return '<div class="card mc"><div>' + (c.type === 'bundle' ? '<span class="tag violet">Bundle</span>' : '<span class="tag gold">Paid</span>') + '</div>' +
+          '<h3>' + c.title + '</h3><p>' + c.desc + '</p><div class="meta"><span>' + s.lessons + ' lessons · ' + s.mins + ' min</span><span>' + c.access + '</span></div>' +
+          '<div><span class="price-l">' + inr(c.price) + '</span>' + (c.was ? ' <s style="color:var(--text3)">' + inr(c.was) + '</s> <span class="tag green">save ' + inr(c.was - c.price) + '</span>' : '') + '</div>' +
+          '<div class="btn-row"><button class="btn-ghost btn-sm" data-act="open" data-id="' + prev + '">Preview</button><button class="btn-main btn-sm" data-act="buy" data-id="' + c.id + '">Buy ' + inr(c.price) + '</button></div></div>';
+      }).join('') + '</div>';
+    }
+    if (S.orders.length) {
+      h += '<div class="dhead"><div><h2>Receipts</h2><p>GST invoices for every purchase.</p></div></div><div class="orders">' + S.orders.map(function (o) {
+        return '<div class="orow"><code>' + o.inv + '</code><span>' + esc(o.title) + ' · ' + fmt(o.at) + '</span><b>' + inr(o.price) + '</b><button class="btn-ghost btn-sm" data-act="receipt" data-id="' + o.inv + '">View receipt</button></div>';
+      }).join('') + '</div>';
+    }
+    h += '<div class="tip">💡 Demo tip: mark lessons complete to trigger the automatic WhatsApp "halfway" nudge, finish a course + quiz for the certificate, or buy a course to see the GST receipt and payment messages in the Inbox.</div>';
+    $('view').innerHTML = h;
+  }
+
+  function openPlayer(id, lessonId) {
+    var c = course(id);
+    if (!c || c.type === 'bundle') { renderDash(); return; }
+    var l = c.lessons.find(function (x) { return x.id === lessonId; }) ||
+      c.lessons.find(function (x) { return canPlay(c, x) && !S.done[x.id]; }) ||
+      c.lessons.find(function (x) { return canPlay(c, x); }) || c.lessons[0];
+    cur = { id: c.id, lesson: l.id, panel: canPlay(c, l) ? 'video' : 'locked' };
+    setUrl(c.id); renderPlayer();
+  }
+
+  function renderPlayer() {
+    var c = course(cur.id), l = c.lessons.find(function (x) { return x.id === cur.lesson; });
+    var owned = hasAccess(c.id), p = pct(c), idx = c.lessons.indexOf(l);
+    renderBar();
+    var items = c.lessons.map(function (x, i) {
+      var play = canPlay(c, x), isCur = cur.panel !== 'quiz' && x.id === cur.lesson, d = S.done[x.id];
+      var st = d ? '✓' : !play ? '🔒' : isCur ? '▶' : (i + 1);
+      var extra = !owned && x.free ? '<span class="tag green">Free preview</span>' : !play ? '<span class="tag">' + inr(c.price) + '</span>' : '';
+      return '<li><button class="li' + (isCur ? ' cur' : '') + (d ? ' done' : '') + (!play ? ' locked' : '') + '" data-act="lesson" data-id="' + x.id + '">' +
+        '<span class="st">' + st + '</span><span class="tx">' + esc(x.title) + '<small>' + x.mins + ' min</small></span>' + extra + '</button></li>';
+    }).join('');
+    var qs = S.quiz[c.id];
+    items += '<li><button class="li' + (cur.panel === 'quiz' ? ' cur' : '') + (passed(c) ? ' done' : '') + (!owned ? ' locked' : '') + '" data-act="quiz">' +
+      '<span class="st">' + (passed(c) ? '✓' : owned ? '?' : '🔒') + '</span><span class="tx">Final quiz<small>3 questions · pass 2/3' + (qs != null ? ' · best ' + qs + '/3' : '') + '</small></span></button></li>';
+
+    var side = '<aside class="side"><h2>' + c.title + '</h2><div class="bar"><i style="width:' + p + '%"></i></div>' +
+      '<div class="sub"><span>' + p + '% complete</span><span>' + (owned ? accessText(c.id) : 'Preview mode') + '</span></div><ol class="lsn">' + items + '</ol>' +
+      (complete(c) && S.certs[c.id] ? '<a class="btn-main" href="' + certUrl(c) + '" target="_blank" rel="noopener">🎓 Get your certificate</a>' : '') +
+      (!owned ? '<button class="btn-main" data-act="buy" data-id="' + c.id + '">Unlock full course · ' + inr(c.price) + '</button>' : '') + '</aside>';
+
+    var screen, info = '';
+    if (cur.panel === 'video') {
+      screen = '<div class="screen video"><iframe src="https://www.youtube-nocookie.com/embed/' + l.video + '?rel=0&modestbranding=1" title="' + esc(l.title) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>' +
+        '<div class="wm" id="wm">Licensed to ' + esc(S.name) + ' · ' + esc(S.phone) + '</div></div>';
+      info = '<div class="sinfo"><div><small>Lesson ' + (idx + 1) + ' of ' + c.lessons.length + ' · ' + l.mins + ' min</small><h1>' + esc(l.title) + '</h1></div>' +
+        (S.done[l.id] ? '<button class="btn-ghost btn-sm" data-act="next">Next →</button>' : '<button class="btn-main btn-sm" data-act="complete">✓ Mark as complete</button>') + '</div>' +
+        '<p class="prot">🛡️ Streams inside the portal only · not downloadable · watermarked to the learner.</p>';
+    } else if (cur.panel === 'locked') {
+      screen = '<div class="screen panel"><div class="big">🔒</div><h3>Unlock the full course</h3>' +
+        '<p>"' + esc(l ? l.title : 'This lesson') + '" is part of ' + c.title + '. Get all ' + c.lessons.length + ' lessons, the quiz and a certificate.</p>' +
+        '<div class="price-l">' + inr(c.price) + ' <small style="font-size:.8rem;color:var(--text3)">incl. GST · ' + c.access + '</small></div>' +
+        '<div class="btn-row"><button class="btn-main" data-act="buy" data-id="' + c.id + '">Buy now · ' + inr(c.price) + '</button>' +
+        (c.id !== 'algo-basics' ? '<button class="btn-ghost" data-act="buy" data-id="bundle">Bundle · ' + inr(course('bundle').price) + '</button>' : '') + '</div></div>';
+    } else {
+      screen = quizHtml(c, cur.result);
+    }
+    $('view').innerHTML = '<div class="crumb"><button data-act="dash">← My courses</button> / ' + c.title + '</div>' +
+      '<div class="player">' + side + '<section class="stage">' + screen + info + '</section></div>';
+  }
+
+  function quizHtml(c, result) {
+    var h = '<div class="screen panel quiz"><h3>Final quiz</h3><p style="text-align:center;margin:0 auto">Answer 3 questions. Score 2 or more to pass.</p>';
+    c.quiz.forEach(function (q, i) {
+      h += '<div class="qq"><b>' + (i + 1) + '. ' + esc(q.q) + '</b>' + q.options.map(function (o, j) {
+        var cls = result ? (j === q.answer ? 'ok' : result[i] === j ? 'bad' : '') : '';
+        return '<label class="' + cls + '"><input type="radio" name="q' + i + '" value="' + j + '"' + (result && result[i] === j ? ' checked' : '') + (result ? ' disabled' : '') + '> ' + esc(o) + '</label>';
+      }).join('') + '</div>';
+    });
+    if (result) {
+      var sc = S.quiz[c.id];
+      h += '<p class="qres" style="color:' + (sc >= 2 ? 'var(--green)' : 'var(--red)') + '">' + (sc >= 2 ? '✓ Passed' : 'Not yet') + ' · best score ' + sc + '/3</p><div class="btn-row"><button class="btn-ghost btn-sm" data-act="quiz">Retake quiz</button></div>';
+    } else {
+      h += '<div class="form-msg err" id="qMsg" style="text-align:center"></div><div class="btn-row"><button class="btn-main" data-act="quiz-submit">Submit answers</button></div>';
+    }
+    return h + '</div>';
+  }
+
+  function submitQuiz() {
+    var c = course(cur.id), ans = [], sc = 0;
+    for (var i = 0; i < c.quiz.length; i++) {
+      var r = document.querySelector('input[name="q' + i + '"]:checked');
+      if (!r) { $('qMsg').textContent = 'Please answer all 3 questions.'; return; }
+      ans.push(+r.value); if (+r.value === c.quiz[i].answer) sc++;
+    }
+    S.quiz[c.id] = Math.max(S.quiz[c.id] || 0, sc); save();
+    toast(sc >= 2 ? '✓ Quiz passed: ' + sc + '/3' : 'You scored ' + sc + '/3. Review the lessons and try again');
+    milestones(c);
+    cur.result = ans; renderPlayer();
+  }
+
+  function markComplete() {
+    var c = course(cur.id), l = c.lessons.find(function (x) { return x.id === cur.lesson; });
+    S.done[l.id] = true; save();
+    toast('✓ Lesson complete');
+    milestones(c);
+    goNext(c, l);
+  }
+  function goNext(c, l) {
+    var next = c.lessons[c.lessons.indexOf(l) + 1];
+    if (!next) { cur.panel = hasAccess(c.id) ? 'quiz' : 'locked'; }
+    else { cur.lesson = next.id; cur.panel = canPlay(c, next) ? 'video' : 'locked'; }
+    renderPlayer(); scrollToStage();
+  }
+  function scrollToStage() { var s = document.querySelector('.stage'); if (s && window.innerWidth < 900) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+  // ---------- checkout ----------
+  function openCheckout(id) {
+    var c = course(id); if (!c || !c.price) return;
+    var ids = c.includes || [c.id];
+    if (ids.every(hasAccess)) { toast('You already have access to ' + c.title); return; }
+    var g = gst(c.price);
+    $('ck').innerHTML = '<button class="x" data-act="ck-close" aria-label="Close">×</button><h3>Checkout</h3>' +
+      '<p style="color:var(--text2);font-size:.85rem">' + c.title + '<br><span style="color:var(--text3)">' + VM.stats(c).lessons + ' lessons · ' + c.access + ' · instant access</span></p>' +
+      '<div class="lines"><div><span>Course fee (excl. GST)</span><span>' + money(g.base) + '</span></div><div><span>CGST 9%</span><span>' + money(g.cgst) + '</span></div>' +
+      '<div><span>SGST 9%</span><span>' + money(g.sgst) + '</span></div>' + (c.was ? '<div style="color:var(--green)"><span>Bundle saving (already applied)</span><span>' + inr(c.was - c.price) + '</span></div>' : '') +
+      '<div class="tot"><span>Total payable</span><span>' + money(c.price) + '</span></div></div>' +
+      '<div class="field"><label>Pay with</label></div><div class="pm">' +
+      [['UPI', '⚡'], ['Card', '💳'], ['Netbanking', '🏦']].map(function (m, i) { return '<label><input type="radio" name="pm" value="' + m[0] + '"' + (i ? '' : ' checked') + '><span>' + m[1] + '</span>' + m[0] + '</label>'; }).join('') + '</div>' +
+      '<p class="form-note" style="margin-bottom:.6rem">Billed to ' + esc(S.name) + ' · ' + esc(S.phone) + (S.email ? ' · ' + esc(S.email) : '') + '</p>' +
+      '<div class="demo-note">Demo checkout — no money is charged. In production this opens the payment gateway.</div>' +
+      '<button class="btn-main" id="payBtn" data-act="pay" data-id="' + c.id + '">Pay ' + money(c.price) + '</button>';
+    $('ckBg').classList.add('open');
+  }
+
+  function pay(id) {
+    var c = course(id), btn = $('payBtn'), method = (document.querySelector('input[name="pm"]:checked') || {}).value || 'UPI';
+    btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Processing…';
+    setTimeout(function () {
+      var now = new Date(), until = addMonths(now, c.months), g = gst(c.price);
+      (c.includes || [c.id]).forEach(function (cid) {
+        var o = S.owned[cid];
+        if (!o || (o.until && new Date(o.until) < until)) S.owned[cid] = { since: now.toISOString(), until: until.toISOString() };
+      });
+      var ymd = now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0');
+      var order = { inv: 'INV-' + ymd + '-' + (1000 + Math.floor(Math.random() * 9000)), courseId: c.id, title: c.title, price: c.price,
+        base: g.base, cgst: g.cgst, sgst: g.sgst, method: method, at: now.toISOString(), until: until.toISOString() };
+      S.orders.unshift(order); save();
+      lead({ name: S.name, phone: S.phone, email: S.email, type: 'Purchased: ' + c.title, source: 'Course purchase', message: 'Demo payment ' + inr(c.price) + ' via ' + method + ' · access till ' + fmt(until) });
+      push([
+        { ch: 'wa', trigger: 'Payment success', text: '✅ Payment received: ' + money(c.price) + ' for "' + c.title + '".\nYour access is live till ' + fmt(until) + '. Invoice ' + order.inv + ' has been emailed. Happy learning, ' + first() + '!' },
+        { ch: 'email', trigger: 'Payment success', subj: 'Receipt ' + order.inv + ' · ' + money(c.price), text: 'Thank you for your purchase of ' + c.title + '.\nFee ' + money(g.base) + ' + CGST ' + money(g.cgst) + ' + SGST ' + money(g.sgst) + ' = ' + money(c.price) + '.\nYour GST invoice is attached. Access till ' + fmt(until) + '.' }
+      ]);
+      var startId = (c.includes || [c.id])[0];
+      $('ck').innerHTML = '<button class="x" data-act="ck-close" aria-label="Close">×</button><div class="center"><div class="okmark">✓</div><h3>Payment successful</h3>' +
+        '<p style="color:var(--text2);font-size:.9rem;margin-bottom:1.4rem">' + c.title + '<br>Access till ' + fmt(until) + ' · paid via ' + esc(method) + '</p>' +
+        '<div class="btn-row" style="justify-content:center"><button class="btn-ghost btn-sm" data-act="receipt" data-id="' + order.inv + '">View receipt</button>' +
+        '<button class="btn-main btn-sm" data-act="start" data-id="' + startId + '">Start learning →</button></div></div>';
+      refresh();
+    }, 1500);
+  }
+  function refresh() { if (cur) renderPlayer(); else if (S) renderDash(); }
+
+  // ---------- receipt ----------
+  function openReceipt(inv) {
+    var o = S.orders.find(function (x) { return x.inv === inv; }); if (!o) return;
+    $('ckBg').classList.remove('open');
+    $('rc').innerHTML = '<div class="noprint"><button class="x" data-act="rc-close" aria-label="Close">×</button><h3 style="margin-bottom:1rem">Receipt</h3></div>' +
+      '<div class="inv"><div class="row" style="margin-top:0"><div><h4>Vishal Mehta CMT</h4><div class="muted">Disciplined Traders Academy · vishalmehtacmt.com</div><div class="muted">GSTIN: to be added</div></div>' +
+      '<div style="text-align:right"><div class="lbl">Tax invoice</div><b>' + o.inv + '</b><div class="muted">' + fmt(o.at) + '</div></div></div>' +
+      '<div class="row"><div><div class="lbl">Billed to</div><b>' + esc(S.name) + '</b><div class="muted">' + esc(S.phone) + (S.email ? '<br>' + esc(S.email) : '') + '</div></div>' +
+      '<div style="text-align:right"><div class="lbl">Payment</div><b>' + esc(o.method) + ' · Paid</b><div class="muted">Access till ' + fmt(o.until) + '</div></div></div>' +
+      '<table><tr><td><b>' + esc(o.title) + '</b><br><span class="muted">Online course · SAC 999293</span></td><td>' + money(o.base) + '</td></tr>' +
+      '<tr><td>CGST @ 9%</td><td>' + money(o.cgst) + '</td></tr><tr><td>SGST @ 9%</td><td>' + money(o.sgst) + '</td></tr>' +
+      '<tr class="tot"><td>Total (incl. GST)</td><td>' + money(o.price) + '</td></tr></table>' +
+      '<p class="muted" style="margin-top:1rem;font-size:.72rem">Demo invoice generated by the student portal. This is a computer-generated document.</p></div>' +
+      '<div class="btn-row noprint" style="margin-top:1rem;justify-content:flex-end"><button class="btn-ghost btn-sm" data-act="rc-close">Close</button><button class="btn-main btn-sm" data-act="print">Print / Save PDF</button></div>';
+    $('rcBg').classList.add('open');
+  }
+  window.addEventListener('afterprint', function () { document.body.classList.remove('printing'); });
+
+  // ---------- one click handler for the whole page ----------
+  document.addEventListener('click', function (e) {
+    if (e.target === $('ckBg')) { $('ckBg').classList.remove('open'); return; }
+    if (e.target === $('rcBg')) { $('rcBg').classList.remove('open'); return; }
+    var el = e.target.closest('[data-act]'); if (!el) return;
+    var act = el.getAttribute('data-act'), id = el.getAttribute('data-id');
+    if (act === 'dash') { renderDash(); window.scrollTo(0, 0); }
+    else if (act === 'open') { openPlayer(id); window.scrollTo(0, 0); }
+    else if (act === 'lesson') {
+      var c = course(cur.id), l = c.lessons.find(function (x) { return x.id === id; });
+      cur.lesson = id; cur.panel = canPlay(c, l) ? 'video' : 'locked'; renderPlayer(); scrollToStage();
+    }
+    else if (act === 'quiz') { var cq = course(cur.id); cur.panel = hasAccess(cq.id) ? 'quiz' : 'locked'; cur.result = null; renderPlayer(); scrollToStage(); }
+    else if (act === 'quiz-submit') submitQuiz();
+    else if (act === 'complete') markComplete();
+    else if (act === 'next') { var cn = course(cur.id); goNext(cn, cn.lessons.find(function (x) { return x.id === cur.lesson; })); }
+    else if (act === 'buy') openCheckout(id);
+    else if (act === 'pay') pay(id);
+    else if (act === 'ck-close') $('ckBg').classList.remove('open');
+    else if (act === 'start') { $('ckBg').classList.remove('open'); openPlayer(id); window.scrollTo(0, 0); }
+    else if (act === 'receipt') openReceipt(id);
+    else if (act === 'rc-close') $('rcBg').classList.remove('open');
+    else if (act === 'print') { document.body.classList.add('printing'); window.print(); }
+    else if (act === 'inbox') openInbox();
+    else if (act === 'inbox-close') closeInbox();
+    else if (act === 'reset') {
+      if (confirm('Reset the demo? This clears the student account, progress, purchases and inbox in this browser.')) {
+        try { localStorage.removeItem(KEY); } catch (x) {}
+        location.href = 'learn.html';
+      }
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { $('ckBg').classList.remove('open'); $('rcBg').classList.remove('open'); closeInbox(); }
+  });
+
+  // move the watermark around the player every few seconds
+  var wmPos = 0;
+  setInterval(function () { var w = $('wm'); if (!w) return; wmPos = (wmPos + 1) % 4; w.className = 'wm' + (wmPos ? ' p' + wmPos : ''); }, 6000);
+
+  // ---------- start ----------
+  var q = new URLSearchParams(location.search), qc = q.get('course'), qbuy = q.get('buy') === '1';
+  if (qc && !course(qc)) qc = null;
+  if (!S) renderSignin(qc, qbuy);
+  else {
+    if (qc && qc !== 'bundle') openPlayer(qc); else renderDash();
+    if (qc && qbuy) openCheckout(qc);
+  }
+})();
+</script>
+</body>
+</html>

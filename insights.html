@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Insights: Risk, Rules &amp; Systems | Vishal Mehta CMT</title>
+<meta name="description" content="Educational articles on position sizing, risk management, trade journaling, backtesting and rule-based trading systems by Vishal Mehta, CMT.">
+<link rel="canonical" href="https://learnvtvishal.github.io/vishalmehtacmt-redesign/insights.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trading Insights by Vishal Mehta, CMT">
+<meta property="og:description" content="Plain-English articles on risk, rules and systematic trading. No tips, just process.">
+<meta property="og:url" content="https://learnvtvishal.github.io/vishalmehtacmt-redesign/insights.html">
+<meta property="og:site_name" content="Vishal Mehta CMT">
+<meta property="og:image" content="https://learnvtvishal.github.io/vishalmehtacmt-redesign/images/live-teaching.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Trading Insights by Vishal Mehta, CMT">
+<meta name="twitter:description" content="Plain-English articles on risk, rules and systematic trading.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Insights by Vishal Mehta CMT",
+  "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/insights.html",
+  "author": {"@type": "Person", "name": "Vishal Mehta"},
+  "blogPost": [{
+    "@type": "BlogPosting",
+    "headline": "Position Sizing: The One Rule That Keeps You in the Game",
+    "url": "https://learnvtvishal.github.io/vishalmehtacmt-redesign/article-position-sizing.html",
+    "datePublished": "2026-10-19",
+    "author": {"@type": "Person", "name": "Vishal Mehta"}
+  }]
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css">
+<style>
+.nav-academy{position:relative}
+.nav-hint{position:absolute;top:calc(100% + 6px);left:64%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.54rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#e8b84b;text-shadow:0 0 12px rgba(232,184,75,.4);animation:nav-hint-blink 1.3s ease-in-out infinite;pointer-events:none}
+@keyframes nav-hint-blink{0%,100%{opacity:1}50%{opacity:.35}}
+.nav-cursor{display:inline-block;font-size:.85rem;animation:nav-cursor-tap 1s ease-in-out infinite}
+@keyframes nav-cursor-tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* FEATURED */
+.feat{display:grid;grid-template-columns:.9fr 1.3fr;gap:2.5rem;align-items:center;max-width:1180px;margin:0 auto;padding:2.4rem;text-decoration:none;color:inherit;transition:border-color .25s,transform .25s}
+.feat:hover{border-color:rgba(232,184,75,.45);transform:translateY(-3px)}
+.feat::before{content:'';position:absolute;top:-120px;right:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(232,184,75,.12) 0%,transparent 60%);pointer-events:none}
+.feat-art{position:relative;aspect-ratio:4/3;border-radius:16px;background:linear-gradient(135deg,var(--blue-d),#0b1736);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border2)}
+.feat-art::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:18px 18px}
+.feat-art .f1{position:relative;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-l);margin-bottom:.6rem}
+.feat-art .f2{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:700;color:var(--gold);text-align:center;line-height:1.2;padding:0 1rem}
+.feat-art .f3{position:relative;font-family:var(--mono);font-size:.68rem;color:rgba(255,255,255,.7);margin-top:.8rem}
+.feat-body{position:relative}
+.feat-body h2{font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.15;margin:.8rem 0}
+.feat-body p{font-size:.95rem;color:var(--text2);line-height:1.8;margin-bottom:1.2rem}
+.meta{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1.4rem}
+.meta .sep{color:var(--gold)}
+.read{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+
+/* CALENDAR */
+.cal-legend{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin:-1.5rem 0 2rem}
+.cal .card{display:flex;flex-direction:column;gap:.7rem}
+.cal-date{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.cal-date .d{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text2)}
+.cal .card h3{font-size:1.25rem}
+.cal .card p{flex:1}
+.cal-foot{display:flex;justify-content:space-between;gap:.5rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);border-top:1px solid var(--border);padding-top:.7rem}
+.cal-foot b{color:var(--blue-l);font-weight:600}
+.cal .card.next{border-style:dashed;border-color:var(--border2);justify-content:center;align-items:flex-start}
+
+/* NEWSLETTER */
+.news{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;max-width:980px;margin:0 auto;border-color:rgba(232,184,75,.3)}
+.news h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.3rem);color:#fff;line-height:1.15;margin-bottom:.7rem}
+.news h2 em{font-style:italic;color:var(--gold)}
+.news-ok{display:none;text-align:center}
+.news-ok.show{display:block}
+.news-ok b{display:block;font-family:var(--serif);font-size:1.6rem;color:#fff;margin-bottom:.4rem}
+
+@media(max-width:860px){.feat,.news{grid-template-columns:1fr}.feat{padding:1.5rem}}
+</style>
+</head>
+<body class="has-strip">
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Vishal Mehta <span class="nav-cmt">CMT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-academy"><a href="academy.html">Disciplined Traders Academy</a><span class="nav-hint"><svg class="nav-cursor" viewBox="0 0 18 18" width="14" height="14" aria-hidden="true"><path d="M2 1 L2 15 L6 11 L9 17 L11.3 16 L8.2 10 L14 10 Z" fill="#e8b84b" stroke="#050913" stroke-width="1" stroke-linejoin="round"/></svg>Don't miss this 🔥</span></li>
+    <li><a href="tutorials.html">Tutorials</a></li>
+    <li><a href="podcast.html">Podcast</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="meditation.html">Trading Mind</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="learn.html" class="nav-pill">Login</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker rv"><span class="dot"></span>Insights · articles</div>
+    <h1 class="rv d1">Rules, risk &amp; <em>systems.</em></h1>
+    <p class="hero-desc rv d2">Plain-English articles on the unglamorous side of trading: how much to risk, how to review, how to test an idea without fooling yourself. Educational, never tips.</p>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section alt">
+  <div class="wrap">
+    <a class="card feat rv" href="article-position-sizing.html">
+      <div class="feat-art">
+        <div class="f1">Risk management</div>
+        <div class="f2">qty = (capital × risk%) ÷ (entry − stop)</div>
+        <div class="f3">the one formula worth memorising</div>
+      </div>
+      <div class="feat-body">
+        <span class="tag gold">Featured · New</span>
+        <h2>Position Sizing: The One Rule That Keeps You in the Game</h2>
+        <p>Why your stop-loss, not your conviction, should decide how many shares you buy. A step-by-step worked example, the drawdown maths, and the mistakes that quietly blow up accounts.</p>
+        <div class="meta"><span>Vishal Mehta, CMT</span><span class="sep">·</span><span>19 Oct 2026</span><span class="sep">·</span><span>5 min read</span></div>
+        <span class="read">Read the article →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTENT CALENDAR -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sec-eye rv">Content calendar · Nov to Dec 2026</div>
+      <h2 class="sec-title rv d1">Coming <em>next.</em></h2>
+      <p class="sec-sub rv d2">How content is planned: one topic, one target search phrase, one clear status. Each article links to a free tool or the masterclass.</p>
+    </div>
+    <div class="cal-legend rv"><span class="tag violet">Draft</span><span class="tag blue">In review</span><span class="tag green">Scheduled</span></div>
+    <div class="grid g3 cal">
+      <div class="card rv">
+        <div class="cal-date"><span class="d">Mon · 3 Nov 2026</span><span class="tag green">Scheduled</span></div>
+        <h3>Why most traders blow up on expiry day (and the rule that fixes it)</h3>
+        <p>How leverage and time decay stack up on expiry, and one simple cap on risk that keeps a bad day from becoming a bad month.</p>
+        <div class="cal-foot"><span>Target: <b>expiry day trading</b></span><span>→ Masterclass</span></div>
+      </div>
+      <div class="card rv d1">
+        <div class="cal-date"><span class="d">Mon · 17 Nov 2026</span><span class="tag blue">In review</span></div>
+        <h3>Journaling: the 5-line trade log</h3>
+        <p>Setup, plan, execution, emotion, lesson. A trade journal short enough that you will actually keep it.</p>
+        <div class="cal-foot"><span>Target: <b>trading journal format</b></span><span>→ Worksheet</span></div>
+      </div>
+      <div class="card rv d2">
+        <div class="cal-date"><span class="d">Mon · 1 Dec 2026</span><span class="tag blue">In review</span></div>
+        <h3>Backtesting without fooling yourself</h3>
+        <p>Look-ahead bias, curve-fitting and survivorship: the three quiet ways a backtest lies, and how to check for each.</p>
+        <div class="cal-foot"><span>Target: <b>how to backtest a strategy</b></span><span>→ Courses</span></div>
+      </div>
+      <div class="card rv">
+        <div class="cal-date"><span class="d">Mon · 15 Dec 2026</span><span class="tag violet">Draft</span></div>
+        <h3>Stop-loss types explained</h3>
+        <p>Price, volatility, time and structure-based stops compared, with when each one makes sense.</p>
+        <div class="cal-foot"><span>Target: <b>types of stop loss</b></span><span>→ Free tools</span></div>
+      </div>
+      <div class="card rv d1">
+        <div class="cal-date"><span class="d">Mon · 29 Dec 2026</span><span class="tag violet">Draft</span></div>
+        <h3>Building your first rule-based system</h3>
+        <p>From a vague idea to written entry, exit and sizing rules you can test, in five steps.</p>
+        <div class="cal-foot"><span>Target: <b>rule based trading system</b></span><span>→ Academy</span></div>
+      </div>
+      <div class="card next rv d2">
+        <span class="tag">Your idea here</span>
+        <h3>What should we write about?</h3>
+        <p>Topics come from questions asked in the podcast, masterclass Q&amp;A and WhatsApp.</p>
+        <a class="btn-ghost btn-sm" href="contact.html">Suggest a topic</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section alt" id="newsletter">
+  <div class="card news rv">
+    <div>
+      <span class="tag gold" style="margin-bottom:1rem">Newsletter</span>
+      <h2>New articles, <em>once a fortnight.</em></h2>
+      <p class="sec-sub">Each new piece in your inbox, plus the occasional free tool or session invite. No tips, no noise, unsubscribe any time.</p>
+    </div>
+    <div>
+      <form class="form" id="nl-form" novalidate>
+        <div class="field"><label for="nl-name">Name</label><input id="nl-name" type="text" autocomplete="name" placeholder="Your name"></div>
+        <div class="field"><label for="nl-email">Email</label><input id="nl-email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <button class="btn-main" type="submit" id="nl-btn">Subscribe</button>
+        <div class="form-msg" id="nl-msg" role="status"></div>
+      </form>
+      <div class="news-ok" id="nl-ok"><b>You're subscribed ✓</b><p class="sec-sub">Next up: the expiry-day article on 3 November. Meanwhile, try the <a href="tools.html" style="color:var(--gold)">free calculators</a>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Vishal Mehta CMT. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="courses.html">Courses</a>
+      <a href="tools.html">Free tools</a>
+      <a href="insights.html">Insights</a>
+      <a href="masterclass.html">Masterclass</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.youtube.com/@vishalmehta_cmt" target="_blank" rel="noopener">▶</a>
+      <a href="https://x.com/vishalmehta29" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://www.linkedin.com/in/vishalmehta-cmt/" target="_blank" rel="noopener">in</a>
+      <a href="https://www.instagram.com/vishal_mehta_cmt/" target="_blank" rel="noopener">◉</a>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-strip">Demo build for review · <a href="meeting.html">Back to the meeting demo hub</a></div>
+
+<script src="firebase-config.js"></script>
+<script src="crm-data.js"></script>
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
+},100);
+</script>
+<script>
+(function () {
+  var form = document.getElementById('nl-form'), msg = document.getElementById('nl-msg');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var name = document.getElementById('nl-name').value.trim();
+    var email = document.getElementById('nl-email').value.trim();
+    if (name.length < 2) { msg.className = 'form-msg err'; msg.textContent = 'Please enter your name.'; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.className = 'form-msg err'; msg.textContent = 'Please enter a valid email address.'; return; }
+    document.getElementById('nl-btn').disabled = true; msg.className = 'form-msg'; msg.textContent = 'Subscribing…';
+    var lead = { name: name, email: email, type: 'Newsletter', message: 'Subscribed to the Insights newsletter.', source: 'Insights newsletter' };
+    var save = window.CRM ? CRM.ready.then(function () { return CRM.add(lead); }) : Promise.resolve();
+    Promise.race([save, new Promise(function (r) { setTimeout(r, 6000); })])
+      .catch(function (e) { console.warn('Lead not saved:', e); })
+      .then(function () { form.style.display = 'none'; document.getElementById('nl-ok').classList.add('show'); });
+  });
+})();
+</script>
+</body>
+</html>

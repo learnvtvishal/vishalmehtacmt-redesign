@@ -79,7 +79,7 @@ a{color:inherit}
 .lead-table tr:last-child td{border-bottom:none}
 .lead-table tbody tr{cursor:pointer;transition:background .15s}
 .lead-table tbody tr:hover{background:rgba(255,255,255,.025)}
-.l-name{font-weight:600;color:#fff}
+.l-name{font-weight:600;color:#fff;white-space:nowrap}
 .l-contact{font-size:.76rem;color:var(--text2);font-family:var(--mono)}
 .l-msg{color:var(--text2);font-size:.8rem;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .l-date{font-family:var(--mono);font-size:.72rem;color:var(--text3);white-space:nowrap}
@@ -139,6 +139,72 @@ a{color:inherit}
   .stats{grid-template-columns:1fr 1fr}
   .lead-table .col-contact{display:none}
 }
+/* ---------- CRM upgrade: channels, owners, response timer, automations ---------- */
+.st-Interested{color:var(--violet);border-color:rgba(167,139,250,.4)}.st-Interested .dot{background:var(--violet)}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);margin-right:6px;vertical-align:1px;animation:blink 2s infinite}
+.live-dot.off{background:var(--red);box-shadow:0 0 8px var(--red)}
+@keyframes blink{50%{opacity:.35}}
+.panels{display:grid;grid-template-columns:1.3fr 1fr;gap:1rem;margin-bottom:1.6rem}
+.panel{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.3rem}
+.panel h4{font-family:var(--mono);font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;display:flex;justify-content:space-between;gap:.5rem}
+.bar-row{display:grid;grid-template-columns:96px 1fr 30px;gap:.6rem;align-items:center;margin:.42rem 0;font-size:.78rem;color:var(--text2);cursor:pointer}
+.bar-row:hover{color:#fff}
+.bar-track{height:9px;border-radius:5px;background:rgba(255,255,255,.05);overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;transition:width .5s}
+.bar-n{font-family:var(--mono);font-size:.7rem;text-align:right;color:#fff}
+.mini-empty{font-size:.78rem;color:var(--text3)}
+.todo-row{display:flex;justify-content:space-between;gap:.6rem;align-items:center;padding:.5rem 0;border-bottom:1px dashed var(--border);font-size:.8rem;cursor:pointer}
+.todo-row:last-child{border-bottom:none}
+.todo-row b{color:#fff;font-weight:600}
+.sel{background:var(--bg2);border:1px solid var(--border);border-radius:100px;color:var(--text2);font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.5rem .8rem;outline:none;cursor:pointer}
+.sel option{background:var(--bg3);text-transform:none}
+.chan-tag{display:inline-block;font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .45rem;border-radius:4px;margin-top:4px;border:1px solid}
+.camp{display:block;font-family:var(--mono);font-size:.56rem;color:var(--text3);margin-top:3px}
+.touch-badge{display:inline-block;margin-left:6px;font-family:var(--mono);font-size:.55rem;font-weight:700;padding:.12rem .4rem;border-radius:4px;background:rgba(232,184,75,.12);color:var(--gold);border:1px solid rgba(232,184,75,.35);vertical-align:2px}
+.timer{display:inline-block;white-space:nowrap;margin-top:5px;font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.04em;padding:.16rem .45rem;border-radius:4px}
+.timer.ok{color:var(--green);background:rgba(52,211,153,.1)}
+.timer.warn{color:var(--amber);background:rgba(251,191,36,.12)}
+.timer.late{color:var(--red);background:rgba(248,113,113,.12)}
+.owner{font-size:.76rem;color:var(--text2);white-space:nowrap}
+.owner.none{color:var(--text3);font-style:italic}
+.fu{display:block;font-family:var(--mono);font-size:.56rem;margin-top:3px;color:var(--text3)}
+.fu.due{color:var(--red)}
+.dr-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.act{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:600;padding:.55rem .9rem;border-radius:8px;text-decoration:none;border:1px solid var(--border2);color:var(--text);background:var(--bg3);cursor:pointer}
+.act.wa{background:#25d366;border-color:#25d366;color:#03230f}
+.act:hover{filter:brightness(1.1)}
+.dr-grid2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.dr-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.6rem .7rem;color:#fff;font:inherit;font-size:.84rem;outline:none;color-scheme:dark}
+.dr-input:focus{border-color:var(--blue)}
+.tl{list-style:none;border-left:1.5px solid var(--border2);margin-left:6px;padding-left:1rem}
+.tl li{position:relative;margin-bottom:.75rem;font-size:.8rem;color:var(--text2);line-height:1.5}
+.tl li::before{content:'';position:absolute;left:calc(-1rem - 5px);top:.35em;width:8px;height:8px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--text3)}
+.tl li.done::before{background:var(--green);border-color:var(--green)}
+.tl li.next::before{background:var(--gold);border-color:var(--gold)}
+.tl b{color:#fff;font-weight:600}
+.tl .when{display:block;font-family:var(--mono);font-size:.58rem;color:var(--text3);letter-spacing:.04em}
+.tl .ch{font-family:var(--mono);font-size:.55rem;font-weight:700;padding:.08rem .35rem;border-radius:3px;margin-right:4px}
+.tl .ch.w{background:rgba(37,211,102,.14);color:#25d366}.tl .ch.e{background:var(--blue-dim);color:var(--blue-l)}
+.auto-note{font-size:.68rem;color:var(--text3);margin:-.2rem 0 .6rem}
+/* modal + toast */
+.mbg{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1rem}
+.mbg.open{display:flex}
+.mdl{width:100%;max-width:480px;max-height:92vh;overflow:auto;background:var(--bg2);border:1px solid var(--border2);border-radius:18px;padding:1.6rem;box-shadow:0 40px 100px rgba(0,0,0,.6)}
+.mdl h3{font-family:'EB Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:.2rem}
+.mdl p.sub{font-size:.8rem;color:var(--text2);margin-bottom:1.1rem}
+.mdl .x{float:right;background:none;border:none;color:var(--text2);font-size:1.4rem;cursor:pointer;line-height:1}
+.mdl label{display:block;font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin:.8rem 0 .35rem}
+.mdl .row2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.url-out{margin-top:1rem;background:var(--bg3);border:1px dashed rgba(232,184,75,.4);border-radius:10px;padding:.8rem;font-family:var(--mono);font-size:.7rem;color:var(--gold-l);word-break:break-all}
+.mdl-actions{display:flex;gap:.6rem;margin-top:1.1rem;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:1.6rem;transform:translateX(-50%) translateY(20px);z-index:400;background:var(--bg4);border:1px solid var(--border2);color:#fff;padding:.7rem 1.2rem;border-radius:100px;font-size:.82rem;opacity:0;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.new-flash{animation:flash 2.2s ease}
+@keyframes flash{0%,40%{background:rgba(232,184,75,.14)}100%{background:transparent}}
+@media(max-width:1280px){.lead-table .col-msg{display:none}}
+.table-card{overflow-x:auto}
+@media(max-width:900px){.panels{grid-template-columns:1fr}.lead-table .col-owner{display:none}}
+@media(max-width:560px){.tb-right{flex-wrap:wrap;justify-content:flex-end}.topbar{flex-wrap:wrap}.dr-grid2,.mdl .row2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -150,10 +216,10 @@ a{color:inherit}
     <h1>Lead CRM</h1>
     <p>Vishal Mehta CMT · Admin access</p>
     <input type="email" id="email" placeholder="Admin email" autocomplete="username" style="display:none;margin-bottom:.7rem">
-    <input type="password" id="pw" placeholder="Enter passcode" autocomplete="current-password">
+    <input type="password" id="pw" placeholder="Enter team code" autocomplete="current-password">
     <button id="loginBtn">Unlock dashboard →</button>
     <div class="gate-err" id="gateErr"></div>
-    <div class="gate-hint" id="gateHint">Demo passcode: <b>vishal2026</b></div>
+    <div class="gate-hint" id="gateHint">Shared cloud CRM · same team code as the meeting roadmap</div>
   </div>
 </div>
 
@@ -168,26 +234,40 @@ a{color:inherit}
       </div>
     </div>
     <div class="tb-right">
+      <button class="tb-btn gold" id="addBtn">+ Add lead</button>
+      <button class="tb-btn" id="campBtn">📣 Campaign links</button>
       <button class="tb-btn" id="seedBtn">+ Demo data</button>
-      <button class="tb-btn" id="exportBtn">⤓ Export CSV</button>
-      <a class="tb-btn" href="index.html">↗ Site</a>
-      <button class="tb-btn gold" id="logoutBtn">Lock</button>
+      <button class="tb-btn" id="exportBtn">⤓ CSV</button>
+      <a class="tb-btn" href="meeting.html">↗ Demo hub</a>
+      <button class="tb-btn" id="logoutBtn">Lock</button>
     </div>
   </div>
 
   <div class="wrap">
-    <div class="note-banner">
-      <strong>Heads up:</strong> This CRM stores leads in <strong>this browser only</strong> (localStorage). To collect leads from every visitor across all devices, connect a backend (Formspree, Google Sheets, Airtable, or a database) — ask me and I'll wire it up.
-    </div>
+    <div class="note-banner" id="modeBanner"></div>
 
     <div class="stats" id="stats"></div>
 
+    <div class="panels">
+      <div class="panel">
+        <h4><span>Leads by channel</span><span>tap a bar to filter</span></h4>
+        <div id="chanBars"></div>
+      </div>
+      <div class="panel">
+        <h4><span>Call list · next actions</span><span id="todoCount"></span></h4>
+        <div id="todo"></div>
+      </div>
+    </div>
+
     <div class="toolbar">
-      <div class="search"><input type="text" id="searchInput" placeholder="Search name, email, message…"></div>
+      <div class="search"><input type="text" id="searchInput" placeholder="Search name, phone, email, message…"></div>
+      <select class="sel" id="chanFilter"><option value="all">All channels</option></select>
+      <select class="sel" id="srcFilter"><option value="all">All sources</option></select>
       <div class="filters" id="statusFilters">
         <button class="fchip active" data-status="all">All</button>
         <button class="fchip" data-status="New">New</button>
         <button class="fchip" data-status="Contacted">Contacted</button>
+        <button class="fchip" data-status="Interested">Interested</button>
         <button class="fchip" data-status="Converted">Converted</button>
         <button class="fchip" data-status="Closed">Closed</button>
       </div>
@@ -200,9 +280,10 @@ a{color:inherit}
             <th>Lead</th>
             <th class="col-contact">Contact</th>
             <th>Enquiry</th>
-            <th class="col-src">Source</th>
+            <th class="col-src">Source · channel</th>
             <th class="col-msg">Message</th>
             <th>Received</th>
+            <th class="col-owner">Owner</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -211,7 +292,7 @@ a{color:inherit}
       <div class="empty" id="emptyState" style="display:none">
         <div class="empty-ico">📭</div>
         <h3>No leads yet</h3>
-        <p>Submissions from the contact form &amp; Ask Vishal chat will appear here. Click "+ Demo data" to preview.</p>
+        <p>Enquiries from the contact form, masterclass page, student portal, tools and newsletter land here live. Click "+ Demo data" to preview.</p>
       </div>
     </div>
   </div>
@@ -226,21 +307,31 @@ a{color:inherit}
     <div class="dr-type" id="drType">—</div>
   </div>
   <div class="dr-body">
-    <div class="dr-field"><div class="dr-flabel">Email</div><div class="dr-fval" id="drEmail">—</div></div>
-    <div class="dr-field"><div class="dr-flabel">Phone</div><div class="dr-fval" id="drPhone">—</div></div>
-    <div class="dr-field"><div class="dr-flabel">Source · Received</div><div class="dr-fval" id="drMeta">—</div></div>
+    <div class="dr-field"><div class="dr-actions" id="drActions"></div></div>
+    <div class="dr-field"><div class="dr-flabel">Email · Phone</div><div class="dr-fval" id="drContact">—</div></div>
+    <div class="dr-field"><div class="dr-flabel">Source · channel · received</div><div class="dr-fval" id="drMeta">—</div></div>
     <div class="dr-field"><div class="dr-flabel">Message</div><div class="dr-msg" id="drMsg">—</div></div>
     <div class="dr-field"><div class="dr-flabel">Status</div>
       <div class="dr-status-row" id="drStatusRow">
         <button class="dr-st-opt" data-st="New">New</button>
         <button class="dr-st-opt" data-st="Contacted">Contacted</button>
+        <button class="dr-st-opt" data-st="Interested">Interested</button>
         <button class="dr-st-opt" data-st="Converted">Converted</button>
         <button class="dr-st-opt" data-st="Closed">Closed</button>
       </div>
     </div>
+    <div class="dr-field dr-grid2">
+      <div><div class="dr-flabel">Lead owner</div>
+        <select class="dr-input" id="drOwner"><option value="">Unassigned</option><option>Vishal</option><option>Gayatri</option><option>Sales team</option></select></div>
+      <div><div class="dr-flabel">Next follow-up</div><input type="date" class="dr-input" id="drFollow"></div>
+    </div>
     <div class="dr-field"><div class="dr-flabel">Private notes</div>
       <textarea class="dr-notes" id="drNotes" placeholder="Add a note about this lead…"></textarea>
     </div>
+    <div class="dr-field"><div class="dr-flabel">Every touchpoint (duplicates merged)</div><ul class="tl" id="drTouches"></ul></div>
+    <div class="dr-field"><div class="dr-flabel">Automatic follow-up sequence</div>
+      <div class="auto-note">Preview of what the system sends by itself on WhatsApp &amp; email for this lead's source.</div>
+      <ul class="tl" id="drSeq"></ul></div>
   </div>
   <div class="dr-foot">
     <button class="dr-save" id="drSave">Save changes</button>
@@ -248,162 +339,311 @@ a{color:inherit}
   </div>
 </div>
 
-<!-- CRM backend: Firebase Firestore if configured (firebase-config.js), else local demo -->
+<!-- ADD LEAD -->
+<div class="mbg" id="addModal"><div class="mdl">
+  <button class="x" data-close>×</button>
+  <h3>Add a lead</h3>
+  <p class="sub">For enquiries that come in on WhatsApp, a phone call, an event or a referral. Same CRM, same duplicate check.</p>
+  <label>Name</label><input class="dr-input" id="alName" placeholder="Full name">
+  <div class="row2">
+    <div><label>Phone</label><input class="dr-input" id="alPhone" placeholder="+91 98xxx xxxxx"></div>
+    <div><label>Email</label><input class="dr-input" id="alEmail" placeholder="optional"></div>
+  </div>
+  <div class="row2">
+    <div><label>Came from</label><select class="dr-input" id="alSource"><option>WhatsApp</option><option>Phone call</option><option>Event / expo</option><option>Referral</option><option>Walk-in</option></select></div>
+    <div><label>Interested in</label><select class="dr-input" id="alType"><option>Free Masterclass</option><option>Saturday Workshop</option><option>Join Disciplined Traders Academy</option><option>Algo Trading</option><option>CMT Guidance</option><option>Trading Consultation</option><option>Something else</option></select></div>
+  </div>
+  <label>Note</label><textarea class="dr-input" id="alMsg" rows="3" placeholder="What did they ask?"></textarea>
+  <div class="mdl-actions"><button class="tb-btn gold" id="alSave">Save lead</button></div>
+</div></div>
+
+<!-- CAMPAIGN LINKS -->
+<div class="mbg" id="campModal"><div class="mdl">
+  <button class="x" data-close>×</button>
+  <h3>Campaign link builder</h3>
+  <p class="sub">Every ad or post gets its own tracked link. Anyone who signs up through it shows up here tagged with the channel and campaign.</p>
+  <label>Send people to</label>
+  <select class="dr-input" id="cbPage"><option value="masterclass.html">Free masterclass (funnel)</option><option value="courses.html">Courses page</option><option value="tools.html">Free tools page</option><option value="contact.html">Contact page</option><option value="index.html">Home page</option></select>
+  <div class="row2">
+    <div><label>Channel</label><select class="dr-input" id="cbChan"><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="linkedin">LinkedIn</option><option value="google">Google</option><option value="youtube">YouTube</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option></select></div>
+    <div><label>Type</label><select class="dr-input" id="cbMed"><option value="paid">Paid ad</option><option value="organic">Organic post</option><option value="broadcast">Broadcast</option></select></div>
+  </div>
+  <label>Campaign name</label><input class="dr-input" id="cbCamp" value="nov-masterclass">
+  <div class="url-out" id="cbOut"></div>
+  <div class="mdl-actions"><button class="tb-btn gold" id="cbCopy">Copy link</button><a class="tb-btn" id="cbOpen" target="_blank" rel="noopener">Open it ↗</a></div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<!-- CRM backend: cloud (Vercel API) by default; Firebase if configured -->
 <script src="firebase-config.js"></script>
 <script src="crm-data.js"></script>
 <script>
 (function(){
-  var gate=document.getElementById('gate'),app=document.getElementById('app');
+  var $=function(id){return document.getElementById(id);};
+  var gate=$('gate'),app=$('app');
   var typeColors={
-    'Algo Trading':'#60a5fa','CMT Guidance':'#e8b84b','Join Disciplined Traders Academy':'#34d399',
-    'Invite Vishal as a Speaker':'#a78bfa','Trading Queries':'#fbbf24','Trading Consultation':'#fb7185','Something else':'#8a98b3'
+    'Algo Trading':'#60a5fa','CMT Guidance':'#e8b84b','Join Disciplined Traders Academy':'#34d399','Free Masterclass':'#f5d176',
+    'Invite Vishal as a Speaker':'#a78bfa','Trading Queries':'#fbbf24','Trading Consultation':'#fb7185','Course signup':'#38bdf8','Newsletter':'#94a3b8','Something else':'#8a98b3'
   };
-  var state={filter:'all',search:'',current:null};
-  var leadsCache=[], unsub=null;
+  var chanColors={Instagram:'#e1306c',Facebook:'#4f7cff',LinkedIn:'#0a9bd6',Google:'#f5b400',YouTube:'#ff4d4d',WhatsApp:'#25d366',Email:'#60a5fa','X / Twitter':'#cbd5e1',Website:'#a78bfa',Direct:'#8a98b3',Offline:'#e8b84b','QR code':'#f5d176'};
+  var state={filter:'all',chan:'all',src:'all',search:'',current:null};
+  var leadsCache=[],unsub=null,seen=null,lastSync=null;
+  var CALL_WITHIN=15; // minutes: response-time target
+
+  function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('show');},2600);}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function fmtDate(iso){var d=new Date(iso);if(isNaN(d))return iso||'';return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})+' · '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
+  function ago(ms){var m=Math.floor(ms/60000);if(m<1)return 'just now';if(m<60)return m+'m';var h=Math.floor(m/60);if(h<24)return h+'h';return Math.floor(h/24)+'d';}
+  function todayStr(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  function lastAt(l){return new Date(l.lastAt||l.date).getTime();}
+  function chan(l){return l.channel||'Direct';}
+  function first(n){return (n||'').trim().split(/\s+/)[0]||'there';}
+  function waNum(p){var d=(p||'').replace(/\D/g,'');if(d.length===10)d='91'+d;return d;}
 
   /* ---- auth ---- */
   function unlock(){gate.classList.add('hidden');app.classList.add('show');startData();}
-  document.getElementById('loginBtn').onclick=tryLogin;
-
-  /* ---- once backend is ready: mode-aware UI + watch auth state ---- */
+  $('loginBtn').onclick=tryLogin;
   CRM.ready.then(function(){
     if(CRM.mode==='firebase'){
-      document.getElementById('email').style.display='block';
-      document.getElementById('pw').placeholder='Password';
-      var gh=document.getElementById('gateHint'); if(gh) gh.innerHTML='Connected to Firebase · sign in with your admin email';
-      if(window.ADMIN_EMAIL) document.getElementById('email').value=window.ADMIN_EMAIL;
-      var sb=document.getElementById('seedBtn'); if(sb) sb.style.display='none';
-    }
-    CRM.onAuth(function(ok){ if(ok) unlock(); });
+      $('email').style.display='block';$('pw').placeholder='Password';
+      $('gateHint').innerHTML='Connected to Firebase · sign in with your admin email';
+      if(window.ADMIN_EMAIL)$('email').value=window.ADMIN_EMAIL;
+    } else if(CRM.mode==='local'){ $('gateHint').innerHTML='Local demo mode · passcode <b>vishal2026</b>'; $('pw').placeholder='Enter passcode'; }
+    CRM.onAuth(function(ok){if(ok)unlock();});
   });
-  document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
-  document.getElementById('email').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
+  $('pw').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
+  $('email').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
   function tryLogin(){
-    var email=document.getElementById('email').value.trim();
-    var pass=document.getElementById('pw').value;
-    document.getElementById('gateErr').textContent='';
-    CRM.login(email,pass).then(function(){ if(CRM.mode!=='firebase') unlock(); })
-      .catch(function(err){ document.getElementById('gateErr').textContent=(CRM.mode==='firebase'?('Login failed: '+(err.message||'try again')):'Incorrect passcode. Try again.'); });
+    $('gateErr').textContent='';$('loginBtn').textContent='Checking…';
+    CRM.login($('email').value.trim(),$('pw').value).then(function(){$('loginBtn').textContent='Unlock dashboard →';if(CRM.mode!=='firebase')unlock();})
+      .catch(function(err){$('loginBtn').textContent='Unlock dashboard →';$('gateErr').textContent=CRM.mode==='firebase'?('Login failed: '+(err.message||'try again')):(err.code===401||/passcode/i.test(err.message)?'Incorrect code. Try again.':'Could not reach the CRM. Check the internet and retry.');});
   }
-  document.getElementById('logoutBtn').onclick=function(){ if(unsub){try{unsub();}catch(e){}} CRM.logout().then(function(){location.reload();}); };
+  $('logoutBtn').onclick=function(){if(unsub){try{unsub();}catch(e){}}CRM.logout().then(function(){location.reload();});};
 
   /* ---- data ---- */
-  function startData(){ if(unsub){try{unsub();}catch(e){}} unsub=CRM.subscribe(function(leads){ leadsCache=leads||[]; render(); }); }
-  function fmtDate(iso){var d=new Date(iso);if(isNaN(d))return iso;return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})+' · '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
-  function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function banner(info){
+    var b=$('modeBanner');
+    if(CRM.mode==='cloud'){
+      lastSync=info&&info.live?new Date():lastSync;
+      b.innerHTML=(info&&info.live===false?'<span class="live-dot off"></span><strong>Offline</strong> · retrying… ':'<span class="live-dot"></span><strong>Live cloud CRM</strong> · ')+
+        'every form on the site (contact, masterclass, student portal, tools, newsletter) lands here from any device. Same phone or email = one lead, extra enquiries are merged as touchpoints.'+
+        (lastSync?' <span style="opacity:.7">Synced '+lastSync.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+'</span>':'');
+    } else if(CRM.mode==='firebase'){ b.innerHTML='<span class="live-dot"></span><strong>Firebase</strong> · leads sync across devices.'; }
+    else b.innerHTML='<strong>Local demo:</strong> leads are stored in this browser only.';
+  }
+  function startData(){
+    if(unsub){try{unsub();}catch(e){}}
+    banner(null);
+    unsub=CRM.subscribe(function(leads,info){
+      banner(info||{live:true});
+      if(!leads)return;
+      var fresh=[];
+      if(seen){leads.forEach(function(l){var k=l.id+'|'+(l.lastAt||l.date);if(!seen[k])fresh.push(l);});}
+      seen={};leads.forEach(function(l){seen[l.id+'|'+(l.lastAt||l.date)]=1;});
+      leadsCache=leads;render(fresh.map(function(l){return l.id;}));
+      if(fresh.length)toast('🔔 '+(fresh.length===1?(fresh[0].name||'New lead')+' · '+(fresh[0].source||''):fresh.length+' new enquiries'));
+    });
+  }
+  setInterval(function(){if(app.classList.contains('show'))render([]);},30000); // keep timers fresh
 
-  /* ---- stats ---- */
+  /* ---- stats + panels ---- */
+  function overdue(l){return (l.status||'New')==='New'&&(Date.now()-lastAt(l))>CALL_WITHIN*60000;}
+  function followDue(l){return l.followup&&l.followup<=todayStr()&&l.status!=='Converted'&&l.status!=='Closed';}
   function renderStats(leads){
     var now=Date.now(),wk=7*24*3600*1000;
-    var nNew=leads.filter(l=>l.status==='New').length;
-    var nWeek=leads.filter(l=>now-new Date(l.date).getTime()<wk).length;
-    var nConv=leads.filter(l=>l.status==='Converted').length;
-    var nChat=leads.filter(l=>l.source && l.source.indexOf('Ask Vishal')>-1).length;
+    var nNew=leads.filter(function(l){return (l.status||'New')==='New';}).length;
+    var nLate=leads.filter(overdue).length;
+    var nWeek=leads.filter(function(l){return now-lastAt(l)<wk;}).length;
+    var nConv=leads.filter(function(l){return l.status==='Converted';}).length;
+    var rate=leads.length?Math.round(nConv*100/leads.length):0;
     var cards=[
-      {l:'Total leads',n:leads.length,f:'all time',a:'rgba(37,99,235,.16)'},
-      {l:'New / unactioned',n:nNew,f:'need follow-up',a:'rgba(96,165,250,.16)'},
-      {l:'This week',n:nWeek,f:'last 7 days',a:'rgba(232,184,75,.16)'},
-      {l:'Converted',n:nConv,f:'closed-won',a:'rgba(52,211,153,.16)'},
-      {l:'From chat',n:nChat,f:'Ask Vishal',a:'rgba(167,139,250,.16)'}
+      {l:'Total leads',n:leads.length,f:'one row per person',a:'rgba(37,99,235,.16)'},
+      {l:'New · not called',n:nNew,f:'target: call within '+CALL_WITHIN+' min',a:'rgba(96,165,250,.16)'},
+      {l:'Overdue calls',n:nLate,f:nLate?'past the '+CALL_WITHIN+'-min target':'all on time ✓',a:nLate?'rgba(248,113,113,.2)':'rgba(52,211,153,.14)'},
+      {l:'Active this week',n:nWeek,f:'new or returning',a:'rgba(232,184,75,.16)'},
+      {l:'Converted',n:nConv,f:rate+'% of all leads',a:'rgba(52,211,153,.16)'}
     ];
-    document.getElementById('stats').innerHTML=cards.map(function(c){
-      return '<div class="stat" style="--accent:'+c.a+'"><div class="stat-label">'+c.l+'</div><div class="stat-num">'+c.n+'</div><div class="stat-foot">'+c.f+'</div></div>';
-    }).join('');
+    $('stats').innerHTML=cards.map(function(c){return '<div class="stat" style="--accent:'+c.a+'"><div class="stat-label">'+c.l+'</div><div class="stat-num">'+c.n+'</div><div class="stat-foot">'+c.f+'</div></div>';}).join('');
+  }
+  function renderPanels(leads){
+    var counts={};leads.forEach(function(l){counts[chan(l)]=(counts[chan(l)]||0)+1;});
+    var keys=Object.keys(counts).sort(function(a,b){return counts[b]-counts[a];});
+    var max=keys.length?counts[keys[0]]:1;
+    $('chanBars').innerHTML=keys.length?keys.map(function(k){
+      return '<div class="bar-row" data-chan="'+esc(k)+'"><span>'+esc(k)+'</span><div class="bar-track"><div class="bar-fill" style="width:'+Math.max(6,counts[k]*100/max)+'%;background:'+(chanColors[k]||'#8a98b3')+'"></div></div><span class="bar-n">'+counts[k]+'</span></div>';
+    }).join(''):'<div class="mini-empty">No leads yet.</div>';
+    Array.prototype.forEach.call(document.querySelectorAll('#chanBars .bar-row'),function(r){r.onclick=function(){$('chanFilter').value=r.getAttribute('data-chan');state.chan=r.getAttribute('data-chan');render([]);};});
+    var todo=leads.filter(function(l){return overdue(l)||followDue(l)||(l.status||'New')==='New';})
+      .sort(function(a,b){return lastAt(a)-lastAt(b);}).slice(0,6);
+    $('todoCount').textContent=todo.length?todo.length+' to do':'';
+    $('todo').innerHTML=todo.length?todo.map(function(l){
+      var why=overdue(l)?'<span class="timer late">Overdue · '+ago(Date.now()-lastAt(l))+'</span>':followDue(l)?'<span class="timer warn">Follow-up due</span>':'<span class="timer ok">Call in '+Math.max(0,CALL_WITHIN-Math.floor((Date.now()-lastAt(l))/60000))+'m</span>';
+      return '<div class="todo-row" data-id="'+l.id+'"><span><b>'+esc(l.name||'—')+'</b> · '+esc(l.type||l.source||'')+'</span>'+why+'</div>';
+    }).join(''):'<div class="mini-empty">Nothing pending. 🎉</div>';
+    Array.prototype.forEach.call(document.querySelectorAll('#todo .todo-row'),function(r){r.onclick=function(){openDrawer(r.getAttribute('data-id'));};});
+  }
+  function fillSelect(id,values,label){
+    var s=$(id),cur=s.value,key=values.join('|');
+    if(s.dataset.v===key)return;s.dataset.v=key;
+    s.innerHTML='<option value="all">'+label+'</option>'+values.map(function(v){return '<option>'+esc(v)+'</option>';}).join('');
+    s.value=values.indexOf(cur)>-1?cur:'all';
   }
 
   /* ---- table ---- */
-  function render(){
+  function render(freshIds){
     var leads=leadsCache;
-    renderStats(leads);
+    renderStats(leads);renderPanels(leads);
+    fillSelect('chanFilter',Array.from(new Set(leads.map(chan))).sort(),'All channels');
+    fillSelect('srcFilter',Array.from(new Set(leads.map(function(l){return l.source||'—';}))).sort(),'All sources');
+    state.chan=$('chanFilter').value;state.src=$('srcFilter').value;
     var f=leads.filter(function(l){
-      if(state.filter!=='all' && l.status!==state.filter) return false;
-      if(state.search){var q=state.search.toLowerCase();return (l.name+' '+l.email+' '+l.message+' '+l.type).toLowerCase().indexOf(q)>-1;}
+      if(state.filter!=='all'&&(l.status||'New')!==state.filter)return false;
+      if(state.chan!=='all'&&chan(l)!==state.chan)return false;
+      if(state.src!=='all'&&(l.source||'—')!==state.src)return false;
+      if(state.search){var q=state.search.toLowerCase();return (l.name+' '+l.email+' '+l.phone+' '+l.message+' '+l.type+' '+l.utm_campaign).toLowerCase().indexOf(q)>-1;}
       return true;
     });
-    var tb=document.getElementById('leadRows'),empty=document.getElementById('emptyState');
+    var tb=$('leadRows'),empty=$('emptyState');
     if(!f.length){tb.innerHTML='';empty.style.display='block';return;}
     empty.style.display='none';
     tb.innerHTML=f.map(function(l){
-      var col=typeColors[l.type]||'#8a98b3';
-      return '<tr data-id="'+l.id+'">'+
-        '<td><div class="l-name">'+esc(l.name||'—')+'</div></td>'+
-        '<td class="col-contact"><div class="l-contact">'+esc(l.email||'')+'</div>'+(l.phone?'<div class="l-contact">'+esc(l.phone)+'</div>':'')+'</td>'+
+      var col=typeColors[l.type]||'#8a98b3',cc=chanColors[chan(l)]||'#8a98b3';
+      var n=(l.touches||[]).length,st=l.status||'New';
+      var mins=Math.floor((Date.now()-lastAt(l))/60000);
+      var timer=st==='New'?(mins<CALL_WITHIN?'<span class="timer ok">⏱ Call in '+(CALL_WITHIN-mins)+'m</span>':mins<60?'<span class="timer warn">⏱ Call now · '+mins+'m ago</span>':'<span class="timer late">⏱ Overdue · '+ago(Date.now()-lastAt(l))+'</span>'):'';
+      var fu=l.followup?'<span class="fu'+(followDue(l)?' due':'')+'">📅 '+esc(l.followup)+'</span>':'';
+      return '<tr data-id="'+l.id+'"'+(freshIds.indexOf(l.id)>-1?' class="new-flash"':'')+'>'+
+        '<td><div class="l-name">'+esc(l.name||'—')+(n>1?'<span class="touch-badge" title="Enquired '+n+' times">×'+n+'</span>':'')+'</div>'+timer+'</td>'+
+        '<td class="col-contact">'+(l.phone?'<div class="l-contact">'+esc(l.phone)+'</div>':'')+'<div class="l-contact">'+esc(l.email||'')+'</div></td>'+
         '<td><span class="type-tag" style="color:'+col+';border-color:'+col+'55">'+esc(l.type||'—')+'</span></td>'+
-        '<td class="col-src"><span class="src-tag">'+esc(l.source||'—')+'</span></td>'+
+        '<td class="col-src"><span class="src-tag">'+esc(l.source||'—')+'</span><br><span class="chan-tag" style="color:'+cc+';border-color:'+cc+'66">'+esc(chan(l))+'</span>'+(l.utm_campaign?'<span class="camp">#'+esc(l.utm_campaign)+'</span>':'')+'</td>'+
         '<td class="col-msg"><div class="l-msg">'+esc(l.message||'')+'</div></td>'+
-        '<td><span class="l-date">'+fmtDate(l.date)+'</span></td>'+
-        '<td><span class="status-pill st-'+(l.status||'New')+'"><span class="dot"></span>'+(l.status||'New')+'</span></td>'+
+        '<td><span class="l-date">'+fmtDate(l.lastAt||l.date)+'</span>'+fu+'</td>'+
+        '<td class="col-owner"><span class="owner'+(l.owner?'':' none')+'">'+esc(l.owner||'Unassigned')+'</span></td>'+
+        '<td><span class="status-pill st-'+st+'"><span class="dot"></span>'+st+'</span></td>'+
       '</tr>';
     }).join('');
-    Array.prototype.forEach.call(tb.querySelectorAll('tr'),function(tr){
-      tr.onclick=function(){openDrawer(tr.getAttribute('data-id'));};
-    });
+    Array.prototype.forEach.call(tb.querySelectorAll('tr'),function(tr){tr.onclick=function(){openDrawer(tr.getAttribute('data-id'));};});
   }
 
   /* ---- search + filters ---- */
-  document.getElementById('searchInput').addEventListener('input',function(){state.search=this.value;render();});
+  $('searchInput').addEventListener('input',function(){state.search=this.value;render([]);});
+  $('chanFilter').onchange=function(){state.chan=this.value;render([]);};
+  $('srcFilter').onchange=function(){state.src=this.value;render([]);};
   Array.prototype.forEach.call(document.querySelectorAll('#statusFilters .fchip'),function(b){
-    b.onclick=function(){
-      document.querySelectorAll('#statusFilters .fchip').forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');state.filter=b.getAttribute('data-status');render();
-    };
+    b.onclick=function(){document.querySelectorAll('#statusFilters .fchip').forEach(function(x){x.classList.remove('active');});b.classList.add('active');state.filter=b.getAttribute('data-status');render([]);};
   });
 
+  /* ---- automation preview (what would be sent automatically) ---- */
+  function sequence(l){
+    var t0=new Date(l.date).getTime(),H=3600000,D=24*H,s=(l.source||'').toLowerCase();
+    var steps;
+    if(s.indexOf('masterclass')>-1) steps=[
+      [0,'w','Registration confirmed + Zoom link'],[0,'e','Calendar invite (.ics) + what to prepare'],
+      [D,'w','"Tomorrow 11 AM" reminder'],[2*D,'w','"Starting in 1 hour" reminder'],[3*D,'e','Replay link + ₹999 workshop offer'],[5*D,'w','Last call: workshop seats closing']];
+    else if(s.indexOf('purchase')>-1||s.indexOf('portal')>-1) steps=[
+      [0,'w','Welcome to the student portal + login link'],[0,'e','Receipt / GST invoice (for purchases)'],
+      [D,'w','"Start lesson 1 today" nudge'],[4*D,'e','"You\'re halfway there" progress mail'],[14*D,'w','Certificate + next course suggestion']];
+    else if(s.indexOf('tools')>-1||s.indexOf('newsletter')>-1) steps=[
+      [0,'w','Worksheet / welcome delivered'],[2*D,'e','Article: position sizing explained'],[5*D,'w','Invite to the free masterclass'],[9*D,'e','Case study + workshop offer']];
+    else steps=[
+      [0,'w','"Thanks, we\'ll call you within 15 min" auto-reply'],[0,'e','Email auto-reply with brochure'],
+      [D,'w','Follow-up if not reached yet'],[3*D,'e','Student story + masterclass invite'],[7*D,'w','Final check-in']];
+    var now=Date.now(),marked=false;
+    return steps.map(function(x){
+      var at=t0+x[0],done=at<=now,cls=done?'done':(!marked?(marked=true,'next'):'');
+      return '<li class="'+cls+'"><span class="ch '+x[1]+'">'+(x[1]==='w'?'WHATSAPP':'EMAIL')+'</span><b>'+esc(x[2])+'</b><span class="when">'+(done?'✓ sent · ':'scheduled · ')+fmtDate(new Date(at).toISOString())+'</span></li>';
+    }).join('');
+  }
+
   /* ---- drawer ---- */
-  var drawer=document.getElementById('drawer'),drawerBg=document.getElementById('drawerBg');
+  var drawer=$('drawer'),drawerBg=$('drawerBg');
   function openDrawer(id){
-    var l=leadsCache.find(x=>x.id===id);if(!l)return;
+    var l=leadsCache.find(function(x){return x.id===id;});if(!l)return;
     state.current=id;
-    document.getElementById('drName').textContent=l.name||'—';
-    document.getElementById('drType').textContent=l.type||'—';
-    document.getElementById('drEmail').innerHTML=l.email?'<a href="mailto:'+esc(l.email)+'">'+esc(l.email)+'</a>':'—';
-    document.getElementById('drPhone').innerHTML=l.phone?'<a href="tel:'+esc(l.phone)+'">'+esc(l.phone)+'</a>':'—';
-    document.getElementById('drMeta').textContent=(l.source||'—')+'  ·  '+fmtDate(l.date);
-    document.getElementById('drMsg').textContent=l.message||'—';
-    document.getElementById('drNotes').value=l.notes||'';
-    document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(function(b){
-      b.classList.toggle('sel',b.getAttribute('data-st')===(l.status||'New'));
-    });
+    $('drName').textContent=l.name||'—';
+    $('drType').textContent=l.type||'—';
+    var msg='Hi '+first(l.name)+', this is the team at Vishal Mehta CMT. Thanks for your enquiry'+(l.type?' about "'+l.type+'"':'')+'. When is a good time for a quick call?';
+    var acts='';
+    if(l.phone)acts+='<a class="act wa" target="_blank" rel="noopener" href="https://wa.me/'+waNum(l.phone)+'?text='+encodeURIComponent(msg)+'">🟢 WhatsApp</a><a class="act" href="tel:'+esc(l.phone.replace(/\s/g,''))+'">📞 Call</a>';
+    if(l.email)acts+='<a class="act" href="mailto:'+esc(l.email)+'?subject='+encodeURIComponent('Your enquiry · Vishal Mehta CMT')+'&body='+encodeURIComponent(msg)+'">✉️ Email</a>';
+    $('drActions').innerHTML=acts||'<span class="mini-empty">No phone or email.</span>';
+    $('drContact').innerHTML=(l.email?esc(l.email):'—')+' · '+(l.phone?esc(l.phone):'—');
+    $('drMeta').innerHTML=esc(l.source||'—')+' · <b style="color:'+(chanColors[chan(l)]||'#fff')+'">'+esc(chan(l))+'</b>'+(l.utm_campaign?' · #'+esc(l.utm_campaign):'')+' · '+fmtDate(l.date);
+    $('drMsg').textContent=l.message||'—';
+    $('drNotes').value=l.notes||'';
+    $('drOwner').value=l.owner||'';
+    $('drFollow').value=l.followup||'';
+    document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(function(b){b.classList.toggle('sel',b.getAttribute('data-st')===(l.status||'New'));});
+    var t=(l.touches&&l.touches.length)?l.touches:[{at:new Date(l.date).getTime(),source:l.source,channel:chan(l),type:l.type,message:l.message}];
+    $('drTouches').innerHTML=t.slice().reverse().map(function(x,i){
+      return '<li class="'+(i===0?'next':'done')+'"><b>'+esc(x.source||'—')+'</b> via '+esc(x.channel||'—')+(x.campaign?' · #'+esc(x.campaign):'')+(x.type?' · '+esc(x.type):'')+'<span class="when">'+fmtDate(new Date(x.at).toISOString())+'</span></li>';
+    }).join('');
+    $('drSeq').innerHTML=sequence(l);
     drawer.classList.add('open');drawerBg.classList.add('open');
   }
   function closeDrawer(){drawer.classList.remove('open');drawerBg.classList.remove('open');state.current=null;}
-  document.getElementById('drClose').onclick=closeDrawer;
-  drawerBg.onclick=closeDrawer;
+  $('drClose').onclick=closeDrawer;drawerBg.onclick=closeDrawer;
   document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(function(b){
-    b.onclick=function(){document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');};
+    b.onclick=function(){document.querySelectorAll('#drStatusRow .dr-st-opt').forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');};
   });
-  document.getElementById('drSave').onclick=function(){
+  $('drSave').onclick=function(){
     if(!state.current)return;
     var sel=document.querySelector('#drStatusRow .dr-st-opt.sel');
-    var fields={status:sel?sel.getAttribute('data-st'):'New',notes:document.getElementById('drNotes').value};
-    CRM.update(state.current,fields);
-    var l=leadsCache.find(x=>x.id===state.current); if(l)Object.assign(l,fields);
-    closeDrawer();render();
+    var fields={status:sel?sel.getAttribute('data-st'):'New',notes:$('drNotes').value,owner:$('drOwner').value,followup:$('drFollow').value};
+    var l=leadsCache.find(function(x){return x.id===state.current;});if(l)Object.assign(l,fields);
+    CRM.update(state.current,fields).then(function(){toast('Saved ✓');},function(e){toast('Could not save: '+(e.message||'try again'));});
+    closeDrawer();render([]);
   };
-  document.getElementById('drDel').onclick=function(){
-    if(!state.current)return;
-    if(!confirm('Delete this lead permanently?'))return;
+  $('drDel').onclick=function(){
+    if(!state.current||!confirm('Delete this lead permanently?'))return;
     var id=state.current;
-    CRM.remove(id);
-    leadsCache=leadsCache.filter(x=>x.id!==id);
-    closeDrawer();render();
+    CRM.remove(id).then(function(){toast('Lead deleted');});
+    leadsCache=leadsCache.filter(function(x){return x.id!==id;});
+    closeDrawer();render([]);
   };
+
+  /* ---- modals ---- */
+  function openM(id){$(id).classList.add('open');}
+  Array.prototype.forEach.call(document.querySelectorAll('.mbg'),function(m){
+    m.addEventListener('click',function(e){if(e.target===m||e.target.hasAttribute('data-close'))m.classList.remove('open');});
+  });
+  $('addBtn').onclick=function(){openM('addModal');$('alName').focus();};
+  $('alSave').onclick=function(){
+    var name=$('alName').value.trim(),phone=$('alPhone').value.trim(),email=$('alEmail').value.trim();
+    if(!name||(!phone&&!email)){toast('Add a name and a phone or email');return;}
+    var src=$('alSource').value;
+    $('alSave').textContent='Saving…';
+    CRM.add({name:name,phone:phone,email:email,type:$('alType').value,message:$('alMsg').value.trim(),source:src,channel:src==='WhatsApp'?'WhatsApp':'Offline',page:'admin'})
+      .then(function(r){toast(r&&r.duplicate?'Already in the CRM · merged as a new touchpoint':'Lead added ✓');
+        ['alName','alPhone','alEmail','alMsg'].forEach(function(i){$(i).value='';});$('addModal').classList.remove('open');})
+      .finally(function(){$('alSave').textContent='Save lead';});
+  };
+  function buildUrl(){
+    var base=location.href.replace(/[^\/]*([?#].*)?$/,'');
+    var url=base+$('cbPage').value+'?utm_source='+encodeURIComponent($('cbChan').value)+'&utm_medium='+encodeURIComponent($('cbMed').value)+'&utm_campaign='+encodeURIComponent(($('cbCamp').value||'campaign').trim().toLowerCase().replace(/\s+/g,'-'));
+    $('cbOut').textContent=url;$('cbOpen').href=url;return url;
+  }
+  ['cbPage','cbChan','cbMed','cbCamp'].forEach(function(i){$(i).addEventListener('input',buildUrl);$(i).addEventListener('change',buildUrl);});
+  $('campBtn').onclick=function(){buildUrl();openM('campModal');};
+  $('cbCopy').onclick=function(){var u=buildUrl();(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){toast('Link copied ✓');},function(){prompt('Copy this link:',u);});};
 
   /* ---- export ---- */
-  document.getElementById('exportBtn').onclick=function(){
+  $('exportBtn').onclick=function(){
     var leads=leadsCache;if(!leads.length){alert('No leads to export.');return;}
-    var cols=['name','email','phone','type','source','status','date','message','notes'];
-    var csv=[cols.join(',')].concat(leads.map(function(l){
-      return cols.map(function(c){var v=(l[c]||'').toString().replace(/"/g,'""');return '"'+v+'"';}).join(',');
-    })).join('\n');
+    var cols=['name','phone','email','type','source','channel','utm_campaign','status','owner','followup','date','message','notes'];
+    var csv=[cols.join(',')].concat(leads.map(function(l){return cols.map(function(c){return '"'+(l[c]||'').toString().replace(/"/g,'""')+'"';}).join(',');})).join('\n');
     var blob=new Blob([csv],{type:'text/csv'}),url=URL.createObjectURL(blob),a=document.createElement('a');
-    a.href=url;a.download='vishal-leads-'+new Date().toISOString().slice(0,10)+'.csv';a.click();URL.revokeObjectURL(url);
+    a.href=url;a.download='vishal-leads-'+todayStr()+'.csv';a.click();URL.revokeObjectURL(url);
   };
 
-  /* ---- seed demo data (local mode only) ---- */
-  document.getElementById('seedBtn').onclick=function(){
-    if(CRM.mode==='firebase'){ alert('You are connected to Firebase (live). Demo data is for local mode only — submit the contact form to create real leads.'); return; }
-    CRM.seedDemo(); startData();
+  /* ---- demo data (goes through the normal capture path) ---- */
+  $('seedBtn').onclick=function(){
+    if(CRM.mode==='firebase'){alert('Connected to Firebase (live). Submit the site forms to create real leads.');return;}
+    if(!confirm('Add 5 sample leads (marked example.com) to the CRM?'))return;
+    $('seedBtn').textContent='Adding…';
+    CRM.seedDemo().then(function(){toast('Demo leads added');$('seedBtn').textContent='+ Demo data';});
   };
 })();
 </script>
