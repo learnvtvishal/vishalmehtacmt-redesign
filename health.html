@@ -188,7 +188,7 @@
         ['Lead CRM (cloud)',api.up?'<span class="pill ok">✓ Answering · '+api.ms+' ms</span>':'<span class="pill bad">✗ Not reachable</span>'],
         ['Sitemap for Google',sitemap?'<span class="pill ok">✓ sitemap.xml</span>':'<span class="pill bad">✗ Missing</span>'],
         ['Robots rules',robots?'<span class="pill ok">✓ robots.txt</span>':'<span class="pill bad">✗ Missing</span>'],
-        ['Hosting','<span class="pill ok">'+(https?'GitHub Pages (trial)':'Local preview')+'</span>']
+        ['Hosting','<span class="pill ok">'+(/github\.io$/.test(location.hostname)?'GitHub Pages (trial)':/vercel\.app$/.test(location.hostname)?'Vercel (trial backup)':https?location.hostname:'Local preview')+'</span>']
       ].map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td></tr>';}).join('');
       var hist=[];try{hist=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');}catch(e){}
       hist.push({t:Date.now(),ok:up===pages.length&&api.up});hist=hist.slice(-40);
