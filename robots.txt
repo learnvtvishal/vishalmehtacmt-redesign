@@ -1,11 +1,14 @@
 User-agent: *
 Allow: /
 Disallow: /vishalmehtacmt-redesign/admin.html
+Disallow: /vishalmehtacmt-redesign/crm-features.html
 Disallow: /vishalmehtacmt-redesign/learn.html
 Disallow: /vishalmehtacmt-redesign/health.html
 Disallow: /vishalmehtacmt-redesign/meeting.html
 Disallow: /vishalmehtacmt-redesign/thank-you.html
 Disallow: /admin.html
+Disallow: /admin
+Disallow: /crm-features.html
 Disallow: /learn.html
 Disallow: /health.html
 Disallow: /meeting.html

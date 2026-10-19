@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/admin", "destination": "https://vishal-crm.vercel.app/leads", "permanent": false },
+    { "source": "/admin/", "destination": "https://vishal-crm.vercel.app/leads", "permanent": false },
+    { "source": "/admin/:path*", "destination": "https://vishal-crm.vercel.app/:path*", "permanent": false }
+  ]
+}
