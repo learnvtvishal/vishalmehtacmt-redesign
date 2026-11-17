@@ -298,122 +298,15 @@ section{padding:5rem 3.5rem}
 }
 </style>
 <style>
-/* DTA hub: navy programme picker on top, ivory programme pages below */
+/* shared: ivory page + programme panels */
 :root{--bg:#fbf8f1;--bg2:#f5efe2;--bg3:#efe6d3;--border:rgba(120,90,30,.14);--border2:rgba(120,90,30,.24);--gold:#a8780f}
 nav{background:rgba(251,248,241,.94)!important}
 .stat-card{background:#fffdf8!important;border-color:rgba(168,120,15,.3)!important;box-shadow:0 18px 40px rgba(11,21,48,.08)}
-
-.prog{position:relative;overflow:hidden;padding:8rem 3.5rem 4.5rem;background:radial-gradient(ellipse at 50% -10%,#203a7a 0%,#0b1530 50%,#060b1a 100%);color:#fff;isolation:isolate}
-.prog-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-.prog-aurora{position:absolute;inset:-20%;z-index:-2;pointer-events:none;background:conic-gradient(from 200deg at 50% 50%,transparent 0deg,rgba(232,184,75,.18) 60deg,transparent 120deg,rgba(37,99,235,.22) 200deg,transparent 260deg,rgba(232,184,75,.12) 320deg,transparent 360deg);filter:blur(70px);animation:aurora 22s linear infinite}
-@keyframes aurora{to{transform:rotate(360deg)}}
-.prog::after{content:'';position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,rgba(6,11,26,.6));pointer-events:none;z-index:-1}
-.prog-inner{position:relative;max-width:1180px;margin:0 auto}
-.prog-head{text-align:center;margin-bottom:2.2rem}
-.prog-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:.5rem 1.2rem;border:1px solid rgba(232,184,75,.45);background:rgba(232,184,75,.1);border-radius:100px;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#e8b84b;backdrop-filter:blur(6px)}
-.prog-eyebrow i{width:6px;height:6px;border-radius:50%;background:#e8b84b;box-shadow:0 0 10px #e8b84b;animation:pulse 2s infinite}
-.hub-title{font-family:'EB Garamond',serif;font-size:clamp(2.8rem,6.2vw,5.4rem);font-weight:700;line-height:1;color:#fff;margin-top:1.3rem;letter-spacing:-.005em}
-.hub-title .w{display:inline-block;opacity:0;transform:translateY(40px) rotateX(-70deg);transform-origin:50% 100%;animation:word-up 1s cubic-bezier(.2,.8,.2,1) forwards}
-.hub-title .w:nth-child(2){animation-delay:.15s}.hub-title .w:nth-child(3){animation-delay:.3s}
-@keyframes word-up{to{opacity:1;transform:none}}
-.hub-title em{font-style:italic;background:linear-gradient(110deg,#c9971c 0%,#f5d176 25%,#fff3c4 35%,#f5d176 45%,#c9971c 70%,#f5d176 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:word-up 1s .3s cubic-bezier(.2,.8,.2,1) forwards,shine 4.5s 1.3s linear infinite;padding-right:.08em}
-@keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
-.hub-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:1.4rem auto 0;color:#e8b84b}
-.hub-rule::before,.hub-rule::after{content:'';height:1px;width:min(160px,18vw);background:linear-gradient(90deg,transparent,#e8b84b)}
-.hub-rule::after{transform:scaleX(-1)}
-.hub-rule svg{width:16px;height:16px;fill:#e8b84b;animation:spin 8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ribbon of programme names */
-.hub-ribbon{position:relative;margin:0 -3.5rem 2.6rem;overflow:hidden;border-top:1px solid rgba(232,184,75,.22);border-bottom:1px solid rgba(232,184,75,.22);background:rgba(232,184,75,.05);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.hub-ribbon-track{display:flex;width:max-content;animation:ribbon 38s linear infinite}
-.hub-ribbon span{font-family:'EB Garamond',serif;font-style:italic;font-size:1.15rem;color:#e9dcb8;padding:.75rem 1.4rem;white-space:nowrap;display:flex;align-items:center;gap:2.8rem}
-.hub-ribbon span::after{content:'\2726';font-style:normal;color:#e8b84b;font-size:.8rem}
-@keyframes ribbon{to{transform:translateX(-50%)}}
-
-/* bento grid */
-.hub-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,minmax(170px,auto)) minmax(230px,auto);gap:1rem;perspective:1200px;grid-template-areas:"basics swing algo women" "work web cmt custom" "ment ment ment ment"}
-.hub-card[data-tab=basics]{grid-area:basics}.hub-card[data-tab=swing]{grid-area:swing}.hub-card[data-tab=algo]{grid-area:algo}.hub-card[data-tab=women]{grid-area:women}
-.hub-card[data-tab=workshops]{grid-area:work}.hub-card[data-tab=webinars]{grid-area:web}.hub-card[data-tab=mentorship]{grid-area:ment}.hub-card[data-tab=custom]{grid-area:custom}.hub-card[data-tab=cmt]{grid-area:cmt}
-.hub-card{--mx:50%;--my:50%;--rx:0deg;--ry:0deg;position:relative;overflow:hidden;text-align:left;font:inherit;color:inherit;cursor:pointer;border-radius:20px;padding:1.4rem 1.3rem 1.3rem;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);display:flex;flex-direction:column;gap:1rem;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .25s ease-out,border-color .35s,box-shadow .35s,background .35s;opacity:0;animation:card-in .9s cubic-bezier(.2,.8,.2,1) forwards}
-.hub-card:nth-child(1){animation-delay:.35s}.hub-card:nth-child(2){animation-delay:.45s}.hub-card:nth-child(3){animation-delay:.55s}.hub-card:nth-child(4){animation-delay:.65s}.hub-card:nth-child(5){animation-delay:.75s}.hub-card:nth-child(6){animation-delay:.85s}.hub-card:nth-child(7){animation-delay:.95s}.hub-card:nth-child(8){animation-delay:1.05s}.hub-card:nth-child(9){animation-delay:1.2s}
-@keyframes card-in{from{opacity:0;transform:translateY(40px) scale(.94)}to{opacity:1;transform:rotateX(var(--rx)) rotateY(var(--ry))}}
-.hub-card.ready{opacity:1;animation:none}
-/* cursor spotlight */
-.hub-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(232,184,75,.22),transparent 45%);opacity:0;transition:opacity .4s;pointer-events:none}
-.hub-card:hover::before{opacity:1}
-/* running gold border */
-.hub-card::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 62%,#f5d176 75%,#fff3c4 80%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;animation:prog-spin 3.5s linear infinite;pointer-events:none}
-.hub-card:hover::after{opacity:1}
-@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-@keyframes prog-spin{to{--ang:360deg}}
-.hub-card:hover{border-color:rgba(232,184,75,.45);box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 50px rgba(232,184,75,.14)}
-.hub-card:focus-visible{outline:2px solid #e8b84b;outline-offset:3px}
-.hub-wm{position:absolute;right:-.05em;bottom:-.22em;font-family:'EB Garamond',serif;font-size:7rem;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(232,184,75,.18);pointer-events:none;transition:transform .5s,-webkit-text-stroke-color .5s}
-.hub-card:hover .hub-wm{transform:translateY(-8px) scale(1.06);-webkit-text-stroke-color:rgba(232,184,75,.45)}
-.hub-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;transform:translateZ(30px)}
-.hub-card .n{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.2em;color:rgba(232,184,75,.85)}
-.hub-ic{width:50px;height:50px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.35);color:#f5d176;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .35s,color .35s,box-shadow .35s}
-.hub-ic svg,.soon-ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.hub-ic svg *{stroke-dasharray:80;stroke-dashoffset:0}
-.hub-card:hover .hub-ic{transform:rotate(-10deg) scale(1.12);background:#e8b84b;color:#0b1530;box-shadow:0 0 30px rgba(232,184,75,.55)}
-.hub-card:hover .hub-ic svg *{animation:draw 1s ease forwards}
-@keyframes draw{from{stroke-dashoffset:80}to{stroke-dashoffset:0}}
-.hub-card h3{position:relative;font-family:'EB Garamond',serif;font-size:1.38rem;font-weight:600;line-height:1.15;color:#fff;margin-top:auto;transform:translateZ(40px)}
-.hub-go{position:relative;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#aab4c8;display:flex;align-items:center;gap:6px;transition:color .3s;transform:translateZ(20px)}
-.hub-go b{display:inline-block;transition:transform .3s}
-.hub-card:hover .hub-go{color:#e8b84b}.hub-card:hover .hub-go b{transform:translateX(6px)}
-
-/* big mentorship card */
-.hub-card.big{padding:2rem 2rem 1.8rem}
-.hub-card.big h3{font-size:clamp(2rem,3.6vw,3.3rem);line-height:1.02;max-width:70%}
-.hub-card.big .hub-wm{font-size:15rem}
-.hub-chips{position:relative;display:flex;flex-wrap:wrap;gap:8px;transform:translateZ(25px)}
-.hub-chips span{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.45rem .8rem;border-radius:100px;border:1px solid rgba(232,184,75,.4);color:#f5d176;background:rgba(6,11,26,.25)}
-.hub-orbit{position:absolute;right:8%;top:50%;margin-top:-150px;width:300px;height:300px;border-radius:50%;border:1px dashed rgba(232,184,75,.3);animation:spin 40s linear infinite;pointer-events:none}
-.hub-orbit::before,.hub-orbit::after{content:'';position:absolute;border-radius:50%}
-.hub-orbit::before{inset:45px;border:1px solid rgba(232,184,75,.18)}
-.hub-orbit::after{width:12px;height:12px;top:22px;left:50%;background:#f5d176;box-shadow:0 0 18px #f5d176}
-.hub-card.wide{flex-direction:row;align-items:center;gap:1.4rem}
-.hub-card.wide .hub-top{flex-direction:column;gap:.8rem}
-.hub-card.wide h3{margin:0;font-size:1.7rem}
-.hub-card.wide .hub-go{margin-left:auto}
-
-/* selected programme */
-.hub-card.on{background:linear-gradient(140deg,#fbe39a 0%,#e8b84b 35%,#c9971c 80%,#b8860b 100%);border-color:transparent;box-shadow:0 28px 60px rgba(232,184,75,.3),inset 0 1px 0 rgba(255,255,255,.6)}
-.hub-card.on .n,.hub-card.on h3,.hub-card.on .hub-go{color:#0b1530}
-.hub-card.on .hub-ic{background:#0b1530;border-color:#0b1530;color:#f5d176}
-.hub-card.on .hub-wm{-webkit-text-stroke-color:rgba(11,21,48,.18)}
-.hub-card.on .hub-chips span{color:#0b1530;border-color:rgba(11,21,48,.35);background:rgba(255,255,255,.25)}
-.hub-card.on .hub-orbit{border-color:rgba(11,21,48,.25)}.hub-card.on .hub-orbit::before{border-color:rgba(11,21,48,.15)}.hub-card.on .hub-orbit::after{background:#0b1530;box-shadow:none}
-.hub-card.on::before{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(255,255,255,.45),transparent 45%)}
-.hub-card.on::after{background:conic-gradient(from var(--ang),transparent 0 62%,#0b1530 75%,transparent 92%)}
-.hub-hint{text-align:center;margin-top:2rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:#7f8aa3}
-.hub-hint b{color:#e8b84b;font-weight:700;display:inline-block;animation:bob 1.6s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(4px)}}
-
 .dta-panel{display:none}
 .dta-panel.on{display:block;animation:prog-in .7s ease both}
-@keyframes prog-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .panel-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:1.1rem 1.5rem;background:var(--bg2);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 .panel-bar span{color:#0b1530}
 .dta-panel .hero{padding-top:4.5rem}
-
-.soon{padding:5rem 3.5rem 6rem;background:var(--bg)}
-.soon-card{max-width:760px;margin:0 auto;text-align:center;padding:3.5rem 2rem;border-radius:24px;background:#fffdf8;border:1px solid rgba(168,120,15,.3);box-shadow:0 24px 60px rgba(11,21,48,.08)}
-.soon-ic{width:72px;height:72px;margin:0 auto 1.4rem;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#f5d176,#c9971c);color:#0b1530}
-.soon-ic svg{width:32px;height:32px}
-.soon-k{font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
-.soon-card h2{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#0b1530;margin:.6rem 0 1rem}
-.soon-card p{color:var(--text2);margin-bottom:2rem}
-
-@media(max-width:1000px){
-.hub-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:none;grid-template-areas:"basics swing" "algo women" "work web" "cmt custom" "ment ment"}
-.hub-card.big{min-height:300px}}
-@media(max-width:600px){.prog{padding:6.5rem 1.2rem 3.5rem}.hub-ribbon{margin:0 -1.2rem 2rem}.hub-grid{gap:.7rem}.hub-card{min-height:150px;padding:1.1rem 1rem}.hub-card h3{font-size:1.1rem}.hub-card.big h3{font-size:1.9rem}.hub-card.wide{flex-direction:column;align-items:flex-start}.hub-card.wide h3{font-size:1.3rem}.hub-card.wide .hub-go{margin-left:0}.hub-wm{font-size:5rem}.hub-card.big .hub-wm{font-size:10rem}.soon{padding:3.5rem 1.2rem 4rem}}
-@media(prefers-reduced-motion:reduce){.prog-aurora,.hub-ribbon-track,.hub-orbit,.hub-card::after,.hub-title em{animation:none}.hub-card,.hub-title .w{opacity:1;animation:none;transform:none}}
-.hub-title.done .w{opacity:1;transform:none;animation:none}
-.hub-title.done em{animation:shine 4.5s linear infinite}
 
 /* programme pages */
 .pp-head{position:relative;overflow:hidden;padding:4.5rem 3.5rem;background:radial-gradient(ellipse at 85% 0%,#203a7a 0%,#0b1530 55%,#060b1a 100%);color:#fff}
@@ -447,7 +340,67 @@ nav{background:rgba(251,248,241,.94)!important}
 .pp-cta.btn-main{background:linear-gradient(135deg,#f5d176,#c9971c)!important;color:#0b1530!important;white-space:nowrap}
 .pp-note{margin-top:1rem;text-align:center;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3)}
 @media(max-width:1000px){.pp-grid{grid-template-columns:repeat(2,1fr)}.pp-big{font-size:11rem;right:1rem}}
-@media(max-width:600px){.pp-head{padding:3rem 1.2rem}.pp-head-in{flex-direction:column;align-items:flex-start;gap:1.2rem}.pp-ic{width:72px;height:72px;border-radius:20px}.pp-ic svg{width:34px;height:34px}.pp-big{font-size:8rem;top:auto;bottom:-1rem;transform:none;animation:none}.pp-head p{font-size:1.15rem}.pp-body{padding:2.8rem 1.2rem 3.5rem}.pp-grid{grid-template-columns:1fr}.pp-foot{padding:1.2rem}.hub-card.big h3{max-width:none}.hub-orbit{right:-90px}}
+@media(max-width:600px){.pp-head{padding:3rem 1.2rem}.pp-head-in{flex-direction:column;align-items:flex-start;gap:1.2rem}.pp-ic{width:72px;height:72px;border-radius:20px}.pp-ic svg{width:34px;height:34px}.pp-big{font-size:8rem;top:auto;bottom:-1rem;transform:none;animation:none}.pp-head p{font-size:1.15rem}.pp-body{padding:2.8rem 1.2rem 3.5rem}.pp-grid{grid-template-columns:1fr}.pp-foot{padding:1.2rem}}
+
+/* Variant B: "Index" - ivory editorial list + live navy preview card */
+.ix{position:relative;padding:8.5rem 3.5rem 5.5rem;background:#fbf8f1}
+.ix-in{max-width:1240px;margin:0 auto}
+.ix-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;padding-bottom:2rem;border-bottom:1px solid rgba(11,21,48,.14)}
+.ix-eye{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#a8780f}
+.ix-eye::before{content:'';width:34px;height:1px;background:#a8780f}
+.ix-head h2{font-family:'EB Garamond',serif;font-size:clamp(2.6rem,5vw,4.4rem);font-weight:600;line-height:1;color:#0b1530;margin-top:1rem;letter-spacing:-.01em}
+.ix-head h2 em{font-style:italic;font-weight:500;color:#a8780f}
+.ix-head p{max-width:300px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;line-height:1.4;color:#5b6478;text-align:right}
+
+.ix-wrap{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:3.5rem;align-items:start}
+.ix-row{position:relative;display:grid;grid-template-columns:58px 1fr 44px;align-items:center;width:100%;padding:.82rem 1rem .82rem 0;border:0;border-bottom:1px solid rgba(11,21,48,.1);background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;overflow:hidden;isolation:isolate;transition:padding .45s cubic-bezier(.65,0,.35,1)}
+.ix-row::before{content:'';position:absolute;inset:0;z-index:-1;background:#0b1530;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+.ix-row.hot{padding-left:1.3rem}
+.ix-row.hot::before{transform:scaleX(1)}
+.ix-row:focus-visible{outline:2px solid #a8780f;outline-offset:2px}
+.ix-row.sel::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(#f0cf7a,#c9971c)}
+.ix-n{font-family:var(--mono);font-size:.74rem;font-weight:600;letter-spacing:.14em;color:#a8780f;transition:color .4s}
+.ix-row.hot .ix-n{color:#e3b955}
+.ix-t{display:flex;align-items:center;flex-wrap:wrap;gap:.2rem .8rem;font-family:'EB Garamond',serif;font-size:1.7rem;font-weight:500;line-height:1.15;color:#0b1530;transition:color .4s}
+.ix-row.hot .ix-t{color:#fff}
+.ix-t i{font-family:var(--mono);font-style:normal;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .65rem;border-radius:100px;background:#e3b955;color:#0b1530}
+.ix-t small{display:none;flex-basis:100%;font-family:'Inter',sans-serif;font-size:.82rem;line-height:1.45;color:#5b6478;margin-top:.3rem}
+.ix-ar{width:42px;height:42px;border-radius:50%;border:1px solid rgba(11,21,48,.2);display:flex;align-items:center;justify-content:center;color:#0b1530;transition:all .45s cubic-bezier(.65,0,.35,1)}
+.ix-ar svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ix-row.hot .ix-ar{background:#e3b955;border-color:#e3b955;transform:rotate(-45deg)}
+
+.ix-card{position:sticky;top:96px;display:grid;min-height:560px;border-radius:26px;overflow:hidden;background:radial-gradient(700px 380px at 100% 0%,#203a7a 0%,#0b1530 60%);color:#fff;box-shadow:0 40px 80px rgba(11,21,48,.22),0 0 0 1px rgba(227,185,85,.25) inset}
+.ix-card::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:linear-gradient(#000,transparent 65%);mask-image:linear-gradient(#000,transparent 65%);pointer-events:none}
+.ix-pv{grid-area:1/1;position:relative;display:flex;flex-direction:column;padding:2.6rem 2.5rem 2.4rem;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .35s,transform .45s,visibility .35s}
+.ix-pv.on{opacity:1;visibility:visible;transform:none;transition:opacity .5s .08s,transform .6s .08s,visibility 0s}
+.ix-art{position:relative;width:118px;height:118px;margin-bottom:1.6rem;color:#e3b955}
+.ix-art::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(227,185,85,.22)}
+.ix-art svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:.3;stroke-linecap:round;stroke-linejoin:round}
+.ix-art svg *{stroke-dasharray:1;stroke-dashoffset:0}
+.ix-pv.on .ix-art svg *{animation:ix-draw 1.5s .1s cubic-bezier(.4,0,.2,1) both}
+@keyframes ix-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.ix-k{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#d9ad4a}
+.ix-pv h3{font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:600;line-height:1.05;color:#fff;margin:.6rem 0 .7rem}
+.ix-pv p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.22rem;line-height:1.42;color:#c9d0de}
+.ix-pv ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1.4rem;margin:1.5rem 0 1.4rem;padding:1.3rem 0 0;border-top:1px solid rgba(255,255,255,.12)}
+.ix-pv li{position:relative;padding-left:20px;font-size:.88rem;line-height:1.4;color:#dfe4ee}
+.ix-pv li::before{content:'';position:absolute;left:0;top:.68em;width:10px;height:1px;background:#e3b955}
+.ix-who{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.6rem}
+.ix-who span{font-size:.76rem;padding:.35rem .8rem;border-radius:100px;border:1px solid rgba(227,185,85,.35);color:#eadcb6}
+.ix-go{align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:10px;padding:.85rem 1.5rem;border-radius:100px;background:#e3b955;color:#0b1530;font-size:.84rem;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:background .3s}
+.ix-go b{transition:transform .3s}
+.ix-go:hover{background:#f0cf7a}.ix-go:hover b{transform:translateX(5px)}
+
+@media(max-width:980px){
+.ix{padding:6.5rem 1.2rem 3.5rem}
+.ix-head{flex-direction:column;align-items:flex-start}.ix-head p{text-align:left}
+.ix-wrap{grid-template-columns:1fr}
+.ix-card{display:none}
+.ix-row{grid-template-columns:44px 1fr 38px;align-items:start;padding:1.1rem .4rem 1.1rem 0}.ix-n{margin-top:.6rem}
+.ix-row.hot{padding-left:.9rem}
+.ix-t{font-size:1.45rem}.ix-t small{display:block}.ix-row.hot .ix-t small{color:#b9c2d6}
+.ix-ar{width:36px;height:36px}}
+@media(prefers-reduced-motion:reduce){.ix-row,.ix-row::before,.ix-pv,.ix-ar{transition:none!important}.ix-pv.on .ix-art svg *{animation:none}}
 </style>
 </head>
 <body>
@@ -468,75 +421,148 @@ nav{background:rgba(251,248,241,.94)!important}
   <a href="learn.html" class="nav-pill">Login</a>
 </nav>
 
-<!-- DTA PROGRAMMES: main headings. Each card opens its own panel below (data-tab = data-panel). -->
-<section class="prog" id="programmes">
-  <div class="prog-aurora"></div><canvas class="prog-canvas" aria-hidden="true"></canvas>
-  <div class="prog-inner">
-    <div class="prog-head">
-      <span class="prog-eyebrow"><i></i>DTA Programmes</span>
-      <h2 class="hub-title"><span class="w">Disciplined</span> <span class="w">Traders</span> <em class="w">Academy</em></h2>
-      <div class="hub-rule"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></div>
+<!-- DTA PROGRAMMES (variant B): each row opens its own panel below (data-tab = data-panel). -->
+<section class="ix" id="programmes">
+  <div class="ix-in">
+    <header class="ix-head">
+      <div>
+        <span class="ix-eye">DTA Programmes</span>
+        <h2>Disciplined Traders <em>Academy</em></h2>
+      </div>
+      <p>Nine programmes, one disciplined method. Choose where you begin.</p>
+    </header>
+    <div class="ix-wrap">
+      <div class="ix-list" role="tablist">
+      <button class="ix-row" role="tab" data-tab="basics" aria-selected="false">
+        <span class="ix-n">01</span>
+        <span class="ix-t">Basics of Stock Market<small>Start from zero. Understand how the market really works before you put a rupee in it.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row" role="tab" data-tab="swing" aria-selected="false">
+        <span class="ix-n">02</span>
+        <span class="ix-t">Swing Trading<small>Hold for days, not minutes. A rules-based way to ride the bigger moves.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row" role="tab" data-tab="algo" aria-selected="false">
+        <span class="ix-n">03</span>
+        <span class="ix-t">Algo Trading<small>Turn your trading idea into clear rules, test it, then let code execute it.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row" role="tab" data-tab="women" aria-selected="false">
+        <span class="ix-n">04</span>
+        <span class="ix-t">Women in Trading<small>A supportive space for women to build market skills, confidence and financial independence.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row" role="tab" data-tab="workshops" aria-selected="false">
+        <span class="ix-n">05</span>
+        <span class="ix-t">Weekly Workshops<small>One focused topic every week. Learn it live, practise it, ask your questions.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row" role="tab" data-tab="webinars" aria-selected="false">
+        <span class="ix-n">06</span>
+        <span class="ix-t">Webinars<small>Short, focused live sessions to get started and find your direction.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row" role="tab" data-tab="cmt" aria-selected="false">
+        <span class="ix-n">07</span>
+        <span class="ix-t">CMT<small>Guidance for the Chartered Market Technician program, from a CMT charterholder.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row" role="tab" data-tab="custom" aria-selected="false">
+        <span class="ix-n">08</span>
+        <span class="ix-t">Customise Your Own Plan<small>Your goals, your pace. Pick what you need and we build the plan around you.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="ix-row flag" role="tab" data-tab="mentorship" aria-selected="false">
+        <span class="ix-n">09</span>
+        <span class="ix-t">Group / Personal Mentorship<i>Flagship</i><small>The complete DTA journey, learnt in a small group or one-on-one.</small></span>
+        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      </div>
+      <aside class="ix-card" aria-live="polite">
+      <div class="ix-pv" data-pv="basics">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect pathLength="1" x="4" y="7" width="4" height="8" rx="1"/><rect pathLength="1" x="16" y="11" width="4" height="6" rx="1"/><path pathLength="1" d="M12 5v14"/></svg></div>
+        <div class="ix-k">Programme 01 &middot; DTA</div>
+        <h3>Basics of Stock Market</h3>
+        <p>Start from zero. Understand how the market really works before you put a rupee in it.</p>
+        <ul><li>How the market works</li><li>Demat & trading accounts</li><li>Order types</li><li>Primary vs secondary market</li></ul>
+        <div class="ix-who"><span>Complete beginners</span><span>Students</span><span>Salaried professionals</span></div>
+        <span class="ix-go" data-go="basics">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="swing">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path pathLength="1" d="M18 6h4v4"/></svg></div>
+        <div class="ix-k">Programme 02 &middot; DTA</div>
+        <h3>Swing Trading</h3>
+        <p>Hold for days, not minutes. A rules-based way to ride the bigger moves.</p>
+        <ul><li>Trend & market structure</li><li>Support, resistance & breakouts</li><li>Pullback entries</li><li>Candlestick confirmation</li></ul>
+        <div class="ix-who"><span>Working professionals</span><span>Part-time traders</span><span>Chart readers moving to a system</span></div>
+        <span class="ix-go" data-go="swing">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="algo">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="5" y="5" width="14" height="14" rx="2"/><rect pathLength="1" x="9" y="9" width="6" height="6" rx="1"/><path pathLength="1" d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+        <div class="ix-k">Programme 03 &middot; DTA</div>
+        <h3>Algo Trading</h3>
+        <p>Turn your trading idea into clear rules, test it, then let code execute it.</p>
+        <ul><li>From idea to rules</li><li>Python for traders</li><li>Data & backtesting</li><li>Avoiding overfitting</li></ul>
+        <div class="ix-who"><span>Traders with a manual system</span><span>Engineers & coders</span><span>Anyone tired of screen-watching</span></div>
+        <span class="ix-go" data-go="algo">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="women">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="8" r="5"/><path pathLength="1" d="M12 13v8M9 18h6"/></svg></div>
+        <div class="ix-k">Programme 04 &middot; DTA</div>
+        <h3>Women in Trading</h3>
+        <p>A supportive space for women to build market skills, confidence and financial independence.</p>
+        <ul><li>Money foundations</li><li>Markets made simple</li><li>Investing vs trading</li><li>Trading around your schedule</li></ul>
+        <div class="ix-who"><span>Homemakers</span><span>Working women</span><span>Women entrepreneurs</span></div>
+        <span class="ix-go" data-go="women">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="workshops">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="3" y="5" width="18" height="16" rx="2"/><path pathLength="1" d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
+        <div class="ix-k">Programme 05 &middot; DTA</div>
+        <h3>Weekly Workshops</h3>
+        <p>One focused topic every week. Learn it live, practise it, ask your questions.</p>
+        <ul><li>Chart-reading drills</li><li>Strategy deep-dive</li><li>Indicator lab</li><li>Risk & money management</li></ul>
+        <div class="ix-who"><span>DTA students</span><span>Self-learners who want structure</span><span>Anyone wanting weekly practice</span></div>
+        <span class="ix-go" data-go="workshops">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="webinars">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="2" y="4" width="20" height="13" rx="2"/><path pathLength="1" d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
+        <div class="ix-k">Programme 06 &middot; DTA</div>
+        <h3>Webinars</h3>
+        <p>Short, focused live sessions to get started and find your direction.</p>
+        <ul><li>Intro to technical analysis</li><li>Algo trading 101</li><li>AI for traders</li><li>Risk management essentials</li></ul>
+        <div class="ix-who"><span>Anyone curious about markets</span><span>People choosing a programme</span></div>
+        <span class="ix-go" data-go="webinars">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="cmt">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="9" r="6"/><path pathLength="1" d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path pathLength="1" d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
+        <div class="ix-k">Programme 07 &middot; DTA</div>
+        <h3>CMT</h3>
+        <p>Guidance for the Chartered Market Technician program, from a CMT charterholder.</p>
+        <ul><li>Program roadmap</li><li>Level I: foundations</li><li>Level II: application</li><li>Level III: integration</li></ul>
+        <div class="ix-who"><span>Aspiring CMT candidates</span><span>Finance professionals</span><span>Serious technical analysts</span></div>
+        <span class="ix-go" data-go="cmt">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="custom">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
+        <div class="ix-k">Programme 08 &middot; DTA</div>
+        <h3>Customise Your Own Plan</h3>
+        <p>Your goals, your pace. Pick what you need and we build the plan around you.</p>
+        <ul><li>Skill check call</li><li>Pick your modules</li><li>Choose your pace</li><li>Group or 1-on-1</li></ul>
+        <div class="ix-who"><span>Busy professionals</span><span>Traders with specific gaps</span><span>Anyone who wants it their way</span></div>
+        <span class="ix-go" data-go="custom">Explore programme <b>&rarr;</b></span>
+      </div>
+      <div class="ix-pv" data-pv="mentorship">
+        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="9" cy="7" r="4"/><path pathLength="1" d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle pathLength="1" cx="17" cy="9" r="3"/><path pathLength="1" d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></div>
+        <div class="ix-k">Programme 09 &middot; DTA</div>
+        <h3>Group / Personal Mentorship</h3>
+        <p>The complete DTA journey, learnt in a small group or one-on-one.</p>
+        <ul><li>12 live sessions</li><li>8 modules + 4 AI labs</li><li>80+ topics covered</li><li>10,000+ traders trained</li></ul>
+        <div class="ix-who"><span>Serious learners</span><span>Active traders</span><span>Anyone ready to commit</span></div>
+        <span class="ix-go" data-go="mentorship">Explore programme <b>&rarr;</b></span>
+      </div>
+      </aside>
     </div>
-    <div class="hub-ribbon" aria-hidden="true"><div class="hub-ribbon-track"><span>Basics of Stock Market</span><span>Swing Trading</span><span>Algo Trading</span><span>Women in Trading</span><span>Weekly Workshops</span><span>Webinars</span><span>CMT</span><span>Customise Your Own Plan</span><span>Group / Personal Mentorship</span><span>Basics of Stock Market</span><span>Swing Trading</span><span>Algo Trading</span><span>Women in Trading</span><span>Weekly Workshops</span><span>Webinars</span><span>CMT</span><span>Customise Your Own Plan</span><span>Group / Personal Mentorship</span></div></div>
-    <div class="hub-grid" role="tablist">
-    <button class="hub-card" role="tab" data-tab="basics" aria-selected="false">
-      <span class="hub-wm">01</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></div><span class="n">01</span></div>
-      <h3>Basics of Stock Market</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card" role="tab" data-tab="swing" aria-selected="false">
-      <span class="hub-wm">02</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></div><span class="n">02</span></div>
-      <h3>Swing Trading</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card" role="tab" data-tab="algo" aria-selected="false">
-      <span class="hub-wm">03</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div><span class="n">03</span></div>
-      <h3>Algo Trading</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card" role="tab" data-tab="women" aria-selected="false">
-      <span class="hub-wm">04</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></div><span class="n">04</span></div>
-      <h3>Women in Trading</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card" role="tab" data-tab="workshops" aria-selected="false">
-      <span class="hub-wm">05</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div><span class="n">05</span></div>
-      <h3>Weekly Workshops</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card" role="tab" data-tab="webinars" aria-selected="false">
-      <span class="hub-wm">06</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div><span class="n">06</span></div>
-      <h3>Webinars</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card" role="tab" data-tab="cmt" aria-selected="false">
-      <span class="hub-wm">07</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div><span class="n">07</span></div>
-      <h3>CMT</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card" role="tab" data-tab="custom" aria-selected="false">
-      <span class="hub-wm">08</span>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div><span class="n">08</span></div>
-      <h3>Customise Your Own Plan</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    <button class="hub-card big on" role="tab" data-tab="mentorship" aria-selected="true">
-      <span class="hub-wm">09</span>
-      <div class="hub-orbit"></div>
-      <div class="hub-chips"><span>12 Sessions</span><span>8 Modules + 4 AI Labs</span><span>10,000+ Trained</span></div>
-      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle cx="17" cy="9" r="3"/><path d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></div><span class="n">09</span></div>
-      <h3>Group / Personal Mentorship</h3>
-      <span class="hub-go">Explore <b>&rarr;</b></span>
-    </button>
-    </div>
-    <div class="hub-hint">Choose a programme <b>&darr;</b></div>
   </div>
 </section>
 
@@ -1064,7 +1090,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">01</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></div>
     <div>
       <div class="pp-k">Programme 01 &middot; DTA</div>
       <h2>Basics of Stock Market</h2>
@@ -1095,7 +1121,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">02</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></div>
     <div>
       <div class="pp-k">Programme 02 &middot; DTA</div>
       <h2>Swing Trading</h2>
@@ -1126,7 +1152,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">03</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
     <div>
       <div class="pp-k">Programme 03 &middot; DTA</div>
       <h2>Algo Trading</h2>
@@ -1157,7 +1183,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">04</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></div>
     <div>
       <div class="pp-k">Programme 04 &middot; DTA</div>
       <h2>Women in Trading</h2>
@@ -1188,7 +1214,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">05</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
     <div>
       <div class="pp-k">Programme 05 &middot; DTA</div>
       <h2>Weekly Workshops</h2>
@@ -1219,7 +1245,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">06</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
     <div>
       <div class="pp-k">Programme 06 &middot; DTA</div>
       <h2>Webinars</h2>
@@ -1248,7 +1274,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">07</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
     <div>
       <div class="pp-k">Programme 07 &middot; DTA</div>
       <h2>CMT</h2>
@@ -1279,7 +1305,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <section class="pp-head">
   <span class="pp-big">08</span>
   <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
     <div>
       <div class="pp-k">Programme 08 &middot; DTA</div>
       <h2>Customise Your Own Plan</h2>
@@ -1317,41 +1343,25 @@ setTimeout(()=>{
 </script>
 <script>
 (function(){
-var cards=[].slice.call(document.querySelectorAll('.hub-card')),nav=document.querySelector('nav');
-var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function show(k,scroll){var p=document.getElementById('p-'+k);if(!p)return;
-  cards.forEach(function(c){var on=c.dataset.tab===k;c.classList.toggle('on',on);c.setAttribute('aria-selected',on)});
+var nav=document.querySelector('nav'),sel='mentorship';
+function pick(k,scroll){var p=document.getElementById('p-'+k);if(!p)return;sel=k;
+  items.forEach(function(c){var on=c.dataset.tab===k;c.classList.toggle('sel',on);c.setAttribute('aria-selected',on)});
+  peek(k);
   document.querySelectorAll('.dta-panel').forEach(function(x){x.classList.toggle('on',x===p)});
   p.querySelectorAll('.rv').forEach(function(r){r.classList.add('in')});
+  history.replaceState(null,'','#'+k);
   if(scroll)window.scrollTo({top:p.getBoundingClientRect().top+scrollY-(nav?nav.offsetHeight:0),behavior:'smooth'});}
-cards.forEach(function(c){
-  c.addEventListener('click',function(){show(c.dataset.tab,true);history.replaceState(null,'','#'+c.dataset.tab)});
-  c.addEventListener('animationend',function(){c.classList.add('ready')});
-  if(calm)return;
-  c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
-    c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');
-    c.style.setProperty('--ry',((x-.5)*10)+'deg');c.style.setProperty('--rx',((.5-y)*10)+'deg')});
-  c.addEventListener('pointerleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+var items=[].slice.call(document.querySelectorAll('.ix-row')),pvs=[].slice.call(document.querySelectorAll('.ix-pv'));
+function peek(k){items.forEach(function(c){c.classList.toggle('hot',c.dataset.tab===k)});pvs.forEach(function(p){p.classList.toggle('on',p.dataset.pv===k)})}
+items.forEach(function(c){
+  c.addEventListener('mouseenter',function(){peek(c.dataset.tab)});
+  c.addEventListener('focus',function(){peek(c.dataset.tab)});
+  c.addEventListener('click',function(){pick(c.dataset.tab,true)});
 });
-var h=location.hash.slice(1);if(h&&document.getElementById('p-'+h))show(h,false);
-/* never leave cards or title hidden if the entrance animation was skipped or throttled */
-setTimeout(function(){cards.forEach(function(c){c.classList.add('ready')});var t=document.querySelector('.hub-title');if(t)t.classList.add('done')},2600);
-/* gold constellation */
-var cv=document.querySelector('.prog-canvas');if(!cv||calm)return;
-var ctx=cv.getContext('2d'),sec=cv.parentNode,dpr=Math.min(devicePixelRatio||1,2),W,H,pts=[],m={x:-999,y:-999},run=true;
-function size(){W=sec.offsetWidth;H=sec.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
-  var n=Math.round(W*H/16000);pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+.4})}
-size();addEventListener('resize',size);
-sec.addEventListener('pointermove',function(e){var r=sec.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top});
-sec.addEventListener('pointerleave',function(){m.x=m.y=-999});
-new IntersectionObserver(function(es){run=es[0].isIntersecting;if(run)requestAnimationFrame(tick)}).observe(sec);
-function tick(){if(!run)return;ctx.clearRect(0,0,W,H);
-  for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-    var dx=p.x-m.x,dy=p.y-m.y,dm=Math.sqrt(dx*dx+dy*dy);if(dm<140){p.x+=dx/dm*.8;p.y+=dy/dm*.8}
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.3);ctx.fillStyle='rgba(245,209,118,.8)';ctx.fill();
-    for(var j=i+1;j<pts.length;j++){var q=pts[j],a=p.x-q.x,b=p.y-q.y,d=a*a+b*b;
-      if(d<12000){ctx.strokeStyle='rgba(232,184,75,'+(.22*(1-d/12000))+')';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}}}
-  requestAnimationFrame(tick)}
+document.querySelector('.ix-list').addEventListener('mouseleave',function(){peek(sel)});
+document.querySelectorAll('.ix-go').forEach(function(g){g.addEventListener('click',function(){pick(g.dataset.go,true)})});
+var h=location.hash.slice(1);
+if(h&&document.getElementById('p-'+h)){pick(h,false)}else{items.forEach(function(c){var on=c.dataset.tab===sel;c.classList.toggle('sel',on);c.setAttribute('aria-selected',on)});peek(sel)}
 })();
 </script>
 </body>
