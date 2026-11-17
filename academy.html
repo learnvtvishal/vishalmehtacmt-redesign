@@ -297,6 +297,158 @@ section{padding:5rem 3.5rem}
   .stat-num{font-size:2rem}
 }
 </style>
+<style>
+/* DTA hub: navy programme picker on top, ivory programme pages below */
+:root{--bg:#fbf8f1;--bg2:#f5efe2;--bg3:#efe6d3;--border:rgba(120,90,30,.14);--border2:rgba(120,90,30,.24);--gold:#a8780f}
+nav{background:rgba(251,248,241,.94)!important}
+.stat-card{background:#fffdf8!important;border-color:rgba(168,120,15,.3)!important;box-shadow:0 18px 40px rgba(11,21,48,.08)}
+
+.prog{position:relative;overflow:hidden;padding:8rem 3.5rem 4.5rem;background:radial-gradient(ellipse at 50% -10%,#203a7a 0%,#0b1530 50%,#060b1a 100%);color:#fff;isolation:isolate}
+.prog-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.prog-aurora{position:absolute;inset:-20%;z-index:-2;pointer-events:none;background:conic-gradient(from 200deg at 50% 50%,transparent 0deg,rgba(232,184,75,.18) 60deg,transparent 120deg,rgba(37,99,235,.22) 200deg,transparent 260deg,rgba(232,184,75,.12) 320deg,transparent 360deg);filter:blur(70px);animation:aurora 22s linear infinite}
+@keyframes aurora{to{transform:rotate(360deg)}}
+.prog::after{content:'';position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,rgba(6,11,26,.6));pointer-events:none;z-index:-1}
+.prog-inner{position:relative;max-width:1180px;margin:0 auto}
+.prog-head{text-align:center;margin-bottom:2.2rem}
+.prog-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:.5rem 1.2rem;border:1px solid rgba(232,184,75,.45);background:rgba(232,184,75,.1);border-radius:100px;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#e8b84b;backdrop-filter:blur(6px)}
+.prog-eyebrow i{width:6px;height:6px;border-radius:50%;background:#e8b84b;box-shadow:0 0 10px #e8b84b;animation:pulse 2s infinite}
+.hub-title{font-family:'EB Garamond',serif;font-size:clamp(2.8rem,6.2vw,5.4rem);font-weight:700;line-height:1;color:#fff;margin-top:1.3rem;letter-spacing:-.005em}
+.hub-title .w{display:inline-block;opacity:0;transform:translateY(40px) rotateX(-70deg);transform-origin:50% 100%;animation:word-up 1s cubic-bezier(.2,.8,.2,1) forwards}
+.hub-title .w:nth-child(2){animation-delay:.15s}.hub-title .w:nth-child(3){animation-delay:.3s}
+@keyframes word-up{to{opacity:1;transform:none}}
+.hub-title em{font-style:italic;background:linear-gradient(110deg,#c9971c 0%,#f5d176 25%,#fff3c4 35%,#f5d176 45%,#c9971c 70%,#f5d176 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:word-up 1s .3s cubic-bezier(.2,.8,.2,1) forwards,shine 4.5s 1.3s linear infinite;padding-right:.08em}
+@keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
+.hub-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:1.4rem auto 0;color:#e8b84b}
+.hub-rule::before,.hub-rule::after{content:'';height:1px;width:min(160px,18vw);background:linear-gradient(90deg,transparent,#e8b84b)}
+.hub-rule::after{transform:scaleX(-1)}
+.hub-rule svg{width:16px;height:16px;fill:#e8b84b;animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ribbon of programme names */
+.hub-ribbon{position:relative;margin:0 -3.5rem 2.6rem;overflow:hidden;border-top:1px solid rgba(232,184,75,.22);border-bottom:1px solid rgba(232,184,75,.22);background:rgba(232,184,75,.05);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.hub-ribbon-track{display:flex;width:max-content;animation:ribbon 38s linear infinite}
+.hub-ribbon span{font-family:'EB Garamond',serif;font-style:italic;font-size:1.15rem;color:#e9dcb8;padding:.75rem 1.4rem;white-space:nowrap;display:flex;align-items:center;gap:2.8rem}
+.hub-ribbon span::after{content:'\2726';font-style:normal;color:#e8b84b;font-size:.8rem}
+@keyframes ribbon{to{transform:translateX(-50%)}}
+
+/* bento grid */
+.hub-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,minmax(170px,auto)) minmax(230px,auto);gap:1rem;perspective:1200px;grid-template-areas:"basics swing algo women" "work web cmt custom" "ment ment ment ment"}
+.hub-card[data-tab=basics]{grid-area:basics}.hub-card[data-tab=swing]{grid-area:swing}.hub-card[data-tab=algo]{grid-area:algo}.hub-card[data-tab=women]{grid-area:women}
+.hub-card[data-tab=workshops]{grid-area:work}.hub-card[data-tab=webinars]{grid-area:web}.hub-card[data-tab=mentorship]{grid-area:ment}.hub-card[data-tab=custom]{grid-area:custom}.hub-card[data-tab=cmt]{grid-area:cmt}
+.hub-card{--mx:50%;--my:50%;--rx:0deg;--ry:0deg;position:relative;overflow:hidden;text-align:left;font:inherit;color:inherit;cursor:pointer;border-radius:20px;padding:1.4rem 1.3rem 1.3rem;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);display:flex;flex-direction:column;gap:1rem;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .25s ease-out,border-color .35s,box-shadow .35s,background .35s;opacity:0;animation:card-in .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hub-card:nth-child(1){animation-delay:.35s}.hub-card:nth-child(2){animation-delay:.45s}.hub-card:nth-child(3){animation-delay:.55s}.hub-card:nth-child(4){animation-delay:.65s}.hub-card:nth-child(5){animation-delay:.75s}.hub-card:nth-child(6){animation-delay:.85s}.hub-card:nth-child(7){animation-delay:.95s}.hub-card:nth-child(8){animation-delay:1.05s}.hub-card:nth-child(9){animation-delay:1.2s}
+@keyframes card-in{from{opacity:0;transform:translateY(40px) scale(.94)}to{opacity:1;transform:rotateX(var(--rx)) rotateY(var(--ry))}}
+.hub-card.ready{opacity:1;animation:none}
+/* cursor spotlight */
+.hub-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(232,184,75,.22),transparent 45%);opacity:0;transition:opacity .4s;pointer-events:none}
+.hub-card:hover::before{opacity:1}
+/* running gold border */
+.hub-card::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 62%,#f5d176 75%,#fff3c4 80%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;animation:prog-spin 3.5s linear infinite;pointer-events:none}
+.hub-card:hover::after{opacity:1}
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes prog-spin{to{--ang:360deg}}
+.hub-card:hover{border-color:rgba(232,184,75,.45);box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 50px rgba(232,184,75,.14)}
+.hub-card:focus-visible{outline:2px solid #e8b84b;outline-offset:3px}
+.hub-wm{position:absolute;right:-.05em;bottom:-.22em;font-family:'EB Garamond',serif;font-size:7rem;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(232,184,75,.18);pointer-events:none;transition:transform .5s,-webkit-text-stroke-color .5s}
+.hub-card:hover .hub-wm{transform:translateY(-8px) scale(1.06);-webkit-text-stroke-color:rgba(232,184,75,.45)}
+.hub-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;transform:translateZ(30px)}
+.hub-card .n{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.2em;color:rgba(232,184,75,.85)}
+.hub-ic{width:50px;height:50px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.35);color:#f5d176;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .35s,color .35s,box-shadow .35s}
+.hub-ic svg,.soon-ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hub-ic svg *{stroke-dasharray:80;stroke-dashoffset:0}
+.hub-card:hover .hub-ic{transform:rotate(-10deg) scale(1.12);background:#e8b84b;color:#0b1530;box-shadow:0 0 30px rgba(232,184,75,.55)}
+.hub-card:hover .hub-ic svg *{animation:draw 1s ease forwards}
+@keyframes draw{from{stroke-dashoffset:80}to{stroke-dashoffset:0}}
+.hub-card h3{position:relative;font-family:'EB Garamond',serif;font-size:1.38rem;font-weight:600;line-height:1.15;color:#fff;margin-top:auto;transform:translateZ(40px)}
+.hub-go{position:relative;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#aab4c8;display:flex;align-items:center;gap:6px;transition:color .3s;transform:translateZ(20px)}
+.hub-go b{display:inline-block;transition:transform .3s}
+.hub-card:hover .hub-go{color:#e8b84b}.hub-card:hover .hub-go b{transform:translateX(6px)}
+
+/* big mentorship card */
+.hub-card.big{padding:2rem 2rem 1.8rem}
+.hub-card.big h3{font-size:clamp(2rem,3.6vw,3.3rem);line-height:1.02;max-width:70%}
+.hub-card.big .hub-wm{font-size:15rem}
+.hub-chips{position:relative;display:flex;flex-wrap:wrap;gap:8px;transform:translateZ(25px)}
+.hub-chips span{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.45rem .8rem;border-radius:100px;border:1px solid rgba(232,184,75,.4);color:#f5d176;background:rgba(6,11,26,.25)}
+.hub-orbit{position:absolute;right:8%;top:50%;margin-top:-150px;width:300px;height:300px;border-radius:50%;border:1px dashed rgba(232,184,75,.3);animation:spin 40s linear infinite;pointer-events:none}
+.hub-orbit::before,.hub-orbit::after{content:'';position:absolute;border-radius:50%}
+.hub-orbit::before{inset:45px;border:1px solid rgba(232,184,75,.18)}
+.hub-orbit::after{width:12px;height:12px;top:22px;left:50%;background:#f5d176;box-shadow:0 0 18px #f5d176}
+.hub-card.wide{flex-direction:row;align-items:center;gap:1.4rem}
+.hub-card.wide .hub-top{flex-direction:column;gap:.8rem}
+.hub-card.wide h3{margin:0;font-size:1.7rem}
+.hub-card.wide .hub-go{margin-left:auto}
+
+/* selected programme */
+.hub-card.on{background:linear-gradient(140deg,#fbe39a 0%,#e8b84b 35%,#c9971c 80%,#b8860b 100%);border-color:transparent;box-shadow:0 28px 60px rgba(232,184,75,.3),inset 0 1px 0 rgba(255,255,255,.6)}
+.hub-card.on .n,.hub-card.on h3,.hub-card.on .hub-go{color:#0b1530}
+.hub-card.on .hub-ic{background:#0b1530;border-color:#0b1530;color:#f5d176}
+.hub-card.on .hub-wm{-webkit-text-stroke-color:rgba(11,21,48,.18)}
+.hub-card.on .hub-chips span{color:#0b1530;border-color:rgba(11,21,48,.35);background:rgba(255,255,255,.25)}
+.hub-card.on .hub-orbit{border-color:rgba(11,21,48,.25)}.hub-card.on .hub-orbit::before{border-color:rgba(11,21,48,.15)}.hub-card.on .hub-orbit::after{background:#0b1530;box-shadow:none}
+.hub-card.on::before{background:radial-gradient(420px circle at var(--mx) var(--my),rgba(255,255,255,.45),transparent 45%)}
+.hub-card.on::after{background:conic-gradient(from var(--ang),transparent 0 62%,#0b1530 75%,transparent 92%)}
+.hub-hint{text-align:center;margin-top:2rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:#7f8aa3}
+.hub-hint b{color:#e8b84b;font-weight:700;display:inline-block;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+
+.dta-panel{display:none}
+.dta-panel.on{display:block;animation:prog-in .7s ease both}
+@keyframes prog-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.panel-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:1.1rem 1.5rem;background:var(--bg2);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.panel-bar span{color:#0b1530}
+.dta-panel .hero{padding-top:4.5rem}
+
+.soon{padding:5rem 3.5rem 6rem;background:var(--bg)}
+.soon-card{max-width:760px;margin:0 auto;text-align:center;padding:3.5rem 2rem;border-radius:24px;background:#fffdf8;border:1px solid rgba(168,120,15,.3);box-shadow:0 24px 60px rgba(11,21,48,.08)}
+.soon-ic{width:72px;height:72px;margin:0 auto 1.4rem;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,#f5d176,#c9971c);color:#0b1530}
+.soon-ic svg{width:32px;height:32px}
+.soon-k{font-family:var(--mono);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.soon-card h2{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#0b1530;margin:.6rem 0 1rem}
+.soon-card p{color:var(--text2);margin-bottom:2rem}
+
+@media(max-width:1000px){
+.hub-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:none;grid-template-areas:"basics swing" "algo women" "work web" "cmt custom" "ment ment"}
+.hub-card.big{min-height:300px}}
+@media(max-width:600px){.prog{padding:6.5rem 1.2rem 3.5rem}.hub-ribbon{margin:0 -1.2rem 2rem}.hub-grid{gap:.7rem}.hub-card{min-height:150px;padding:1.1rem 1rem}.hub-card h3{font-size:1.1rem}.hub-card.big h3{font-size:1.9rem}.hub-card.wide{flex-direction:column;align-items:flex-start}.hub-card.wide h3{font-size:1.3rem}.hub-card.wide .hub-go{margin-left:0}.hub-wm{font-size:5rem}.hub-card.big .hub-wm{font-size:10rem}.soon{padding:3.5rem 1.2rem 4rem}}
+@media(prefers-reduced-motion:reduce){.prog-aurora,.hub-ribbon-track,.hub-orbit,.hub-card::after,.hub-title em{animation:none}.hub-card,.hub-title .w{opacity:1;animation:none;transform:none}}
+.hub-title.done .w{opacity:1;transform:none;animation:none}
+.hub-title.done em{animation:shine 4.5s linear infinite}
+
+/* programme pages */
+.pp-head{position:relative;overflow:hidden;padding:4.5rem 3.5rem;background:radial-gradient(ellipse at 85% 0%,#203a7a 0%,#0b1530 55%,#060b1a 100%);color:#fff}
+.pp-head::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(232,184,75,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(232,184,75,.06) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 60%);mask-image:linear-gradient(90deg,transparent,#000 60%);pointer-events:none}
+.pp-big{position:absolute;right:3rem;top:50%;transform:translateY(-50%);font-family:'EB Garamond',serif;font-size:16rem;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(232,184,75,.35);pointer-events:none;animation:pp-float 6s ease-in-out infinite}
+@keyframes pp-float{50%{transform:translateY(-54%)}}
+.pp-head-in{position:relative;max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:2rem}
+.pp-ic{flex-shrink:0;width:96px;height:96px;border-radius:26px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#fbe39a,#e8b84b 40%,#c9971c);color:#0b1530;box-shadow:0 20px 50px rgba(232,184,75,.3);animation:pp-pop .8s cubic-bezier(.2,1.4,.4,1) both}
+.pp-ic svg{width:44px;height:44px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@keyframes pp-pop{from{transform:scale(.4) rotate(-20deg);opacity:0}}
+.pp-k{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#e8b84b}
+.pp-head h2{font-family:'EB Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.02;color:#fff;margin:.5rem 0 .8rem}
+.pp-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:#d8c79e;max-width:620px;line-height:1.45}
+.pp-body{padding:4rem 3.5rem 5rem;background:var(--bg);max-width:1240px;margin:0 auto}
+.pp-label{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem}
+.pp-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(168,120,15,.4),transparent)}
+.pp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;counter-reset:pp}
+.pp-sub{position:relative;overflow:hidden;background:#fffdf8;border:1px solid rgba(168,120,15,.22);border-radius:18px;padding:1.5rem 1.3rem 1.4rem;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.pp-sub::before{content:'';position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,#e8b84b,#c9971c);transition:width .5s ease}
+.pp-sub::after{content:'';position:absolute;right:-40px;bottom:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,.18),transparent 70%);opacity:0;transition:opacity .4s}
+.pp-sub:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(11,21,48,.1);border-color:rgba(168,120,15,.45)}
+.pp-sub:hover::before{width:100%}.pp-sub:hover::after{opacity:1}
+.pp-n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:12px;font-family:var(--mono);font-size:.74rem;font-weight:700;color:#a8780f;background:rgba(232,184,75,.12);border:1px solid rgba(168,120,15,.3);margin-bottom:1rem;transition:background .35s,color .35s,transform .35s}
+.pp-sub:hover .pp-n{background:#0b1530;color:#f5d176;transform:rotate(-8deg)}
+.pp-sub h4{font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:600;line-height:1.2;color:#0b1530;margin-bottom:.45rem}
+.pp-sub p{font-size:.88rem;line-height:1.55;color:var(--text2)}
+.pp-foot{margin-top:2.4rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:1.4rem 1.6rem;border-radius:18px;background:linear-gradient(120deg,#0b1530,#1b2f66);color:#fff}
+.pp-who{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.pp-who b{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#e8b84b;margin-right:6px}
+.pp-who span{font-size:.82rem;padding:.4rem .85rem;border-radius:100px;border:1px solid rgba(232,184,75,.4);color:#f1e6c8;background:rgba(255,255,255,.04)}
+.pp-cta.btn-main{background:linear-gradient(135deg,#f5d176,#c9971c)!important;color:#0b1530!important;white-space:nowrap}
+.pp-note{margin-top:1rem;text-align:center;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3)}
+@media(max-width:1000px){.pp-grid{grid-template-columns:repeat(2,1fr)}.pp-big{font-size:11rem;right:1rem}}
+@media(max-width:600px){.pp-head{padding:3rem 1.2rem}.pp-head-in{flex-direction:column;align-items:flex-start;gap:1.2rem}.pp-ic{width:72px;height:72px;border-radius:20px}.pp-ic svg{width:34px;height:34px}.pp-big{font-size:8rem;top:auto;bottom:-1rem;transform:none;animation:none}.pp-head p{font-size:1.15rem}.pp-body{padding:2.8rem 1.2rem 3.5rem}.pp-grid{grid-template-columns:1fr}.pp-foot{padding:1.2rem}.hub-card.big h3{max-width:none}.hub-orbit{right:-90px}}
+</style>
 </head>
 <body>
 
@@ -316,6 +468,80 @@ section{padding:5rem 3.5rem}
   <a href="learn.html" class="nav-pill">Login</a>
 </nav>
 
+<!-- DTA PROGRAMMES: main headings. Each card opens its own panel below (data-tab = data-panel). -->
+<section class="prog" id="programmes">
+  <div class="prog-aurora"></div><canvas class="prog-canvas" aria-hidden="true"></canvas>
+  <div class="prog-inner">
+    <div class="prog-head">
+      <span class="prog-eyebrow"><i></i>DTA Programmes</span>
+      <h2 class="hub-title"><span class="w">Disciplined</span> <span class="w">Traders</span> <em class="w">Academy</em></h2>
+      <div class="hub-rule"><svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></div>
+    </div>
+    <div class="hub-ribbon" aria-hidden="true"><div class="hub-ribbon-track"><span>Basics of Stock Market</span><span>Swing Trading</span><span>Algo Trading</span><span>Women in Trading</span><span>Weekly Workshops</span><span>Webinars</span><span>CMT</span><span>Customise Your Own Plan</span><span>Group / Personal Mentorship</span><span>Basics of Stock Market</span><span>Swing Trading</span><span>Algo Trading</span><span>Women in Trading</span><span>Weekly Workshops</span><span>Webinars</span><span>CMT</span><span>Customise Your Own Plan</span><span>Group / Personal Mentorship</span></div></div>
+    <div class="hub-grid" role="tablist">
+    <button class="hub-card" role="tab" data-tab="basics" aria-selected="false">
+      <span class="hub-wm">01</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></div><span class="n">01</span></div>
+      <h3>Basics of Stock Market</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card" role="tab" data-tab="swing" aria-selected="false">
+      <span class="hub-wm">02</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></div><span class="n">02</span></div>
+      <h3>Swing Trading</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card" role="tab" data-tab="algo" aria-selected="false">
+      <span class="hub-wm">03</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div><span class="n">03</span></div>
+      <h3>Algo Trading</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card" role="tab" data-tab="women" aria-selected="false">
+      <span class="hub-wm">04</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></div><span class="n">04</span></div>
+      <h3>Women in Trading</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card" role="tab" data-tab="workshops" aria-selected="false">
+      <span class="hub-wm">05</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div><span class="n">05</span></div>
+      <h3>Weekly Workshops</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card" role="tab" data-tab="webinars" aria-selected="false">
+      <span class="hub-wm">06</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div><span class="n">06</span></div>
+      <h3>Webinars</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card" role="tab" data-tab="cmt" aria-selected="false">
+      <span class="hub-wm">07</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div><span class="n">07</span></div>
+      <h3>CMT</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card" role="tab" data-tab="custom" aria-selected="false">
+      <span class="hub-wm">08</span>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div><span class="n">08</span></div>
+      <h3>Customise Your Own Plan</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    <button class="hub-card big on" role="tab" data-tab="mentorship" aria-selected="true">
+      <span class="hub-wm">09</span>
+      <div class="hub-orbit"></div>
+      <div class="hub-chips"><span>12 Sessions</span><span>8 Modules + 4 AI Labs</span><span>10,000+ Trained</span></div>
+      <div class="hub-top"><div class="hub-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle cx="17" cy="9" r="3"/><path d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></div><span class="n">09</span></div>
+      <h3>Group / Personal Mentorship</h3>
+      <span class="hub-go">Explore <b>&rarr;</b></span>
+    </button>
+    </div>
+    <div class="hub-hint">Choose a programme <b>&darr;</b></div>
+  </div>
+</section>
+
+<div class="dta-panel on" data-panel="mentorship" id="p-mentorship">
+<div class="panel-bar">Programme 09 &middot; <span>Group / Personal Mentorship</span></div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-side left rv">
@@ -832,6 +1058,253 @@ section{padding:5rem 3.5rem}
     <div class="cta-meta rv d3">12 sessions · ~60 hours · Alumni community · Claude AI toolkit</div>
   </div>
 </section>
+</div>
+
+<div class="dta-panel" data-panel="basics" id="p-basics">
+<section class="pp-head">
+  <span class="pp-big">01</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 01 &middot; DTA</div>
+      <h2>Basics of Stock Market</h2>
+      <p>Start from zero. Understand how the market really works before you put a rupee in it.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>How the market works</h4><p>Exchanges, brokers, SEBI and what happens when you click buy.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Demat & trading accounts</h4><p>Opening, linking and keeping your accounts safe.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Order types</h4><p>Market, limit, stop-loss and when to use each one.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Primary vs secondary market</h4><p>IPOs, listings and everyday trading explained simply.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Reading a price chart</h4><p>Candlesticks, timeframes and volume, in plain language.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Fundamental vs technical</h4><p>Two ways to look at a stock and where each one fits.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Risk before reward</h4><p>Position size, capital protection and the 1% habit.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Beginner mistakes to avoid</h4><p>Tips, leverage and FOMO: the traps that cost the most.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Complete beginners</span><span>Students</span><span>Salaried professionals</span><span>First-time investors</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+<div class="dta-panel" data-panel="swing" id="p-swing">
+<section class="pp-head">
+  <span class="pp-big">02</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 02 &middot; DTA</div>
+      <h2>Swing Trading</h2>
+      <p>Hold for days, not minutes. A rules-based way to ride the bigger moves.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Trend & market structure</h4><p>Higher highs, lower lows and how to read the bigger picture.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Support, resistance & breakouts</h4><p>Where price reacts and how to tell real breaks from fakes.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Pullback entries</h4><p>Joining a trend at a better price instead of chasing it.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Candlestick confirmation</h4><p>Patterns that add weight to a setup, and those that do not.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Moving averages, RSI & volume</h4><p>A small indicator toolkit, used with discipline.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Stops & trailing exits</h4><p>Planning the exit before the entry.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Risk-reward & position sizing</h4><p>Making the maths work even when you are wrong.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Trade journal & review</h4><p>Turning every trade into feedback.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Working professionals</span><span>Part-time traders</span><span>Chart readers moving to a system</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+<div class="dta-panel" data-panel="algo" id="p-algo">
+<section class="pp-head">
+  <span class="pp-big">03</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 03 &middot; DTA</div>
+      <h2>Algo Trading</h2>
+      <p>Turn your trading idea into clear rules, test it, then let code execute it.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>From idea to rules</h4><p>Writing a strategy so precisely a computer can follow it.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Python for traders</h4><p>Just enough code to handle data, signals and orders.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Data & backtesting</h4><p>Testing on history the right way, with costs included.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Avoiding overfitting</h4><p>Out-of-sample and walk-forward checks so results hold up.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Risk controls & kill-switch</h4><p>Hard limits that protect the account when things go wrong.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Broker APIs & automation</h4><p>Connecting a strategy to a broker and placing orders.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>SEBI's retail algo framework</h4><p>How API-based algos for retail clients work through brokers.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Paper to live, then monitor</h4><p>Going live in small steps, with logs and alerts.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Traders with a manual system</span><span>Engineers & coders</span><span>Anyone tired of screen-watching</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+<div class="dta-panel" data-panel="women" id="p-women">
+<section class="pp-head">
+  <span class="pp-big">04</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 04 &middot; DTA</div>
+      <h2>Women in Trading</h2>
+      <p>A supportive space for women to build market skills, confidence and financial independence.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Money foundations</h4><p>Budgeting, saving and investing basics for every life stage.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Markets made simple</h4><p>Stocks, ETFs and mutual funds without the jargon.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Investing vs trading</h4><p>Choosing the path that fits your time and goals.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Trading around your schedule</h4><p>Routines that work alongside work and family.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Risk-first approach</h4><p>Protecting capital before chasing returns.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Confidence & psychology</h4><p>Making decisions calmly and owning them.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Peer circle</h4><p>Learn together, share journals and grow as a group.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Guided practice</h4><p>Practise on real charts with feedback from mentors.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Homemakers</span><span>Working women</span><span>Women entrepreneurs</span><span>Students</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+<div class="dta-panel" data-panel="workshops" id="p-workshops">
+<section class="pp-head">
+  <span class="pp-big">05</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 05 &middot; DTA</div>
+      <h2>Weekly Workshops</h2>
+      <p>One focused topic every week. Learn it live, practise it, ask your questions.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Chart-reading drills</h4><p>Practise spotting structure, levels and patterns.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Strategy deep-dive</h4><p>One setup broken down: rules, entries, exits and risk.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Indicator lab</h4><p>How one indicator really works and where it fails.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Risk & money management</h4><p>Position sizing and drawdown control, hands-on.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Journal review</h4><p>Learning from real trade logs, mistakes included.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Psychology hour</h4><p>Fear, greed, revenge trading and how to manage them.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Tools & AI walkthrough</h4><p>Using platforms, scanners and AI assistants well.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Live Q&A</h4><p>Bring your questions and get answers on the spot.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>DTA students</span><span>Self-learners who want structure</span><span>Anyone wanting weekly practice</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+<div class="dta-panel" data-panel="webinars" id="p-webinars">
+<section class="pp-head">
+  <span class="pp-big">06</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 06 &middot; DTA</div>
+      <h2>Webinars</h2>
+      <p>Short, focused live sessions to get started and find your direction.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Intro to technical analysis</h4><p>What charts can and cannot tell you.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Algo trading 101</h4><p>How rules-based and automated trading actually works.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>AI for traders</h4><p>Practical ways to use AI tools in your trading process.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Risk management essentials</h4><p>The habits that keep traders in the game.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Trading psychology</h4><p>Why discipline beats prediction.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Ask Me Anything</h4><p>Open Q&A with Vishal Mehta, CMT.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Anyone curious about markets</span><span>People choosing a programme</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+<div class="dta-panel" data-panel="cmt" id="p-cmt">
+<section class="pp-head">
+  <span class="pp-big">07</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 07 &middot; DTA</div>
+      <h2>CMT</h2>
+      <p>Guidance for the Chartered Market Technician program, from a CMT charterholder.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Program roadmap</h4><p>How the three levels fit together and how to plan your journey.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Level I: foundations</h4><p>Theory and history, markets, indicators, chart construction and trend.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Level II: application</h4><p>Chart and pattern analysis, confirmation and risk management.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Level III: integration</h4><p>Bringing it all together, with multiple-choice and short essays.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Ethics & professional standards</h4><p>The ethics component tested across the levels.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Study plan & practice</h4><p>Week-by-week plan, revision and practice questions.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Exam strategy</h4><p>Time management and how to approach each question type.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Mentor sessions</h4><p>Doubt-clearing with Vishal Mehta, CMT.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Aspiring CMT candidates</span><span>Finance professionals</span><span>Serious technical analysts</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+<div class="dta-panel" data-panel="custom" id="p-custom">
+<section class="pp-head">
+  <span class="pp-big">08</span>
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 08 &middot; DTA</div>
+      <h2>Customise Your Own Plan</h2>
+      <p>Your goals, your pace. Pick what you need and we build the plan around you.</p>
+    </div>
+  </div>
+</section>
+<section class="pp-body">
+  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-grid">
+    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Skill check call</h4><p>A short conversation to see where you stand today.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Pick your modules</h4><p>Choose topics from any programme on this page.</p></div>
+    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Choose your pace</h4><p>Weekday, weekend or intensive: whatever fits your life.</p></div>
+    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Group or 1-on-1</h4><p>Learn in a small batch or with a personal mentor.</p></div>
+    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Goals & milestones</h4><p>Clear checkpoints so you can see your progress.</p></div>
+    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Regular reviews</h4><p>Adjust the plan as you grow.</p></div>
+  </div>
+  <div class="pp-foot">
+    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Busy professionals</span><span>Traders with specific gaps</span><span>Anyone who wants it their way</span></div>
+    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
+  </div>
+  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+</section>
+</div>
+
 
 <script>
 const io = new IntersectionObserver(entries=>{
@@ -841,6 +1314,45 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 setTimeout(()=>{
   document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
 },100);
+</script>
+<script>
+(function(){
+var cards=[].slice.call(document.querySelectorAll('.hub-card')),nav=document.querySelector('nav');
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function show(k,scroll){var p=document.getElementById('p-'+k);if(!p)return;
+  cards.forEach(function(c){var on=c.dataset.tab===k;c.classList.toggle('on',on);c.setAttribute('aria-selected',on)});
+  document.querySelectorAll('.dta-panel').forEach(function(x){x.classList.toggle('on',x===p)});
+  p.querySelectorAll('.rv').forEach(function(r){r.classList.add('in')});
+  if(scroll)window.scrollTo({top:p.getBoundingClientRect().top+scrollY-(nav?nav.offsetHeight:0),behavior:'smooth'});}
+cards.forEach(function(c){
+  c.addEventListener('click',function(){show(c.dataset.tab,true);history.replaceState(null,'','#'+c.dataset.tab)});
+  c.addEventListener('animationend',function(){c.classList.add('ready')});
+  if(calm)return;
+  c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');
+    c.style.setProperty('--ry',((x-.5)*10)+'deg');c.style.setProperty('--rx',((.5-y)*10)+'deg')});
+  c.addEventListener('pointerleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+});
+var h=location.hash.slice(1);if(h&&document.getElementById('p-'+h))show(h,false);
+/* never leave cards or title hidden if the entrance animation was skipped or throttled */
+setTimeout(function(){cards.forEach(function(c){c.classList.add('ready')});var t=document.querySelector('.hub-title');if(t)t.classList.add('done')},2600);
+/* gold constellation */
+var cv=document.querySelector('.prog-canvas');if(!cv||calm)return;
+var ctx=cv.getContext('2d'),sec=cv.parentNode,dpr=Math.min(devicePixelRatio||1,2),W,H,pts=[],m={x:-999,y:-999},run=true;
+function size(){W=sec.offsetWidth;H=sec.offsetHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  var n=Math.round(W*H/16000);pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+.4})}
+size();addEventListener('resize',size);
+sec.addEventListener('pointermove',function(e){var r=sec.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top});
+sec.addEventListener('pointerleave',function(){m.x=m.y=-999});
+new IntersectionObserver(function(es){run=es[0].isIntersecting;if(run)requestAnimationFrame(tick)}).observe(sec);
+function tick(){if(!run)return;ctx.clearRect(0,0,W,H);
+  for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+    var dx=p.x-m.x,dy=p.y-m.y,dm=Math.sqrt(dx*dx+dy*dy);if(dm<140){p.x+=dx/dm*.8;p.y+=dy/dm*.8}
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.3);ctx.fillStyle='rgba(245,209,118,.8)';ctx.fill();
+    for(var j=i+1;j<pts.length;j++){var q=pts[j],a=p.x-q.x,b=p.y-q.y,d=a*a+b*b;
+      if(d<12000){ctx.strokeStyle='rgba(232,184,75,'+(.22*(1-d/12000))+')';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}}}
+  requestAnimationFrame(tick)}
+})();
 </script>
 </body>
 </html>
