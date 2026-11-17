@@ -299,9 +299,7 @@ section{padding:5rem 3.5rem}
 </style>
 <style>
 /* shared: ivory page + programme panels */
-:root{--bg:#fbf8f1;--bg2:#f5efe2;--bg3:#efe6d3;--border:rgba(120,90,30,.14);--border2:rgba(120,90,30,.24);--gold:#a8780f}
-nav{background:rgba(251,248,241,.94)!important}
-.stat-card{background:#fffdf8!important;border-color:rgba(168,120,15,.3)!important;box-shadow:0 18px 40px rgba(11,21,48,.08)}
+.stat-card{background:#ffffff!important;border-color:rgba(168,120,15,.3)!important;box-shadow:0 18px 40px rgba(11,21,48,.08)}
 .dta-panel{display:none}
 .dta-panel.on{display:block;animation:prog-in .7s ease both}
 .panel-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:1.1rem 1.5rem;background:var(--bg2);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
@@ -309,14 +307,6 @@ nav{background:rgba(251,248,241,.94)!important}
 .dta-panel .hero{padding-top:4.5rem}
 
 /* programme pages */
-.pp-head{position:relative;overflow:hidden;padding:4.5rem 3.5rem;background:radial-gradient(ellipse at 85% 0%,#203a7a 0%,#0b1530 55%,#060b1a 100%);color:#fff}
-.pp-head::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(232,184,75,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(232,184,75,.06) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 60%);mask-image:linear-gradient(90deg,transparent,#000 60%);pointer-events:none}
-.pp-big{position:absolute;right:3rem;top:50%;transform:translateY(-50%);font-family:'EB Garamond',serif;font-size:16rem;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(232,184,75,.35);pointer-events:none;animation:pp-float 6s ease-in-out infinite}
-@keyframes pp-float{50%{transform:translateY(-54%)}}
-.pp-head-in{position:relative;max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:2rem}
-.pp-ic{flex-shrink:0;width:96px;height:96px;border-radius:26px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#fbe39a,#e8b84b 40%,#c9971c);color:#0b1530;box-shadow:0 20px 50px rgba(232,184,75,.3);animation:pp-pop .8s cubic-bezier(.2,1.4,.4,1) both}
-.pp-ic svg{width:44px;height:44px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-@keyframes pp-pop{from{transform:scale(.4) rotate(-20deg);opacity:0}}
 .pp-k{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#e8b84b}
 .pp-head h2{font-family:'EB Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.02;color:#fff;margin:.5rem 0 .8rem}
 .pp-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:#d8c79e;max-width:620px;line-height:1.45}
@@ -324,7 +314,7 @@ nav{background:rgba(251,248,241,.94)!important}
 .pp-label{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem}
 .pp-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(168,120,15,.4),transparent)}
 .pp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;counter-reset:pp}
-.pp-sub{position:relative;overflow:hidden;background:#fffdf8;border:1px solid rgba(168,120,15,.22);border-radius:18px;padding:1.5rem 1.3rem 1.4rem;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.pp-sub{position:relative;overflow:hidden;background:#ffffff;border:1px solid rgba(168,120,15,.22);border-radius:18px;padding:1.5rem 1.3rem 1.4rem;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
 .pp-sub::before{content:'';position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,#e8b84b,#c9971c);transition:width .5s ease}
 .pp-sub::after{content:'';position:absolute;right:-40px;bottom:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(232,184,75,.18),transparent 70%);opacity:0;transition:opacity .4s}
 .pp-sub:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(11,21,48,.1);border-color:rgba(168,120,15,.45)}
@@ -333,17 +323,42 @@ nav{background:rgba(251,248,241,.94)!important}
 .pp-sub:hover .pp-n{background:#0b1530;color:#f5d176;transform:rotate(-8deg)}
 .pp-sub h4{font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:600;line-height:1.2;color:#0b1530;margin-bottom:.45rem}
 .pp-sub p{font-size:.88rem;line-height:1.55;color:var(--text2)}
-.pp-foot{margin-top:2.4rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:1.4rem 1.6rem;border-radius:18px;background:linear-gradient(120deg,#0b1530,#1b2f66);color:#fff}
-.pp-who{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
-.pp-who b{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#e8b84b;margin-right:6px}
-.pp-who span{font-size:.82rem;padding:.4rem .85rem;border-radius:100px;border:1px solid rgba(232,184,75,.4);color:#f1e6c8;background:rgba(255,255,255,.04)}
-.pp-cta.btn-main{background:linear-gradient(135deg,#f5d176,#c9971c)!important;color:#0b1530!important;white-space:nowrap}
 .pp-note{margin-top:1rem;text-align:center;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3)}
-@media(max-width:1000px){.pp-grid{grid-template-columns:repeat(2,1fr)}.pp-big{font-size:11rem;right:1rem}}
-@media(max-width:600px){.pp-head{padding:3rem 1.2rem}.pp-head-in{flex-direction:column;align-items:flex-start;gap:1.2rem}.pp-ic{width:72px;height:72px;border-radius:20px}.pp-ic svg{width:34px;height:34px}.pp-big{font-size:8rem;top:auto;bottom:-1rem;transform:none;animation:none}.pp-head p{font-size:1.15rem}.pp-body{padding:2.8rem 1.2rem 3.5rem}.pp-grid{grid-template-columns:1fr}.pp-foot{padding:1.2rem}}
+
+
+
+.pp-head{position:relative;overflow:hidden;padding:4.2rem 3.5rem 6.6rem;background:radial-gradient(800px 380px at 90% 0%,#203a7a 0%,#0b1530 60%);color:#fff}
+.pp-head::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 70%);mask-image:linear-gradient(90deg,transparent,#000 70%);pointer-events:none}
+.pp-head-in{position:relative;max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:2rem}
+.pp-ic{flex-shrink:0;width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(227,185,85,.45);color:#e3b955;background:rgba(227,185,85,.06)}
+.pp-ic svg{width:40px;height:40px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.pp-flag{margin-left:12px;padding:.25rem .65rem;border-radius:100px;background:#e3b955;color:#0b1530;letter-spacing:.16em}
+.pp-facts{position:relative;z-index:2;max-width:1240px;margin:-3.4rem auto 0;padding:0 3.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.pp-fact{display:flex;flex-direction:column;gap:.45rem;background:#ffffff;border:1px solid rgba(168,120,15,.25);border-radius:18px;padding:1.3rem 1.4rem 1.35rem;box-shadow:0 22px 44px rgba(11,21,48,.1)}
+.pp-fact b{font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#a8780f}
+.pp-fact strong{font-family:'EB Garamond',serif;font-size:1.45rem;font-weight:600;line-height:1.2;color:#0b1530}
+.pp-fact small{font-size:.8rem;color:var(--text3)}
+.pp-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pp-chips span{font-size:.76rem;padding:.3rem .7rem;border-radius:100px;background:rgba(11,21,48,.05);border:1px solid rgba(11,21,48,.12);color:#1e293b}
+.pp-label2{margin-top:3.2rem}
+.pp-ben{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.2rem;padding:0}
+.pp-ben li{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.3rem;border-radius:16px;background:#ffffff;border:1px solid rgba(168,120,15,.2);font-family:'EB Garamond',serif;font-size:1.22rem;font-weight:500;line-height:1.3;color:#0b1530}
+.pp-tick{flex-shrink:0;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0b1530;color:#e3b955}
+.pp-tick svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.pp-foot{margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:1.6rem 1.9rem;border-radius:20px;background:radial-gradient(600px 200px at 100% 0%,#203a7a,#0b1530 70%);color:#fff}
+.pp-foot-t{font-family:'EB Garamond',serif;font-size:1.6rem;font-weight:500;color:#fff}
+.pp-foot-t em{color:#e3b955}
+.pp-cta.btn-main{background:#e3b955!important;color:#0b1530!important;box-shadow:none!important;white-space:nowrap}
+.pp-cta.btn-main:hover{background:#f0cf7a!important}
+#p-mentorship .pp-facts{margin-bottom:1rem}
+@media(max-width:1000px){.pp-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.pp-head{padding:3rem 1.2rem 5.6rem}.pp-head-in{flex-direction:column;align-items:flex-start;gap:1.2rem}.pp-ic{width:68px;height:68px}.pp-ic svg{width:30px;height:30px}.pp-head p{font-size:1.15rem}.pp-facts{padding:0 1.2rem;grid-template-columns:1fr}.pp-body{padding:2.8rem 1.2rem 3.5rem}.pp-grid,.pp-ben{grid-template-columns:1fr}.pp-foot{padding:1.3rem}.pp-foot-t{font-size:1.3rem}}
+.pp-facts.n3{grid-template-columns:1fr 1fr 1.5fr}.pp-facts.n4{grid-template-columns:1fr 1fr 1fr 1.45fr}
+@media(max-width:900px){.pp-facts.n3,.pp-facts.n4{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.pp-facts.n3,.pp-facts.n4{grid-template-columns:1fr}}
 
 /* Variant B: "Index" - ivory editorial list + live navy preview card */
-.ix{position:relative;padding:8.5rem 3.5rem 5.5rem;background:#fbf8f1}
+.ix{position:relative;padding:8.5rem 3.5rem 5.5rem;background:linear-gradient(180deg,#f1f5ff 0%,#ffffff 55%)}
 .ix-in{max-width:1240px;margin:0 auto}
 .ix-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;padding-bottom:2rem;border-bottom:1px solid rgba(11,21,48,.14)}
 .ix-eye{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#a8780f}
@@ -402,6 +417,7 @@ nav{background:rgba(251,248,241,.94)!important}
 .ix-ar{width:36px;height:36px}}
 @media(prefers-reduced-motion:reduce){.ix-row,.ix-row::before,.ix-pv,.ix-ar{transition:none!important}.ix-pv.on .ix-art svg *{animation:none}}
 </style>
+<link rel="stylesheet" href="vivid.css">
 </head>
 <body>
 
@@ -565,133 +581,18 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
-
 <div class="dta-panel on" data-panel="mentorship" id="p-mentorship">
-<div class="panel-bar">Programme 09 &middot; <span>Group / Personal Mentorship</span></div>
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-side left rv">
-    <div class="hs-card">
-      <div class="hs-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="hs-title">chart.read</span></div>
-      <div class="hs-code">
-        <span class="ln"><span class="cm"># AI market structure read</span></span>
-        <span class="ln"><span class="kw">def</span> <span class="fn">read_structure</span>(bars):</span>
-        <span class="ln">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> bars.<span class="fn">hh_hl</span>():</span>
-        <span class="ln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="st">'uptrend'</span></span>
-        <span class="ln">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="st">'corrective'</span><span class="cur"></span></span>
-        <div class="hs-ai">Add ATR-based stop &amp; 1% position sizing to this setup?</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-inner">
-    <div class="hero-eyebrow rv"><span class="dot"></span>2026 batch · Enrollment open</div>
-    <h1 class="rv d1">Technical Analysis<br>Just <span class="strike">Changed.</span> <em>Evolved.</em><br>Now It Has <span class="blue-ai">AI.</span></h1>
-    <div class="hero-tag rv d2">Technical Analysis · evolved. Now with AI.</div>
-    <p class="hero-desc rv d2">The DTA program that trained <strong>10,000+ traders</strong> just got its biggest upgrade — <strong>4 dedicated AI Labs</strong> woven between the 8 core modules. Same discipline. New superpower.</p>
-    <div class="hero-meta rv d3">
-      <span><span class="icon">⏱</span>12 sessions · ~60 hours</span>
-      <span><span class="icon">🧩</span>8 modules + 4 AI Labs</span>
-      <span><span class="icon">🤖</span>AI-powered with Claude</span>
-      <span><span class="icon">🛡</span>10,000+ trained</span>
-    </div>
-    <div class="hero-cta rv d3">
-      <a href="contact.html" class="btn-main">Reserve your seat →</a>
-      <a href="#curriculum" class="btn-ghost">See full syllabus</a>
-    </div>
-  </div>
-
-  <div class="hero-side right rv">
-    <div class="hs-card">
-      <div class="hs-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="hs-title">cohort progress</span></div>
-      <div class="hs-prog">
-        <div class="hs-prog-h"><div class="hs-prog-t">Session 9 / 12</div><div class="hs-prog-pct">75%</div></div>
-        <div class="hs-prog-bar"><div class="hs-prog-fill"></div></div>
-        <div class="hs-step done"><span class="tick"></span>Foundations &amp; tools</div>
-        <div class="hs-step done"><span class="tick"></span>Patterns &amp; indicators</div>
-        <div class="hs-step done"><span class="tick"></span>Risk &amp; money mgmt</div>
-        <div class="hs-step now"><span class="tick"></span>AI Lab · Quant Brain</div>
-        <div class="hs-step todo"><span class="tick"></span>Psychology</div>
-        <div class="hs-step todo"><span class="tick"></span>Capstone strategy</div>
-      </div>
+<section class="pp-head">
+  <div class="pp-head-in">
+    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle cx="17" cy="9" r="3"/><path d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></div>
+    <div>
+      <div class="pp-k">Programme 09 &middot; DTA<span class="pp-flag">Flagship</span></div>
+      <h2>Group / Personal Mentorship</h2>
+      <p>The complete DTA journey, learnt in a small group or one-on-one.</p>
     </div>
   </div>
 </section>
-
-<!-- STATS BAND -->
-<section class="stats-section">
-  <div class="stats-band">
-    <div class="stat-card rv"><div class="stat-num">12</div><div class="stat-lbl">Sessions</div></div>
-    <div class="stat-card rv d1"><div class="stat-num">8<em>+</em>4</div><div class="stat-lbl">Modules + AI Labs</div></div>
-    <div class="stat-card rv d2"><div class="stat-num">80<em>+</em></div><div class="stat-lbl">Topics covered</div></div>
-    <div class="stat-card rv d3"><div class="stat-num">10K<em>+</em></div><div class="stat-lbl">Traders trained</div></div>
-  </div>
-</section>
-
-<!-- BEFORE/AFTER STRIP -->
-<section class="ba-section">
-  <div class="ba-strip rv">
-    <div class="ba-col ba-old">
-      <div class="ba-eye">The old way</div>
-      <p>Stare at charts for hours. Miss patterns. Doubt every entry. Trade alone.</p>
-    </div>
-    <div class="ba-arrow">→</div>
-    <div class="ba-col ba-new">
-      <div class="ba-eye">The DTA · TA 2.0 way</div>
-      <p>Discipline you learn. AI that watches with you. Setups you trust. A system for life.</p>
-    </div>
-  </div>
-</section>
-
-<!-- AI SECTION (THE CENTERPIECE) -->
-<section class="ai-section">
-  <div class="ai-inner">
-    <div class="ai-left">
-      <div class="sec-eye rv">India's first AI-integrated TA program</div>
-      <h2 class="sec-title rv d1">Meet your<br><em>charting partner</em><br>who never sleeps.</h2>
-      <p class="sec-sub rv d2" style="margin:0 0 0;text-align:left;">Across <strong style="color:var(--text)">4 dedicated AI Labs</strong>, you pair with <strong style="color:var(--text)">Claude</strong> — Anthropic's frontier AI. You describe what you see on the chart. Claude reads with you, scans confluences, drafts your prompt library, labels Elliott waves, and helps turn your strategy into code. Your judgment. AI's speed.</p>
-      <div class="ai-feature-list">
-        <div class="ai-feat rv d2">
-          <div class="ai-feat-icon">👁</div>
-          <div><div class="ai-feat-t">AI chart vision</div><div class="ai-feat-d">Auto-draft trendlines, market structure read-outs (HH/HL/LH/LL), S/R zones with AI vision.</div></div>
-        </div>
-        <div class="ai-feat rv d2">
-          <div class="ai-feat-icon">🔍</div>
-          <div><div class="ai-feat-t">Confluence scoring</div><div class="ai-feat-d">Multi-indicator confluence in one paragraph. A Confluence Score Card built with Claude.</div></div>
-        </div>
-        <div class="ai-feat rv d3">
-          <div class="ai-feat-icon">⚙️</div>
-          <div><div class="ai-feat-t">The quant brain</div><div class="ai-feat-d">AI-assisted Elliott Wave labelling, Wyckoff phases, ATR-based position sizing — done in seconds.</div></div>
-        </div>
-        <div class="ai-feat rv d3">
-          <div class="ai-feat-icon">🚀</div>
-          <div><div class="ai-feat-t">Strategy → bot pipeline</div><div class="ai-feat-d">Describe rules in plain English. Claude writes the backtest, alerts, and the bot framework.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ai-thumb rv d2">
-      <div class="ai-glow"></div>
-      <div class="code-editor">
-        <div class="ce-bar">
-          <div class="ce-dot r"></div><div class="ce-dot y"></div><div class="ce-dot g"></div>
-          <div class="ce-title">claude · live trading bot</div>
-        </div>
-        <div class="ce-body">
-          <div class="ce-prompt">Build me a NIFTY breakout strategy with a 1% stop-loss</div>
-          <div class="ce-reply">Got it. Here's a clean implementation using your broker API — with the safety stop wired in <em>before</em> any order goes through.</div>
-<pre class="ce-code"><span class="ce-comment"># NIFTY breakout — long when price &gt; prev day high</span>
-<span class="ce-kw">def</span> <span class="ce-fn">check_entry</span>(price, prev_high):
-    <span class="ce-kw">if</span> price &gt; prev_high:
-        place_order(<span class="ce-str">"NIFTY"</span>, qty=<span class="ce-str">25</span>, sl=<span class="ce-str">0.01</span>)
-        notify(<span class="ce-str">"📈 entry @ "</span> + str(price))<span class="ce-cursor"></span></pre>
-          <div class="ce-reply" style="margin-top:.4rem">Want me to wire up the Telegram alert too?</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<div class="pp-facts n4"><div class="pp-fact rv"><b>Duration</b><strong>12 sessions · ~60 hours</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 modules + 4 AI Labs</strong><small>80+ topics in all</small></div><div class="pp-fact rv d2"><b>Trained so far</b><strong>10,000+ traders</strong></div><div class="pp-fact rv d3"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Serious learners</span><span>Active traders</span><span>Anyone ready to commit</span></span></div></div>
 <!-- SVG ILLUSTRATIONS for weeks -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -834,7 +735,7 @@ nav{background:rgba(251,248,241,.94)!important}
 <!-- 12-SESSION CURRICULUM -->
 <section class="phases-section" id="curriculum">
   <div class="section-head">
-    <div class="sec-eye rv">Curriculum · 12-session roadmap</div>
+    <div class="sec-eye rv">Topics · 12-session roadmap</div>
     <h2 class="sec-title rv d1">Your <em>complete</em> roadmap.<br>One trader at the <span class="blue">finish line.</span></h2>
     <p class="sec-sub rv d2">8 progressive TA modules — every single one preserved from the proven DTA syllabus. 4 dedicated AI Labs woven between them. No theory dump. No fluff. A system you can run on Monday morning.</p>
   </div>
@@ -1010,18 +911,10 @@ nav{background:rgba(251,248,241,.94)!important}
   </div>
 </section>
 
-<!-- QUOTE BAND -->
-<section class="quote-section">
-  <div class="quote-band rv">
-    <p>"Discipline is human. Speed is AI.<br>The Codebook gives you both."</p>
-    <cite>— Vishal Mehta, CMT</cite>
-  </div>
-</section>
-
 <!-- OUTCOMES -->
 <section class="outcomes-section">
   <div class="section-head">
-    <div class="sec-eye rv">What you walk away with</div>
+    <div class="sec-eye rv">Benefits &middot; What you walk away with</div>
     <h2 class="sec-title rv d1">By <span class="blue">Session 12</span>,<br>you'll be able to…</h2>
     <p class="sec-sub rv d2">This isn't a video library you forget about. These are the working skills you carry into every trade for the rest of your career.</p>
   </div>
@@ -1071,6 +964,78 @@ nav{background:rgba(251,248,241,.94)!important}
   </div>
 </section>
 
+<!-- AI SECTION (THE CENTERPIECE) -->
+<section class="ai-section">
+  <div class="ai-inner">
+    <div class="ai-left">
+      <div class="sec-eye rv">India's first AI-integrated TA program</div>
+      <h2 class="sec-title rv d1">Meet your<br><em>charting partner</em><br>who never sleeps.</h2>
+      <p class="sec-sub rv d2" style="margin:0 0 0;text-align:left;">Across <strong style="color:var(--text)">4 dedicated AI Labs</strong>, you pair with <strong style="color:var(--text)">Claude</strong> — Anthropic's frontier AI. You describe what you see on the chart. Claude reads with you, scans confluences, drafts your prompt library, labels Elliott waves, and helps turn your strategy into code. Your judgment. AI's speed.</p>
+      <div class="ai-feature-list">
+        <div class="ai-feat rv d2">
+          <div class="ai-feat-icon">👁</div>
+          <div><div class="ai-feat-t">AI chart vision</div><div class="ai-feat-d">Auto-draft trendlines, market structure read-outs (HH/HL/LH/LL), S/R zones with AI vision.</div></div>
+        </div>
+        <div class="ai-feat rv d2">
+          <div class="ai-feat-icon">🔍</div>
+          <div><div class="ai-feat-t">Confluence scoring</div><div class="ai-feat-d">Multi-indicator confluence in one paragraph. A Confluence Score Card built with Claude.</div></div>
+        </div>
+        <div class="ai-feat rv d3">
+          <div class="ai-feat-icon">⚙️</div>
+          <div><div class="ai-feat-t">The quant brain</div><div class="ai-feat-d">AI-assisted Elliott Wave labelling, Wyckoff phases, ATR-based position sizing — done in seconds.</div></div>
+        </div>
+        <div class="ai-feat rv d3">
+          <div class="ai-feat-icon">🚀</div>
+          <div><div class="ai-feat-t">Strategy → bot pipeline</div><div class="ai-feat-d">Describe rules in plain English. Claude writes the backtest, alerts, and the bot framework.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-thumb rv d2">
+      <div class="ai-glow"></div>
+      <div class="code-editor">
+        <div class="ce-bar">
+          <div class="ce-dot r"></div><div class="ce-dot y"></div><div class="ce-dot g"></div>
+          <div class="ce-title">claude · live trading bot</div>
+        </div>
+        <div class="ce-body">
+          <div class="ce-prompt">Build me a NIFTY breakout strategy with a 1% stop-loss</div>
+          <div class="ce-reply">Got it. Here's a clean implementation using your broker API — with the safety stop wired in <em>before</em> any order goes through.</div>
+<pre class="ce-code"><span class="ce-comment"># NIFTY breakout — long when price &gt; prev day high</span>
+<span class="ce-kw">def</span> <span class="ce-fn">check_entry</span>(price, prev_high):
+    <span class="ce-kw">if</span> price &gt; prev_high:
+        place_order(<span class="ce-str">"NIFTY"</span>, qty=<span class="ce-str">25</span>, sl=<span class="ce-str">0.01</span>)
+        notify(<span class="ce-str">"📈 entry @ "</span> + str(price))<span class="ce-cursor"></span></pre>
+          <div class="ce-reply" style="margin-top:.4rem">Want me to wire up the Telegram alert too?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER STRIP -->
+<section class="ba-section">
+  <div class="ba-strip rv">
+    <div class="ba-col ba-old">
+      <div class="ba-eye">The old way</div>
+      <p>Stare at charts for hours. Miss patterns. Doubt every entry. Trade alone.</p>
+    </div>
+    <div class="ba-arrow">→</div>
+    <div class="ba-col ba-new">
+      <div class="ba-eye">The DTA · TA 2.0 way</div>
+      <p>Discipline you learn. AI that watches with you. Setups you trust. A system for life.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<section class="quote-section">
+  <div class="quote-band rv">
+    <p>"Discipline is human. Speed is AI.<br>The Codebook gives you both."</p>
+    <cite>— Vishal Mehta, CMT</cite>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section">
   <div class="cta-inner">
@@ -1088,7 +1053,6 @@ nav{background:rgba(251,248,241,.94)!important}
 
 <div class="dta-panel" data-panel="basics" id="p-basics">
 <section class="pp-head">
-  <span class="pp-big">01</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></div>
     <div>
@@ -1098,8 +1062,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>4 weeks · 8 live sessions</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Complete beginners</span><span>Students</span><span>Salaried professionals</span><span>First-time investors</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>How the market works</h4><p>Exchanges, brokers, SEBI and what happens when you click buy.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Demat & trading accounts</h4><p>Opening, linking and keeping your accounts safe.</p></div>
@@ -1110,16 +1075,17 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Risk before reward</h4><p>Position size, capital protection and the 1% habit.</p></div>
     <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Beginner mistakes to avoid</h4><p>Tips, leverage and FOMO: the traps that cost the most.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Understand how the market and your accounts really work</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Place orders correctly and confidently</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Read a basic price chart on your own</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Avoid the costly beginner mistakes</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Complete beginners</span><span>Students</span><span>Salaried professionals</span><span>First-time investors</span></div>
+    <div class="pp-foot-t">Questions about <em>Basics of Stock Market</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 <div class="dta-panel" data-panel="swing" id="p-swing">
 <section class="pp-head">
-  <span class="pp-big">02</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></div>
     <div>
@@ -1129,8 +1095,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>6 weeks · 12 live sessions</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Working professionals</span><span>Part-time traders</span><span>Chart readers moving to a system</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>Trend & market structure</h4><p>Higher highs, lower lows and how to read the bigger picture.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Support, resistance & breakouts</h4><p>Where price reacts and how to tell real breaks from fakes.</p></div>
@@ -1141,16 +1108,17 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Risk-reward & position sizing</h4><p>Making the maths work even when you are wrong.</p></div>
     <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Trade journal & review</h4><p>Turning every trade into feedback.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A complete, rules-based swing trading system</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A clear entry, stop and exit plan for every trade</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Position sizing that protects your capital</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A journal habit that keeps you improving</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Working professionals</span><span>Part-time traders</span><span>Chart readers moving to a system</span></div>
+    <div class="pp-foot-t">Questions about <em>Swing Trading</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 <div class="dta-panel" data-panel="algo" id="p-algo">
 <section class="pp-head">
-  <span class="pp-big">03</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
     <div>
@@ -1160,8 +1128,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>8 weeks · 16 live sessions</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Traders with a manual system</span><span>Engineers & coders</span><span>Anyone tired of screen-watching</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>From idea to rules</h4><p>Writing a strategy so precisely a computer can follow it.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Python for traders</h4><p>Just enough code to handle data, signals and orders.</p></div>
@@ -1172,16 +1141,17 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>SEBI's retail algo framework</h4><p>How API-based algos for retail clients work through brokers.</p></div>
     <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Paper to live, then monitor</h4><p>Going live in small steps, with logs and alerts.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Turn your strategy into clear, testable rules</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Backtest properly, with costs included</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Automate execution through broker APIs, within SEBI rules</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Spend less time watching screens</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Traders with a manual system</span><span>Engineers & coders</span><span>Anyone tired of screen-watching</span></div>
+    <div class="pp-foot-t">Questions about <em>Algo Trading</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 <div class="dta-panel" data-panel="women" id="p-women">
 <section class="pp-head">
-  <span class="pp-big">04</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></div>
     <div>
@@ -1191,8 +1161,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>6 weeks · weekend batches</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Homemakers</span><span>Working women</span><span>Women entrepreneurs</span><span>Students</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>Money foundations</h4><p>Budgeting, saving and investing basics for every life stage.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Markets made simple</h4><p>Stocks, ETFs and mutual funds without the jargon.</p></div>
@@ -1203,16 +1174,17 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Peer circle</h4><p>Learn together, share journals and grow as a group.</p></div>
     <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Guided practice</h4><p>Practise on real charts with feedback from mentors.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Confidence to manage your own money</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A clear plan that fits your schedule</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Risk-first habits from day one</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A supportive circle of women traders</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Homemakers</span><span>Working women</span><span>Women entrepreneurs</span><span>Students</span></div>
+    <div class="pp-foot-t">Questions about <em>Women in Trading</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 <div class="dta-panel" data-panel="workshops" id="p-workshops">
 <section class="pp-head">
-  <span class="pp-big">05</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
     <div>
@@ -1222,8 +1194,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>Every week · 2-hour live session</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>DTA students</span><span>Self-learners who want structure</span><span>Anyone wanting weekly practice</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>Chart-reading drills</h4><p>Practise spotting structure, levels and patterns.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Strategy deep-dive</h4><p>One setup broken down: rules, entries, exits and risk.</p></div>
@@ -1234,16 +1207,17 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Tools & AI walkthrough</h4><p>Using platforms, scanners and AI assistants well.</p></div>
     <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Live Q&A</h4><p>Bring your questions and get answers on the spot.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Steady, weekly practice</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>One new skill every week</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Answers to your questions, live</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Stay sharp and accountable</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>DTA students</span><span>Self-learners who want structure</span><span>Anyone wanting weekly practice</span></div>
+    <div class="pp-foot-t">Questions about <em>Weekly Workshops</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 <div class="dta-panel" data-panel="webinars" id="p-webinars">
 <section class="pp-head">
-  <span class="pp-big">06</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
     <div>
@@ -1253,8 +1227,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>60-90 minutes · live</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>6 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Anyone curious about markets</span><span>People choosing a programme</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>Intro to technical analysis</h4><p>What charts can and cannot tell you.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Algo trading 101</h4><p>How rules-based and automated trading actually works.</p></div>
@@ -1263,16 +1238,17 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv"><span class="pp-n">05</span><h4>Trading psychology</h4><p>Why discipline beats prediction.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Ask Me Anything</h4><p>Open Q&A with Vishal Mehta, CMT.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Clarity on where to start</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A feel for how DTA teaches</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Direct Q&A with Vishal Mehta, CMT</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Help choosing the right programme</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Anyone curious about markets</span><span>People choosing a programme</span></div>
+    <div class="pp-foot-t">Questions about <em>Webinars</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 <div class="dta-panel" data-panel="cmt" id="p-cmt">
 <section class="pp-head">
-  <span class="pp-big">07</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
     <div>
@@ -1282,8 +1258,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>Level-wise · Level I, II & III</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Aspiring CMT candidates</span><span>Finance professionals</span><span>Serious technical analysts</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>Program roadmap</h4><p>How the three levels fit together and how to plan your journey.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Level I: foundations</h4><p>Theory and history, markets, indicators, chart construction and trend.</p></div>
@@ -1294,16 +1271,17 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Exam strategy</h4><p>Time management and how to approach each question type.</p></div>
     <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Mentor sessions</h4><p>Doubt-clearing with Vishal Mehta, CMT.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A structured study plan for each level</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A clear exam strategy</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Guidance from a CMT charterholder</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Deeper technical analysis skills for your career</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Aspiring CMT candidates</span><span>Finance professionals</span><span>Serious technical analysts</span></div>
+    <div class="pp-foot-t">Questions about <em>CMT</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 <div class="dta-panel" data-panel="custom" id="p-custom">
 <section class="pp-head">
-  <span class="pp-big">08</span>
   <div class="pp-head-in">
     <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
     <div>
@@ -1313,8 +1291,9 @@ nav{background:rgba(251,248,241,.94)!important}
     </div>
   </div>
 </section>
+<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>Flexible · at your pace</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>6 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Busy professionals</span><span>Traders with specific gaps</span><span>Anyone who wants it their way</span></span></div></div>
 <section class="pp-body">
-  <div class="pp-label">What you&rsquo;ll learn</div>
+  <div class="pp-label">Topics</div>
   <div class="pp-grid">
     <div class="pp-sub rv"><span class="pp-n">01</span><h4>Skill check call</h4><p>A short conversation to see where you stand today.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Pick your modules</h4><p>Choose topics from any programme on this page.</p></div>
@@ -1323,11 +1302,13 @@ nav{background:rgba(251,248,241,.94)!important}
     <div class="pp-sub rv"><span class="pp-n">05</span><h4>Goals & milestones</h4><p>Clear checkpoints so you can see your progress.</p></div>
     <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Regular reviews</h4><p>Adjust the plan as you grow.</p></div>
   </div>
+  <div class="pp-label pp-label2">Benefits</div>
+  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Learn only what you need</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A schedule that fits your life</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Group or one-on-one attention</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A plan that grows with you</li></ul>
   <div class="pp-foot">
-    <div class="pp-who"><b>Who it&rsquo;s for</b><span>Busy professionals</span><span>Traders with specific gaps</span><span>Anyone who wants it their way</span></div>
+    <div class="pp-foot-t">Questions about <em>Customise Your Own Plan</em>?</div>
     <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
   </div>
-  <p class="pp-note">Curriculum preview. The final syllabus is shared on enrolment.</p>
+  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </section>
 </div>
 

@@ -1,0 +1,21 @@
+/* Brighter site palette (17 Nov 2026). Loaded last on every public page, so it only re-tunes colours. */
+:root{
+  --bg:#ffffff;--bg2:#f1f5ff;--bg3:#e5edff;
+  --blue:#1a56ff;--blue-l:#1a56ff;--blue-d:#0f3fd1;--blue-dim:rgba(26,86,255,.1);
+  --purple:#1a56ff;--purple-l:#5b3df5;--purple-d:#0f3fd1;--purple-dim:rgba(26,86,255,.1);
+  --gold:#c38a0e;--gold-l:#d99a10;--gold-dim:rgba(232,170,40,.12);
+  --text:#0b1530;--text2:#334155;--text3:#55627a;
+  --border:rgba(26,86,255,.12);--border2:rgba(26,86,255,.22);
+}
+::selection{background:#1a56ff;color:#fff}
+
+/* deep-navy bands give the white pages rhythm and contrast */
+.vv-navy,.marquee-section,.cta-section,.testi-section,footer{
+  --bg:#0b1530;--bg2:#13204a;--bg3:#1a2a5c;
+  --white:#ffffff;--text:#eef2fb;--text2:#c3cde2;--text3:#93a1c0;
+  --gold:#f0c046;--gold-l:#f5d176;--blue-l:#7aa2ff;--purple-l:#a594ff;
+  --border:rgba(255,255,255,.1);--border2:rgba(255,255,255,.18);
+  background:radial-gradient(900px 420px at 85% 0%,#22408f 0%,#0b1530 60%)!important;color:var(--text)}
+footer{background:#081026!important}
+.cta-section h2,.testi-section h2,.cta-section .sec-title,.testi-section .sec-title{color:#fff!important}
+.cta-section{background:radial-gradient(900px 460px at 50% 0%,#1f4fd8 0%,#0f2a7a 45%,#0b1530 100%)!important}
