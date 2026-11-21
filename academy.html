@@ -357,65 +357,97 @@ section{padding:5rem 3.5rem}
 @media(max-width:900px){.pp-facts.n3,.pp-facts.n4{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.pp-facts.n3,.pp-facts.n4{grid-template-columns:1fr}}
 
-/* Variant B: "Index" - ivory editorial list + live navy preview card */
-.ix{position:relative;padding:8.5rem 3.5rem 5.5rem;background:linear-gradient(180deg,#f1f5ff 0%,#ffffff 55%)}
-.ix-in{max-width:1240px;margin:0 auto}
-.ix-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.4rem;padding-bottom:2rem;border-bottom:1px solid rgba(11,21,48,.14)}
-.ix-eye{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#a8780f}
-.ix-eye::before{content:'';width:34px;height:1px;background:#a8780f}
-.ix-head h2{font-family:'EB Garamond',serif;font-size:clamp(2.6rem,5vw,4.4rem);font-weight:600;line-height:1;color:#0b1530;margin-top:1rem;letter-spacing:-.01em}
-.ix-head h2 em{font-style:italic;font-weight:500;color:#a8780f}
-.ix-head p{max-width:300px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;line-height:1.4;color:#5b6478;text-align:right}
+/* Variant C: "Ring" - the 9 programmes on a 3D carousel you drag / swipe / dial; the front card holds the details */
+.rg{position:relative;overflow:hidden;padding:6.2rem 1.5rem 4rem;background:radial-gradient(1000px 520px at 50% 34%,rgba(37,99,235,.20),transparent 70%),radial-gradient(800px 420px at 50% 100%,rgba(232,184,75,.10),transparent 70%),var(--bg)}
+.rg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000,transparent);mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000,transparent);pointer-events:none}
+.rg-in{position:relative;max-width:1280px;margin:0 auto}
+.rg-head{text-align:center;margin-bottom:1rem}
+.rg-eye{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#e8b84b}
+.rg-eye::before,.rg-eye::after{content:'';width:34px;height:1px;background:linear-gradient(90deg,transparent,#e8b84b)}
+.rg-eye::after{transform:scaleX(-1)}
+.rg-head h2{font-family:'EB Garamond',serif;font-size:clamp(2.4rem,5.4vw,4.4rem);font-weight:600;line-height:1;color:#fff;margin:.8rem 0 .6rem;letter-spacing:-.015em}
+.rg-head h2 em{font-style:italic;font-weight:500;background:linear-gradient(100deg,#b8862a 0%,#f6dc8f 30%,#e8b84b 50%,#fff3c8 62%,#c9971c 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rg-shine 6s linear infinite}
+@keyframes rg-shine{from{background-position:100% 0}to{background-position:-150% 0}}
+.rg-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:#8a98b3}
 
-.ix-wrap{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:3.5rem;align-items:start}
-.ix-row{position:relative;display:grid;grid-template-columns:58px 1fr 44px;align-items:center;width:100%;padding:.82rem 1rem .82rem 0;border:0;border-bottom:1px solid rgba(11,21,48,.1);background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;overflow:hidden;isolation:isolate;transition:padding .45s cubic-bezier(.65,0,.35,1)}
-.ix-row::before{content:'';position:absolute;inset:0;z-index:-1;background:#0b1530;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.65,0,.35,1)}
-.ix-row.hot{padding-left:1.3rem}
-.ix-row.hot::before{transform:scaleX(1)}
-.ix-row:focus-visible{outline:2px solid #a8780f;outline-offset:2px}
-.ix-row.sel::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(#f0cf7a,#c9971c)}
-.ix-n{font-family:var(--mono);font-size:.74rem;font-weight:600;letter-spacing:.14em;color:#a8780f;transition:color .4s}
-.ix-row.hot .ix-n{color:#e3b955}
-.ix-t{display:flex;align-items:center;flex-wrap:wrap;gap:.2rem .8rem;font-family:'EB Garamond',serif;font-size:1.7rem;font-weight:500;line-height:1.15;color:#0b1530;transition:color .4s}
-.ix-row.hot .ix-t{color:#fff}
-.ix-t i{font-family:var(--mono);font-style:normal;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .65rem;border-radius:100px;background:#e3b955;color:#0b1530}
-.ix-t small{display:none;flex-basis:100%;font-family:'Inter',sans-serif;font-size:.82rem;line-height:1.45;color:#5b6478;margin-top:.3rem}
-.ix-ar{width:42px;height:42px;border-radius:50%;border:1px solid rgba(11,21,48,.2);display:flex;align-items:center;justify-content:center;color:#0b1530;transition:all .45s cubic-bezier(.65,0,.35,1)}
-.ix-ar svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.ix-row.hot .ix-ar{background:#e3b955;border-color:#e3b955;transform:rotate(-45deg)}
+/* stage */
+.rg-stage{position:relative;height:575px;perspective:1500px;perspective-origin:50% 38%;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none}
+.rg-stage:active{cursor:grabbing}
+.rg-stage::before{content:'';position:absolute;left:50%;top:-140px;width:760px;height:760px;transform:translateX(-50%);background:conic-gradient(from 160deg at 50% 0%,transparent 0deg,rgba(232,184,75,.10) 20deg,rgba(255,240,200,.05) 40deg,transparent 60deg);-webkit-mask-image:linear-gradient(#000 30%,transparent 85%);mask-image:linear-gradient(#000 30%,transparent 85%);pointer-events:none}
+.rg-floor{position:absolute;left:50%;bottom:8px;width:1040px;height:1040px;margin-left:-520px;transform:translateY(50%) rotateX(80deg);border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(232,184,75,.22) 0%,rgba(232,184,75,.05) 38%,transparent 62%)}
+.rg-floor::before,.rg-floor::after{content:'';position:absolute;inset:0;border-radius:50%}
+.rg-floor::before{background:repeating-radial-gradient(circle,transparent 0 58px,rgba(232,184,75,.20) 59px 60px);-webkit-mask-image:radial-gradient(circle,#000 30%,transparent 62%);mask-image:radial-gradient(circle,#000 30%,transparent 62%)}
+.rg-floor::after{inset:14%;background:repeating-conic-gradient(rgba(232,184,75,.55) 0 .5deg,transparent .5deg 40deg);-webkit-mask-image:radial-gradient(circle,transparent 60%,#000 61%,#000 66%,transparent 67%);mask-image:radial-gradient(circle,transparent 60%,#000 61%,#000 66%,transparent 67%);animation:rg-spin 60s linear infinite}
+@keyframes rg-spin{to{transform:rotate(360deg)}}
 
-.ix-card{position:sticky;top:96px;display:grid;min-height:560px;border-radius:26px;overflow:hidden;background:radial-gradient(700px 380px at 100% 0%,#203a7a 0%,#0b1530 60%);color:#fff;box-shadow:0 40px 80px rgba(11,21,48,.22),0 0 0 1px rgba(227,185,85,.25) inset}
-.ix-card::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:linear-gradient(#000,transparent 65%);mask-image:linear-gradient(#000,transparent 65%);pointer-events:none}
-.ix-pv{grid-area:1/1;position:relative;display:flex;flex-direction:column;padding:2.6rem 2.5rem 2.4rem;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .35s,transform .45s,visibility .35s}
-.ix-pv.on{opacity:1;visibility:visible;transform:none;transition:opacity .5s .08s,transform .6s .08s,visibility 0s}
-.ix-art{position:relative;width:118px;height:118px;margin-bottom:1.6rem;color:#e3b955}
-.ix-art::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(227,185,85,.22)}
-.ix-art svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:.3;stroke-linecap:round;stroke-linejoin:round}
-.ix-art svg *{stroke-dasharray:1;stroke-dashoffset:0}
-.ix-pv.on .ix-art svg *{animation:ix-draw 1.5s .1s cubic-bezier(.4,0,.2,1) both}
-@keyframes ix-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-.ix-k{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#d9ad4a}
-.ix-pv h3{font-family:'EB Garamond',serif;font-size:2.5rem;font-weight:600;line-height:1.05;color:#fff;margin:.6rem 0 .7rem}
-.ix-pv p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.22rem;line-height:1.42;color:#c9d0de}
-.ix-pv ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.6rem 1.4rem;margin:1.5rem 0 1.4rem;padding:1.3rem 0 0;border-top:1px solid rgba(255,255,255,.12)}
-.ix-pv li{position:relative;padding-left:20px;font-size:.88rem;line-height:1.4;color:#dfe4ee}
-.ix-pv li::before{content:'';position:absolute;left:0;top:.68em;width:10px;height:1px;background:#e3b955}
-.ix-who{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.6rem}
-.ix-who span{font-size:.76rem;padding:.35rem .8rem;border-radius:100px;border:1px solid rgba(227,185,85,.35);color:#eadcb6}
-.ix-go{align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:10px;padding:.85rem 1.5rem;border-radius:100px;background:#e3b955;color:#0b1530;font-size:.84rem;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:background .3s}
-.ix-go b{transition:transform .3s}
-.ix-go:hover{background:#f0cf7a}.ix-go:hover b{transform:translateX(5px)}
+.rg-sway{position:absolute;left:50%;top:30px;width:var(--w,320px);height:485px;margin-left:calc(var(--w,320px) / -2);transform-style:preserve-3d;animation:rg-sway 9s ease-in-out infinite alternate}
+@keyframes rg-sway{from{transform:rotateY(-2.5deg) rotateX(1deg)}to{transform:rotateY(2.5deg) rotateX(-1deg)}}
+.rg-ring{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(calc(var(--r,480px) * -1)) rotateY(var(--rot,0deg));transition:transform .95s cubic-bezier(.22,.9,.24,1)}
+.rg-ring.drag,.rg-ring.drag .rg-card{transition:none!important}
 
-@media(max-width:980px){
-.ix{padding:6.5rem 1.2rem 3.5rem}
-.ix-head{flex-direction:column;align-items:flex-start}.ix-head p{text-align:left}
-.ix-wrap{grid-template-columns:1fr}
-.ix-card{display:none}
-.ix-row{grid-template-columns:44px 1fr 38px;align-items:start;padding:1.1rem .4rem 1.1rem 0}.ix-n{margin-top:.6rem}
-.ix-row.hot{padding-left:.9rem}
-.ix-t{font-size:1.45rem}.ix-t small{display:block}.ix-row.hot .ix-t small{color:#b9c2d6}
-.ix-ar{width:36px;height:36px}}
-@media(prefers-reduced-motion:reduce){.ix-row,.ix-row::before,.ix-pv,.ix-ar{transition:none!important}.ix-pv.on .ix-art svg *{animation:none}}
+/* cards */
+.rg-card{--d:0;position:absolute;inset:0;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:preserve-3d;transform:rotateY(calc(var(--i) * var(--a))) translateZ(var(--r,480px));opacity:clamp(0,calc(1 - var(--d) * .3),1);filter:brightness(calc(1 - var(--d) * .2)) saturate(calc(1 - var(--d) * .25));transition:transform 1.2s cubic-bezier(.2,.8,.2,1) calc(var(--i) * 60ms),opacity .6s,filter .6s}
+.rg-stage:not(.in) .rg-card{transform:rotateY(calc(var(--i) * var(--a))) translateZ(0) scale(.5);opacity:0}
+.rg-card:focus-visible{outline:none}
+.rg-card:focus-visible .rg-face{box-shadow:0 0 0 2px #e8b84b}
+.rg-face{position:relative;display:flex;flex-direction:column;height:100%;padding:1.45rem 1.5rem 1.35rem;border-radius:24px;overflow:hidden;background:linear-gradient(165deg,#16285a 0%,#0c1530 52%,#070c1a 100%);box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px rgba(232,184,75,.20) inset;transform:rotateX(var(--ty,0deg)) rotateY(var(--tx,0deg));transition:transform .35s ease-out,box-shadow .6s}
+.rg-face::before{content:'';position:absolute;left:1.55rem;right:1.55rem;top:0;height:1px;background:linear-gradient(90deg,transparent,#e8b84b,transparent);opacity:.55}
+.rg-face::after{content:'';position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 42%,rgba(255,236,190,.14) 50%,transparent 58%);transform:translateX(-60%);pointer-events:none}
+.rg-card.front .rg-face{box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 70px rgba(232,184,75,.16),0 0 0 1px rgba(232,184,75,.62) inset}
+.rg-card.front .rg-face::after{animation:rg-glint 1.3s .35s ease-out both}
+@keyframes rg-glint{to{transform:translateX(60%)}}
+.rg-card.flag .rg-face{background:radial-gradient(420px 260px at 100% 0%,rgba(232,184,75,.22),transparent 70%),linear-gradient(165deg,#1a2c62 0%,#0c1530 52%,#070c1a 100%)}
+
+.rg-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.rg-n{font-family:'EB Garamond',serif;font-size:3.1rem;font-weight:600;line-height:.85;color:transparent;-webkit-text-stroke:1px rgba(232,184,75,.8)}
+.rg-card.front .rg-n{color:#e8b84b;-webkit-text-stroke:0}
+.rg-art{flex:none;width:62px;height:62px;color:#e8b84b;opacity:.9}
+.rg-art svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:.45;stroke-linecap:round;stroke-linejoin:round}
+.rg-art svg *{stroke-dasharray:1;stroke-dashoffset:0}
+.rg-card.front .rg-art svg *{animation:rg-draw 1.4s .15s cubic-bezier(.4,0,.2,1) both}
+@keyframes rg-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.rg-k{margin-top:1.05rem;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#d9ad4a;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.rg-k i{font-style:normal;font-size:.56rem;letter-spacing:.18em;padding:.28rem .6rem;border-radius:100px;background:#e8b84b;color:#050913}
+.rg-t{display:block;font-family:'EB Garamond',serif;font-size:1.95rem;font-weight:600;line-height:1.04;color:#fff;margin:.45rem 0 .55rem}
+.rg-tag{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.04rem;line-height:1.34;color:#c3cde2}
+.rg-more{display:flex;flex-direction:column;flex:1;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .6s}
+.rg-card.front .rg-more{opacity:1;transform:none;transition:opacity .6s .25s,transform .7s .25s}
+.rg-list{display:grid;gap:.38rem;margin:.85rem 0 .8rem;padding-top:.85rem;border-top:1px solid rgba(255,255,255,.1)}
+.rg-list span{position:relative;padding-left:20px;font-size:.84rem;line-height:1.35;color:#dfe4ee}
+.rg-list span::before{content:'';position:absolute;left:0;top:.58em;width:10px;height:2px;border-radius:2px;background:#e8b84b}
+.rg-who{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.rg-who span{font-size:.7rem;padding:.28rem .7rem;border-radius:100px;border:1px solid rgba(232,184,75,.32);color:#eadcb6}
+.rg-go{align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:10px;padding:.75rem 1.35rem;border-radius:100px;background:#e8b84b;color:#050913;font-size:.82rem;font-weight:600;letter-spacing:.02em;transition:background .3s,box-shadow .3s}
+.rg-go b{transition:transform .3s}
+.rg-card.front:hover .rg-go{background:#f6dc8f;box-shadow:0 0 30px rgba(232,184,75,.45)}
+.rg-card.front:hover .rg-go b{transform:translateX(5px)}
+
+/* dial */
+.rg-ctl{position:relative;display:flex;align-items:center;justify-content:center;gap:1.1rem;margin-top:.4rem}
+.rg-arw{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:#f0f4fa;display:grid;place-items:center;cursor:pointer;transition:all .3s}
+.rg-arw svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.rg-arw:hover{background:#e8b84b;border-color:#e8b84b;color:#050913;transform:scale(1.06)}
+.rg-dial{position:relative;display:flex;gap:4px;padding:5px;border-radius:100px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.rg-dot{position:relative;width:40px;height:34px;border:0;border-radius:100px;background:none;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.06em;color:#8a98b3;cursor:pointer;transition:color .3s,background .4s}
+.rg-dot:hover{color:#fff}
+.rg-dot.on{background:#e8b84b;color:#050913}
+.rg-dot span{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translate(-50%,6px);white-space:nowrap;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:0;padding:.35rem .7rem;border-radius:8px;background:#f0f4fa;color:#050913;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.rg-dot:hover span{opacity:1;transform:translate(-50%,0)}
+.rg-cap{margin-top:1.3rem;text-align:center;font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#4a5878}
+.rg-cap b{color:#e8b84b;font-weight:600}
+
+@media(max-width:760px){
+.rg{padding:6.5rem 0 3.5rem}
+.rg-head{padding:0 1.2rem}
+.rg-stage{height:560px}
+.rg-sway{height:470px;top:30px}
+.rg-floor{width:760px;height:760px;margin-left:-380px}
+.rg-t{font-size:1.75rem}
+.rg-dot{width:27px;height:32px;font-size:.6rem;letter-spacing:0}.rg-dot span{display:none}
+.rg-dial{gap:2px;padding:4px}
+.rg-ctl{gap:.5rem;padding:0 .6rem}.rg-arw{width:40px;height:40px}}
+@media(max-width:430px){.rg-arw{display:none}.rg-dot{width:28px}}
+@media(prefers-reduced-motion:reduce){.rg-ring,.rg-card,.rg-face,.rg-more{transition:none!important}.rg-sway,.rg-floor::after,.rg-head h2 em,.rg-card.front .rg-face::after,.rg-card.front .rg-art svg *{animation:none!important}}
 
 /* Dark site theme (the original site colours): re-tunes the Index hub + programme panels */
 .ix{background:radial-gradient(900px 480px at 85% 0%,rgba(37,99,235,.16),transparent 70%),radial-gradient(700px 420px at 0% 100%,rgba(232,184,75,.07),transparent 70%),var(--bg)}
@@ -450,168 +482,147 @@ section{padding:5rem 3.5rem}
 .pp-foot{background:linear-gradient(120deg,#13224f,#0e1730);border:1px solid rgba(232,184,75,.25)}
 .pp-cta.btn-main{background:#e8b84b!important;color:#050913!important}
 .pp-note{color:#4a5468}
-</style>
-<style>
-/* DTA scroll story: one candle -> pattern -> rules -> system -> edge */
-.st{position:relative;height:560vh;background:var(--bg)}
-.st-pin{position:sticky;top:0;height:100vh;min-height:560px;overflow:hidden;display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);align-items:center;gap:3rem;padding:90px 4.5rem 5.5rem;isolation:isolate}
-.st-pin::before{content:'';position:absolute;inset:0;z-index:-2;background:radial-gradient(760px 520px at 70% 48%,rgba(37,99,235,.17),transparent 70%),radial-gradient(520px 380px at 72% 52%,rgba(232,184,75,.09),transparent 70%),radial-gradient(600px 400px at 0% 100%,rgba(232,184,75,.05),transparent 70%)}
-.st-pin::after{content:'';position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 60% 50%,#000,transparent 75%);mask-image:radial-gradient(ellipse 70% 70% at 60% 50%,#000,transparent 75%);pointer-events:none}
 
-.st-copy{position:relative;height:min(500px,calc(100vh - 180px));z-index:2}
-.st-s{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;pointer-events:none}
-.st-s.on{pointer-events:auto}
-.st-eye{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#e8b84b;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .6s}
-.st-eye b{font-weight:600;padding:.25rem .55rem;border:1px solid rgba(232,184,75,.4);border-radius:100px;letter-spacing:.1em}
-.st-h{font-family:'EB Garamond',serif;font-size:clamp(2.6rem,4.5vw,4.4rem);font-weight:600;line-height:1.02;letter-spacing:-.012em;color:#fff;margin:1rem 0 1rem}
-.st-h .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin-bottom:-.1em}
-.st-h .w>span{display:inline-block;transform:translateY(108%) rotate(3deg);transform-origin:0 100%;transition:transform .55s cubic-bezier(.6,0,.8,.4)}
-.st-h em{font-style:italic;font-weight:500;color:#e8b84b}
-.st-p{max-width:430px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.36rem;line-height:1.45;color:#a3afc6;opacity:0;transform:translateY(14px);transition:opacity .4s,transform .5s}
-.st-s.on .st-eye{opacity:1;transform:none;transition:opacity .6s .1s,transform .8s .1s}
-.st-s.on .st-h .w>span{transform:none;transition:transform 1s cubic-bezier(.16,1,.3,1) calc(.12s + var(--d)*.07s)}
-.st-s.on .st-p{opacity:1;transform:none;transition:opacity .8s .45s,transform 1s .45s}
-.st-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:1.8rem;padding:.9rem 1.6rem;border-radius:100px;background:#e8b84b;color:#050913;font-size:.86rem;font-weight:600;text-decoration:none;opacity:0;transform:translateY(14px);transition:opacity .4s,transform .5s,background .3s}
-.st-s.on .st-cta{opacity:1;transform:none;transition:opacity .8s .65s,transform 1s .65s,background .3s}
-.st-cta b{transition:transform .3s}.st-cta:hover{background:#f3cd70}.st-cta:hover b{transform:translateX(5px)}
+/* Programme pages as full-screen takeovers (variant C): the card "opens" into a whole page */
+html.pg-lock,html.pg-lock body{overflow:hidden}
+.dta-panel,.dta-panel.on{display:block;animation:none}
+.dta-panel{position:fixed;inset:0;z-index:400;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;background:var(--bg);visibility:hidden;clip-path:circle(0 at var(--ox,50%) var(--oy,50%));transition:clip-path .75s cubic-bezier(.7,0,.3,1),visibility 0s .75s}
+.dta-panel.open{visibility:visible;clip-path:circle(150% at var(--ox,50%) var(--oy,50%));transition:clip-path .95s cubic-bezier(.7,0,.3,1),visibility 0s}
+.pg-x{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.6rem;background:rgba(5,9,19,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+.pg-x button{display:inline-flex;align-items:center;gap:10px;padding:.55rem 1.1rem .55rem .8rem;border-radius:100px;border:1px solid rgba(255,255,255,.16);background:none;color:#f0f4fa;font:600 .8rem 'Inter',sans-serif;cursor:pointer;transition:all .3s}
+.pg-x button:hover{background:#e8b84b;border-color:#e8b84b;color:#050913}
+.pg-x button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pg-x span{font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:#8a98b3}
+.pg-x span b{color:#e8b84b;font-weight:600}
 
-.st-stage{position:relative;justify-self:center;width:min(100%,calc((100vh - 250px)*1.3636));aspect-ratio:600/440}
-.st-stage::before{content:'';position:absolute;left:50%;top:50%;width:78%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(232,184,75,.12);box-shadow:0 0 0 46px rgba(232,184,75,.025),0 0 0 92px rgba(232,184,75,.015);pointer-events:none}
-.st-chart,.st-eq{position:absolute;inset:0;width:100%;height:100%}
-.st-chart{transform-origin:0 0;will-change:transform}
-.st-chart.fade{-webkit-mask-image:radial-gradient(ellipse 60% 66% at 52% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 60% 66% at 52% 50%,#000 62%,transparent 100%)}
-.st-chart svg{width:100%;height:100%;overflow:visible}
-.st-c line{stroke:#5d6c8c;stroke-width:1.4;vector-effect:non-scaling-stroke}
-.st-c.up rect{fill:#e8b84b}.st-c.up line{stroke:#c9a24a}
-.st-c.dn rect{fill:#0c1530;stroke:#8a98b3;stroke-width:1.2;vector-effect:non-scaling-stroke}
-.st-big rect{fill:#e8b84b;filter:url(#st-glow);transform-box:fill-box;transform-origin:50% 50%;animation:st-grow 1.3s .35s cubic-bezier(.16,1,.3,1) both}
-.st-big line{stroke:#f0cf7a;stroke-width:.55;vector-effect:none;stroke-dasharray:1;animation:st-draw 1.2s .1s cubic-bezier(.4,0,.2,1) both}
-@keyframes st-grow{from{transform:scaleY(0)}to{transform:none}}
-@keyframes st-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-#st-ohlc .st-l{animation:st-fade .8s both}
-#st-ohlc .st-l:nth-child(1){animation-delay:1.1s}#st-ohlc .st-l:nth-child(2){animation-delay:1.25s}#st-ohlc .st-l:nth-child(3){animation-delay:1.4s}#st-ohlc .st-l:nth-child(4){animation-delay:1.55s}
-@keyframes st-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-#st-ohlc line{stroke:rgba(232,184,75,.55);stroke-width:1;stroke-dasharray:3 3}
-#st-ohlc circle{fill:#e8b84b}
-#st-ohlc text,.st-tag text{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.18em;fill:#dbe3f0}
-.st-box{fill:rgba(232,184,75,.06);stroke:rgba(232,184,75,.18);stroke-width:1;vector-effect:non-scaling-stroke;opacity:0}
-.st-ln{fill:none;stroke:#8a98b3;stroke-width:1.2;stroke-dasharray:1;stroke-dashoffset:1}
-.st-ln.g{stroke:#e8b84b}.st-ln.d{stroke:#7fd1a8;stroke-dasharray:1}.st-ln.a{stroke:rgba(127,209,168,.7)}
-.st-tag{opacity:0}.st-tag rect{fill:#0e1730;stroke:#e8b84b;stroke-width:1;vector-effect:non-scaling-stroke}
-.st-tag text{font-size:8.4px;letter-spacing:.14em;text-anchor:middle;fill:#f0cf7a}
-.st-tag.r rect{stroke:#8a98b3}.st-tag.r text{fill:#c3cde2}
-.st-tag.t3 rect{stroke:#7fd1a8}.st-tag.t3 text{fill:#a8e6c6}
+/* hero */
+.pg-hero{position:relative;overflow:hidden;min-height:calc(100vh - 62px);display:flex;flex-direction:column;justify-content:center;padding:4rem 3.5rem 5rem;background:radial-gradient(900px 520px at 85% 10%,rgba(37,99,235,.22),transparent 70%),radial-gradient(700px 500px at 10% 100%,rgba(232,184,75,.10),transparent 70%)}
+.pg-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 40%,#000,transparent);mask-image:radial-gradient(ellipse 80% 70% at 70% 40%,#000,transparent)}
+.pg-num{position:absolute;right:-2vw;top:50%;transform:translateY(-52%);font-family:'EB Garamond',serif;font-weight:600;font-size:clamp(16rem,38vw,34rem);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px rgba(232,184,75,.22);pointer-events:none}
+.pg-art{position:absolute;right:13vw;top:50%;width:min(24vw,300px);aspect-ratio:1;transform:translateY(-50%);color:#e8b84b;opacity:.55;pointer-events:none}
+.pg-art svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:.18;stroke-linecap:round;stroke-linejoin:round}
+.pg-art svg *{stroke-dasharray:1;stroke-dashoffset:1}
+.open .pg-art svg *{animation:pg-draw 2.2s .5s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes pg-draw{to{stroke-dashoffset:0}}
+.pg-in{position:relative;max-width:1240px;width:100%;margin:0 auto}
+.pg-k{display:inline-flex;align-items:center;gap:.8rem;flex-wrap:wrap;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#e8b84b}
+.pg-k::before{content:'';width:34px;height:1px;background:#e8b84b}
+.pg-k i{font-style:normal;font-size:.6rem;letter-spacing:.18em;padding:.3rem .7rem;border-radius:100px;background:#e8b84b;color:#050913}
+.pg-hero h2{font-family:'EB Garamond',serif;font-size:clamp(3rem,7.5vw,6.6rem);font-weight:600;line-height:.96;letter-spacing:-.02em;color:#fff;margin:1.1rem 0 1.2rem;max-width:12ch}
+.pg-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.4;color:#c3cde2;max-width:560px}
+/* the highlight: duration + sessions */
+.pg-hl{display:flex;flex-wrap:wrap;gap:1rem;margin:2.6rem 0 2.2rem}
+.pg-hl div{position:relative;min-width:200px;padding:1.3rem 1.6rem 1.2rem;border-radius:20px;background:linear-gradient(160deg,rgba(26,44,98,.85),rgba(10,16,32,.9));box-shadow:0 0 0 1px rgba(232,184,75,.35) inset,0 24px 50px rgba(0,0,0,.45);overflow:hidden}
+.pg-hl div::after{content:'';position:absolute;inset:-60%;background:linear-gradient(115deg,transparent 44%,rgba(255,236,190,.16) 50%,transparent 56%);transform:translateX(-70%)}
+.open .pg-hl div::after{animation:pg-glint 1.6s 1.1s ease-out both}
+.open .pg-hl div:nth-child(2)::after{animation-delay:1.3s}.open .pg-hl div:nth-child(3)::after{animation-delay:1.5s}
+@keyframes pg-glint{to{transform:translateX(70%)}}
+.pg-hl span{display:block;font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#8a98b3;margin-bottom:.5rem}
+.pg-hl b{display:block;font-family:'EB Garamond',serif;font-size:clamp(1.9rem,3.2vw,2.6rem);font-weight:600;line-height:1;color:#e8b84b}
+.pg-hl small{display:block;margin-top:.45rem;font-size:.8rem;color:#c3cde2}
+.pg-acts{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem}
+.pg-cta{display:inline-flex;align-items:center;gap:10px;padding:1rem 1.8rem;border-radius:100px;background:#e8b84b;color:#050913;font-size:.92rem;font-weight:600;text-decoration:none;transition:all .3s;box-shadow:0 0 0 rgba(232,184,75,0)}
+.pg-cta:hover{background:#f6dc8f;box-shadow:0 0 40px rgba(232,184,75,.45)}
+.pg-cta b{transition:transform .3s}.pg-cta:hover b{transform:translateX(5px)}
+.pg-down{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#8a98b3;display:inline-flex;align-items:center;gap:.6rem}
+.pg-down i{width:1px;height:26px;background:linear-gradient(#e8b84b,transparent);animation:pg-bob 1.8s ease-in-out infinite}
+@keyframes pg-bob{50%{transform:translateY(6px)}}
+/* entrance stagger */
+.pg-hero .pg-in>*{opacity:0;transform:translateY(26px)}
+.open .pg-hero .pg-in>*{animation:pg-up .8s cubic-bezier(.2,.8,.2,1) forwards}
+.open .pg-hero .pg-in>*:nth-child(1){animation-delay:.35s}.open .pg-hero .pg-in>*:nth-child(2){animation-delay:.45s}.open .pg-hero .pg-in>*:nth-child(3){animation-delay:.55s}.open .pg-hero .pg-in>*:nth-child(4){animation-delay:.68s}.open .pg-hero .pg-in>*:nth-child(5){animation-delay:.8s}
+@keyframes pg-up{to{opacity:1;transform:none}}
 
-.st-code{position:absolute;right:-3%;bottom:-4%;width:64%;border-radius:16px;background:linear-gradient(160deg,rgba(20,36,88,.92),rgba(10,16,32,.96));border:1px solid rgba(232,184,75,.28);box-shadow:0 40px 80px rgba(0,0,0,.55);backdrop-filter:blur(10px);opacity:0;will-change:transform,opacity}
-.st-bar{display:flex;align-items:center;gap:6px;padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.07)}
-.st-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14)}.st-bar i:first-child{background:#e8b84b}
-.st-bar span{margin-left:.6rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:#8a98b3}
-.st-code code{display:block;padding:1rem 1.2rem 1.2rem;font-family:var(--mono);font-size:clamp(.6rem,.82vw,.82rem);line-height:1.85;color:#dbe3f0;white-space:pre}
-.st-k{display:block;clip-path:inset(0 100% 0 0)}.st-k.in{padding-left:2.2em}
-.st-k i{font-style:normal;color:#5d6c8c}.st-k b{font-weight:500;color:#e8b84b}.st-k u{text-decoration:none;color:#7fd1a8}.st-k s{text-decoration:none;color:#f0cf7a}
-.st-caret{display:inline-block;width:.55em;height:1.05em;margin:.1rem 0 0 2.2em;background:#e8b84b;vertical-align:middle;opacity:0;animation:st-blink 1s steps(1) infinite}
-@keyframes st-blink{50%{visibility:hidden}}
+/* roadmap */
+.pg-sec{position:relative;max-width:1240px;margin:0 auto;padding:5.5rem 3.5rem}
+.pg-label{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#e8b84b;margin-bottom:.9rem}
+.pg-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(232,184,75,.45),transparent)}
+.pg-h{font-family:'EB Garamond',serif;font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:600;line-height:1.02;color:#fff;margin-bottom:3.2rem}
+.pg-h em{font-style:italic;font-weight:500;color:#e8b84b}
+.pg-road{position:relative;list-style:none;margin:0;padding:0}
+.pg-road::before,.pg-fill{content:'';position:absolute;left:50%;top:0;width:2px;margin-left:-1px;background:rgba(255,255,255,.08)}
+.pg-road::before{bottom:0}
+.pg-fill{height:var(--fill,0%);background:linear-gradient(#f6dc8f,#e8b84b 70%,rgba(232,184,75,.2));box-shadow:0 0 18px rgba(232,184,75,.6);transition:height .15s linear}
+.pg-st{position:relative;display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;margin-bottom:2.2rem}
+.pg-dot{grid-column:2;justify-self:center;position:relative;z-index:1;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.78rem;font-weight:600;color:#8a98b3;background:#0a1020;border:1px solid rgba(255,255,255,.14);transition:all .5s}
+.pg-st.lit .pg-dot{color:#050913;background:#e8b84b;border-color:#e8b84b;box-shadow:0 0 0 8px rgba(232,184,75,.12),0 0 30px rgba(232,184,75,.5)}
+.pg-card{grid-row:1;padding:1.5rem 1.6rem;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.08);opacity:.35;transform:translateX(-30px);transition:opacity .7s,transform .8s cubic-bezier(.2,.8,.2,1),border-color .6s,box-shadow .6s}
+.pg-st:nth-child(odd) .pg-card{grid-column:1}
+.pg-st:nth-child(even) .pg-card{grid-column:3;transform:translateX(30px)}
+.pg-st.lit .pg-card{opacity:1;transform:none;border-color:rgba(232,184,75,.3);box-shadow:0 26px 60px rgba(0,0,0,.4)}
+.pg-card h4{font-family:'EB Garamond',serif;font-size:1.55rem;font-weight:600;line-height:1.15;color:#fff;margin-bottom:.4rem}
+.pg-card p{font-size:.92rem;line-height:1.55;color:#a7b3ca}
+.pg-subs{display:flex;flex-wrap:wrap;gap:6px;margin-top:.9rem}
+.pg-subs span{font-size:.76rem;padding:.32rem .75rem;border-radius:100px;background:rgba(232,184,75,.08);border:1px solid rgba(232,184,75,.28);color:#eadcb6}
+.pg-end-dot{display:grid;place-items:center;margin:0 auto;width:74px;height:74px;border-radius:50%;background:radial-gradient(circle,#f6dc8f,#c9971c);color:#050913;font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 50px rgba(232,184,75,.45);position:relative;z-index:1}
 
-.st-eq{opacity:0;overflow:visible}
-.st-eq-l{fill:none;stroke:#e8b84b;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 10px rgba(232,184,75,.55))}
-.st-eq-a{opacity:0}
-.st-eq-d{fill:#fff;opacity:0}.st-eq-p{fill:none;stroke:#e8b84b;stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center;animation:st-ping 2s ease-out infinite}
-@keyframes st-ping{from{transform:scale(1);stroke-opacity:1}to{transform:scale(5);stroke-opacity:0}}
-.st-ai{opacity:0}.st-ai rect{fill:#0e1730;stroke:rgba(232,184,75,.6)}.st-ai path{fill:#e8b84b}
-.st-ai text{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.04em;fill:#f0f4fa;text-anchor:middle}
+/* who + benefits */
+.pg-two{display:grid;grid-template-columns:1fr 1.2fr;gap:1.4rem}
+.pg-box{padding:2.2rem 2rem;border-radius:24px;background:linear-gradient(160deg,#13224f,#0a1020);border:1px solid rgba(232,184,75,.22)}
+.pg-box .pg-label{margin-bottom:1.4rem}
+.pg-who{display:flex;flex-wrap:wrap;gap:10px}
+.pg-who span{font-family:'EB Garamond',serif;font-size:1.25rem;padding:.55rem 1.15rem;border-radius:100px;border:1px solid rgba(255,255,255,.14);color:#f0f4fa;background:rgba(255,255,255,.03)}
+.pg-ben{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+.pg-ben li{display:flex;gap:14px;align-items:flex-start;font-size:1rem;line-height:1.5;color:#f0f4fa}
+.pg-ben li b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#e8b84b;color:#050913}
+.pg-ben li b svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 
-.st-rail{position:absolute;left:4.5rem;right:4.5rem;bottom:2rem;display:flex;align-items:center;gap:1.6rem}
-.st-cnt{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:#4a5468}.st-cnt b{color:#e8b84b;font-weight:600}
-.st-rail ol{list-style:none;display:flex;gap:1.5rem;margin:0;padding:0}
-.st-rail li{font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#4a5468;cursor:pointer;transition:color .4s}
-.st-rail li.done{color:#8a98b3}.st-rail li.on{color:#f0f4fa}.st-rail li:hover{color:#e8b84b}
-.st-bar2{flex:1;height:1px;background:rgba(255,255,255,.08);overflow:hidden}
-.st-bar2 i{display:block;height:100%;background:linear-gradient(90deg,#c9971c,#f0cf7a);transform:scaleX(0);transform-origin:0 50%}
-.st-cue{position:absolute;left:50%;bottom:4.6rem;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:#8a98b3;pointer-events:none}
-.st-cue i{width:1px;height:38px;background:linear-gradient(#e8b84b,transparent);animation:st-cue 1.8s cubic-bezier(.65,0,.35,1) infinite;transform-origin:top}
-@keyframes st-cue{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.st-skip{position:absolute;right:4.5rem;bottom:1.75rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#8a98b3;text-decoration:none;background:var(--bg);padding-left:1rem;transition:color .3s}
-.st-skip:hover{color:#e8b84b}
-.st + .ix{padding-top:6rem}
+/* finale */
+.pg-fin{position:relative;overflow:hidden;margin:0 3.5rem 4rem;padding:4.5rem 2rem;border-radius:32px;text-align:center;background:radial-gradient(600px 300px at 50% 0%,rgba(232,184,75,.22),transparent 70%),linear-gradient(160deg,#16285a,#070c1a);border:1px solid rgba(232,184,75,.3)}
+.pg-fin h3{font-family:'EB Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;line-height:1.05;color:#fff;margin-bottom:.8rem}
+.pg-fin h3 em{font-style:italic;color:#e8b84b;font-weight:500}
+.pg-fin p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:#c3cde2;margin-bottom:2rem}
+.pg-fin .pg-acts{justify-content:center}
+.pg-ghost{display:inline-flex;align-items:center;gap:10px;padding:1rem 1.6rem;border-radius:100px;border:1px solid rgba(255,255,255,.2);background:none;color:#f0f4fa;font:600 .92rem 'Inter',sans-serif;cursor:pointer;transition:all .3s}
+.pg-ghost:hover{border-color:#e8b84b;color:#e8b84b}
+.pg-note{text-align:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:#4a5468;padding:0 1.5rem 3rem}
 
-@media(max-width:980px){
-.st{height:480vh}
-.st-pin{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;gap:.5rem;padding:84px 1.2rem 4.2rem}
-.st-copy{height:250px}
-.st-h{font-size:clamp(2.2rem,9vw,3rem);margin:.8rem 0 .8rem}
-.st-p{font-size:1.12rem}
-.st-cta{margin-top:1rem}
-.st-stage{align-self:center;width:min(100%,calc((100vh - 400px)*1.3636))}
-.st-code{width:100%;right:0;bottom:-22%}.st-code code{font-size:.6rem;padding:.8rem .9rem 1rem;line-height:1.75}.st-k.in{padding-left:1.6em}
-.st-rail{left:1.2rem;right:1.2rem;bottom:1.2rem}.st-rail ol{display:none}
-.st-skip{right:1.2rem;bottom:1rem}.st-cue{display:none}
-}
-@media(prefers-reduced-motion:reduce){.st-h .w>span,.st-eye,.st-p,.st-cta{transition:none!important}.st-big rect,.st-big line,#st-ohlc .st-l,.st-eq-p{animation:none}}
-#st-rules{opacity:0}
+@media(max-width:860px){
+.pg-x{padding:.75rem 1rem}.pg-x span{display:none}
+.pg-hero{padding:3rem 1.3rem 4rem;min-height:auto}
+.pg-num{right:-8vw;top:24%;font-size:60vw}.pg-art{display:none}
+.pg-hl{gap:.7rem}.pg-hl div{min-width:0;flex:1 1 140px;padding:1.05rem 1.1rem}
+.pg-sec{padding:4rem 1.3rem}
+.pg-road::before,.pg-fill{left:27px}
+.pg-st{grid-template-columns:54px 1fr;gap:0 1rem;align-items:start}
+.pg-dot{grid-column:1;grid-row:1}
+.pg-st:nth-child(odd) .pg-card,.pg-st:nth-child(even) .pg-card{grid-column:2;transform:translateY(16px)}
+.pg-end-dot{margin:0;width:54px;height:54px;font-size:.5rem}
+.pg-two{grid-template-columns:1fr}
+.pg-fin{margin:0 1rem 3rem;padding:3.2rem 1.3rem}}
+@media(prefers-reduced-motion:reduce){.dta-panel,.dta-panel.open{transition:none}.pg-hero .pg-in>*{opacity:1;transform:none;animation:none!important}.pg-card{opacity:1;transform:none;transition:none}.pg-art svg *{stroke-dashoffset:0;animation:none!important}}
+.pg-sec2{padding-top:0}
 
-/* ---- v2: courses + more motion ---- */
-.st-course{position:relative;align-self:flex-start;display:flex;align-items:center;gap:14px;margin-top:1.6rem;padding:.85rem 1rem .85rem .85rem;min-width:330px;border-radius:18px;text-decoration:none;color:inherit;background:linear-gradient(135deg,rgba(232,184,75,.10),rgba(255,255,255,.02));border:1px solid rgba(232,184,75,.28);backdrop-filter:blur(8px);overflow:hidden;opacity:0;transform:translateY(16px);transition:opacity .4s,transform .5s,border-color .3s,box-shadow .3s}
-.st-course::before{content:'';position:absolute;top:0;bottom:0;left:-60%;width:45%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.14),transparent);transform:skewX(-18deg)}
-.st-s.on .st-course{opacity:1;transform:none;transition:opacity .8s .6s,transform 1s .6s,border-color .3s,box-shadow .3s}
-.st-s.on .st-course::before{animation:st-sheen 1.4s 1.3s cubic-bezier(.4,0,.2,1) both}
-@keyframes st-sheen{from{left:-60%}to{left:130%}}
-.st-course:hover{border-color:#e8b84b;box-shadow:0 18px 44px rgba(0,0,0,.45),0 0 0 4px rgba(232,184,75,.08)}
-.st-ci{flex:none;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(232,184,75,.45);color:#e8b84b;background:rgba(5,9,19,.5)}
-.st-ci svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.st-cb{display:flex;flex-direction:column;min-width:0}
-.st-ck{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#e8b84b}
-.st-ct{font-family:'EB Garamond',serif;font-size:1.35rem;font-weight:600;line-height:1.15;color:#fff;margin:.15rem 0 .1rem}
-.st-cd{font-size:.76rem;color:#8a98b3}
-.st-ca{margin-left:auto;flex:none;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#e8b84b;color:#050913;transition:transform .35s}
-.st-ca svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.st-course:hover .st-ca{transform:rotate(-45deg)}
-.st-also{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:1rem;opacity:0;transition:opacity .4s}
-.st-s.on .st-also{opacity:1;transition:opacity .8s .9s}
-.st-also span{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#4a5468;margin-right:4px}
-.st-also a{font-size:.74rem;padding:.32rem .75rem;border-radius:100px;border:1px solid rgba(255,255,255,.12);color:#c3cde2;text-decoration:none;transition:all .3s}
-.st-also a:hover{border-color:#e8b84b;color:#e8b84b}
-
-.st-ghost{position:absolute;right:-2vw;top:50%;transform:translateX(0);z-index:-1;pointer-events:none;will-change:transform}
-.st-ghost span{position:absolute;right:0;top:0;transform:translateY(-40%);font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:min(19vw,27vh*1.2);line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(232,184,75,.13);opacity:0;letter-spacing:.06em;filter:blur(6px);transition:opacity .7s,filter .9s,letter-spacing 1.2s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
-.st-ghost span.on{opacity:1;filter:none;letter-spacing:-.01em;transform:translateY(-50%)}
-
-.st-tilt{position:absolute;inset:0;transition:transform .9s cubic-bezier(.16,1,.3,1);will-change:transform}
-.st-pulse{position:absolute;left:50%;top:50%;width:78%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);border:1px solid rgba(232,184,75,.5);opacity:0;pointer-events:none}
-.st-pulse.go{animation:st-pulse 1.3s cubic-bezier(.16,1,.3,1)}
-@keyframes st-pulse{from{opacity:.9;transform:translate(-50%,-50%) scale(.92)}to{opacity:0;transform:translate(-50%,-50%) scale(1.22)}}
-
-#st-dust circle{fill:#f0cf7a;animation:st-dust 1.5s var(--t) cubic-bezier(.16,1,.3,1) both}
-@keyframes st-dust{0%{opacity:0;transform:translate(var(--dx),var(--dy))}35%{opacity:1}80%{opacity:.9;transform:none}100%{opacity:0;transform:none}}
-#st-call{opacity:0}
-.st-co text{font-family:'JetBrains Mono',monospace;font-size:7.4px;font-weight:600;letter-spacing:.16em;fill:#e8b84b;text-anchor:middle}
-.st-co line{stroke:rgba(232,184,75,.6);stroke-width:.8}
-.st-big rect{animation-delay:1.05s!important}
-.st-big line{animation-delay:.9s!important}
-
-@media(max-width:980px){
-.st-copy{height:350px}
-.st-course{min-width:0;width:100%;margin-top:.9rem;padding:.65rem .8rem .65rem .65rem}
-.st-ci{width:38px;height:38px}.st-ct{font-size:1.12rem}
-.st-also{display:none}
-.st-p{font-size:1.02rem;line-height:1.4}
-.st-ghost{top:auto;bottom:22%;right:-4vw}.st-ghost span{font-size:30vw}
-.st-stage{width:min(100%,calc((100vh - 520px)*1.3636))}
-}
-@media(prefers-reduced-motion:reduce){#st-dust{display:none}.st-course,.st-also{transition:none!important}}
-
-/* ---- v3: auto-play for visitors who don't scroll ---- */
-.st-play{position:relative;flex:none;width:36px;height:36px;margin-right:-.4rem;border:0;border-radius:50%;background:rgba(255,255,255,.04);color:#e8b84b;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s}
-.st-play:hover{background:rgba(232,184,75,.14)}
-.st-play svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
-.st-play circle{fill:none;stroke-width:1.4}
-.st-rt{stroke:rgba(232,184,75,.22)}
-.st-rp{stroke:#e8b84b;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
-.st-play.run .st-rp{animation:st-ring var(--dw,4600ms) linear forwards}
-@keyframes st-ring{to{stroke-dashoffset:0}}
-.st-play i{position:relative;width:8px;height:10px;border-left:2.5px solid currentColor;border-right:2.5px solid currentColor}
-.st-play.off i,.st-play.end i{width:0;height:0;border:0;border-left:9px solid currentColor;border-top:5.5px solid transparent;border-bottom:5.5px solid transparent;margin-left:3px}
-.st-play.end:not(.off) i{width:11px;height:11px;margin:0;border:2px solid currentColor;border-right-color:transparent;border-radius:50%}
-@media(prefers-reduced-motion:reduce){.st-play{display:none}}
+/* Enquire now pop-up */
+.pg-x-enq{margin-left:auto;padding:.55rem 1.1rem!important;background:#e8b84b!important;border-color:#e8b84b!important;color:#050913!important}
+.pg-x-enq:hover{background:#f6dc8f!important}
+button.pg-cta{border:0;font-family:'Inter',sans-serif;cursor:pointer}
+.enq{position:fixed;inset:0;z-index:600;display:grid;place-items:center;padding:1rem}
+.enq[hidden]{display:none}
+.enq-bg{position:absolute;inset:0;background:rgba(2,5,12,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .3s}
+.enq-box{position:relative;width:100%;max-width:460px;max-height:calc(100vh - 2rem);overflow:auto;padding:2.2rem 2rem 1.8rem;border-radius:26px;background:radial-gradient(420px 220px at 100% 0%,rgba(232,184,75,.16),transparent 70%),linear-gradient(165deg,#16285a,#0a1020 70%);box-shadow:0 0 0 1px rgba(232,184,75,.4) inset,0 40px 90px rgba(0,0,0,.6);opacity:0;transform:translateY(24px) scale(.97);transition:opacity .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.enq.on .enq-bg{opacity:1}.enq.on .enq-box{opacity:1;transform:none}
+.enq-x{position:absolute;right:14px;top:12px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:none;color:#f0f4fa;font-size:1.3rem;line-height:1;cursor:pointer}
+.enq-x:hover{background:#e8b84b;color:#050913;border-color:#e8b84b}
+.enq-k{font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#e8b84b}
+.enq h3{font-family:'EB Garamond',serif;font-size:1.9rem;font-weight:600;line-height:1.1;color:#fff;margin:.5rem 2rem .4rem 0}
+.enq h3 em{font-style:italic;font-weight:500;color:#e8b84b}
+.enq-sub{font-size:.9rem;color:#a7b3ca;margin-bottom:1.2rem}
+.enq label{display:block;font-size:.78rem;font-weight:600;color:#c3cde2;margin-bottom:.85rem}
+.enq input,.enq select{display:block;width:100%;margin-top:.4rem;padding:.8rem .95rem;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(5,9,19,.6);color:#fff;font:400 .95rem 'Inter',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
+.enq input:focus,.enq select:focus{border-color:#e8b84b;box-shadow:0 0 0 3px rgba(232,184,75,.18)}
+.enq select option{background:#0a1020}
+.enq .enq-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.enq-err{min-height:1.1em;font-size:.84rem;color:#ff8a8a;margin:.2rem 0 .6rem}
+.enq-go{width:100%;justify-content:center}
+.enq-go:disabled{opacity:.6;cursor:wait}
+.enq-fine{margin-top:.8rem;text-align:center;font-size:.72rem;color:#6b7891}
+.enq-ok{text-align:center;padding:1rem 0 .4rem}
+.enq-ok h3{margin:0 0 .6rem}
+.enq-ok p{color:#c3cde2;margin-bottom:1.5rem}
+.enq-ok b{color:#e8b84b}
+.enq-tick{width:62px;height:62px;margin:0 auto 1rem;border-radius:50%;display:grid;place-items:center;background:#e8b84b;color:#050913;font-size:1.8rem;box-shadow:0 0 40px rgba(232,184,75,.5)}
+@media(max-width:860px){.pg-x-enq{padding:.5rem .9rem!important;font-size:.75rem!important}}
 </style>
 </head>
 <body>
@@ -632,198 +643,172 @@ section{padding:5rem 3.5rem}
   <a href="learn.html" class="nav-pill">Login</a>
 </nav>
 
-<!-- DTA SCROLL STORY: one candle becomes a system; each stage links to a course (synthetic chart, no prices) -->
-<section class="st" id="story" aria-label="From one candle to a trading system">
-  <div class="st-pin">
-    <div class="st-ghost" aria-hidden="true"><span data-s="0" class=on>Candle</span><span data-s="1">Pattern</span><span data-s="2">Rules</span><span data-s="3">System</span><span data-s="4">Edge</span></div>
-    <div class="st-copy"><div class="st-s on" data-s="0"><span class="st-eye"><b>01</b> The Candle</span><h2 class="st-h"><span class="w"><span style="--d:0">It</span></span> <span class="w"><span style="--d:1">starts</span></span> <span class="w"><span style="--d:2">with</span></span> <em><span class="w"><span style="--d:3">one</span></span> <span class="w"><span style="--d:4">candle.</span></span></em></h2><p class="st-p">Open, high, low, close. Four points that tell you who won the session: buyers or sellers.</p><a class="st-course" href="#basics" data-go="basics"><span class="st-ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></span><span class="st-cb"><span class="st-ck">Learn to read it</span><span class="st-ct">Basics of Stock Market</span><span class="st-cd">4 weeks · 8 live sessions</span></span><b class="st-ca"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a></div><div class="st-s" data-s="1"><span class="st-eye"><b>02</b> The Pattern</span><h2 class="st-h"><span class="w"><span style="--d:0">Candles</span></span> <span class="w"><span style="--d:1">become</span></span> <em><span class="w"><span style="--d:2">patterns.</span></span></em></h2><p class="st-p">Zoom out, and the market starts repeating its habits. Trends, pullbacks, ranges, breakouts.</p><a class="st-course" href="#swing" data-go="swing"><span class="st-ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></span><span class="st-cb"><span class="st-ck">Learn to ride it</span><span class="st-ct">Swing Trading</span><span class="st-cd">6 weeks · 12 live sessions</span></span><b class="st-ca"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a></div><div class="st-s" data-s="2"><span class="st-eye"><b>03</b> The Rules</span><h2 class="st-h"><span class="w"><span style="--d:0">Patterns</span></span> <span class="w"><span style="--d:1">become</span></span> <em><span class="w"><span style="--d:2">rules.</span></span></em></h2><p class="st-p">Where you enter, where you are wrong, where you get paid. Decided before the trade, never during it.</p><a class="st-course" href="#cmt" data-go="cmt"><span class="st-ci"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></span><span class="st-cb"><span class="st-ck">Master it</span><span class="st-ct">CMT</span><span class="st-cd">Level-wise · Level I, II & III</span></span><b class="st-ca"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a></div><div class="st-s" data-s="3"><span class="st-eye"><b>04</b> The System</span><h2 class="st-h"><span class="w"><span style="--d:0">Rules</span></span> <span class="w"><span style="--d:1">become</span></span> <span class="w"><span style="--d:2">a</span></span> <em><span class="w"><span style="--d:3">system.</span></span></em></h2><p class="st-p">Write it once. Test it across years of data. Let it run without fear or greed in the way.</p><a class="st-course" href="#algo" data-go="algo"><span class="st-ci"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span><span class="st-cb"><span class="st-ck">Learn to code it</span><span class="st-ct">Algo Trading</span><span class="st-cd">8 weeks · 16 live sessions</span></span><b class="st-ca"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a></div><div class="st-s" data-s="4"><span class="st-eye"><b>05</b> The Edge</span><h2 class="st-h"><span class="w"><span style="--d:0">A</span></span> <span class="w"><span style="--d:1">system</span></span> <span class="w"><span style="--d:2">becomes</span></span> <em><span class="w"><span style="--d:3">your</span></span> <span class="w"><span style="--d:4">edge.</span></span></em></h2><p class="st-p">From your first candle to an AI-assisted system, with Vishal beside you all the way.</p><a class="st-course" href="#mentorship" data-go="mentorship"><span class="st-ci"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle cx="17" cy="9" r="3"/><path d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></span><span class="st-cb"><span class="st-ck">Build it with a mentor</span><span class="st-ct">Group / Personal Mentorship</span><span class="st-cd">12 sessions · ~60 hours</span></span><b class="st-ca"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a><div class="st-also"><span>Also</span><a href="#women" data-go="women">Women in Trading</a><a href="#workshops" data-go="workshops">Weekly Workshops</a><a href="#webinars" data-go="webinars">Webinars</a><a href="#custom" data-go="custom">Custom plan</a></div></div></div>
-    <div class="st-stage" aria-hidden="true"><div class="st-tilt">
-      <span class="st-pulse"></span>
-      <div class="st-chart"><svg viewBox="0 0 600 440">
-        <defs><filter id="st-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-        <g id="st-cam" transform="translate(300 220) scale(4.2) translate(-496 -180.10500000000002)"><g class="st-c up" data-j="0"><line x1="40" x2="40" y1="366.24" y2="382.69" pathLength="1"/><rect x="34" y="371.06" width="12" height="7.079999999999984" rx="1"/></g><g class="st-c up" data-j="1"><line x1="59" x2="59" y1="356.24" y2="382.66" pathLength="1"/><rect x="53" y="362.71" width="12" height="8.350000000000023" rx="1"/></g><g class="st-c up" data-j="2"><line x1="78" x2="78" y1="338.25" y2="371.95" pathLength="1"/><rect x="72" y="343.44" width="12" height="19.269999999999982" rx="1"/></g><g class="st-c up" data-j="3"><line x1="97" x2="97" y1="327.0" y2="350.56" pathLength="1"/><rect x="91" y="336.81" width="12" height="6.6299999999999955" rx="1"/></g><g class="st-c up" data-j="4"><line x1="116" x2="116" y1="311.15" y2="340.8" pathLength="1"/><rect x="110" y="320.04" width="12" height="16.769999999999982" rx="1"/></g><g class="st-c up" data-j="5"><line x1="135" x2="135" y1="303.04" y2="325.49" pathLength="1"/><rect x="129" y="307.0" width="12" height="13.04000000000002" rx="1"/></g><g class="st-c up" data-j="6"><line x1="154" x2="154" y1="290.46" y2="314.68" pathLength="1"/><rect x="148" y="300.69" width="12" height="6.310000000000002" rx="1"/></g><g class="st-c up" data-j="7"><line x1="173" x2="173" y1="278.02" y2="309.96" pathLength="1"/><rect x="167" y="284.55" width="12" height="16.139999999999986" rx="1"/></g><g class="st-c up" data-j="8"><line x1="192" x2="192" y1="270.75" y2="290.94" pathLength="1"/><rect x="186" y="278.69" width="12" height="5.860000000000014" rx="1"/></g><g class="st-c up" data-j="9"><line x1="211" x2="211" y1="252.78" y2="289.1" pathLength="1"/><rect x="205" y="264.16" width="12" height="14.529999999999973" rx="1"/></g><g class="st-c dn" data-j="10"><line x1="230" x2="230" y1="258.33" y2="284.23" pathLength="1"/><rect x="224" y="264.16" width="12" height="10.909999999999968" rx="1"/></g><g class="st-c dn" data-j="11"><line x1="249" x2="249" y1="266.41" y2="298.43" pathLength="1"/><rect x="243" y="275.07" width="12" height="11.160000000000025" rx="1"/></g><g class="st-c dn" data-j="12"><line x1="268" x2="268" y1="275.51" y2="307.59" pathLength="1"/><rect x="262" y="286.23" width="12" height="15.089999999999975" rx="1"/></g><g class="st-c dn" data-j="13"><line x1="287" x2="287" y1="288.06" y2="325.7" pathLength="1"/><rect x="281" y="301.32" width="12" height="19.819999999999993" rx="1"/></g><g class="st-c up" data-j="14"><line x1="306" x2="306" y1="210.68" y2="276.39" pathLength="1"/><rect x="300" y="214.35" width="12" height="58.66999999999999" rx="1"/></g><g class="st-c dn" data-j="15"><line x1="325" x2="325" y1="206.04" y2="268.47" pathLength="1"/><rect x="319" y="214.35" width="12" height="47.26000000000002" rx="1"/></g><g class="st-c up" data-j="16"><line x1="344" x2="344" y1="214.19" y2="268.63" pathLength="1"/><rect x="338" y="221.97" width="12" height="39.640000000000015" rx="1"/></g><g class="st-c dn" data-j="17"><line x1="363" x2="363" y1="213.09" y2="261.53" pathLength="1"/><rect x="357" y="221.97" width="12" height="29.890000000000015" rx="1"/></g><g class="st-c up" data-j="18"><line x1="382" x2="382" y1="218.23" y2="259.69" pathLength="1"/><rect x="376" y="221.21" width="12" height="30.650000000000006" rx="1"/></g><g class="st-c dn" data-j="19"><line x1="401" x2="401" y1="212.47" y2="263.95" pathLength="1"/><rect x="395" y="221.21" width="12" height="38.069999999999965" rx="1"/></g><g class="st-c up" data-j="20"><line x1="420" x2="420" y1="224.56" y2="265.29" pathLength="1"/><rect x="414" y="227.25" width="12" height="32.02999999999997" rx="1"/></g><g class="st-c dn" data-j="21"><line x1="439" x2="439" y1="224.29" y2="272.32" pathLength="1"/><rect x="433" y="227.25" width="12" height="36.74000000000001" rx="1"/></g><g class="st-c up" data-j="22"><line x1="458" x2="458" y1="219.99" y2="273.1" pathLength="1"/><rect x="452" y="225.47" width="12" height="38.52000000000001" rx="1"/></g><g class="st-c dn" data-j="23"><line x1="477" x2="477" y1="218.79" y2="269.93" pathLength="1"/><rect x="471" y="225.47" width="12" height="35.25000000000003" rx="1"/></g><g class="st-c st-big" data-j="24"><line x1="496" x2="496" y1="136.8" y2="223.41" pathLength="1"/><rect x="490" y="146.05" width="12" height="72.31" rx="1"/></g><g id="st-call"><g class="st-co" style="--i:0"><line x1="211" x2="211" y1="243.78" y2="248.78"/><text x="211" y="238.78">HIGHER HIGHS</text></g><g class="st-co" style="--i:1"><line x1="287" x2="287" y1="332.7" y2="327.7"/><text x="287" y="343.7">PULLBACK</text></g><g class="st-co" style="--i:2"><line x1="391.5" x2="391.5" y1="283.39" y2="278.39"/><text x="391.5" y="294.39">RANGE</text></g><g class="st-co" style="--i:3"><line x1="496" x2="496" y1="127.80000000000001" y2="132.8"/><text x="496" y="122.80000000000001">BREAKOUT</text></g></g><g id="st-rules">
-<rect class="st-box" x="297" y="204.07" width="189" height="72.32" rx="3"/>
-<path class="st-ln g" pathLength="1" d="M297 204.07H536"/>
-<path class="st-ln" pathLength="1" d="M297 276.39H536"/>
-<path class="st-ln d" pathLength="1" d="M496 59.43H536"/>
-<path class="st-ln a" pathLength="1" d="M518 200.07V65.43"/>
-<g class="st-tag t1" transform="translate(542 204.07)"><rect x="0" y="-9" width="52" height="18" rx="9"/><text x="26" y="3.4">ENTRY</text></g>
-<g class="st-tag t2 r" transform="translate(542 276.39)"><rect x="0" y="-9" width="46" height="18" rx="9"/><text x="23" y="3.4">STOP</text></g>
-<g class="st-tag t3" transform="translate(542 59.43)"><rect x="0" y="-9" width="70" height="18" rx="9"/><text x="35" y="3.4">TARGET 2R</text></g>
-</g></g>
-        <g id="st-dust"><circle cx="285.2" cy="309.8" r="1.3" style="--dx:18px;--dy:117px;--t:0.12s"/><circle cx="313.8" cy="373.2" r="2.0" style="--dx:197px;--dy:129px;--t:0.41s"/><circle cx="287.9" cy="234.1" r="0.8" style="--dx:-81px;--dy:-198px;--t:0.15s"/><circle cx="289.3" cy="286.2" r="2.2" style="--dx:256px;--dy:-22px;--t:0.54s"/><circle cx="320.2" cy="188.6" r="1.1" style="--dx:-157px;--dy:-115px;--t:0.11s"/><circle cx="305.5" cy="348.0" r="1.8" style="--dx:191px;--dy:-9px;--t:0.44s"/><circle cx="281.6" cy="276.7" r="1.9" style="--dx:229px;--dy:119px;--t:0.26s"/><circle cx="285.7" cy="314.9" r="2.3" style="--dx:-94px;--dy:126px;--t:0.22s"/><circle cx="295.6" cy="361.9" r="1.0" style="--dx:126px;--dy:-139px;--t:0.08s"/><circle cx="318.0" cy="320.1" r="2.3" style="--dx:-198px;--dy:137px;--t:0.36s"/><circle cx="293.4" cy="243.3" r="2.3" style="--dx:-207px;--dy:-204px;--t:0.36s"/><circle cx="301.2" cy="357.9" r="2.0" style="--dx:-37px;--dy:156px;--t:0.12s"/><circle cx="289.0" cy="167.2" r="1.2" style="--dx:-145px;--dy:36px;--t:0.23s"/><circle cx="283.6" cy="350.9" r="1.7" style="--dx:-82px;--dy:-18px;--t:0.50s"/><circle cx="296.5" cy="353.2" r="1.6" style="--dx:1px;--dy:13px;--t:0.01s"/><circle cx="297.3" cy="134.5" r="1.1" style="--dx:-278px;--dy:126px;--t:0.26s"/><circle cx="310.0" cy="245.7" r="1.6" style="--dx:-97px;--dy:8px;--t:0.43s"/><circle cx="282.5" cy="246.8" r="2.0" style="--dx:-141px;--dy:-94px;--t:0.28s"/><circle cx="302.7" cy="306.2" r="1.7" style="--dx:231px;--dy:-24px;--t:0.28s"/><circle cx="300.5" cy="286.2" r="1.5" style="--dx:-27px;--dy:14px;--t:0.52s"/><circle cx="308.8" cy="340.9" r="1.6" style="--dx:248px;--dy:-101px;--t:0.52s"/><circle cx="315.1" cy="120.8" r="0.9" style="--dx:-212px;--dy:-24px;--t:0.13s"/><circle cx="281.0" cy="279.3" r="1.0" style="--dx:159px;--dy:167px;--t:0.39s"/><circle cx="307.1" cy="122.6" r="1.1" style="--dx:214px;--dy:196px;--t:0.52s"/><circle cx="295.5" cy="225.1" r="1.0" style="--dx:274px;--dy:140px;--t:0.24s"/><circle cx="300.7" cy="181.0" r="1.9" style="--dx:-170px;--dy:-76px;--t:0.01s"/><circle cx="302.4" cy="211.1" r="1.7" style="--dx:-270px;--dy:-71px;--t:0.28s"/><circle cx="280.7" cy="373.3" r="1.0" style="--dx:161px;--dy:198px;--t:0.15s"/><circle cx="279.6" cy="311.9" r="1.4" style="--dx:-129px;--dy:-156px;--t:0.50s"/><circle cx="314.2" cy="157.0" r="1.7" style="--dx:-196px;--dy:176px;--t:0.39s"/><circle cx="281.8" cy="97.1" r="0.9" style="--dx:105px;--dy:-31px;--t:0.52s"/><circle cx="306.0" cy="318.6" r="0.9" style="--dx:-233px;--dy:150px;--t:0.47s"/><circle cx="297.9" cy="181.0" r="1.2" style="--dx:30px;--dy:179px;--t:0.07s"/><circle cx="301.2" cy="151.0" r="0.9" style="--dx:-219px;--dy:-142px;--t:0.11s"/><circle cx="291.7" cy="170.8" r="1.6" style="--dx:145px;--dy:-88px;--t:0.10s"/><circle cx="293.2" cy="85.4" r="1.9" style="--dx:-140px;--dy:-204px;--t:0.30s"/><circle cx="286.2" cy="221.3" r="2.0" style="--dx:243px;--dy:-165px;--t:0.24s"/><circle cx="299.8" cy="328.5" r="1.8" style="--dx:-60px;--dy:3px;--t:0.54s"/><circle cx="293.0" cy="327.8" r="1.4" style="--dx:116px;--dy:57px;--t:0.19s"/><circle cx="280.2" cy="118.6" r="1.2" style="--dx:-240px;--dy:101px;--t:0.09s"/><circle cx="281.6" cy="330.4" r="1.2" style="--dx:208px;--dy:72px;--t:0.13s"/><circle cx="290.8" cy="216.8" r="1.2" style="--dx:-192px;--dy:-23px;--t:0.53s"/><circle cx="321.0" cy="242.9" r="1.3" style="--dx:-143px;--dy:196px;--t:0.20s"/><circle cx="277.8" cy="193.6" r="1.1" style="--dx:-14px;--dy:1px;--t:0.28s"/><circle cx="278.0" cy="158.6" r="0.9" style="--dx:-230px;--dy:-42px;--t:0.01s"/><circle cx="291.3" cy="149.3" r="1.9" style="--dx:48px;--dy:12px;--t:0.36s"/><circle cx="309.6" cy="341.7" r="2.3" style="--dx:-62px;--dy:-73px;--t:0.08s"/><circle cx="310.0" cy="271.5" r="2.1" style="--dx:-255px;--dy:141px;--t:0.35s"/><circle cx="310.4" cy="321.8" r="1.6" style="--dx:-202px;--dy:10px;--t:0.46s"/><circle cx="313.5" cy="326.0" r="1.8" style="--dx:47px;--dy:165px;--t:0.38s"/><circle cx="288.0" cy="89.3" r="1.0" style="--dx:-205px;--dy:-59px;--t:0.46s"/><circle cx="302.6" cy="266.9" r="1.5" style="--dx:71px;--dy:76px;--t:0.00s"/><circle cx="313.2" cy="302.8" r="1.8" style="--dx:2px;--dy:15px;--t:0.04s"/><circle cx="310.5" cy="155.1" r="1.9" style="--dx:-238px;--dy:-98px;--t:0.11s"/><circle cx="310.6" cy="370.5" r="1.5" style="--dx:-3px;--dy:-49px;--t:0.38s"/><circle cx="311.9" cy="263.7" r="1.0" style="--dx:80px;--dy:-177px;--t:0.14s"/><circle cx="310.8" cy="170.6" r="0.9" style="--dx:38px;--dy:-205px;--t:0.15s"/><circle cx="307.6" cy="286.1" r="1.6" style="--dx:98px;--dy:-88px;--t:0.26s"/><circle cx="298.5" cy="115.3" r="2.3" style="--dx:220px;--dy:-126px;--t:0.51s"/><circle cx="278.6" cy="216.6" r="1.5" style="--dx:179px;--dy:197px;--t:0.15s"/><circle cx="287.1" cy="361.5" r="1.0" style="--dx:-162px;--dy:34px;--t:0.29s"/><circle cx="320.1" cy="119.5" r="2.1" style="--dx:179px;--dy:4px;--t:0.39s"/><circle cx="288.1" cy="347.2" r="0.8" style="--dx:-8px;--dy:-200px;--t:0.27s"/><circle cx="297.8" cy="169.9" r="1.3" style="--dx:-201px;--dy:-66px;--t:0.46s"/><circle cx="277.9" cy="303.5" r="2.2" style="--dx:190px;--dy:-160px;--t:0.39s"/><circle cx="317.8" cy="166.3" r="2.3" style="--dx:-72px;--dy:-45px;--t:0.32s"/><circle cx="293.8" cy="207.4" r="1.0" style="--dx:-126px;--dy:-190px;--t:0.46s"/><circle cx="290.5" cy="358.5" r="1.6" style="--dx:-140px;--dy:-98px;--t:0.10s"/><circle cx="294.4" cy="364.7" r="1.7" style="--dx:215px;--dy:131px;--t:0.50s"/><circle cx="319.6" cy="243.5" r="1.9" style="--dx:123px;--dy:-189px;--t:0.25s"/></g>
-        <g id="st-ohlc"><g class="st-l"><line x1="286" x2="240" y1="38.1" y2="38.1"/><circle cx="290" cy="38.1" r="2.2"/><text x="232" y="41.6" text-anchor="end">HIGH</text></g><g class="st-l"><line x1="339.2" x2="385.2" y1="77.0" y2="77.0"/><circle cx="335.2" cy="77.0" r="2.2"/><text x="393.2" y="80.5" text-anchor="start">CLOSE</text></g><g class="st-l"><line x1="339.2" x2="385.2" y1="380.7" y2="380.7"/><circle cx="335.2" cy="380.7" r="2.2"/><text x="393.2" y="384.2" text-anchor="start">OPEN</text></g><g class="st-l"><line x1="286" x2="240" y1="401.9" y2="401.9"/><circle cx="290" cy="401.9" r="2.2"/><text x="232" y="405.4" text-anchor="end">LOW</text></g></g>
-      </svg></div>
-      <div class="st-code"><div class="st-bar"><i></i><i></i><i></i><span>breakout_system.py</span></div><code><span class="st-k"><i># decided before the trade</i></span><span class="st-k"><b>if</b> close &gt; range_high:</span><span class="st-k in">entry  = close</span><span class="st-k in">stop   = range_low</span><span class="st-k in">size   = risk / (entry - stop)</span><span class="st-k in">target = entry + <u>2</u> * (entry - stop)</span><span class="st-k in"><s>buy</s>(size)</span><em class="st-caret"></em></code></div>
-      <svg class="st-eq" viewBox="0 0 600 440" aria-hidden="true">
-<defs><linearGradient id="st-eqf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b84b" stop-opacity=".32"/><stop offset="1" stop-color="#e8b84b" stop-opacity="0"/></linearGradient></defs>
-<path class="st-eq-a" d="M40.0 377.7 Q40.0 377.7 43.6 379.1 Q47.3 380.5 51.0 375.6 Q54.6 370.7 58.2 368.0 Q61.9 365.4 65.5 362.5 Q69.2 359.6 72.8 361.9 Q76.5 364.1 80.2 365.8 Q83.8 367.5 87.4 360.9 Q91.1 354.4 94.8 349.5 Q98.4 344.6 102.1 341.1 Q105.7 337.7 109.3 334.8 Q113.0 331.8 116.7 331.5 Q120.3 331.2 123.9 331.4 Q127.6 331.5 131.2 328.1 Q134.9 324.7 138.6 319.5 Q142.2 314.3 145.8 313.8 Q149.5 313.3 153.2 312.0 Q156.8 310.6 160.4 310.9 Q164.1 311.1 167.8 314.1 Q171.4 317.2 175.1 316.4 Q178.7 315.7 182.3 315.6 Q186.0 315.5 189.7 316.6 Q193.3 317.6 196.9 319.1 Q200.6 320.5 204.2 316.1 Q207.9 311.7 211.6 316.4 Q215.2 321.1 218.8 318.3 Q222.5 315.5 226.2 313.0 Q229.8 310.5 233.4 306.7 Q237.1 302.9 240.8 295.2 Q244.4 287.5 248.1 280.8 Q251.7 274.0 255.3 267.9 Q259.0 261.7 262.6 261.5 Q266.3 261.4 270.0 255.5 Q273.6 249.6 277.2 244.9 Q280.9 240.3 284.5 237.7 Q288.2 235.0 291.9 232.1 Q295.5 229.2 299.1 228.1 Q302.8 227.1 306.5 223.1 Q310.1 219.2 313.8 215.3 Q317.4 211.4 321.0 209.4 Q324.7 207.5 328.4 205.0 Q332.0 202.5 335.6 202.4 Q339.3 202.4 343.0 198.7 Q346.6 195.0 350.2 199.4 Q353.9 203.8 357.5 203.9 Q361.2 204.0 364.9 199.2 Q368.5 194.5 372.1 191.4 Q375.8 188.3 379.5 188.9 Q383.1 189.5 386.8 190.1 Q390.4 190.7 394.0 189.1 Q397.7 187.5 401.4 192.9 Q405.0 198.4 408.6 198.7 Q412.3 198.9 416.0 192.9 Q419.6 186.8 423.2 181.4 Q426.9 175.9 430.5 167.1 Q434.2 158.3 437.9 153.4 Q441.5 148.4 445.1 146.4 Q448.8 144.4 452.5 141.7 Q456.1 138.9 459.8 141.4 Q463.4 143.9 467.0 138.9 Q470.7 134.0 474.4 128.6 Q478.0 123.2 481.6 127.1 Q485.3 131.0 489.0 129.2 Q492.6 127.5 496.2 122.2 Q499.9 116.8 503.5 115.9 Q507.2 115.1 510.9 109.2 Q514.5 103.2 518.1 102.8 Q521.8 102.5 525.5 105.7 Q529.1 108.8 532.8 109.2 Q536.4 109.7 540.0 107.8 Q543.7 106.0 547.4 100.1 Q551.0 94.2 554.6 90.3 T558.3 86.4 L558.3 410 L40 410Z" fill="url(#st-eqf)"/>
-<path class="st-eq-l" d="M40.0 377.7 Q40.0 377.7 43.6 379.1 Q47.3 380.5 51.0 375.6 Q54.6 370.7 58.2 368.0 Q61.9 365.4 65.5 362.5 Q69.2 359.6 72.8 361.9 Q76.5 364.1 80.2 365.8 Q83.8 367.5 87.4 360.9 Q91.1 354.4 94.8 349.5 Q98.4 344.6 102.1 341.1 Q105.7 337.7 109.3 334.8 Q113.0 331.8 116.7 331.5 Q120.3 331.2 123.9 331.4 Q127.6 331.5 131.2 328.1 Q134.9 324.7 138.6 319.5 Q142.2 314.3 145.8 313.8 Q149.5 313.3 153.2 312.0 Q156.8 310.6 160.4 310.9 Q164.1 311.1 167.8 314.1 Q171.4 317.2 175.1 316.4 Q178.7 315.7 182.3 315.6 Q186.0 315.5 189.7 316.6 Q193.3 317.6 196.9 319.1 Q200.6 320.5 204.2 316.1 Q207.9 311.7 211.6 316.4 Q215.2 321.1 218.8 318.3 Q222.5 315.5 226.2 313.0 Q229.8 310.5 233.4 306.7 Q237.1 302.9 240.8 295.2 Q244.4 287.5 248.1 280.8 Q251.7 274.0 255.3 267.9 Q259.0 261.7 262.6 261.5 Q266.3 261.4 270.0 255.5 Q273.6 249.6 277.2 244.9 Q280.9 240.3 284.5 237.7 Q288.2 235.0 291.9 232.1 Q295.5 229.2 299.1 228.1 Q302.8 227.1 306.5 223.1 Q310.1 219.2 313.8 215.3 Q317.4 211.4 321.0 209.4 Q324.7 207.5 328.4 205.0 Q332.0 202.5 335.6 202.4 Q339.3 202.4 343.0 198.7 Q346.6 195.0 350.2 199.4 Q353.9 203.8 357.5 203.9 Q361.2 204.0 364.9 199.2 Q368.5 194.5 372.1 191.4 Q375.8 188.3 379.5 188.9 Q383.1 189.5 386.8 190.1 Q390.4 190.7 394.0 189.1 Q397.7 187.5 401.4 192.9 Q405.0 198.4 408.6 198.7 Q412.3 198.9 416.0 192.9 Q419.6 186.8 423.2 181.4 Q426.9 175.9 430.5 167.1 Q434.2 158.3 437.9 153.4 Q441.5 148.4 445.1 146.4 Q448.8 144.4 452.5 141.7 Q456.1 138.9 459.8 141.4 Q463.4 143.9 467.0 138.9 Q470.7 134.0 474.4 128.6 Q478.0 123.2 481.6 127.1 Q485.3 131.0 489.0 129.2 Q492.6 127.5 496.2 122.2 Q499.9 116.8 503.5 115.9 Q507.2 115.1 510.9 109.2 Q514.5 103.2 518.1 102.8 Q521.8 102.5 525.5 105.7 Q529.1 108.8 532.8 109.2 Q536.4 109.7 540.0 107.8 Q543.7 106.0 547.4 100.1 Q551.0 94.2 554.6 90.3 T558.3 86.4" pathLength="1"/>
-<circle class="st-eq-d" cx="558.3" cy="86.4" r="5"/><circle class="st-eq-p" cx="558.3" cy="86.4" r="5"/>
-<g class="st-ai" transform="translate(430.29999999999995 46.400000000000006)"><rect width="110" height="24" rx="12"/><path d="M14 6l1.8 4.2L20 12l-4.2 1.8L14 18l-1.8-4.2L8 12l4.2-1.8z"/><text x="62" y="16">AI-assisted</text></g>
-</svg>
-    </div></div>
-    <div class="st-rail"><button class="st-play" type="button" aria-label="Pause auto-play" title="Auto-play: pause / play"><svg viewBox="0 0 36 36"><circle class="st-rt" cx="18" cy="18" r="16"/><circle class="st-rp" cx="18" cy="18" r="16" pathLength="100"/></svg><i></i></button><span class="st-cnt"><b>01</b> / 05</span><ol><li data-s="0" class=on>Candle</li><li data-s="1">Pattern</li><li data-s="2">Rules</li><li data-s="3">System</li><li data-s="4">Edge</li></ol><span class="st-bar2"><i></i></span></div>
-    <span class="st-cue">Scroll, or just watch<i></i></span>
-    <a class="st-skip" href="#programmes">All 9 programmes &darr;</a>
-  </div>
-</section>
-<!-- DTA PROGRAMMES (variant B): each row opens its own panel below (data-tab = data-panel). -->
-<section class="ix" id="programmes">
-  <div class="ix-in">
-    <header class="ix-head">
-      <div>
-        <span class="ix-eye">DTA Programmes</span>
-        <h2>Disciplined Traders <em>Academy</em></h2>
-      </div>
-      <p>Nine programmes, one disciplined method. Choose where you begin.</p>
+<!-- DTA PROGRAMMES (variant C, "Ring"): 3D carousel; each card opens its own panel below (data-tab = data-panel). -->
+<section class="rg" id="programmes">
+  <div class="rg-in">
+    <header class="rg-head">
+      <span class="rg-eye">DTA Programmes</span>
+      <h2>Disciplined Traders <em>Academy</em></h2>
+      <p>Ten programmes, one disciplined method. Choose where you begin.</p>
     </header>
-    <div class="ix-wrap">
-      <div class="ix-list" role="tablist">
-      <button class="ix-row" role="tab" data-tab="basics" aria-selected="false">
-        <span class="ix-n">01</span>
-        <span class="ix-t">Basics of Stock Market<small>Start from zero. Understand how the market really works before you put a rupee in it.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    <div class="rg-stage" tabindex="0" aria-roledescription="carousel" aria-label="DTA programmes">
+      <div class="rg-floor" aria-hidden="true"></div>
+      <div class="rg-sway">
+      <div class="rg-ring drag" role="tablist" style="--a:36deg">
+      <button class="rg-card" role="tab" data-tab="basics" aria-selected="false" style="--i:0">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">01</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect pathLength="1" x="4" y="7" width="4" height="8" rx="1"/><rect pathLength="1" x="16" y="11" width="4" height="6" rx="1"/><path pathLength="1" d="M12 5v14"/></svg></span></span>
+          <span class="rg-k">Programme 01 &middot; DTA</span>
+          <span class="rg-t">Basics of Stock Market</span>
+          <span class="rg-tag">Start from zero. Understand how the market really works before you put a rupee in it.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>How the market works</span><span>Demat & trading accounts</span><span>Order types</span><span>Primary vs secondary market</span></span>
+            <span class="rg-who"><span>Complete beginners</span><span>Students</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row" role="tab" data-tab="swing" aria-selected="false">
-        <span class="ix-n">02</span>
-        <span class="ix-t">Swing Trading<small>Hold for days, not minutes. A rules-based way to ride the bigger moves.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="ta" aria-selected="false" style="--i:1">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">02</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M3 3v18h18"/><path pathLength="1" d="m7 15 4-4 3 3 6-7"/><path pathLength="1" d="M16 7h4v4"/></svg></span></span>
+          <span class="rg-k">Programme 02 &middot; DTA</span>
+          <span class="rg-t">Technical Analysis</span>
+          <span class="rg-tag">Learn to read what price is saying: trend, structure, patterns and the signals that matter.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>Dow theory & trend</span><span>Candlesticks that matter</span><span>Support & resistance</span><span>Chart patterns</span></span>
+            <span class="rg-who"><span>Beginners who know the basics</span><span>Investors who want better timing</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row" role="tab" data-tab="algo" aria-selected="false">
-        <span class="ix-n">03</span>
-        <span class="ix-t">Algo Trading<small>Turn your trading idea into clear rules, test it, then let code execute it.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="swing" aria-selected="false" style="--i:2">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">03</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path pathLength="1" d="M18 6h4v4"/></svg></span></span>
+          <span class="rg-k">Programme 03 &middot; DTA</span>
+          <span class="rg-t">Swing Trading</span>
+          <span class="rg-tag">Hold for days, not minutes. A rules-based way to ride the bigger moves.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>Trend & market structure</span><span>Support, resistance & breakouts</span><span>Pullback entries</span><span>Candlestick confirmation</span></span>
+            <span class="rg-who"><span>Working professionals</span><span>Part-time traders</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row" role="tab" data-tab="women" aria-selected="false">
-        <span class="ix-n">04</span>
-        <span class="ix-t">Women in Trading<small>A supportive space for women to build market skills, confidence and financial independence.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="derivatives" aria-selected="false" style="--i:3">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">04</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M3 3v18h18"/><path pathLength="1" d="M5 16h7l7-9"/><circle pathLength="1" cx="12" cy="16" r="1.6"/><path pathLength="1" d="M5 9h4"/></svg></span></span>
+          <span class="rg-k">Programme 04 &middot; DTA</span>
+          <span class="rg-t">Derivatives</span>
+          <span class="rg-tag">Futures and options explained properly: how they work, what they cost and how to manage the risk.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>Futures basics</span><span>Options basics</span><span>Option Greeks</span><span>Implied volatility</span></span>
+            <span class="rg-who"><span>Traders moving into F&O</span><span>Investors who want to hedge</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row" role="tab" data-tab="workshops" aria-selected="false">
-        <span class="ix-n">05</span>
-        <span class="ix-t">Weekly Workshops<small>One focused topic every week. Learn it live, practise it, ask your questions.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="algo" aria-selected="false" style="--i:4">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">05</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="5" y="5" width="14" height="14" rx="2"/><rect pathLength="1" x="9" y="9" width="6" height="6" rx="1"/><path pathLength="1" d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span></span>
+          <span class="rg-k">Programme 05 &middot; DTA</span>
+          <span class="rg-t">Algo Trading</span>
+          <span class="rg-tag">Turn your trading idea into clear rules, test it, then let code execute it.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>From idea to rules</span><span>Python for traders</span><span>Data & backtesting</span><span>Avoiding overfitting</span></span>
+            <span class="rg-who"><span>Traders with a manual system</span><span>Engineers & coders</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row" role="tab" data-tab="webinars" aria-selected="false">
-        <span class="ix-n">06</span>
-        <span class="ix-t">Webinars<small>Short, focused live sessions to get started and find your direction.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="webinars" aria-selected="false" style="--i:5">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">06</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="2" y="4" width="20" height="13" rx="2"/><path pathLength="1" d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></span></span>
+          <span class="rg-k">Programme 06 &middot; DTA</span>
+          <span class="rg-t">Weekly Webinar</span>
+          <span class="rg-tag">A focused 2-hour session every Saturday to get started and find your direction.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>Intro to technical analysis</span><span>Algo trading 101</span><span>AI for traders</span><span>Risk management essentials</span></span>
+            <span class="rg-who"><span>Anyone curious about markets</span><span>People choosing a programme</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row" role="tab" data-tab="cmt" aria-selected="false">
-        <span class="ix-n">07</span>
-        <span class="ix-t">CMT<small>Guidance for the Chartered Market Technician program, from a CMT charterholder.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="workshops" aria-selected="false" style="--i:6">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">07</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="3" y="5" width="18" height="16" rx="2"/><path pathLength="1" d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></span></span>
+          <span class="rg-k">Programme 07 &middot; DTA</span>
+          <span class="rg-t">Monthly Edge Lab</span>
+          <span class="rg-tag">Our monthly hands-on workshop: one deep topic, learnt live, practised and questioned.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>Chart-reading drills</span><span>Strategy deep-dive</span><span>Indicator lab</span><span>Risk & money management</span></span>
+            <span class="rg-who"><span>DTA students</span><span>Self-learners who want structure</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row" role="tab" data-tab="custom" aria-selected="false">
-        <span class="ix-n">08</span>
-        <span class="ix-t">Customise Your Own Plan<small>Your goals, your pace. Pick what you need and we build the plan around you.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="women" aria-selected="false" style="--i:7">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">08</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="8" r="5"/><path pathLength="1" d="M12 13v8M9 18h6"/></svg></span></span>
+          <span class="rg-k">Programme 08 &middot; DTA</span>
+          <span class="rg-t">Women in Trading</span>
+          <span class="rg-tag">A supportive space for women to build market skills, confidence and financial independence.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>Money foundations</span><span>Markets made simple</span><span>Investing vs trading</span><span>Trading around your schedule</span></span>
+            <span class="rg-who"><span>Homemakers</span><span>Working women</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
-      <button class="ix-row flag" role="tab" data-tab="mentorship" aria-selected="false">
-        <span class="ix-n">09</span>
-        <span class="ix-t">Group / Personal Mentorship<i>Flagship</i><small>The complete DTA journey, learnt in a small group or one-on-one.</small></span>
-        <span class="ix-ar"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <button class="rg-card" role="tab" data-tab="cmt" aria-selected="false" style="--i:8">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">09</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="9" r="6"/><path pathLength="1" d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path pathLength="1" d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></span></span>
+          <span class="rg-k">Programme 09 &middot; DTA</span>
+          <span class="rg-t">CMT</span>
+          <span class="rg-tag">Guidance for the Chartered Market Technician program, from a CMT charterholder.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>Program roadmap</span><span>Level I: foundations</span><span>Level II: application</span><span>Level III: integration</span></span>
+            <span class="rg-who"><span>Aspiring CMT candidates</span><span>Finance professionals</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
+      </button>
+      <button class="rg-card flag" role="tab" data-tab="mentorship" aria-selected="false" style="--i:9">
+        <span class="rg-face">
+          <span class="rg-top"><span class="rg-n">10</span><span class="rg-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="9" cy="7" r="4"/><path pathLength="1" d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle pathLength="1" cx="17" cy="9" r="3"/><path pathLength="1" d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></span></span>
+          <span class="rg-k">Programme 10 &middot; DTA<i>Flagship</i></span>
+          <span class="rg-t">Mentorship</span>
+          <span class="rg-tag">The complete DTA journey, learnt in a small group or one-on-one.</span>
+          <span class="rg-more">
+            <span class="rg-list"><span>12 live sessions</span><span>8 modules + 4 AI labs</span><span>80+ topics covered</span><span>10,000+ traders trained</span></span>
+            <span class="rg-who"><span>Serious learners</span><span>Active traders</span></span>
+            <span class="rg-go">Explore programme <b>&rarr;</b></span>
+          </span>
+        </span>
       </button>
       </div>
-      <aside class="ix-card" aria-live="polite">
-      <div class="ix-pv" data-pv="basics">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect pathLength="1" x="4" y="7" width="4" height="8" rx="1"/><rect pathLength="1" x="16" y="11" width="4" height="6" rx="1"/><path pathLength="1" d="M12 5v14"/></svg></div>
-        <div class="ix-k">Programme 01 &middot; DTA</div>
-        <h3>Basics of Stock Market</h3>
-        <p>Start from zero. Understand how the market really works before you put a rupee in it.</p>
-        <ul><li>How the market works</li><li>Demat & trading accounts</li><li>Order types</li><li>Primary vs secondary market</li></ul>
-        <div class="ix-who"><span>Complete beginners</span><span>Students</span><span>Salaried professionals</span></div>
-        <span class="ix-go" data-go="basics">Explore programme <b>&rarr;</b></span>
       </div>
-      <div class="ix-pv" data-pv="swing">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path pathLength="1" d="M18 6h4v4"/></svg></div>
-        <div class="ix-k">Programme 02 &middot; DTA</div>
-        <h3>Swing Trading</h3>
-        <p>Hold for days, not minutes. A rules-based way to ride the bigger moves.</p>
-        <ul><li>Trend & market structure</li><li>Support, resistance & breakouts</li><li>Pullback entries</li><li>Candlestick confirmation</li></ul>
-        <div class="ix-who"><span>Working professionals</span><span>Part-time traders</span><span>Chart readers moving to a system</span></div>
-        <span class="ix-go" data-go="swing">Explore programme <b>&rarr;</b></span>
-      </div>
-      <div class="ix-pv" data-pv="algo">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="5" y="5" width="14" height="14" rx="2"/><rect pathLength="1" x="9" y="9" width="6" height="6" rx="1"/><path pathLength="1" d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
-        <div class="ix-k">Programme 03 &middot; DTA</div>
-        <h3>Algo Trading</h3>
-        <p>Turn your trading idea into clear rules, test it, then let code execute it.</p>
-        <ul><li>From idea to rules</li><li>Python for traders</li><li>Data & backtesting</li><li>Avoiding overfitting</li></ul>
-        <div class="ix-who"><span>Traders with a manual system</span><span>Engineers & coders</span><span>Anyone tired of screen-watching</span></div>
-        <span class="ix-go" data-go="algo">Explore programme <b>&rarr;</b></span>
-      </div>
-      <div class="ix-pv" data-pv="women">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="8" r="5"/><path pathLength="1" d="M12 13v8M9 18h6"/></svg></div>
-        <div class="ix-k">Programme 04 &middot; DTA</div>
-        <h3>Women in Trading</h3>
-        <p>A supportive space for women to build market skills, confidence and financial independence.</p>
-        <ul><li>Money foundations</li><li>Markets made simple</li><li>Investing vs trading</li><li>Trading around your schedule</li></ul>
-        <div class="ix-who"><span>Homemakers</span><span>Working women</span><span>Women entrepreneurs</span></div>
-        <span class="ix-go" data-go="women">Explore programme <b>&rarr;</b></span>
-      </div>
-      <div class="ix-pv" data-pv="workshops">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="3" y="5" width="18" height="16" rx="2"/><path pathLength="1" d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
-        <div class="ix-k">Programme 05 &middot; DTA</div>
-        <h3>Weekly Workshops</h3>
-        <p>One focused topic every week. Learn it live, practise it, ask your questions.</p>
-        <ul><li>Chart-reading drills</li><li>Strategy deep-dive</li><li>Indicator lab</li><li>Risk & money management</li></ul>
-        <div class="ix-who"><span>DTA students</span><span>Self-learners who want structure</span><span>Anyone wanting weekly practice</span></div>
-        <span class="ix-go" data-go="workshops">Explore programme <b>&rarr;</b></span>
-      </div>
-      <div class="ix-pv" data-pv="webinars">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="2" y="4" width="20" height="13" rx="2"/><path pathLength="1" d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
-        <div class="ix-k">Programme 06 &middot; DTA</div>
-        <h3>Webinars</h3>
-        <p>Short, focused live sessions to get started and find your direction.</p>
-        <ul><li>Intro to technical analysis</li><li>Algo trading 101</li><li>AI for traders</li><li>Risk management essentials</li></ul>
-        <div class="ix-who"><span>Anyone curious about markets</span><span>People choosing a programme</span></div>
-        <span class="ix-go" data-go="webinars">Explore programme <b>&rarr;</b></span>
-      </div>
-      <div class="ix-pv" data-pv="cmt">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="9" r="6"/><path pathLength="1" d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path pathLength="1" d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
-        <div class="ix-k">Programme 07 &middot; DTA</div>
-        <h3>CMT</h3>
-        <p>Guidance for the Chartered Market Technician program, from a CMT charterholder.</p>
-        <ul><li>Program roadmap</li><li>Level I: foundations</li><li>Level II: application</li><li>Level III: integration</li></ul>
-        <div class="ix-who"><span>Aspiring CMT candidates</span><span>Finance professionals</span><span>Serious technical analysts</span></div>
-        <span class="ix-go" data-go="cmt">Explore programme <b>&rarr;</b></span>
-      </div>
-      <div class="ix-pv" data-pv="custom">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
-        <div class="ix-k">Programme 08 &middot; DTA</div>
-        <h3>Customise Your Own Plan</h3>
-        <p>Your goals, your pace. Pick what you need and we build the plan around you.</p>
-        <ul><li>Skill check call</li><li>Pick your modules</li><li>Choose your pace</li><li>Group or 1-on-1</li></ul>
-        <div class="ix-who"><span>Busy professionals</span><span>Traders with specific gaps</span><span>Anyone who wants it their way</span></div>
-        <span class="ix-go" data-go="custom">Explore programme <b>&rarr;</b></span>
-      </div>
-      <div class="ix-pv" data-pv="mentorship">
-        <div class="ix-art"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="9" cy="7" r="4"/><path pathLength="1" d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle pathLength="1" cx="17" cy="9" r="3"/><path pathLength="1" d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></div>
-        <div class="ix-k">Programme 09 &middot; DTA</div>
-        <h3>Group / Personal Mentorship</h3>
-        <p>The complete DTA journey, learnt in a small group or one-on-one.</p>
-        <ul><li>12 live sessions</li><li>8 modules + 4 AI labs</li><li>80+ topics covered</li><li>10,000+ traders trained</li></ul>
-        <div class="ix-who"><span>Serious learners</span><span>Active traders</span><span>Anyone ready to commit</span></div>
-        <span class="ix-go" data-go="mentorship">Explore programme <b>&rarr;</b></span>
-      </div>
-      </aside>
     </div>
+    <div class="rg-ctl">
+      <button class="rg-arw rg-prev" type="button" aria-label="Previous programme"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+      <div class="rg-dial"><button class="rg-dot" type="button" data-k="basics" aria-label="Basics of Stock Market">01<span>Basics of Stock Market</span></button><button class="rg-dot" type="button" data-k="ta" aria-label="Technical Analysis">02<span>Technical Analysis</span></button><button class="rg-dot" type="button" data-k="swing" aria-label="Swing Trading">03<span>Swing Trading</span></button><button class="rg-dot" type="button" data-k="derivatives" aria-label="Derivatives">04<span>Derivatives</span></button><button class="rg-dot" type="button" data-k="algo" aria-label="Algo Trading">05<span>Algo Trading</span></button><button class="rg-dot" type="button" data-k="webinars" aria-label="Weekly Webinar">06<span>Weekly Webinar</span></button><button class="rg-dot" type="button" data-k="workshops" aria-label="Monthly Edge Lab">07<span>Monthly Edge Lab</span></button><button class="rg-dot" type="button" data-k="women" aria-label="Women in Trading">08<span>Women in Trading</span></button><button class="rg-dot" type="button" data-k="cmt" aria-label="CMT">09<span>CMT</span></button><button class="rg-dot" type="button" data-k="mentorship" aria-label="Mentorship">10<span>Mentorship</span></button></div>
+      <button class="rg-arw rg-next" type="button" aria-label="Next programme"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <p class="rg-cap"><b>10</b> / 10 &middot; Drag, swipe or turn the dial &middot; open the front card</p>
   </div>
 </section>
-<div class="dta-panel on" data-panel="mentorship" id="p-mentorship">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle cx="17" cy="9" r="3"/><path d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 09 &middot; DTA<span class="pp-flag">Flagship</span></div>
-      <h2>Group / Personal Mentorship</h2>
-      <p>The complete DTA journey, learnt in a small group or one-on-one.</p>
-    </div>
+<div class="dta-panel" data-panel="mentorship" data-n="10" id="p-mentorship" role="dialog" aria-modal="true" aria-label="Mentorship">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>10</b> / 10 &middot; Mentorship</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">10</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="9" cy="7" r="4"/><path pathLength="1" d="M2 21v-1a6 6 0 0 1 6-6h2"/><circle pathLength="1" cx="17" cy="9" r="3"/><path pathLength="1" d="M14 21v-1a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v2"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 10 &middot; Disciplined Traders Academy<i>Flagship</i></div>
+    <h2>Mentorship</h2>
+    <p class="pg-tag">The complete DTA journey, learnt in a small group or one-on-one.</p>
+    <div class="pg-hl"><div><span>Sessions</span><b>12</b><small>live sessions</small></div><div><span>Learning</span><b>~60 hrs</b><small>in total</small></div><div><span>Format</span><b>Group / 1-on-1</b><small>8 modules + 4 AI Labs</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
   </div>
-</section>
-<div class="pp-facts n4"><div class="pp-fact rv"><b>Duration</b><strong>12 sessions · ~60 hours</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 modules + 4 AI Labs</strong><small>80+ topics in all</small></div><div class="pp-fact rv d2"><b>Trained so far</b><strong>10,000+ traders</strong></div><div class="pp-fact rv d3"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Serious learners</span><span>Active traders</span><span>Anyone ready to commit</span></span></div></div>
+</header>
 <!-- SVG ILLUSTRATIONS for weeks -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -1282,265 +1267,365 @@ section{padding:5rem 3.5rem}
 </section>
 </div>
 
-<div class="dta-panel" data-panel="basics" id="p-basics">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="16" y="11" width="4" height="6" rx="1"/><path d="M12 5v14"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 01 &middot; DTA</div>
-      <h2>Basics of Stock Market</h2>
-      <p>Start from zero. Understand how the market really works before you put a rupee in it.</p>
-    </div>
+<div class="dta-panel" data-panel="basics" data-n="1" id="p-basics" role="dialog" aria-modal="true" aria-label="Basics of Stock Market">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>01</b> / 10 &middot; Basics of Stock Market</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">01</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M6 3v4M6 15v6M18 3v8M18 17v4"/><rect pathLength="1" x="4" y="7" width="4" height="8" rx="1"/><rect pathLength="1" x="16" y="11" width="4" height="6" rx="1"/><path pathLength="1" d="M12 5v14"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 01 &middot; Disciplined Traders Academy</div>
+    <h2>Basics of Stock Market</h2>
+    <p class="pg-tag">Start from zero. Understand how the market really works before you put a rupee in it.</p>
+    <div class="pg-hl"><div><span>Duration</span><b>2 Months</b></div><div><span>Sessions</span><b>Twice a week</b></div><div><span>Format</span><b>Online · Live</b><small>1 hour per session</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>How the market works</h4><p>Exchanges, brokers, SEBI and what happens when you click buy.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Demat & trading accounts</h4><p>Opening, linking and keeping your accounts safe.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Order types</h4><p>Market, limit, stop-loss and when to use each one.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Primary vs secondary market</h4><p>IPOs, listings and everyday trading explained simply.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Reading a price chart</h4><p>Candlesticks, timeframes and volume, in plain language.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Fundamental vs technical</h4><p>Two ways to look at a stock and where each one fits.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>Risk before reward</h4><p>Position size, capital protection and the 1% habit.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Beginner mistakes to avoid</h4><p>Tips, leverage and FOMO: the traps that cost the most.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Complete beginners</span><span>Students</span><span>Salaried professionals</span><span>First-time investors</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Understand how the market and your accounts really work</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Place orders correctly and confidently</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Read a basic price chart on your own</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Avoid the costly beginner mistakes</li></ul></div>
   </div>
 </section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>4 weeks · 8 live sessions</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Complete beginners</span><span>Students</span><span>Salaried professionals</span><span>First-time investors</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>How the market works</h4><p>Exchanges, brokers, SEBI and what happens when you click buy.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Demat & trading accounts</h4><p>Opening, linking and keeping your accounts safe.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Order types</h4><p>Market, limit, stop-loss and when to use each one.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Primary vs secondary market</h4><p>IPOs, listings and everyday trading explained simply.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Reading a price chart</h4><p>Candlesticks, timeframes and volume, in plain language.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Fundamental vs technical</h4><p>Two ways to look at a stock and where each one fits.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Risk before reward</h4><p>Position size, capital protection and the 1% habit.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Beginner mistakes to avoid</h4><p>Tips, leverage and FOMO: the traps that cost the most.</p></div>
-  </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Understand how the market and your accounts really work</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Place orders correctly and confidently</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Read a basic price chart on your own</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Avoid the costly beginner mistakes</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>Basics of Stock Market</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
-</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Basics of Stock Market</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
 </div>
-<div class="dta-panel" data-panel="swing" id="p-swing">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path d="M18 6h4v4"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 02 &middot; DTA</div>
-      <h2>Swing Trading</h2>
-      <p>Hold for days, not minutes. A rules-based way to ride the bigger moves.</p>
-    </div>
-  </div>
-</section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>6 weeks · 12 live sessions</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Working professionals</span><span>Part-time traders</span><span>Chart readers moving to a system</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Trend & market structure</h4><p>Higher highs, lower lows and how to read the bigger picture.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Support, resistance & breakouts</h4><p>Where price reacts and how to tell real breaks from fakes.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Pullback entries</h4><p>Joining a trend at a better price instead of chasing it.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Candlestick confirmation</h4><p>Patterns that add weight to a setup, and those that do not.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Moving averages, RSI & volume</h4><p>A small indicator toolkit, used with discipline.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Stops & trailing exits</h4><p>Planning the exit before the entry.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Risk-reward & position sizing</h4><p>Making the maths work even when you are wrong.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Trade journal & review</h4><p>Turning every trade into feedback.</p></div>
-  </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A complete, rules-based swing trading system</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A clear entry, stop and exit plan for every trade</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Position sizing that protects your capital</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A journal habit that keeps you improving</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>Swing Trading</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
-</section>
 </div>
-<div class="dta-panel" data-panel="algo" id="p-algo">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 03 &middot; DTA</div>
-      <h2>Algo Trading</h2>
-      <p>Turn your trading idea into clear rules, test it, then let code execute it.</p>
-    </div>
+<div class="dta-panel" data-panel="ta" data-n="2" id="p-ta" role="dialog" aria-modal="true" aria-label="Technical Analysis">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>02</b> / 10 &middot; Technical Analysis</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">02</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M3 3v18h18"/><path pathLength="1" d="m7 15 4-4 3 3 6-7"/><path pathLength="1" d="M16 7h4v4"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 02 &middot; Disciplined Traders Academy</div>
+    <h2>Technical Analysis</h2>
+    <p class="pg-tag">Learn to read what price is saying: trend, structure, patterns and the signals that matter.</p>
+    <div class="pg-hl"><div><span>Duration</span><b>2 Months</b></div><div><span>Sessions</span><b>Twice a week</b></div><div><span>Format</span><b>Online · Live</b><small>1 hour per session</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>Dow theory & trend</h4><p>How trends form, continue and end.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Candlesticks that matter</h4><p>The few patterns worth knowing and how to read them in context.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Support & resistance</h4><p>Drawing levels that actually hold, and what a break means.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Chart patterns</h4><p>Triangles, flags, double tops and bottoms, head and shoulders.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Moving averages</h4><p>Trend direction, dynamic support and crossovers.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Momentum: RSI & MACD</h4><p>Overbought, oversold and divergence, used with care.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>Volume</h4><p>Confirming moves and spotting weak ones.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Multiple timeframes</h4><p>Lining up the big picture with your entry chart.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Beginners who know the basics</span><span>Investors who want better timing</span><span>Traders without a method</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Read any chart with a clear, step-by-step method</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Spot trend, structure and key levels on your own</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Use indicators with purpose, not as a crutch</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A solid base for swing, derivatives and algo trading</li></ul></div>
   </div>
 </section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>8 weeks · 16 live sessions</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Traders with a manual system</span><span>Engineers & coders</span><span>Anyone tired of screen-watching</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>From idea to rules</h4><p>Writing a strategy so precisely a computer can follow it.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Python for traders</h4><p>Just enough code to handle data, signals and orders.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Data & backtesting</h4><p>Testing on history the right way, with costs included.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Avoiding overfitting</h4><p>Out-of-sample and walk-forward checks so results hold up.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Risk controls & kill-switch</h4><p>Hard limits that protect the account when things go wrong.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Broker APIs & automation</h4><p>Connecting a strategy to a broker and placing orders.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>SEBI's retail algo framework</h4><p>How API-based algos for retail clients work through brokers.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Paper to live, then monitor</h4><p>Going live in small steps, with logs and alerts.</p></div>
-  </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Turn your strategy into clear, testable rules</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Backtest properly, with costs included</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Automate execution through broker APIs, within SEBI rules</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Spend less time watching screens</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>Algo Trading</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
-</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Technical Analysis</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
 </div>
-<div class="dta-panel" data-panel="women" id="p-women">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 04 &middot; DTA</div>
-      <h2>Women in Trading</h2>
-      <p>A supportive space for women to build market skills, confidence and financial independence.</p>
-    </div>
-  </div>
-</section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>6 weeks · weekend batches</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Homemakers</span><span>Working women</span><span>Women entrepreneurs</span><span>Students</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Money foundations</h4><p>Budgeting, saving and investing basics for every life stage.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Markets made simple</h4><p>Stocks, ETFs and mutual funds without the jargon.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Investing vs trading</h4><p>Choosing the path that fits your time and goals.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Trading around your schedule</h4><p>Routines that work alongside work and family.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Risk-first approach</h4><p>Protecting capital before chasing returns.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Confidence & psychology</h4><p>Making decisions calmly and owning them.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Peer circle</h4><p>Learn together, share journals and grow as a group.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Guided practice</h4><p>Practise on real charts with feedback from mentors.</p></div>
-  </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Confidence to manage your own money</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A clear plan that fits your schedule</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Risk-first habits from day one</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A supportive circle of women traders</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>Women in Trading</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
-</section>
 </div>
-<div class="dta-panel" data-panel="workshops" id="p-workshops">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 05 &middot; DTA</div>
-      <h2>Weekly Workshops</h2>
-      <p>One focused topic every week. Learn it live, practise it, ask your questions.</p>
-    </div>
+<div class="dta-panel" data-panel="swing" data-n="3" id="p-swing" role="dialog" aria-modal="true" aria-label="Swing Trading">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>03</b> / 10 &middot; Swing Trading</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">03</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M2 14c3 0 3-6 6-6s3 8 6 8 3-10 6-10h2"/><path pathLength="1" d="M18 6h4v4"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 03 &middot; Disciplined Traders Academy</div>
+    <h2>Swing Trading</h2>
+    <p class="pg-tag">Hold for days, not minutes. A rules-based way to ride the bigger moves.</p>
+    <div class="pg-hl"><div><span>Duration</span><b>2 Months</b></div><div><span>Sessions</span><b>Twice a week</b></div><div><span>Format</span><b>Online · Live</b><small>1 hour per session</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>Trend & market structure</h4><p>Higher highs, lower lows and how to read the bigger picture.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Support, resistance & breakouts</h4><p>Where price reacts and how to tell real breaks from fakes.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Pullback entries</h4><p>Joining a trend at a better price instead of chasing it.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Candlestick confirmation</h4><p>Patterns that add weight to a setup, and those that do not.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Moving averages, RSI & volume</h4><p>A small indicator toolkit, used with discipline.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Stops & trailing exits</h4><p>Planning the exit before the entry.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>Risk-reward & position sizing</h4><p>Making the maths work even when you are wrong.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Trade journal & review</h4><p>Turning every trade into feedback.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Working professionals</span><span>Part-time traders</span><span>Chart readers moving to a system</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A complete, rules-based swing trading system</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A clear entry, stop and exit plan for every trade</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Position sizing that protects your capital</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A journal habit that keeps you improving</li></ul></div>
   </div>
 </section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>Every week · 2-hour live session</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>DTA students</span><span>Self-learners who want structure</span><span>Anyone wanting weekly practice</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Chart-reading drills</h4><p>Practise spotting structure, levels and patterns.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Strategy deep-dive</h4><p>One setup broken down: rules, entries, exits and risk.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Indicator lab</h4><p>How one indicator really works and where it fails.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Risk & money management</h4><p>Position sizing and drawdown control, hands-on.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Journal review</h4><p>Learning from real trade logs, mistakes included.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Psychology hour</h4><p>Fear, greed, revenge trading and how to manage them.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Tools & AI walkthrough</h4><p>Using platforms, scanners and AI assistants well.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Live Q&A</h4><p>Bring your questions and get answers on the spot.</p></div>
-  </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Steady, weekly practice</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>One new skill every week</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Answers to your questions, live</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Stay sharp and accountable</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>Weekly Workshops</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
-</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Swing Trading</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
 </div>
-<div class="dta-panel" data-panel="webinars" id="p-webinars">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 06 &middot; DTA</div>
-      <h2>Webinars</h2>
-      <p>Short, focused live sessions to get started and find your direction.</p>
-    </div>
-  </div>
-</section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>60-90 minutes · live</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>6 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Anyone curious about markets</span><span>People choosing a programme</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Intro to technical analysis</h4><p>What charts can and cannot tell you.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Algo trading 101</h4><p>How rules-based and automated trading actually works.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>AI for traders</h4><p>Practical ways to use AI tools in your trading process.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Risk management essentials</h4><p>The habits that keep traders in the game.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Trading psychology</h4><p>Why discipline beats prediction.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Ask Me Anything</h4><p>Open Q&A with Vishal Mehta, CMT.</p></div>
-  </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Clarity on where to start</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A feel for how DTA teaches</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Direct Q&A with Vishal Mehta, CMT</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Help choosing the right programme</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>Webinars</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
-</section>
 </div>
-<div class="dta-panel" data-panel="cmt" id="p-cmt">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 07 &middot; DTA</div>
-      <h2>CMT</h2>
-      <p>Guidance for the Chartered Market Technician program, from a CMT charterholder.</p>
-    </div>
+<div class="dta-panel" data-panel="derivatives" data-n="4" id="p-derivatives" role="dialog" aria-modal="true" aria-label="Derivatives">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>04</b> / 10 &middot; Derivatives</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">04</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><path pathLength="1" d="M3 3v18h18"/><path pathLength="1" d="M5 16h7l7-9"/><circle pathLength="1" cx="12" cy="16" r="1.6"/><path pathLength="1" d="M5 9h4"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 04 &middot; Disciplined Traders Academy</div>
+    <h2>Derivatives</h2>
+    <p class="pg-tag">Futures and options explained properly: how they work, what they cost and how to manage the risk.</p>
+    <div class="pg-hl"><div><span>Duration</span><b>2 Months</b></div><div><span>Sessions</span><b>Twice a week</b></div><div><span>Format</span><b>Online · Live</b><small>1 hour per session</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>Futures basics</h4><p>Lot size, margin and mark-to-market, step by step.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Options basics</h4><p>Calls, puts, premium, strike and expiry in plain language.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Option Greeks</h4><p>Delta, gamma, theta and vega and what they mean for your trade.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Implied volatility</h4><p>Why option prices change even when the stock does not.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Option strategies</h4><p>Spreads, straddles and strangles: when each one fits.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Hedging</h4><p>Protecting a portfolio with futures and options.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>Costs, expiry & settlement</h4><p>Charges, STT, physical settlement and expiry-day risks.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Risk management & SEBI rules</h4><p>Position sizing and the F&O rules every trader must know.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Traders moving into F&O</span><span>Investors who want to hedge</span><span>Anyone who finds options confusing</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Understand exactly what you are buying or selling</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Use options to hedge, not only to speculate</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Size F&O positions within your risk limits</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Avoid the costly expiry-day mistakes</li></ul></div>
   </div>
 </section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>Level-wise · Level I, II & III</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>8 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Aspiring CMT candidates</span><span>Finance professionals</span><span>Serious technical analysts</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Program roadmap</h4><p>How the three levels fit together and how to plan your journey.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Level I: foundations</h4><p>Theory and history, markets, indicators, chart construction and trend.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Level II: application</h4><p>Chart and pattern analysis, confirmation and risk management.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Level III: integration</h4><p>Bringing it all together, with multiple-choice and short essays.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Ethics & professional standards</h4><p>The ethics component tested across the levels.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Study plan & practice</h4><p>Week-by-week plan, revision and practice questions.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">07</span><h4>Exam strategy</h4><p>Time management and how to approach each question type.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">08</span><h4>Mentor sessions</h4><p>Doubt-clearing with Vishal Mehta, CMT.</p></div>
-  </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A structured study plan for each level</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A clear exam strategy</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Guidance from a CMT charterholder</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Deeper technical analysis skills for your career</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>CMT</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
-</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Derivatives</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
 </div>
-<div class="dta-panel" data-panel="custom" id="p-custom">
-<section class="pp-head">
-  <div class="pp-head-in">
-    <div class="pp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></div>
-    <div>
-      <div class="pp-k">Programme 08 &middot; DTA</div>
-      <h2>Customise Your Own Plan</h2>
-      <p>Your goals, your pace. Pick what you need and we build the plan around you.</p>
-    </div>
+</div>
+<div class="dta-panel" data-panel="algo" data-n="5" id="p-algo" role="dialog" aria-modal="true" aria-label="Algo Trading">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>05</b> / 10 &middot; Algo Trading</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">05</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="5" y="5" width="14" height="14" rx="2"/><rect pathLength="1" x="9" y="9" width="6" height="6" rx="1"/><path pathLength="1" d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 05 &middot; Disciplined Traders Academy</div>
+    <h2>Algo Trading</h2>
+    <p class="pg-tag">Turn your trading idea into clear rules, test it, then let code execute it.</p>
+    <div class="pg-hl"><div><span>Duration</span><b>2 Months</b></div><div><span>Sessions</span><b>Twice a week</b></div><div><span>Format</span><b>Online · Live</b><small>1 hour per session</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>From idea to rules</h4><p>Writing a strategy so precisely a computer can follow it.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Python for traders</h4><p>Just enough code to handle data, signals and orders.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Data & backtesting</h4><p>Testing on history the right way, with costs included.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Avoiding overfitting</h4><p>Out-of-sample and walk-forward checks so results hold up.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Risk controls & kill-switch</h4><p>Hard limits that protect the account when things go wrong.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Broker APIs & automation</h4><p>Connecting a strategy to a broker and placing orders.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>SEBI's retail algo framework</h4><p>How API-based algos for retail clients work through brokers.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Paper to live, then monitor</h4><p>Going live in small steps, with logs and alerts.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Traders with a manual system</span><span>Engineers & coders</span><span>Anyone tired of screen-watching</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Turn your strategy into clear, testable rules</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Backtest properly, with costs included</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Automate execution through broker APIs, within SEBI rules</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Spend less time watching screens</li></ul></div>
   </div>
 </section>
-<div class="pp-facts n3"><div class="pp-fact rv"><b>Duration</b><strong>Flexible · at your pace</strong></div><div class="pp-fact rv d1"><b>Topics</b><strong>6 topics</strong><small>Listed below</small></div><div class="pp-fact rv d2"><b>Who it&rsquo;s for</b><span class="pp-chips"><span>Busy professionals</span><span>Traders with specific gaps</span><span>Anyone who wants it their way</span></span></div></div>
-<section class="pp-body">
-  <div class="pp-label">Topics</div>
-  <div class="pp-grid">
-    <div class="pp-sub rv"><span class="pp-n">01</span><h4>Skill check call</h4><p>A short conversation to see where you stand today.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">02</span><h4>Pick your modules</h4><p>Choose topics from any programme on this page.</p></div>
-    <div class="pp-sub rv d2"><span class="pp-n">03</span><h4>Choose your pace</h4><p>Weekday, weekend or intensive: whatever fits your life.</p></div>
-    <div class="pp-sub rv d3"><span class="pp-n">04</span><h4>Group or 1-on-1</h4><p>Learn in a small batch or with a personal mentor.</p></div>
-    <div class="pp-sub rv"><span class="pp-n">05</span><h4>Goals & milestones</h4><p>Clear checkpoints so you can see your progress.</p></div>
-    <div class="pp-sub rv d1"><span class="pp-n">06</span><h4>Regular reviews</h4><p>Adjust the plan as you grow.</p></div>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Algo Trading</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
+</div>
+</div>
+<div class="dta-panel" data-panel="webinars" data-n="6" id="p-webinars" role="dialog" aria-modal="true" aria-label="Weekly Webinar">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>06</b> / 10 &middot; Weekly Webinar</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">06</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="2" y="4" width="20" height="13" rx="2"/><path pathLength="1" d="M8 21h8M12 17v4M10 8.5v5l4-2.5z"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 06 &middot; Disciplined Traders Academy</div>
+    <h2>Weekly Webinar</h2>
+    <p class="pg-tag">A focused 2-hour session every Saturday to get started and find your direction.</p>
+    <div class="pg-hl"><div><span>When</span><b>Every Saturday</b></div><div><span>Format</span><b>Recorded</b><small>2 hours</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
   </div>
-  <div class="pp-label pp-label2">Benefits</div>
-  <ul class="pp-ben"><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Learn only what you need</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A schedule that fits your life</li><li class="rv"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Group or one-on-one attention</li><li class="rv d1"><span class="pp-tick"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>A plan that grows with you</li></ul>
-  <div class="pp-foot">
-    <div class="pp-foot-t">Questions about <em>Customise Your Own Plan</em>?</div>
-    <a href="contact.html" class="btn-main pp-cta">Talk to us &rarr;</a>
-  </div>
-  <p class="pp-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 6 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>Intro to technical analysis</h4><p>What charts can and cannot tell you.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Algo trading 101</h4><p>How rules-based and automated trading actually works.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>AI for traders</h4><p>Practical ways to use AI tools in your trading process.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Risk management essentials</h4><p>The habits that keep traders in the game.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Trading psychology</h4><p>Why discipline beats prediction.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Ask Me Anything</h4><p>Open Q&A with Vishal Mehta, CMT.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
 </section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Anyone curious about markets</span><span>People choosing a programme</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Clarity on where to start</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A feel for how DTA teaches</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Direct Q&A with Vishal Mehta, CMT</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Help choosing the right programme</li></ul></div>
+  </div>
+</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Weekly Webinar</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
+</div>
+</div>
+<div class="dta-panel" data-panel="workshops" data-n="7" id="p-workshops" role="dialog" aria-modal="true" aria-label="Monthly Edge Lab">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>07</b> / 10 &middot; Monthly Edge Lab</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">07</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><rect pathLength="1" x="3" y="5" width="18" height="16" rx="2"/><path pathLength="1" d="M3 10h18M8 3v4M16 3v4M8 14h3v3H8z"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 07 &middot; Disciplined Traders Academy</div>
+    <h2>Monthly Edge Lab</h2>
+    <p class="pg-tag">Our monthly hands-on workshop: one deep topic, learnt live, practised and questioned.</p>
+    <div class="pg-hl"><div><span>When</span><b>Once a month</b><small>A different session each month</small></div><div><span>Format</span><b>Live</b><small>2-3 hours</small></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>Chart-reading drills</h4><p>Practise spotting structure, levels and patterns.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Strategy deep-dive</h4><p>One setup broken down: rules, entries, exits and risk.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Indicator lab</h4><p>How one indicator really works and where it fails.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Risk & money management</h4><p>Position sizing and drawdown control, hands-on.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Journal review</h4><p>Learning from real trade logs, mistakes included.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Psychology hour</h4><p>Fear, greed, revenge trading and how to manage them.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>Tools & AI walkthrough</h4><p>Using platforms, scanners and AI assistants well.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Live Q&A</h4><p>Bring your questions and get answers on the spot.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>DTA students</span><span>Self-learners who want structure</span><span>Anyone wanting regular practice</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Steady, monthly practice</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>One new skill every month</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Answers to your questions, live</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Stay sharp and accountable</li></ul></div>
+  </div>
+</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Monthly Edge Lab</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
+</div>
+</div>
+<div class="dta-panel" data-panel="women" data-n="8" id="p-women" role="dialog" aria-modal="true" aria-label="Women in Trading">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>08</b> / 10 &middot; Women in Trading</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">08</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="8" r="5"/><path pathLength="1" d="M12 13v8M9 18h6"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 08 &middot; Disciplined Traders Academy</div>
+    <h2>Women in Trading</h2>
+    <p class="pg-tag">A supportive space for women to build market skills, confidence and financial independence.</p>
+    <div class="pg-hl"><div><span>Duration</span><b>6 weeks</b></div><div><span>Sessions</span><b>weekend batches</b></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>Money foundations</h4><p>Budgeting, saving and investing basics for every life stage.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Markets made simple</h4><p>Stocks, ETFs and mutual funds without the jargon.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Investing vs trading</h4><p>Choosing the path that fits your time and goals.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Trading around your schedule</h4><p>Routines that work alongside work and family.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Risk-first approach</h4><p>Protecting capital before chasing returns.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Confidence & psychology</h4><p>Making decisions calmly and owning them.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>Peer circle</h4><p>Learn together, share journals and grow as a group.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Guided practice</h4><p>Practise on real charts with feedback from mentors.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Homemakers</span><span>Working women</span><span>Women entrepreneurs</span><span>Students</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Confidence to manage your own money</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A clear plan that fits your schedule</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Risk-first habits from day one</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A supportive circle of women traders</li></ul></div>
+  </div>
+</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>Women in Trading</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
+</div>
+<p class="pg-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
+</div>
+<div class="dta-panel" data-panel="cmt" data-n="9" id="p-cmt" role="dialog" aria-modal="true" aria-label="CMT">
+<div class="pg-x"><button type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All programmes</button><span>Programme <b>09</b> / 10 &middot; CMT</span><button type="button" class="pg-x-enq" data-enq>Enquire now</button></div>
+<header class="pg-hero">
+  <div class="pg-num" aria-hidden="true">09</div>
+  <div class="pg-art" aria-hidden="true"><svg viewBox="-2 -2 28 28" aria-hidden="true"><circle pathLength="1" cx="12" cy="9" r="6"/><path pathLength="1" d="m9 14.5-1.5 7.5 4.5-2.5 4.5 2.5-1.5-7.5"/><path pathLength="1" d="m9.5 9 1.7 1.7 3.3-3.4"/></svg></div>
+  <div class="pg-in">
+    <div class="pg-k">Programme 09 &middot; Disciplined Traders Academy</div>
+    <h2>CMT</h2>
+    <p class="pg-tag">Guidance for the Chartered Market Technician program, from a CMT charterholder.</p>
+    <div class="pg-hl"><div><span>Duration</span><b>Level-wise</b></div><div><span>Sessions</span><b>Level I, II & III</b></div></div>
+    <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><span class="pg-down"><i></i>The roadmap below</span></div>
+  </div>
+</header>
+<section class="pg-sec">
+  <div class="pg-label">The roadmap &middot; 8 topics</div>
+  <h3 class="pg-h">Step by step, <em>topic by topic.</em></h3>
+  <ol class="pg-road"><span class="pg-fill"></span>
+    <li class="pg-st"><span class="pg-dot">01</span><div class="pg-card"><h4>Program roadmap</h4><p>How the three levels fit together and how to plan your journey.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">02</span><div class="pg-card"><h4>Level I: foundations</h4><p>Theory and history, markets, indicators, chart construction and trend.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">03</span><div class="pg-card"><h4>Level II: application</h4><p>Chart and pattern analysis, confirmation and risk management.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">04</span><div class="pg-card"><h4>Level III: integration</h4><p>Bringing it all together, with multiple-choice and short essays.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">05</span><div class="pg-card"><h4>Ethics & professional standards</h4><p>The ethics component tested across the levels.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">06</span><div class="pg-card"><h4>Study plan & practice</h4><p>Week-by-week plan, revision and practice questions.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">07</span><div class="pg-card"><h4>Exam strategy</h4><p>Time management and how to approach each question type.</p></div></li>
+    <li class="pg-st"><span class="pg-dot">08</span><div class="pg-card"><h4>Mentor sessions</h4><p>Doubt-clearing with Vishal Mehta, CMT.</p></div></li>
+    <li class="pg-st"><span class="pg-end-dot">Done</span></li>
+  </ol>
+</section>
+<section class="pg-sec pg-sec2">
+  <div class="pg-two">
+    <div class="pg-box"><div class="pg-label">Who it&rsquo;s for</div><div class="pg-who"><span>Aspiring CMT candidates</span><span>Finance professionals</span><span>Serious technical analysts</span></div></div>
+    <div class="pg-box"><div class="pg-label">What you walk away with</div><ul class="pg-ben"><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A structured study plan for each level</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>A clear exam strategy</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Guidance from a CMT charterholder</li><li><b><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></b>Deeper technical analysis skills for your career</li></ul></div>
+  </div>
+</section>
+<div class="pg-fin">
+  <h3>Ready to begin <em>CMT</em>?</h3>
+  <p>Leave your name and number. Our team will call you about this programme.</p>
+  <div class="pg-acts"><button type="button" class="pg-cta" data-enq>Enquire now <b>&rarr;</b></button><button type="button" class="pg-ghost" data-close><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>See all programmes</button></div>
+</div>
+<p class="pg-note">Curriculum preview. Duration and final syllabus are confirmed on enrolment.</p>
 </div>
 
 
@@ -1553,89 +1638,117 @@ setTimeout(()=>{
   document.querySelectorAll('.hero .rv').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),80+i*100));
 },100);
 </script>
+<div class="enq" id="enq" role="dialog" aria-modal="true" aria-labelledby="enq-h" hidden>
+  <div class="enq-bg" data-enq-x></div>
+  <form class="enq-box" novalidate>
+    <button type="button" class="enq-x" data-enq-x aria-label="Close">&times;</button>
+    <div class="enq-ok" hidden>
+      <div class="enq-tick">&#10003;</div>
+      <h3>Thank you<span class="enq-fn"></span>!</h3>
+      <p>We have your enquiry for <b class="enq-cn"></b>. Our team will call you shortly.</p>
+      <button type="button" class="pg-cta" data-enq-x>Done</button>
+    </div>
+    <div class="enq-form">
+      <div class="enq-k">Enquire now</div>
+      <h3 id="enq-h">Interested in <em class="enq-cn"></em>?</h3>
+      <p class="enq-sub">Share your details and our team will call you.</p>
+      <label>Your name *<input name="name" autocomplete="name" maxlength="120"></label>
+      <label>Phone number *<input name="phone" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile number" maxlength="20"></label>
+      <label>Email *<input name="email" type="email" autocomplete="email" maxlength="200"></label>
+      <label>Programme<select name="course"></select></label>
+      <input name="website" class="enq-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="enq-err" role="alert"></p>
+      <button class="pg-cta enq-go" type="submit"><span>Send enquiry</span> <b>&rarr;</b></button>
+      <p class="enq-fine">We only use your details to contact you about this programme.</p>
+    </div>
+  </form>
+</div>
 <script>
 (function(){
-var nav=document.querySelector('nav'),sel='mentorship';
-function pick(k,scroll){var p=document.getElementById('p-'+k);if(!p)return;sel=k;
-  items.forEach(function(c){var on=c.dataset.tab===k;c.classList.toggle('sel',on);c.setAttribute('aria-selected',on)});
-  peek(k);
-  document.querySelectorAll('.dta-panel').forEach(function(x){x.classList.toggle('on',x===p)});
+var sel='mentorship',openK=null;
+function panel(k){return document.getElementById('p-'+k)}
+function openP(k,ev){var p=panel(k);if(!p)return;
+  var x=ev&&ev.clientX?ev.clientX:innerWidth/2,y=ev&&ev.clientY?ev.clientY:innerHeight/2;
+  p.style.setProperty('--ox',x+'px');p.style.setProperty('--oy',y+'px');
+  document.querySelectorAll('.dta-panel.open').forEach(function(o){if(o!==p)o.classList.remove('open')});
+  p.scrollTop=0;p.classList.add('open');openK=k;document.documentElement.classList.add('pg-lock');
   p.querySelectorAll('.rv').forEach(function(r){r.classList.add('in')});
-  history.replaceState(null,'','#'+k);
-  if(scroll)window.scrollTo({top:p.getBoundingClientRect().top+scrollY-(nav?nav.offsetHeight:0),behavior:'smooth'});}
-var items=[].slice.call(document.querySelectorAll('.ix-row')),pvs=[].slice.call(document.querySelectorAll('.ix-pv'));
-function peek(k){items.forEach(function(c){c.classList.toggle('hot',c.dataset.tab===k)});pvs.forEach(function(p){p.classList.toggle('on',p.dataset.pv===k)})}
-items.forEach(function(c){
-  c.addEventListener('mouseenter',function(){peek(c.dataset.tab)});
-  c.addEventListener('focus',function(){peek(c.dataset.tab)});
-  c.addEventListener('click',function(){pick(c.dataset.tab,true)});
-});
-document.querySelector('.ix-list').addEventListener('mouseleave',function(){peek(sel)});
-document.querySelectorAll('.ix-go').forEach(function(g){g.addEventListener('click',function(){pick(g.dataset.go,true)})});
+  if(!history.state||history.state.pg!==k)history.pushState({pg:k},'');
+  road(p);setTimeout(function(){var b=p.querySelector('.pg-x button');if(b)b.focus({preventScroll:true})},450)}
+function closeP(fromPop){var p=openK&&panel(openK);if(!p)return;openK=null;p.classList.remove('open');document.documentElement.classList.remove('pg-lock');
+  if(!fromPop&&history.state&&history.state.pg)history.back();
+  var c=document.querySelector('.rg-card.front');if(c)c.focus({preventScroll:true})}
+addEventListener('popstate',function(e){var k=e.state&&e.state.pg;if(k&&panel(k)){pick(k,false);openP(k)}else closeP(true)});
+addEventListener('keydown',function(e){if(e.key==='Escape'&&openK)closeP()});
+document.querySelectorAll('.pg-x button,[data-close]').forEach(function(b){b.addEventListener('click',function(){closeP()})});
+function road(p){var r=p.querySelector('.pg-road');if(!r||r._on)return;r._on=1;var fill=r.querySelector('.pg-fill'),st=[].slice.call(r.querySelectorAll('.pg-st'));
+  function upd(){var b=r.getBoundingClientRect(),mid=innerHeight*.62,f=Math.max(0,Math.min(1,(mid-b.top)/b.height));fill.style.height=(f*100).toFixed(1)+'%';
+    st.forEach(function(s){var t=s.getBoundingClientRect();s.classList.toggle('lit',t.top+t.height/2<mid)})}
+  p.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd()}
+function pick(k,open,ev){if(!panel(k))return;sel=k;
+  items.forEach(function(c){var on=c.dataset.tab===k;c.classList.toggle('sel',on);c.setAttribute('aria-selected',on)});
+  peek(k);if(open)openP(k,ev)}
+var stage=document.querySelector('.rg-stage'),ring=stage.querySelector('.rg-ring'),items=[].slice.call(ring.querySelectorAll('.rg-card')),N=items.length,A=360/N,cur=0;
+var dots=[].slice.call(document.querySelectorAll('.rg-dot')),capb=document.querySelector('.rg-cap b');
+window.dtaPick=pick;
+function md(a){return((a%N)+N)%N}
+function idx(k){for(var i=0;i<N;i++)if(items[i].dataset.tab===k)return i;return 0}
+function size(){var w=Math.min(320,stage.clientWidth*.8);ring.parentNode.style.setProperty('--w',w+'px');ring.style.setProperty('--r',Math.round(w/2/Math.tan(Math.PI/N)+w*.1)+'px')}
+function paint(){ring.style.setProperty('--rot',(-cur*A)+'deg');
+  items.forEach(function(c,i){var o=md(i-cur);if(o>N/2)o-=N;var d=Math.abs(o);c.style.setProperty('--d',d.toFixed(3));c.classList.toggle('front',d<.5);c.tabIndex=d<.5?0:-1})}
+var last=-1;
+function peek(k){var j=idx(k),d=j-md(cur);if(d>N/2)d-=N;if(d<-N/2)d+=N;cur+=d;paint();
+  dots.forEach(function(b){b.classList.toggle('on',b.dataset.k===k)});
+  if(j!==last){last=j;capb.textContent=items[j].querySelector('.rg-n').textContent}}
+function step(s){pick(items[md(Math.round(cur)+s)].dataset.tab,false)}
+var x0=null,c0=0,moved=false;
+stage.addEventListener('pointerdown',function(e){if(e.button)return;x0=e.clientX;c0=cur;moved=false});
+addEventListener('pointermove',function(e){if(x0===null)return;var dx=e.clientX-x0;
+  if(!moved&&Math.abs(dx)>7){moved=true;ring.classList.add('drag')}
+  if(moved){cur=c0-dx/(parseFloat(ring.parentNode.style.getPropertyValue('--w'))*.85);paint()}});
+function up(){if(x0===null)return;x0=null;if(moved){ring.classList.remove('drag');cur=Math.round(cur);pick(items[md(cur)].dataset.tab,false);setTimeout(function(){moved=false},60)}}
+addEventListener('pointerup',up);addEventListener('pointercancel',up);
+items.forEach(function(c){c.addEventListener('click',function(e){if(moved)return;pick(c.dataset.tab,c.classList.contains('front'),e)})});
+dots.forEach(function(b){b.addEventListener('click',function(){pick(b.dataset.k,false)})});
+document.querySelector('.rg-prev').addEventListener('click',function(){step(-1)});
+document.querySelector('.rg-next').addEventListener('click',function(){step(1)});
+stage.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){e.preventDefault();step(-1)}else if(e.key==='ArrowRight'){e.preventDefault();step(1)}});
+stage.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse'||moved)return;var f=items[md(Math.round(cur))].querySelector('.rg-face'),r=f.getBoundingClientRect();
+  var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;if(Math.abs(x)>.8||Math.abs(y)>.8){x=y=0}
+  f.style.setProperty('--tx',(x*10).toFixed(2)+'deg');f.style.setProperty('--ty',(-y*8).toFixed(2)+'deg')});
+stage.addEventListener('pointerleave',function(){items.forEach(function(c){var f=c.querySelector('.rg-face');f.style.setProperty('--tx','0deg');f.style.setProperty('--ty','0deg')})});
+size();addEventListener('resize',size);
+setTimeout(function(){ring.classList.remove('drag')},80);
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){stage.classList.add('in');io.disconnect()}},{threshold:.25});io.observe(stage)}else stage.classList.add('in');
 var h=location.hash.slice(1);
-if(h&&document.getElementById('p-'+h)){pick(h,false)}else{items.forEach(function(c){var on=c.dataset.tab===sel;c.classList.toggle('sel',on);c.setAttribute('aria-selected',on)});peek(sel)}
+if(h&&panel(h)){pick(h,false);history.replaceState(null,'',location.pathname+location.search);openP(h)}else pick(sel,false);
 })();
-</script>
-<script>
 (function(){
-var st=document.getElementById('story');if(!st)return;
-var cam=document.getElementById('st-cam'),oh=document.getElementById('st-ohlc'),ru=document.getElementById('st-rules'),
- ch=st.querySelector('.st-chart'),co=st.querySelector('.st-code'),eq=st.querySelector('.st-eq'),
- cs=[].slice.call(st.querySelectorAll('.st-c')),ln=[].slice.call(ru.querySelectorAll('.st-ln')),tg=[].slice.call(ru.querySelectorAll('.st-tag')),
- bx=ru.querySelector('.st-box'),ks=[].slice.call(co.querySelectorAll('.st-k')),caret=co.querySelector('.st-caret'),
- eqL=eq.querySelector('.st-eq-l'),eqA=eq.querySelector('.st-eq-a'),eqD=[].slice.call(eq.querySelectorAll('circle')),ai=eq.querySelector('.st-ai'),
- ss=[].slice.call(st.querySelectorAll('.st-s')),rl=[].slice.call(st.querySelectorAll('.st-rail li')),cnt=st.querySelector('.st-cnt b'),
- bar=st.querySelector('.st-bar2 i'),cue=st.querySelector('.st-cue'),gh=st.querySelector('.st-ghost'),gs=[].slice.call(gh.children),
- cg=document.getElementById('st-call'),du=document.getElementById('st-dust'),pu=st.querySelector('.st-pulse'),tl=st.querySelector('.st-tilt');
-var mob=matchMedia('(max-width:980px)'),S=4.2,XC=496,YC=180.10500000000002,N=25,cur=0,tgt=0,raf=0,act=-1,ready=false;
-function cl(v){return v<0?0:v>1?1:v}
-function ez(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
-function tr(k){return ez(cl((cur-k-.12)/.76))}
-function prog(){var h=st.offsetHeight-innerHeight,r=-st.getBoundingClientRect().top/h;return Math.min(4,Math.max(0,cl(r)*4.5-.25))}
-function render(){
- var e0=tr(0),e1=tr(1),e2=tr(2),e3=tr(3),s=S+(1-S)*e0,cx=XC+(300-XC)*e0,cy=YC+(220-YC)*e0;
- cam.setAttribute('transform','translate(300 220) scale('+s.toFixed(4)+') translate('+(-cx).toFixed(2)+' '+(-cy).toFixed(2)+')');
- for(var j=0;j<N-1;j++)cs[j].style.opacity=cl(e0*1.9-(N-2-j)/(N-2)*.9);
- oh.style.opacity=1-cl(e0*3);du.style.opacity=1-cl(e0*4);cg.style.opacity=cl((e0-.8)/.2)*(1-cl(e1*1.5));
- gh.style.transform='translateX('+(-cur*1.6).toFixed(2)+'vw)';ch.classList.toggle('fade',e0<.995);
- ru.style.opacity=e1>.001?1:0;
- ln.forEach(function(l,i){l.style.strokeDashoffset=1-cl(e1*1.6-i*.15)});
- bx.style.opacity=e1;tg.forEach(function(t,i){var v=cl(e1*2.2-.6-i*.3);t.style.opacity=v;t.style.transform=t.dataset.b+' translateX('+((1-v)*10)+'px)'});
- ch.style.transform=mob.matches?'translate('+(10*e2)+'%,'+(-30*e2)+'%) scale('+(1-.2*e2)+')':'translate('+(-15*e2)+'%,'+(-17*e2+(-4*e3))+'%) scale('+(1-.36*e2-.08*e3)+')';
- ch.style.opacity=1-.95*e3;
- co.style.opacity=cl(e2*1.6)*(1-.95*e3);co.style.transform='translateY('+((1-e2)*48+e3*24)+'px) scale('+(1-.06*e3)+')';
- var L=ks.length,ty=e2*(L+.6),last=0;ks.forEach(function(k,i){var v=cl(ty-i);k.style.clipPath='inset(0 '+((1-v)*100).toFixed(1)+'% 0 0)';if(v>0)last=i});
- caret.style.opacity=e2>0&&e3<.5?1:0;
- eq.style.opacity=cl(e3*3);eqL.style.strokeDashoffset=1-e3;eqA.style.opacity=cl(e3*1.4-.4);
- eqD.forEach(function(c){c.style.opacity=cl(e3*5-4)});ai.style.opacity=cl(e3*4-3);
- var a=Math.max(0,Math.min(4,Math.round(cur)));
- if(a!==act){act=a;ss.forEach(function(x,i){x.classList.toggle('on',i===a)});rl.forEach(function(x,i){x.classList.toggle('on',i===a);x.classList.toggle('done',i<a)});cnt.textContent='0'+(a+1);gs.forEach(function(x,i){x.classList.toggle('on',i===a)});if(ready){pu.classList.remove('go');void pu.offsetWidth;pu.classList.add('go')}}
- bar.style.transform='scaleX('+(cur/4)+')';cue.style.opacity=1-cl(cur*5);
-}
-tg.forEach(function(t){t.dataset.b=t.getAttribute('transform').replace(/translate\(([^ ]+) ([^)]+)\)/,'translate($1px,$2px)');t.removeAttribute('transform');t.style.transform=t.dataset.b});
-function loop(){cur+=(tgt-cur)*.12;if(Math.abs(tgt-cur)<.0008)cur=tgt;render();raf=cur!==tgt?requestAnimationFrame(loop):0}
-function on(){tgt=prog();if(!raf)raf=requestAnimationFrame(loop)}
-addEventListener('scroll',on,{passive:true});addEventListener('resize',on);
-tgt=cur=prog();render();ready=true;
-var pl=st.querySelector('.st-play'),auto=!matchMedia('(prefers-reduced-motion: reduce)').matches,paused=false,busy=false,tid=0,FIRST=3400,DWELL=4600;
-function inPin(){var r=st.getBoundingClientRect();return r.top<=2&&r.bottom>=innerHeight-2}
-function spos(i){var h=st.offsetHeight-innerHeight;return st.offsetTop+h*((i+.25)/4.5)}
-function stop(){clearTimeout(tid);pl.classList.remove('run')}
-function arm(d){stop();var a=Math.round(tgt);pl.classList.toggle('end',a>=4);pl.classList.toggle('off',paused);
- if(!auto||paused||document.hidden||a>=4||!inPin())return;
- void pl.offsetWidth;pl.style.setProperty('--dw',d+'ms');pl.classList.add('run');
- tid=setTimeout(function(){if(!inPin()||paused)return;busy=true;pl.classList.remove('run');scrollTo({top:spos(a+1),behavior:'smooth'});
-  setTimeout(function(){busy=false;arm(DWELL)},1300)},d)}
-var rs=0;addEventListener('scroll',function(){if(busy)return;pl.classList.toggle('end',Math.round(prog())>=4);if(tid){stop();tid=0}clearTimeout(rs);rs=setTimeout(function(){arm(DWELL)},1400)},{passive:true});
-document.addEventListener('visibilitychange',function(){arm(DWELL)});
-pl.addEventListener('click',function(){if(pl.classList.contains('end')&&!paused){paused=false;busy=true;scrollTo({top:spos(0),behavior:'smooth'});setTimeout(function(){busy=false;arm(FIRST)},1600);return}
- paused=!paused;pl.setAttribute('aria-label',paused?'Play auto-play':'Pause auto-play');arm(paused?0:900)});
-[].slice.call(st.querySelectorAll('.st-course,.st-also a')).forEach(function(c){c.addEventListener('mouseenter',stop);c.addEventListener('mouseleave',function(){arm(DWELL)})});
-arm(FIRST);
-window.__stSet=function(p){tgt=cur=p;render()};
-if(matchMedia('(hover:hover) and (pointer:fine)').matches){var pin=st.querySelector('.st-pin');pin.addEventListener('mousemove',function(e){var r=pin.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;tl.style.transform='perspective(1400px) rotateY('+(x*9).toFixed(2)+'deg) rotateX('+(-y*7).toFixed(2)+'deg)'});pin.addEventListener('mouseleave',function(){tl.style.transform=''})}
-[].slice.call(st.querySelectorAll('[data-go]')).forEach(function(g){g.addEventListener('click',function(e){var r=document.querySelector('.ix-row[data-tab="'+g.dataset.go+'"]');if(r){e.preventDefault();r.click()}})});
-rl.forEach(function(x,i){x.addEventListener('click',function(){var h=st.offsetHeight-innerHeight;scrollTo({top:st.offsetTop+h*((i+.25)/4.5),behavior:'smooth'})})});
+var CRM='https://crm.vishalmehtacmt.com/api/leads',m=document.getElementById('enq');if(!m)return;
+var f=m.querySelector('form'),sel=f.querySelector('select'),err=f.querySelector('.enq-err'),go=f.querySelector('.enq-go'),gl=go.querySelector('span');
+[].slice.call(document.querySelectorAll('.dta-panel[data-panel]')).sort(function(a,b){return a.dataset.n-b.dataset.n}).forEach(function(p){var o=document.createElement('option');o.value=p.getAttribute('aria-label');o.textContent=o.value;sel.appendChild(o)});
+function names(v){[].slice.call(m.querySelectorAll('.enq-cn')).forEach(function(e){e.textContent=v})}
+sel.addEventListener('change',function(){names(sel.value)});
+function show(course){f.reset();sel.value=course;names(course);err.textContent='';go.disabled=false;gl.textContent='Send enquiry';
+  m.querySelector('.enq-ok').hidden=true;m.querySelector('.enq-form').hidden=false;m.hidden=false;
+  requestAnimationFrame(function(){m.classList.add('on')});setTimeout(function(){f.elements.name.focus()},260)}
+function hide(){m.classList.remove('on');setTimeout(function(){m.hidden=true},300)}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-enq]');
+  if(b){e.preventDefault();var p=b.closest('.dta-panel');show(p?p.getAttribute('aria-label'):sel.options[0].value);return}
+  if(e.target.closest('[data-enq-x]'))hide()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){e.stopImmediatePropagation();hide()}},true);
+f.addEventListener('submit',function(e){e.preventDefault();err.textContent='';var el=f.elements;
+  var name=el.name.value.trim(),ph=el.phone.value.replace(/\D/g,''),em=el.email.value.trim(),course=sel.value;
+  if(!name){err.textContent='Please enter your name.';return}
+  if(ph.length<10){err.textContent='Please enter a valid 10-digit phone number.';return}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){err.textContent='Please enter a valid email address.';return}
+  if(el.website.value){hide();return}
+  go.disabled=true;gl.textContent='Sending…';
+  fetch(CRM,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:ph.length===10?'+91'+ph:'+'+ph,email:em,source:'website',
+    source_page:'DTA page · '+course+' (Enquire now)',course_interest:course,temperature:'hot',message:'Enquired from the '+course+' programme page on the website.'})})
+  .then(function(r){if(!r.ok)throw 0;m.querySelector('.enq-fn').textContent=', '+name.split(' ')[0];m.querySelector('.enq-form').hidden=true;m.querySelector('.enq-ok').hidden=false})
+  .catch(function(){err.textContent='Could not send right now. Please try again in a moment.'})
+  .then(function(){go.disabled=false;gl.textContent='Send enquiry'})});
 })();
 </script>
 </body>
